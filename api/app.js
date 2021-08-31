@@ -13,7 +13,7 @@ app.use((req,res,next)=>{
     console.log(`${req.url} - ${req.method}`);
     next();
 })
-app.use(bodyParser,json());
+app.use(bodyParser.json());
 
 // routes
 app.use(routes)
