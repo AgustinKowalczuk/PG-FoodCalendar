@@ -6,7 +6,7 @@ import {RECIPES_URL, INGREDIENTS_URL } from '../routes'
 
 export function getRecipes() {
         return async function (dispatch){
-                var recipes= await axios.get(RECIPES_URL);
+                const recipes= await axios.get(RECIPES_URL);
                 return dispatch ({
                         type: GET_RECIPES,
                         payload:recipes.data
@@ -16,7 +16,7 @@ export function getRecipes() {
 
 export function getIngredients(){
         return async function (dispatch){
-                var ingredients = await axios.get (INGREDIENTS_URL);
+                const ingredients = await axios.get (INGREDIENTS_URL);
                 return dispatch ({
                         type: GET_INGREDIENTS,
                         payload: ingredients.data
