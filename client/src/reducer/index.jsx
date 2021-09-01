@@ -3,10 +3,7 @@ import{GET_RECIPES, GET_INGREDIENTS }from '../actions/constants'
 var initialState={
         recipes:[],
         ingredients:[],
-
 }
-
-
 function reducer(state = initialState, action) {
         switch (action.type){
                 case GET_RECIPES:
