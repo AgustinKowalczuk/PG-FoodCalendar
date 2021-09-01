@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Nav from './Components/Nav/Nav'
 import Home from './Components/Home/Home'
+import SearchBar from './Components/SearchBar/SearchBar'
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Nav/>
       <Switch>
         <Route exact path='/' component={Home}/>
+        <Route path = '/:id' component={SearchBar}/>
       </Switch>
       </div>
     </BrowserRouter>
