@@ -2,6 +2,7 @@ import React from 'react';
 import { getRecipes } from '../../actions';
 import { useEffect} from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import style from '../../Styles/StyleCards.module.css';
 
 export default function Cards(){
     //Traigo todo
@@ -15,13 +16,15 @@ export default function Cards(){
     
     //Existen recetas? Mandale mecha.
     return (
-        <div>
+        <div class={style.content}>
         {allRecipes?.map((e) => {
             return(
-                <div>
-                    <h1>Receta: {e.name}</h1>
-                    <h4>Dificultad: {e.difficulty}</h4>
-                    <img width={250} height={250} src={e.img} alt="No sé encuentra la imagen" />
+                <div class="card" id={style.carData}>
+                    <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
+                    <div class="card-body" >
+                        <h1 class="card-title" >{e.name}</h1>
+                        <h4 class="card-text" >Dificultad: {e.difficulty}</h4>
+                    </div>       
                 </div>
             )
         })}
