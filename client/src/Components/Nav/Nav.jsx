@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar"
+import logo from '../../Image/Logo_RC.jpg'
 
-export default function Nav() {
-  return (
-    <div>
-      <ul>
-        <li><Link to="/"> Home </Link></li>
-      </ul>
-      <SearchBar/>
-    </div>
+export default withRouter( function Nav(props) {
+ const {history}= props;
+
+    return (
+    <div position='fixed'>
+      <Link to = '/'><img align='left' src= {logo} alt='logo'/></Link>
+      <button onClick={()=>history.goBack()}>Volver</button>
+       <SearchBar/>
+        </div>
   );
-}
+})
