@@ -3,6 +3,8 @@ const express = require ('express');
 const package = require('./package.json');
 const routes = require ('./routes/index.js')
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 //settings
 const { env: { PORT, MONGO_URL: url }, argv: [, , port = PORT || 3001], } = process;
@@ -19,7 +21,8 @@ const cors = (req, res, next) => {
     // express
     app.use(cors);
     app.use(express.json());
- 
+    app.use(cookieParser());
+    app.use(morgan('dev'));
     // routes
     app.use(routes);
 
