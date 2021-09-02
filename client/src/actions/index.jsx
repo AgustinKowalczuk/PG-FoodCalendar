@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES } from "./constants";
+import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ} from "./constants";
 import { RECIPES_URL, INGREDIENTS_URL } from "../routes";
 
 export function getRecipes() {
@@ -34,4 +34,11 @@ export function searchRecipes(name) {
       payload: filtRecipes.data,
     });
   };
+}
+
+export function orderZA(){
+  return {type:ORDER_ZA}
+}
+export function orderAZ(){
+  return {type:ORDER_AZ}
 }
