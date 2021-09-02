@@ -20,8 +20,8 @@ export default function Cards(){
             return(
                 <div>
                     <h1>Receta: {e.name}</h1>
-                    <h4>Dificultad: {e.dificult}</h4>
-                    <img src={e.img} alt="No sé encuentra la imagen" />
+                    <h4>Dificultad: {e.difficulty}</h4>
+                    <img width={250} height={250} src={e.img} alt="No sé encuentra la imagen" />
                 </div>
             )
         })}
