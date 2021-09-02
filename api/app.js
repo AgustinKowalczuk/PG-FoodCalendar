@@ -14,10 +14,9 @@ const cors = (req, res, next) => {
 }
 
 (async () => {
-    await mongoose.connect(url, { useNewUrlParser: true })
+    await mongoose.connect(url, { useNewUrlParser: true });
  
     // express
-    app.set('port', PORT || 3001);
     app.use(cors);
     app.use(express.json());
  
@@ -25,8 +24,16 @@ const cors = (req, res, next) => {
     app.use(routes);
 
     app.use(function (req, res, next) {
-        res.status(404).json({ error: 'Not found.' })
-    })
+        res.status(404).json({ error: 'Not found.' });
+    });
+
+    // Error catching endware.
+    app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+        const status = err.status || 500;
+        const message = err.message || err;
+        console.error(err);
+        res.status(status).send(message);
+    });
 
     app.listen(port, () => console.log(`${package.name} ${package.version} up on port ${port}`))
 })()
