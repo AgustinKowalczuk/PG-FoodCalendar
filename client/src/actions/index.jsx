@@ -6,6 +6,7 @@ export function getRecipes() {
 
   return async function (dispatch) {
     const recipes = await axios.get(RECIPES_URL);
+    console.log(recipes.data)
     return dispatch({
       type: GET_RECIPES,
       payload: recipes.data,
