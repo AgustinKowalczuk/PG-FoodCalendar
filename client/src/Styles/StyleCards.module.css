@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+#carData{
+    width: 400px;
+    min-width: 20%;
+    margin-top: 5px;
+}
