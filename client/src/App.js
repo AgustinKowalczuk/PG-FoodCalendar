@@ -12,7 +12,7 @@ function App() {
       <Nav/>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path = '/:id' component={SearchBar}/>
+        <Route path = '/search/:name' component={SearchBar}/>
       </Switch>
       </div>
     </BrowserRouter>
