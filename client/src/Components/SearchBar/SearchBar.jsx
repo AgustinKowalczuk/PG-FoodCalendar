@@ -10,10 +10,10 @@ export default function SearchBar() {
   }
 
   return (
-    <div>
-      <input type="text" placeholder="Search.." onChange={(e) =>handleChange(e)}/>
-      <Link to={`/search/${text}`} >
-        <p>Search</p>
+    <div class="d-flex">
+      <input class="form-control me-2" type="text" placeholder="Search.." onChange={(e) =>handleChange(e)}/>
+      <Link class="btn btn-outline-success" to={`/search/${text}`} >
+        Search
       </Link>
     </div>
   );
