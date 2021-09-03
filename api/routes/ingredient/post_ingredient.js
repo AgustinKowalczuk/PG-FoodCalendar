@@ -11,6 +11,6 @@ router.post('/ingredients', async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-})
+});
 
-module.exports = router
+module.exports = router;
