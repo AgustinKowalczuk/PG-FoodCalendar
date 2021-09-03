@@ -4,7 +4,7 @@ import Nav from './Components/Nav/Nav'
 import Home from './Components/Home/Home'
 import SearchBar from './Components/SearchBar/SearchBar'
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
-
+import GlobalStyles from './Styles/GlobalStyle.css'
 function App() {
   return (
     <BrowserRouter>
