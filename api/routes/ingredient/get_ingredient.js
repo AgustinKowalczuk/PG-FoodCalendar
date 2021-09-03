@@ -1,16 +1,20 @@
 const express = require("express");
-const router = express.Router()
+const router = express.Router();
 const models = require('../../models/models');
 const { Ingredient } = models;
 
-router.get('/ingredients', async (req,res)=>{
+router.get('/ingredients', async (req, res, next) => {
     try {
-        const ingredients = await Ingredient.find();
-        return res.json(ingredients);
+        const ingredients = await Ingredient.find().lean();
+        const mapeado = ingredients.map(e => ({
+            id: e._id,
+            name: e.name,
+            unit: e.unit
+        }));
+        return res.json(mapeado);
     } catch (error) {
-        console.log(error);
-        return res.status(404).send('Hay un error en esta ruta');
+        next(error);
     }
-})
+});
 
-module.exports = router
+module.exports = router;
