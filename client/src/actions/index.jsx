@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
-import { RECIPES_URL, INGREDIENTS_URL } from "../routes";
+import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL } from "../routes";
 
 export function getRecipes() {
 
@@ -28,10 +28,11 @@ export function getIngredients() {
 //obtener el detalle de la receta
 export function getDetail (id){
   return async function (dispatch) {
-    const recipe = await axios.get(RECIPES_URL+'/'+id);
+    const detail = await axios.get(RECIPES_DETAIL_URL + id);
+    console.log(detail.data,'detalle_acction')
     return dispatch({
       type: GET_DETAIL,
-      payload: recipe.data,
+      payload: detail.data
     });
   };
 }

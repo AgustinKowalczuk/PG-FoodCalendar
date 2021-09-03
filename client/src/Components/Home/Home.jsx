@@ -1,13 +1,12 @@
 import React from 'react'
 
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {getRecipes}from '../../actions/index'
 import Cards from '../Cards/Cards';
+import FiltrosyOrdenamientos from "../Filtros yOrdenamientos/FiltrosyOrdenamientos";
 
 export default function Home (){       
         return (
                 <div>
+                  {/* <FiltrosyOrdenamientos/>   */}
                   <Cards/>
                 </div>
         )

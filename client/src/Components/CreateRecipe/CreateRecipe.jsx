@@ -2,6 +2,7 @@ import React from "react";
 import style from "../../Styles/StyleFrom.module.css"
 
 export default function CreateRecipe() {
+  
   return (
     <div class={style.centrado}>
       <form class={style.forms}>
@@ -19,12 +20,16 @@ export default function CreateRecipe() {
 
         <div class="mb-3">
           <label class="form-label">Dificult</label>
-          <input class="form-control" type="text" placeholder="write here..."/>
-        </div>
+          <select name='Dificult' class="form-control">
+          <option name='Dificult' value="Easy"> Easy </option>
+          <option name='Dificult' value="Medium"> Medium </option>
+          <option name='Dificult' value="Hard"> Hard </option>
+          </select>
+          </div>
 
         <div class="mb-3">
           <label class="form-label">Preparation</label>
-          <input class="form-control" type="text" placeholder="write here..."/>
+          <textarea class="form-control" placeholder="write here..."></textarea>
         </div>
 
         <div class="mb-3">
