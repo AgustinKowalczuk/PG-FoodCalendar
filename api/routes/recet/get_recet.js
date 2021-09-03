@@ -22,6 +22,27 @@ router.get('/recipe', async (req,res,next)=>{
     }catch(e){
         next(e);
     }
-})
+});
+
+router.get('/recipe/filterByIngredient/:name', async (req, res, next) => {
+    const { name } = req.params;
+    try {
+        const filteredRecipes = await Recipe.find({
+            ingredients: {
+                $elemMatch: {
+                    name: {
+                        $regex: new RegExp(name, "i")
+                    }
+                }
+            }
+        });
+        if (!filteredRecipes.length > 0) { 
+            return res.status(404).json([`No se encontraron recetas con el ingrediente indicado`]);
+         }
+         return res.json(filteredRecipes);
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports = router
