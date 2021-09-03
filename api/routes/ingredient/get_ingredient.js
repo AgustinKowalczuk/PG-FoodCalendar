@@ -10,11 +10,11 @@ router.get('/ingredients', async (req, res, next) => {
             id: e._id,
             name: e.name,
             unit: e.unit
-        }))
+        }));
         return res.json(mapeado);
     } catch (error) {
         next(error);
     }
-})
+});
 
-module.exports = router
+module.exports = router;

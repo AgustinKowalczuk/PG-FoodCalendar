@@ -12,8 +12,8 @@ router.put('/ingredients/:id', async (req, res, next) => {
         const update = await Ingredient.findByIdAndUpdate(elem._id, body);
         return res.json(update);
     } catch (error) {
-        next(error)
+        next(error);
     }
-})
+});
 
-module.exports = router
+module.exports = router;

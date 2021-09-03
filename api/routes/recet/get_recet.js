@@ -16,20 +16,47 @@ router.get('/recipe', async (req,res,next)=>{
                 id: i._id,
                 name: i.name,
                 unit: i.unit
-            }))
+            })),
+            category: e.category
         }));
         return res.json(recipeNormalized);
-    }catch(e){
-        next(e);
+    }catch(error){
+        next(error);
     }
-})
+});
+
+router.get('/recipe/search/:name', async (req,res,next) => {
+    const {name} = req.params;
+    try{
+        const recipeFound = await Recipe.find({name: {$regex: new RegExp(name, "i") }});
+        if(recipeFound.length === 0){
+            return res.staus(404).json(["No hay recetas con el nombre ingresado."]);
+        }
+        const recipeFoundNormalized = recipeFound.map(e => ({
+            id: e._id,
+            name: e.name,
+            difficulty: e.difficulty,
+            rating: e.rating,
+            preparation: e.preparation,
+            img: e.img,
+            ingredients: e.ingredients.map(i => ({
+                id: i._id,
+                name: i.name,
+                unit: i.unit
+            })),
+            category: e.category
+        }));
+        return res.json(recipeFoundNormalized);
+    }catch(error){
+        next(error);
+    }
+});   
 
 router.get('/recipe/details/:id', async (req,res,next)=>{
     const {id} = req.params;
     try{
         const recipeMatch = await Recipe.findById(id);
-        //console.log(recipeMatch)
-        if (!recipeMatch) { return res.status(404).json({error:`la receta con el id ingresado no existe`}) }
+        if (!recipeMatch) { return res.status(404).json({error:"La receta con el id ingresado no existe"}) }
         const detailRecipe = {
             id: recipeMatch._id,
             name: recipeMatch.name,
@@ -48,6 +75,27 @@ router.get('/recipe/details/:id', async (req,res,next)=>{
     }catch(e){
         next(e);
     }
-})
+});
 
-module.exports = router
+router.get('/recipe/filterByIngredient/:name', async (req, res, next) => {
+    const { name } = req.params;
+    try {
+        const filteredRecipes = await Recipe.find({
+            ingredients: {
+                $elemMatch: {
+                    name: {
+                        $regex: new RegExp(name, "i")
+                    }
+                }
+            }
+        });
+        if (!filteredRecipes.length > 0) { 
+            return res.status(404).json(["No se encontraron recetas con el ingrediente indicado"]);
+         }
+         return res.json(filteredRecipes);
+    } catch (error) {
+        next(error);
+    }
+});
+
+module.exports = router;
