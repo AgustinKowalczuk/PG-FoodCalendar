@@ -5,4 +5,4 @@ const ingredient = new Schema({
     unit: { type: String, required: true }
 })
 
-module.exports = ingredient
+module.exports = ingredient;
