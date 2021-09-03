@@ -6,6 +6,8 @@ import SearchBar from './Components/SearchBar/SearchBar'
 import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
 
 
+import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
+import GlobalStyles from './Styles/GlobalStyle.css'
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +17,7 @@ function App() {
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchBar}/>
         <Route path='/recipe/:id' component={DetailRecipe}/>
+        <Route path = '/create/recipe' component={CreateRecipe}/>
       </Switch>
       </div>
     </BrowserRouter>
