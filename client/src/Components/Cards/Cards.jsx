@@ -23,7 +23,7 @@ export default function Cards(){
                     <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
                     <div class="card-body" >
                         <h1 class="card-title" >{e.name}</h1>
-                        <h4 class="card-text" >Dificultad: {e.difficulty}</h4>
+                        <h4 class="card-text" >Dificult: {e.difficulty}</h4>
                     </div>       
                 </div>
             )
