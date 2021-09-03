@@ -27,13 +27,13 @@ export function getIngredients() {
 
 // Despues voy a realizar cambios en la function y el el axios
 export function searchRecipes(name) {
-
-  return async function (dispatch) {
-    const filtRecipes = await axios.get(RECIPES_URL + `/${name}`);
-    return dispatch({
-      type: SEARCH_RECIPES,
-      payload: filtRecipes.data,
-    });
+  return async  (dispatch) => {
+    try{
+      const filtRecipes = await axios.get(RECIPES_URL + `/search/${name}`);
+       dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
+    }catch(error){
+      console.log(error)
+    }
   };
 }
 
