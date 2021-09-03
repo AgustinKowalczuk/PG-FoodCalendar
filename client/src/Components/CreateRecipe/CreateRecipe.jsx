@@ -3,6 +3,7 @@ import style from "../../Styles/StyleFrom.module.css"
 import { Formik, Field, Form } from 'formik';
 
 export default function CreateRecipe() {
+  
   return (
     <div class={style.centrado}>
         <form class={style.forms}>
