@@ -1,0 +1,19 @@
+#link {
+    font-size: 1.1em;
+    padding: .375rem .75rem;
+    border: 1px solid rgba(128, 128, 128, 0.53);
+    border-radius: .25rem;
+}
+#link:hover{
+    background-color: rgba(128, 128, 128, 0.53);
+    color: white;
+}
+
+#nav{
+    width: 100%;
+}
+
+#mobilecenter{
+    display: flex;
+    align-items: center;
+}

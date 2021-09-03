@@ -1,0 +1,21 @@
+.forms{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: space-between;
+    width: 90%;
+    max-width: 90%;
+    padding: .375rem .75rem;
+    border: 1px solid rgba(128, 128, 128, 0.435);
+    border-radius: .25rem;
+}
+.centrado {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
