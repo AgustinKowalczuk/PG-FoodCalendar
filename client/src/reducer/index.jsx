@@ -13,7 +13,7 @@ var initialState = {
   recipes: [],
   copyRecipe: [],
   ingredients: [],
-  detail:[],
+  detail:{},
 };
 
 function reducer(state = initialState, action) {

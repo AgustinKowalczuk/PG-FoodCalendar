@@ -19,16 +19,16 @@ export default function DetailRecipe() {
             
     }, [dispatch,id])
 
-    console.log(recipeDetail[0],'detalle2')
+    console.log(recipeDetail,'detalle2')
 
         return (
                 <div class={style.carData}>
-                    <h3>{recipeDetail[0].name}</h3>
-                    <h3>Dificultad:{recipeDetail[0].difficulty}</h3>
-                    <h3>Rating:{recipeDetail[0].rating}</h3>
-                    <h3>Preparacion:{recipeDetail[0].preparation}</h3>
-                    <img src={recipeDetail[0].img} alt='imagen de comida'  width='200px' height= '100px'/> 
-          <h5> Ingredientes : {recipeDetail[0].ingredients?.map(x =>(
+                    <h3>{recipeDetail.name}</h3>
+                    <h3>Dificultad:{recipeDetail.difficulty}</h3>
+                    <h3>Rating:{recipeDetail.rating}</h3>
+                    <h3>Preparacion:{recipeDetail.preparation}</h3>
+                    <img src={recipeDetail.img} alt='imagen de comida'  width='200px' height= '100px'/> 
+          <h5> Ingredientes : {recipeDetail.ingredients?.map(x =>(
             <table class={style.content}><tr>
            
             <td>  <h4>{x.name}</h4></td>
