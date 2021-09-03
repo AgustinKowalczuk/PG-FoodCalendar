@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
-
+import { Link } from 'react-router-dom';
+import { getDetail } from '../../actions/index'
 
 export default function Cards(){
     //Traigo todo
     const allRecipes = useSelector((state) => state.recipes)
-
+    const dispatch = useDispatch()
     
     //Existen recetas? Mandale mecha.
     return (
@@ -18,8 +19,8 @@ export default function Cards(){
               onClick={() => dispatch(getDetail(e.id))} id={style.normal}>
                     <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
                     <div class="card-body" >
-                        <h1 class="card-title" id={style.normal}>{e.name}</h1>
-                        <h4 class="card-text" id={style.normal} >Dificultad: {e.difficulty}</h4>
+                        <h1 class="card-title" >{e.name.toUpperCase()}</h1>
+                        <h4 class="card-text" >Dificultad: {e.difficulty}</h4>
                     </div>       
                 </Link>
                 </div>
