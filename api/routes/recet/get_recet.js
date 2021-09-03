@@ -16,9 +16,62 @@ router.get('/recipe', async (req,res,next)=>{
                 id: i._id,
                 name: i.name,
                 unit: i.unit
-            }))
+            })),
+            category: e.category
         }));
         return res.json(recipeNormalized);
+    }catch(error){
+        next(error);
+    }
+});
+
+router.get('/recipe/search/:name', async (req,res,next) => {
+    const {name} = req.params;
+    try{
+        const recipeFound = await Recipe.find({name: {$regex: new RegExp(name, "i") }});
+        if(recipeFound.length === 0){
+            return res.staus(404).json(["No hay recetas con el nombre ingresado."]);
+        }
+        const recipeFoundNormalized = recipeFound.map(e => ({
+            id: e._id,
+            name: e.name,
+            difficulty: e.difficulty,
+            rating: e.rating,
+            preparation: e.preparation,
+            img: e.img,
+            ingredients: e.ingredients.map(i => ({
+                id: i._id,
+                name: i.name,
+                unit: i.unit
+            })),
+            category: e.category
+        }));
+        return res.json(recipeFoundNormalized);
+    }catch(error){
+        next(error);
+    }
+});   
+
+router.get('/recipe/details/:id', async (req,res,next)=>{
+    const {id} = req.params;
+    try{
+        const recipeMatch = await Recipe.findById(id);
+        if (!recipeMatch) { return res.status(404).json({error:"La receta con el id ingresado no existe"}) }
+        const detailRecipe = {
+            id: recipeMatch._id,
+            name: recipeMatch.name,
+            difficulty: recipeMatch.difficulty,
+            rating: recipeMatch.rating,
+            preparation: recipeMatch.preparation,
+            img: recipeMatch.img,
+            ingredients: recipeMatch.ingredients.map(i => ({
+                id: i._id,
+                name: i.name,
+                unit: i.unit
+            })),
+            category: recipeMatch.category
+        }
+        return res.json(detailRecipe);
     }catch(e){
         next(e);
     }
@@ -45,4 +98,4 @@ router.get('/recipe/filterByIngredient/:name', async (req, res, next) => {
     }
 });
 
-module.exports = router
+module.exports = router;
