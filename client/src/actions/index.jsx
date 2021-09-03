@@ -7,7 +7,6 @@ export function getRecipes() {
 //me trae las recetas de la db
   return async function (dispatch) {
     const recipes = await axios.get(RECIPES_URL);
-    console.log(recipes.data)
     return dispatch({
       type: GET_RECIPES,
       payload: recipes.data,
@@ -29,8 +28,7 @@ export function getIngredients() {
 export function getDetail (id){
   return async function (dispatch) {
     const detail = await axios.get(RECIPES_DETAIL_URL + id);
-    console.log(detail.data,'detalle_acction')
-    return dispatch({
+      return dispatch({
       type: GET_DETAIL,
       payload: detail.data
     });

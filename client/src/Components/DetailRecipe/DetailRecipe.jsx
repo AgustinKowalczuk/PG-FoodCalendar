@@ -9,17 +9,13 @@ import style from '../../Styles/StyleCards.module.css';
 export default function DetailRecipe() {
 
         const {id} = useParams()
-        console.log(id,'id')
         const dispatch = useDispatch()
         const recipeDetail = useSelector(state => state.detail)
         
         //Lo despacho
         useEffect(() => {
             dispatch(getDetail(id))
-            
-    }, [dispatch,id])
-
-    console.log(recipeDetail,'detalle2')
+           }, [dispatch,id])
 
         return (
                 <div class={style.carData}>
@@ -30,11 +26,9 @@ export default function DetailRecipe() {
                     <img src={recipeDetail.img} alt='imagen de comida'  width='200px' height= '100px'/> 
           <h5> Ingredientes : {recipeDetail.ingredients?.map(x =>(
             <table class={style.content}><tr>
-           
             <td>  <h4>{x.name}</h4></td>
             <td>  <h6>{x.unit}</h6></td>
-            
-               </tr></table>
+            </tr></table>
               ) )} </h5>
                 </div>
         )
