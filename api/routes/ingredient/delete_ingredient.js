@@ -3,10 +3,10 @@ const router = express.Router();
 const models = require('../../models/models');
 const { Ingredient } = models;
 
-router.delete('/ingredients/:name', async (req, res, next) => {
-    const { name } = req.params;
+router.delete('/ingredients/:id', async (req, res, next) => {
+    const { id } = req.params;
     try {
-        const elem = await Ingredient.findOne({ name });
+        const elem = await Ingredient.findById( id );
         if (!elem) { return res.status(404).send(`el ingrediente con el nombre ingresado no existe`) }
         const remove = await Ingredient.findByIdAndRemove(elem._id);
         return res.json(remove);
