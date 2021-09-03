@@ -1,20 +1,12 @@
 import React from 'react';
-import { getRecipes } from '../../actions';
-import { useEffect} from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom'
-import {getDetail}from '../../actions'
+import { useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
+
 
 export default function Cards(){
     //Traigo todo
-    const dispatch = useDispatch();
     const allRecipes = useSelector((state) => state.recipes)
 
-    //Lo despacho
-    useEffect(() => {
-        dispatch(getRecipes())
-    }, [dispatch])
     
     //Existen recetas? Mandale mecha.
     return (
