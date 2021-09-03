@@ -1,9 +1,10 @@
 import axios from "axios";
-import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ} from "./constants";
+import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
 import { RECIPES_URL, INGREDIENTS_URL } from "../routes";
 
 export function getRecipes() {
 
+//me trae las recetas de la db
   return async function (dispatch) {
     const recipes = await axios.get(RECIPES_URL);
     console.log(recipes.data)
@@ -13,7 +14,7 @@ export function getRecipes() {
     });
   };
 }
-
+//me trae los ingredientes de la db
 export function getIngredients() {
 
   return async function (dispatch) {
@@ -24,7 +25,16 @@ export function getIngredients() {
     });
   };
 }
-
+//obtener el detalle de la receta
+export function getDetail (id){
+  return async function (dispatch) {
+    const recipe = await axios.get(RECIPES_URL+'/'+id);
+    return dispatch({
+      type: GET_DETAIL,
+      payload: recipe.data,
+    });
+  };
+}
 // Despues voy a realizar cambios en la function y el el axios
 export function searchRecipes(name) {
 
