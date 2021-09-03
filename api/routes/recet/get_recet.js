@@ -30,7 +30,7 @@ router.get('/recipe/search/:name', async (req,res,next) => {
     try{
         const recipeFound = await Recipe.find({name: {$regex: new RegExp(name, "i") }});
         if(recipeFound.length === 0){
-            return res.staus(404).json(["No hay recetas con el nombre ingresado."]);
+            return res.status(404).json(["No hay recetas con el nombre ingresado."]);
         }
         const recipeFoundNormalized = recipeFound.map(e => ({
             id: e._id,
