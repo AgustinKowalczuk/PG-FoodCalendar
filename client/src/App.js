@@ -6,6 +6,8 @@ import SearchCards from './Components/SearchCards/SearchCards'
 import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
+import Footer from './Components/Footer/Footer';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path='/recipe/:id' component={DetailRecipe}/>
         <Route path = '/create/recipe' component={CreateRecipe}/>
       </Switch>
+      <Footer/>
       </div>
     </BrowserRouter>
   );

@@ -12,14 +12,14 @@ import medium from '../../Image/medium.png'
 
 import Pagination from '../Pagination/Pagination'
 
-export default function Cards(){
+export default function CardRelacionadas(){
     //Traigo todo
     const allRecipes = useSelector((state) => state.recipes)
     //Despacho
     const dispatch = useDispatch()
     //Para el paginado
     const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage, setRecipesPerPage] = useState(6);
+    const [recipesPerPage, setRecipesPerPage] = useState(3);
     const lastRecipeIndex = currentPage * recipesPerPage;
     const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
     const currentRecipes = allRecipes.slice(firstRecipeIndex, lastRecipeIndex);

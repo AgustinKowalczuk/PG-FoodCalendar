@@ -1,0 +1,49 @@
+.content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+        align-items: stretch;
+        align-content: stretch;
+    }
+    
+    .carData{
+        width: 400px;
+        min-width: 20%;
+        margin-top: 5px;
+        background-color: coral;
+    }
+    
+    .normal{
+       
+        text-align: center;
+        padding:20px;
+        
+    }
+
+    .img{
+       padding: 20px;
+    }
+    .dificulty {
+         align-content:flex-start;
+              text-align: left;
+              padding:20px;
+              float: left;
+             
+    }
+    .rating{
+        text-align: left;
+        padding:50px;
+    
+
+    }
+    .ingredientes{ 
+       background: rgba(141, 195, 232, 0.452);
+       text-align: left;
+      padding:20px;
+      float:right;
+    }
+
+
+    

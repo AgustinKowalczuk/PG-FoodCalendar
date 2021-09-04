@@ -6,7 +6,7 @@ import style from "../../Styles/StyleNav.module.css"
 
 
 
-export default function Nav() {
+export default function Footer() {
 
     return (
     <div id={style.nav} class="navbar navbar-light bg-light">
@@ -14,10 +14,8 @@ export default function Nav() {
         <Link class="navbar-brand" to = '/'>
           <img width="55%" height="45%" src= {logo} alt='logo'/>
         </Link>
-        <div id={style.mobilecenter} class="navbar-nav me-auto mb-2 mb-lg-0">
-          <Link id={style.link} class="nav-link active" to="/create/recipe">Create recipe</Link>
-        </div>  
-          <SearchBar/>
+        <h6>© Copyright 2021 - Henry - All Rights Reserved</h6>
+        <SearchBar/>
       </div>
     </div>
   );
