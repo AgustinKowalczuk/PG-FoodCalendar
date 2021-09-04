@@ -25,11 +25,11 @@ router.get('/recipe', async (req, res, next) => {
     }
 });
 
-router.get('/recipe/search/:name', async (req, res, next) => {
-    const { name } = req.params;
-    try {
-        const recipeFound = await Recipe.find({ name: { $regex: new RegExp(name, "i") } });
-        if (recipeFound.length === 0) {
+router.get('/recipe/search/:name', async (req,res,next) => {
+    const {name} = req.params;
+    try{
+        const recipeFound = await Recipe.find({name: {$regex: new RegExp(name, "i") }});
+        if(recipeFound.length === 0){
             return res.status(404).json(["No hay recetas con el nombre ingresado."]);
         }
         const recipeFoundNormalized = recipeFound.map(e => ({
