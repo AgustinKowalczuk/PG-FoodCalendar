@@ -2,7 +2,6 @@ import React from 'react'
 import Cards from '../Cards/Cards';
 import calendar from '../../Image/Menu_semanal.jpg'
 
-
 export default function Home() {
         return (
                 <div>

@@ -8,6 +8,7 @@ import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Footer from './Components/Footer/Footer';
 
+
 function App() {
   return (
     <BrowserRouter>
