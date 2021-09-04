@@ -33,6 +33,7 @@ export default function Cards(){
     }, [dispatch])
     
     //Existen recetas? Mandale mecha.
+    
     return (
         <div class={style.content}>
         <Pagination
