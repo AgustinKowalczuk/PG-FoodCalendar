@@ -64,7 +64,7 @@ router.get('/recipe/details/:id', async (req, res, next) => {
             rating: recipeMatch.rating,
             preparation: recipeMatch.preparation,
             img: recipeMatch.img,
-            ingredients: recipeMatch.map(i => ({
+            ingredients: recipeMatch.ingredients.map(i => ({
                 ingredient: { id: i.ingredient._id, name: i.ingredient.name },
                 amount: i.amount,
                 unit: { id: i.unit._id, name: i.unit.name }
