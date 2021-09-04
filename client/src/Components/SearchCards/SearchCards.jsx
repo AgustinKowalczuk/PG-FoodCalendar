@@ -17,14 +17,14 @@ const match = useSelector((state) => state.recipes)
   //  dispatch(searchRecipes(name))
 //  }, [dispatch, name])
 
-if(match === "Receta no Encontrada"){
+if(match.error){
   return(
     <div>
       <h1> NO Hay receta con ese nombre</h1>
     </div>
   )
 }
-  return (
+  else return (
     <div>
       <h1> Results: </h1>
       <div>
