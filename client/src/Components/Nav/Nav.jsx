@@ -1,5 +1,5 @@
 import React from "react";
-import { Link ,useLocation} from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar"
 import logo from '../../Image/Logo_RC.jpg'
 import style from "../../Styles/StyleNav.module.css"
@@ -7,8 +7,6 @@ import style from "../../Styles/StyleNav.module.css"
 
 
 export default function Nav() {
-  let location= useLocation();
-  console.log (location.search,'location')
 
     return (
     <div id={style.nav} class="navbar navbar-light bg-light">
