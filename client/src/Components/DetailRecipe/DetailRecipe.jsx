@@ -29,10 +29,11 @@ export default function DetailRecipe() {
 
                     <h5 className={style.ingredientes}> Ingredientes : {recipeDetail.ingredients?.map(x =>(
                       <table class={style.content}><tr>
-                      <td>  <h4>{x.name}</h4></td>
-                      <td>  <h6>{x.unit}</h6></td>
+                      <td>  <h4>{x.ingredient.name}</h4></td>
+                      <td>  <h4>{x.amount}</h4></td>
+                      <td>  <h6>{x.unit.name}</h6></td>
                       </tr></table>
-                        ) )} </h5>
+                    ) )} </h5>
                     
                     <div className={style.dificulty}>{recipeDetail.difficulty ==='Fácil'?
                             <h4 class="card-text" id={style.normal}>Dificultad: {recipeDetail.difficulty}  

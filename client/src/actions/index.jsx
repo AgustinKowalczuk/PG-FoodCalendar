@@ -15,13 +15,13 @@ export function getRecipes() {
 }
 //me trae los ingredientes de la db
 export function getIngredients() {
-
-  return async function (dispatch) {
-    const ingredients = await axios.get(INGREDIENTS_URL);
-    return dispatch({
-      type: GET_INGREDIENTS,
-      payload: ingredients.data,
-    });
+  return async  (dispatch) => {
+    try{
+      const ingredients = await axios.get(INGREDIENTS_URL);
+    dispatch({type: GET_INGREDIENTS, payload: ingredients.data,});
+    }catch(error){
+      console.log("No hay Resultado BB")
+    }
   };
 }
 //obtener el detalle de la receta
@@ -45,6 +45,25 @@ export function searchRecipes(name) {
     }
   };
 }
+
+// Creacion de Receta
+
+export function createRecipe(recipe){
+  return async function(){
+    try{
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['malo', 'vegano']})
+      console.log(newRecipe)
+    }catch(error){
+      alert("No se posteo la ReCiPe")
+    }
+  }
+}
+
+
+
+
+
+
 
 export function orderZA(){
   return {type:ORDER_ZA}
