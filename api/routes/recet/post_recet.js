@@ -8,8 +8,6 @@ router.post('/recipe', async (req, res, next) => {
     let {ingredients} = req.body;
     try {
 
-        // let ingredient_map = ingredients;
-
         for (let i = 0 ; i< ingredients.length; i++){
             ingredients[i].ingredient = await Ingredient.findOne({name:ingredients[i].ingredient});
             ingredients[i].unit = await Unit.findOne({name:ingredients[i].unit});
