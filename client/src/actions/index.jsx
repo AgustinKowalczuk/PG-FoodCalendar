@@ -16,12 +16,14 @@ export function getRecipes() {
 //me trae los ingredientes de la db
 export function getIngredients() {
 
-  return async function (dispatch) {
-    const ingredients = await axios.get(INGREDIENTS_URL);
-    return dispatch({
-      type: GET_INGREDIENTS,
-      payload: ingredients.data,
-    });
+  return async  (dispatch) => {
+    try{
+      const ingredients = await axios.get(INGREDIENTS_URL);
+    dispatch({type: GET_INGREDIENTS, payload: ingredients.data,});
+    }catch(error){
+      console.log("No hay Resultado BB")
+    }
+    
   };
 }
 //obtener el detalle de la receta
