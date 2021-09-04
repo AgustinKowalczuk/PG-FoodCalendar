@@ -3,7 +3,8 @@ import {
   GET_INGREDIENTS,
   SEARCH_RECIPES,
   ORDER_ZA,
-  ORDER_AZ
+  ORDER_AZ,
+  GET_DETAIL
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -12,7 +13,7 @@ var initialState = {
   recipes: [],
   copyRecipe: [],
   ingredients: [],
-  
+  detail:{},
 };
 
 function reducer(state = initialState, action) {
@@ -47,6 +48,12 @@ function reducer(state = initialState, action) {
           ...state,
           recipes: state.recipes.slice().sort(orderAZ).reverse()
         }
+
+      case GET_DETAIL:
+        return {
+          ...state,
+          detail: action.payload
+        }  
 
     default:
       return state;

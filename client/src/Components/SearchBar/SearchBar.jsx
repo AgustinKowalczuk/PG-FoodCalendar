@@ -26,13 +26,12 @@ export default function SearchBar() {
       <input
         class="form-control me-2" type="text" placeholder="Search.." onChange={(e) => handleInputChange(e)} />
       {input !== "" ? (
-      <Link class="btn btn-outline-success" to={`/search/${input}`} >
-      <button type="submit" onClick={() => handleSubmit()}>Search</button>
+      <Link onClick={() => handleSubmit()} class="btn btn-outline-success" to={`/search/${input}`} >
+         Search
        </Link>
 
       ):(
-      <Link  class="btn btn-outline-success" to="/">
-        <button type="submit" onClick={() => handleSubmit()}>Search</button>
+      <Link onClick={() => handleSubmit()}  class="btn btn-outline-success" to="/">Search
       </Link>
       )}
     </div>
