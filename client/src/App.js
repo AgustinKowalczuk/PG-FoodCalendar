@@ -2,12 +2,12 @@ import './App.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Nav from './Components/Nav/Nav'
 import Home from './Components/Home/Home'
-import SearchBar from './Components/SearchBar/SearchBar'
+import SearchCards from './Components/SearchCards/SearchCards'
 import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
-
-
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
+import Footer from './Components/Footer/Footer';
+
 function App() {
   return (
     <BrowserRouter>
@@ -15,10 +15,11 @@ function App() {
       <Nav/>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path = '/search/:name' component={SearchBar}/>
+        <Route path = '/search/:name' component={SearchCards}/>
         <Route path='/recipe/:id' component={DetailRecipe}/>
         <Route path = '/create/recipe' component={CreateRecipe}/>
       </Switch>
+      <Footer/>
       </div>
     </BrowserRouter>
   );
