@@ -60,7 +60,7 @@ const ingre = useSelector((state) => state.ingredients)
   })
   
   const onDelete = (event) => {
-    formik.values.ingredients = formik.values.ingredients.filter(e => e === event.target.value)
+    formik.values.ingredients = formik.values.ingredients.filter(e => e.ingredient === event.target.value)
   }
 
   return (
@@ -94,13 +94,14 @@ const ingre = useSelector((state) => state.ingredients)
               </select>
               <div class={style.buttonsRemove}>
                 {
-                  formik.values.ingredients.length > 0 && formik.values.ingredients.map((e) => {
+                  formik.values.ingredients.length > 0 && 
+                  formik.values.ingredients.map((e, index) => {
                     return (
                       <div class={style.grid}>
-                        <input class={style.inputGrid} onChange={formik.handleChange} name={e.amount} />
-                        <select class={style.selectGrid} onChange={formik.handleChange} name={e.unit} id="disabledSelect" class="form-select">
-                          <option name={e.unit}>G</option>
-                          <option name={e.unit}>KG</option>
+                        <input type="number" class={style.inputGrid} onChange={formik.handleChange} name={`ingredients[${index}].amount`} />
+                        <select class={style.selectGrid} onChange={formik.handleChange} name={`ingredients[${index}].unit`} id="disabledSelect" class="form-select">
+                          <option name={`ingredients[${index}].unit`}>gr</option>
+                          <option name={`ingredients[${index}].unit`}>kg</option>
                         </select>
                         <h5 onClick={(x) => onDelete(x)} 
                           value={e.ingredient} class={style.button}>
@@ -116,9 +117,9 @@ const ingre = useSelector((state) => state.ingredients)
             <div class="mb-3">
               <label class="form-label">difficulty</label>
               <select onChange={formik.handleChange} name='difficulty' class="form-control">
-                <option name='difficulty' value="Easy"> Easy </option>
-                <option name='difficulty' value="Medium"> Medium </option>
-                <option name='difficulty' value="Hard"> Hard </option>
+                <option name='difficulty' value="Fácil"> Fácil </option>
+                <option name='difficulty' value="Moderado"> Moderado </option>
+                <option name='difficulty' value="Difícil"> Difícil </option>
               </select>
             </div>
 
