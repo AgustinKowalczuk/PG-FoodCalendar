@@ -13,3 +13,9 @@
     min-width: 20%;
     margin-top: 5px;
 }
+
+#normal{
+    outline: none; 
+    text-decoration: none;
+    color:black;
+}
