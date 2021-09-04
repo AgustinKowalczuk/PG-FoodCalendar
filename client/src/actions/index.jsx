@@ -32,7 +32,7 @@ export function searchRecipes(name) {
       const filtRecipes = await axios.get(RECIPES_URL + `/search/${name}`);
        dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
     }catch(error){
-      console.log(error)
+      alert("Receta no Encontrada")
     }
   };
 }
