@@ -1,4 +1,5 @@
 const express = require("express");
+const validate = require("../../controller/validate");
 const router = express.Router();
 const { Recipe } = require('../../models/models');
 
@@ -55,6 +56,7 @@ router.get('/recipe/search/:name', async (req, res, next) => {
 router.get('/recipe/details/:id', async (req, res, next) => {
     const { id } = req.params;
     try {
+        validate.idMongodb(id);
         const recipeMatch = await Recipe.findById(id);
         if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" }) }
         const detailRecipe = {

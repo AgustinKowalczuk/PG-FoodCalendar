@@ -1,4 +1,5 @@
 const express = require("express");
+const { putRecipeValidation } = require("../../controller/router_validate/recet_route_validate");
 const { Recipe, Ingredient, Unit } = require("../../models/models");
 const router = express.Router()
 
@@ -7,6 +8,7 @@ router.put('/recipe/:id', async (req, res, next)=>{
     const { name, difficulty, rating, preparation, img, category } = req.body;
     let { ingredients } = req.body;
     try {
+        putRecipeValidation(id, name, difficulty, rating, preparation, img, category, ingredients);
         const elem = await Recipe.findById(id);
         if (!elem) { return res.status(404).send(`La receta con el nombre id ingresado no existe`) }
         if(!ingredients){
