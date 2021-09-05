@@ -5,9 +5,9 @@ import calendar from '../../Image/Menu_semanal.jpg'
 export default function Home() {
         return (
                 <div>
-                 <h2>Plan your meals </h2>
+                 <h2>Planifica tus comidas</h2>
                  <img src= {calendar} alt='medium'/>
-                <h2 >We have these recipes for you</h2>
+                <h2 >Tenemos estas recetas para ti</h2>
                     <Cards />
                 </div>
         )
