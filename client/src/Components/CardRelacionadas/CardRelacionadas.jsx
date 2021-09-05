@@ -1,15 +1,14 @@
 import React from 'react';
 import { getRecipes } from '../../actions';
 import { useEffect, useState} from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch ,useSelector} from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
 import { Link } from 'react-router-dom';
 import { getDetail } from '../../actions/index'
 import Dificultad from '../Cards/Dificultad'
 import Pagination from '../Pagination/Pagination'
 
-export default function CardRelacionadas(){
-    //Traigo todo
+export default function CardRelacionadas(props){
     const allRecipes = useSelector((state) => state.recipes)
     //Despacho
     const dispatch = useDispatch()
@@ -24,9 +23,7 @@ export default function CardRelacionadas(){
     }
 
     //Lo despacho
-    useEffect(() => {
-        dispatch(getRecipes())
-    }, [dispatch])
+    
     
     //Existen recetas? Mandale mecha.
     
