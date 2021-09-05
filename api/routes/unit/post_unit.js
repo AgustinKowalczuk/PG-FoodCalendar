@@ -1,10 +1,12 @@
 const express = require("express");
+const { unitValidation } = require("../../controller/router_validate/unit_route_validate");
 const { Unit } = require("../../models/models");
 const router = express.Router();
 
 router.post('/unit', async (req, res, next) => {
     const { name } = req.body;
     try {
+        unitValidation(name);
         const posted = await Unit.create({ name });
         return res.json(posted);
     } catch (error) {
