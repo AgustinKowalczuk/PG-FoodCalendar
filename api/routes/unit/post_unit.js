@@ -5,8 +5,13 @@ const router = express.Router();
 
 router.post('/unit', async (req, res, next) => {
     const { name } = req.body;
+
     try {
         unitValidation(name);
+
+        const existentName = await Unit.findOne({name});       
+        if(existentName && !!Object.keys(existentName).length) return res.status(404).send("La unidad ya existe en la base de datos.");
+
         const posted = await Unit.create({ name });
         return res.json(posted);
     } catch (error) {
