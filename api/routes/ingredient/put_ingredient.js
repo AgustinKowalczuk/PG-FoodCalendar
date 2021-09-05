@@ -3,6 +3,7 @@ const router = express.Router();
 const { Ingredient } = require("../../models/models");
 const validate = require("../../controller/validate");
 const { ingredientValidation } = require("../../controller/router_validate/ingredient_route_validate");
+const { normalizeIngredients } = require("../../controller/normalize");
 
 router.put('/ingredients/:id', async (req, res, next) => {
     const { id } = req.params;
@@ -21,7 +22,7 @@ router.put('/ingredients/:id', async (req, res, next) => {
         await Ingredient.findByIdAndUpdate(elem._id, { name });
 
         const update = await Ingredient.findById(id);
-        return res.json(update);
+        return res.json(normalizeIngredients(update));
     } catch (error) {
         next(error);
     }

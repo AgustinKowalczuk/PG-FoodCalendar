@@ -1,4 +1,5 @@
 const express = require("express");
+const { normalizeUnits } = require("../../controller/normalize");
 const { unitValidation } = require("../../controller/router_validate/unit_route_validate");
 const validate = require("../../controller/validate");
 const { Unit } = require("../../models/models");
@@ -20,7 +21,7 @@ router.put('/unit/:id', async (req, res, next) => {
 
         await Unit.findByIdAndUpdate(elem._id, { name });
         const update = await Unit.findById(id);
-        return res.json(update);
+        return res.json(normalizeUnits(update));
     } catch (error) {
         next(error);
     }
