@@ -1,34 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { searchRecipes } from "../../actions/index"
 import Cards from '../Cards/Cards'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 
 export default function SearchCards() {
 
 
- // const name = useParams('name')
+ const name = useParams('name')
 
-const match = useSelector((state) => state.recipes)
 
- // const dispatch = useDispatch()
+const allRecipes = useSelector((state) => state.recipes)
 
- // useEffect(() => {
-  //  dispatch(searchRecipes(name))
-//  }, [dispatch, name])
 
-if(match.error){
-  return(
-    <div>
-      <h1> NO Hay receta con ese nombre</h1>
-    </div>
-  )
-}
-  else return (
+ return (
     <div>
       <h1> Results: </h1>
       <div>
-        <Cards/>
+        <Cards allRecipes={allRecipes}/>
       </div>
     </div>
   );
