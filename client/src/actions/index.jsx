@@ -15,7 +15,6 @@ export function getRecipes() {
 }
 //me trae los ingredientes de la db
 export function getIngredients() {
-
   return async  (dispatch) => {
     try{
       const ingredients = await axios.get(INGREDIENTS_URL);
@@ -23,9 +22,9 @@ export function getIngredients() {
     }catch(error){
       console.log("No hay Resultado BB")
     }
-    
   };
 }
+
 //obtener el detalle de la receta
 export function getDetail (id){
   return async function (dispatch) {
