@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar"
-import logo from '../../Image/Logo_RC.jpg'
+import logo from '../../Image/Logosinfondo.png'
 import style from "../../Styles/StyleNav.module.css"
-
-
 
 export default function Nav() {
 
