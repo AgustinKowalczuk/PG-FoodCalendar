@@ -1,12 +1,13 @@
-import React, { useEffect }from 'react'
+import React, { useEffect, useState }from 'react'
 import {useSelector, useDispatch} from 'react-redux' 
-import { useParams } from 'react-router-dom';
-import { getDetail } from '../../actions'
+import { Link, useParams } from 'react-router-dom';
+import { getDetail, putRecipe } from '../../actions'
 import style from '../../Styles/StyleDetail.module.css';
 import easy from '../../Image/easy.png'
 import hard from '../../Image/hard.png'
 import medium from '../../Image/medium.png'
 import CardRelacionadas from '../CardRelacionadas/CardRelacionadas';
+
 
 
 
@@ -21,6 +22,10 @@ export default function DetailRecipe() {
             dispatch(getDetail(id))
            }, [dispatch,id])
 
+        function modificar(id) {
+          dispatch(getDetail(id))
+        }   
+
         return (
                 <div>
                     <img className={style.img} src={recipeDetail.img} alt='imagen de comida'  width='500px' /> 
@@ -29,10 +34,13 @@ export default function DetailRecipe() {
 
                     <h5 className={style.ingredientes}> Ingredientes : {recipeDetail.ingredients?.map(x =>(
                       <table class={style.content}><tr>
-                      <td>  <h4>{x.name}</h4></td>
-                      <td>  <h6>{x.unit}</h6></td>
+                      <td>  <h4>{x.ingredient.name}</h4></td>
+                      <td> <h4>{x.amount}</h4> </td>
+                      <td>  <h6>{x.unit.name}</h6></td>
                       </tr></table>
                         ) )} </h5>
+
+<Link to={ `/update/${id}`}> <button onClick={()=>modificar(recipeDetail.id)}>Modificar Receta</button>  </Link>   
                     
                     <div className={style.dificulty}>{recipeDetail.difficulty ==='Fácil'?
                             <h4 class="card-text" id={style.normal}>Dificultad: {recipeDetail.difficulty}  
@@ -54,7 +62,9 @@ export default function DetailRecipe() {
                     <p className={style.normal}>
                     <h3 >Instrucciones:</h3><br/>{recipeDetail.preparation}
                     </p>
-                    <h2> Recetas Relacionadas</h2>
+
+
+                    <h2> Otras Recetas</h2>
                     <CardRelacionadas/>
 
                 </div>

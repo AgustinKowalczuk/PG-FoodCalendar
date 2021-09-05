@@ -7,3 +7,7 @@ Link{
     text-transform: none;
     text-indent: 0px;
 }
+body{
+    max-width: 1300px;
+    margin:0 auto;
+}

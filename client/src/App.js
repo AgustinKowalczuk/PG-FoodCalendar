@@ -7,6 +7,7 @@ import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Footer from './Components/Footer/Footer';
+import UpdateForm from './Components/UpdateForm/UpdateForm'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path = '/search/:name' component={SearchCards}/>
         <Route path='/recipe/:id' component={DetailRecipe}/>
         <Route path = '/create/recipe' component={CreateRecipe}/>
+        <Route exact path = '/update/:id' component={UpdateForm}/>
       </Switch>
       <Footer/>
       </div>

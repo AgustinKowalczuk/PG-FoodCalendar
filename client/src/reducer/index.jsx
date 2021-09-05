@@ -4,7 +4,8 @@ import {
   SEARCH_RECIPES,
   ORDER_ZA,
   ORDER_AZ,
-  GET_DETAIL
+  GET_DETAIL,
+  UPDATE_RECIPE
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -14,6 +15,7 @@ var initialState = {
   copyRecipe: [],
   ingredients: [],
   detail:{},
+  update:{},
 };
 
 function reducer(state = initialState, action) {
@@ -53,7 +55,12 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           detail: action.payload
-        }  
+        } 
+      case UPDATE_RECIPE:
+        return{
+          ...state,
+          update: action.payload
+            } 
 
     default:
       return state;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
+import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,UPDATE_RECIPE} from "./constants";
 import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL } from "../routes";
 
 export function getRecipes() {
@@ -51,4 +51,17 @@ export function orderZA(){
 }
 export function orderAZ(){
   return {type:ORDER_AZ}
+}
+//modificar la receta
+export function putRecipe(value){
+  return async (dispatch)=>{
+    try{
+      const update = await axios.put(RECIPES_URL + `/${value.id}`, value);
+      return dispatch ({ 
+        type: UPDATE_RECIPE,
+      payload:update.data})
+    }catch(error){
+      console.log(error)
+    }
+  }
 }
