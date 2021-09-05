@@ -3,11 +3,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getDetail } from '../../actions'
 import style from '../../Styles/StyleDetail.module.css';
-import easy from '../../Image/easy.png'
-import hard from '../../Image/hard.png'
-import medium from '../../Image/medium.png'
 import CardRelacionadas from '../CardRelacionadas/CardRelacionadas';
-
+import Dificultad from '../Cards/Dificultad'
 
 
 export default function DetailRecipe() {
@@ -35,16 +32,9 @@ export default function DetailRecipe() {
                       </tr></table>
                     ) )} </h5>
                     
-                    <div className={style.dificulty}>{recipeDetail.difficulty ==='Fácil'?
-                            <h4 class="card-text" id={style.normal}>Dificultad: {recipeDetail.difficulty}  
-                            <img width="100px"  src= {easy} alt='easy'/></h4>
-                            : recipeDetail.difficulty==='Moderado'?
-                                <h4 class="card-text" id={style.normal} >Dificultad: {recipeDetail.difficulty}  
-                                <img width="100px" src= {medium} alt='medium'/></h4>
-                                :<h4 class="card-text" id={style.normal} >Dificultad: {recipeDetail.difficulty}  
-                                    <img width="100px" src= {hard} alt='hard'/></h4>
-                           }                  
-                      </div><br/>
+                    <div className={style.dificulty}>
+                      <Dificultad difficulty={recipeDetail.difficulty}/>                
+                    </div><br/>
                     <h3 className={style.rating}>Rating: {recipeDetail.rating}</h3>
 
                     <h3 className={style.dificulty}>Categorias: {recipeDetail.category?.map(x =>(
