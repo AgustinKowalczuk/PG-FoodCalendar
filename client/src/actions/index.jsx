@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
-import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL } from "../routes";
+import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
+import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT } from "../routes";
 
 export function getRecipes() {
 
@@ -24,7 +24,6 @@ export function getIngredients() {
     }
   };
 }
-
 //obtener el detalle de la receta
 export function getDetail (id){
   return async function (dispatch) {
@@ -42,9 +41,30 @@ export function searchRecipes(name) {
       const filtRecipes = await axios.get(RECIPES_URL + `/search/${name}`);
        dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
     }catch(error){
-      alert("Receta no Encontrada")
+      console.log(error)
     }
   };
+}
+
+// Creacion de Receta
+
+export function createRecipe(recipe){
+  return async function(){
+    try{
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['malo', 'vegano']})
+      console.log(newRecipe)
+    }catch(error){
+      alert("No se posteo la ReCiPe")
+    }
+  }
+}
+
+export function getUnit(){
+  return async function (dispatch){
+    const unit = await axios.get(UNIT)
+
+    dispatch({type:GETUNIT, payload: unit.data})
+  }
 }
 
 export function orderZA(){
