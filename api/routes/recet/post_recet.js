@@ -6,8 +6,18 @@ const router = express.Router()
 router.post('/recipe', async (req, res, next) => {
     const { name, difficulty, rating, preparation, img, category } = req.body;
     let {ingredients} = req.body;
+
     try {
         postRecipeValidation(name, difficulty, rating, preparation, img, category, ingredients);
+
+        let ingredientNameArray = ingredients.map(e => e.ingredient);
+        for(let i=0 ; i < ingredientNameArray.length ; i++){
+            let ingredientNameArrayFiltered = ingredientNameArray.filter(e => e === ingredientNameArray[i]);
+            if(ingredientNameArrayFiltered.length > 1) {
+                throw new Error(`No se puede agregar receta porque el ingrediente ${ingredientNameArray[i]} se encuentra repetido ${ingredientNameArrayFiltered.length} veces`);
+            }
+        }
+
         for (let i = 0 ; i< ingredients.length; i++){
             ingredients[i].ingredient = await Ingredient.findOne({name:ingredients[i].ingredient});
             ingredients[i].unit = await Unit.findOne({name:ingredients[i].unit});
