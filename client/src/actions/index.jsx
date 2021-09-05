@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
-import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL } from "../routes";
+import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL} from "./constants";
+import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT } from "../routes";
 
 export function getRecipes() {
 
@@ -59,11 +59,13 @@ export function createRecipe(recipe){
   }
 }
 
+export function getUnit(){
+  return async function (dispatch){
+    const unit = await axios.get(UNIT)
 
-
-
-
-
+    dispatch({type:GETUNIT, payload: unit.data})
+  }
+}
 
 export function orderZA(){
   return {type:ORDER_ZA}

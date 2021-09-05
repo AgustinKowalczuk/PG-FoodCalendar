@@ -4,7 +4,8 @@ import {
   SEARCH_RECIPES,
   ORDER_ZA,
   ORDER_AZ,
-  GET_DETAIL
+  GET_DETAIL,
+  GETUNIT
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -14,6 +15,7 @@ var initialState = {
   copyRecipe: [],
   ingredients: [],
   detail:{},
+  unit: []
 };
 
 function reducer(state = initialState, action) {
@@ -54,7 +56,13 @@ function reducer(state = initialState, action) {
           ...state,
           detail: action.payload
         }  
-
+      
+      case GETUNIT:
+        return {
+          ...state,
+          unit: action.payload
+        }
+        
     default:
       return state;
   }
