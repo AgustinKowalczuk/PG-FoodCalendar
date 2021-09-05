@@ -13,8 +13,9 @@ export default function SearchBar() {
 
   const handleInputChange = (e) => {
     setInput(e.target.value)
+    console.log(input)
   }
-
+  
   const handleSubmit = (e) => {
     dispatch(searchRecipes(input));
 };
