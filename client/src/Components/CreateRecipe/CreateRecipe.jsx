@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
-import { createRecipe, getIngredients, getUnit } from "../../actions/index";
+import { createRecipe, getIngredients } from "../../actions/index";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import SelectCard from "./SelectCard/SelectCard";
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
 
   const ingre = useSelector((state) => state.ingredients);
-  const unit = useSelector((state) => state.unit);
 
   useEffect(() => {
     dispatch(getIngredients());
-    dispatch(getUnit());
   }, [dispatch]);
 
   const initialValues = {
@@ -56,28 +55,7 @@ export default function CreateRecipe() {
     validate,
   });
 
-  const onDelete = (event) => {
-    formik.values.ingredients = formik.values.ingredients.filter(
-      (e) => e.ingredient === event.target.value
-    );
-  };
-  const selectUnit = (id) => {
-    console.log(id)
-    return (
-      <select
-        defaultValue="gr"
-        class={style.selectGrid}
-        onChange={formik.handleChange}
-        name={id}
-        id="disabledSelect"
-        class="form-select"
-      >
-        {unit?.map((e) => {
-          return<option name={id}>{e.name}</option>;
-        })}
-      </select>
-    );
-  }
+ 
   return (
     <div class={style.centrado}>
       <form class={style.forms} onSubmit={formik.handleSubmit}>
@@ -115,29 +93,14 @@ export default function CreateRecipe() {
               );
             })}
           </select>
+
           <div class={style.buttonsRemove}>
+
             {formik.values.ingredients.length > 0 &&
               formik.values.ingredients.map((e, index) => {
-                return (
-                  <div class={style.grid}>
-                    <input
-                      type="number"
-                      class={style.inputGrid}
-                      onChange={formik.handleChange}
-                      name={`ingredients[${index}].amount`}
-                    />
-                    {
-                      selectUnit(`ingredients[${index}].unit`)
-                    }
-                    <h5
-                      onClick={(x) => onDelete(x)}
-                      value={e.ingredient}
-                      class={style.button}
-                    >
-                      {e.ingredient}
-                    </h5>
-                  </div>
-                );
+
+                return <SelectCard ingredient={e.ingredient} name={`ingredients[${index}]`}
+                  handleChange={formik.handleChange} />
               })}
           </div>
         </div>
@@ -150,17 +113,14 @@ export default function CreateRecipe() {
             name="difficulty"
             class="form-control"
           >
-            <option name="difficulty" value="Fácil">
-              {" "}
-              Fácil{" "}
+            <option name="difficulty" value="Fácil"> 
+              Fácil
             </option>
-            <option name="difficulty" value="Moderado">
-              {" "}
-              Moderado{" "}
+            <option name="difficulty" value="Moderado">  
+              Moderado
             </option>
             <option name="difficulty" value="Difícil">
-              {" "}
-              Difícil{" "}
+              Difícil
             </option>
           </select>
         </div>
