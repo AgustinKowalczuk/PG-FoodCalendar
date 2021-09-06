@@ -7,8 +7,6 @@ import style from '../../Styles/StyleHome.module.css'
 
 export default function Home() {
 
-
-
         const dispatch = useDispatch()
         const allRecipes = useSelector((state) => state.recipes);
 
@@ -18,9 +16,9 @@ export default function Home() {
      
         return (
                 <div class={style.order}>
-                 <h2>Plan your meals </h2>
+                 <h2 className={style.margin}>Planea tus comidas :D</h2>
                  <img src= {calendar} class="img-fluid" alt='medium'/>
-                <h2 >We have these recipes for you</h2>
+                <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
                     <Cards allRecipes={allRecipes}/>
                 </div>
         )
