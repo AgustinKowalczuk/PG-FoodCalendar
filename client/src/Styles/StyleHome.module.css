@@ -10,3 +10,7 @@
     justify-content: space-evenly;
     flex-direction: column;
 }
+.margin{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

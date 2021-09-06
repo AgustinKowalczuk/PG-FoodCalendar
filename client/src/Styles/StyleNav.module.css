@@ -13,3 +13,7 @@
     width: 100%;
 }
 
+#noMargin{
+    margin-right: 0 !important;
+}
+

@@ -30,11 +30,7 @@ export default function CardRelacionadas() {
 
     return (
         <div class={style.content}>
-            <Pagination
-                recipesPerPage={recipesPerPage}
-                allRecipes={allRecipes.length}
-                paginado={paginado}
-            />
+            
             {currentRecipes?.map((e) => {
                 return (
                     <div class="card" id={style.carData} Key={e.id}>
@@ -51,6 +47,14 @@ export default function CardRelacionadas() {
                     </div>
                 )
             })}
+            <div className={style.navFake}>
+                <Pagination
+                    recipesPerPage={recipesPerPage}
+                    allRecipes={allRecipes.length}
+                    paginado={paginado}
+                />
+            </div>
+            
         </div>
     )
 }
