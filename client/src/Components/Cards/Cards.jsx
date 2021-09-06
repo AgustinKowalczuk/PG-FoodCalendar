@@ -56,11 +56,14 @@ export default function Cards(props) {
           </div>
         );
       })}
-      <Pagination
+      <div class={style.navFake}>
+        <Pagination
          recipesPerPage={recipesPerPage}
          allRecipes={props.allRecipes.length}
          paginado={paginado}
         />
+      </div>
+      
     </div>
   );
 }
