@@ -13,7 +13,7 @@
     width: 100%;
 }
 
-#mobilecenter{
-    display: flex;
-    align-items: center;
+#noMargin{
+    margin-right: 0 !important;
 }
+

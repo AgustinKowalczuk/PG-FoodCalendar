@@ -1,28 +1,18 @@
 import React from 'react'
 import Cards from '../Cards/Cards'
-
+import { useSelector } from 'react-redux'
 
 
 
 export default function SearchCards() {
 
-
- // const name = useParams('name')
-
-  //const match = useSelector((state) => state.recipes)
-
- // const dispatch = useDispatch()
-
- // useEffect(() => {
-  //  dispatch(searchRecipes(name))
-//  }, [dispatch, name])
-
+  const allRecipes = useSelector((state) => state.recipes)
 
   return (
     <div>
       <h1> Results: </h1>
       <div>
-        <Cards/>
+        <Cards allRecipes={allRecipes} />
       </div>
     </div>
   );

@@ -6,7 +6,8 @@ import {
   ORDER_AZ,
   GET_DETAIL,
   UPDATE_RECIPE,
-  GETUNIT
+  GETUNIT,
+  FILTERED_BY_INGREDIENT
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -69,6 +70,11 @@ function reducer(state = initialState, action) {
           ...state,
           unit: action.payload
         }
+        case FILTERED_BY_INGREDIENT:
+          return{
+            ...state,
+            recipes: action.payload
+          }
         
     default:
       return state;
