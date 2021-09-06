@@ -16,8 +16,8 @@ export default function Nav() {
         <Link class="navbar-brand" to='/'>
           <img width="55%" height="45%" src={logo} alt='logo' />
         </Link>
-        <div id={style.mobilecenter} class="navbar-nav me-auto mb-2 mb-lg-0">
-          <Link id={style.link} class="nav-link active" to="/create/recipe">Create recipe</Link>
+        <div id={style.noMargin} class="navbar-nav me-auto mb-2 mb-lg-0">
+          <Link id={style.link} class="nav-link active" to="/create/recipe">Crear receta</Link>
         </div>
         <div class="nav-item dropdown">
           <FilteredCards />

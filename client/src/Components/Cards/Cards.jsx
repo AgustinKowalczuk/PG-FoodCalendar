@@ -22,10 +22,8 @@ export default function Cards(props) {
   };
 
 
- 
   const dispatch = useDispatch();
 
- 
 
   return (
     <div class={style.content}>
