@@ -1,4 +1,5 @@
 const express = require("express");
+const { normalizeRecipes } = require("../../controller/normalize");
 const { postRecipeValidation } = require("../../controller/router_validate/recet_route_validate");
 const { Recipe , Ingredient , Unit } = require("../../models/models");
 const router = express.Router()
@@ -28,7 +29,7 @@ router.post('/recipe', async (req, res, next) => {
         }
 
         const recipeCreated = await Recipe.create({ name, difficulty, rating, preparation, img, ingredients, category });//receta creada
-        return res.json(recipeCreated);
+        return res.json(normalizeRecipes(recipeCreated));
     } catch (error) {
         next(error);
     }
