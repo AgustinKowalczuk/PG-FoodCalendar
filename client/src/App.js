@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import Nav from './Components/Nav/Nav'
+import Home from './Components/Home/Home'
+import SearchCards from './Components/SearchCards/SearchCards'
+import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
+import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
+import GlobalStyles from './Styles/GlobalStyle.css'
+import Footer from './Components/Footer/Footer';
+
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Nav/>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path = '/search/:name' component={SearchCards}/>
+        <Route path='/recipe/:id' component={DetailRecipe}/>
+        <Route path = '/create/recipe' component={CreateRecipe}/>
+      </Switch>
+      <Footer/>
+      </div>
+    </BrowserRouter>
   );
 }
 

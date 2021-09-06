@@ -1,0 +1,30 @@
+.content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+#carData{
+    width: 400px;
+    min-width: 20%;
+    margin-top: 5px;
+}
+
+#normal{
+    outline: none; 
+    text-decoration: none;
+    color:black;
+}
+
+.navFake{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+    margin-top: 2%;
+}
