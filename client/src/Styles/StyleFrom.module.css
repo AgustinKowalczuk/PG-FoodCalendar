@@ -1,0 +1,62 @@
+.forms{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: space-between;
+    width: 90%;
+    max-width: 90%;
+    padding: .375rem .75rem;
+    border: 1px solid rgba(128, 128, 128, 0.435);
+    border-radius: .25rem;
+}
+.centrado {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
+
+.buttonsRemove{
+    margin-top: 2%;
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-evenly;
+    align-content: space-around;
+}
+
+.button{
+    padding: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: .25rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row: 2; 
+}
+
+.button:hover{
+    background-color: red;
+    color: white;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 50% 50%;
+}
+
+.inputGrid{
+    grid-column: 1;
+    grid-row:1;
+}
+
+.selectGrid{
+    grid-column: 2;
+    grid-row:1;
+}

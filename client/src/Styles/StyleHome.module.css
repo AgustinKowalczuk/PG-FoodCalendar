@@ -1,0 +1,16 @@
+.imagen{
+    width: 90%;
+    margin: auto !important;
+}
+.order{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: stretch;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.margin{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
