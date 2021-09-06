@@ -13,14 +13,21 @@ export default function SearchBar() {
   const handleInputChange = (e) => {
       setInput(e.target.value)
   }
+
+
+
   const handleSubmit = (e) => {
+    
     alert("Ingresa una Receta")
+  
   };
 
   const dispatch = useDispatch()
 
   const handleSearch = ( e )=> {
-  dispatch(searchRecipes(input))
+    dispatch(searchRecipes(input))
+    
+    
   }
 
 
