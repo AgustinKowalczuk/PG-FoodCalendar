@@ -12,7 +12,7 @@ export default function SearchCards() {
 
   return (
     <div>
-      <h1> Results: </h1>
+      <h1> Resultados: </h1>
       <div>
         {
           copy.length === allRecipes.length  ? 
