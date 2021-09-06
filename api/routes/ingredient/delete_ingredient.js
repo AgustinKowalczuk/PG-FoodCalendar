@@ -1,4 +1,5 @@
 const express = require("express");
+const { normalizeIngredients } = require("../../controller/normalize");
 const validate = require("../../controller/validate");
 const router = express.Router();
 const models = require('../../models/models');
@@ -14,7 +15,7 @@ router.delete('/ingredients/:id', async (req, res, next) => {
         if (!elem) return res.status(404).send("El ingrediente con el id ingresado no existe");
         
         const remove = await Ingredient.findByIdAndRemove(elem._id);
-        return res.json(remove);
+        return res.json(normalizeIngredients(remove));
     } catch (error) {
         next(error);
     }

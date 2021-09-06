@@ -1,4 +1,5 @@
 const express = require("express");
+const { normalizeRecipes } = require("../../controller/normalize");
 const { putRecipeValidation } = require("../../controller/router_validate/recet_route_validate");
 const { Recipe, Ingredient, Unit } = require("../../models/models");
 const router = express.Router()
@@ -17,7 +18,7 @@ router.put('/recipe/:id', async (req, res, next)=>{
         if(!ingredients){
             await Recipe.findByIdAndUpdate(elem._id, { name, difficulty, rating, preparation, img, category });
             const update = await Recipe.findById(id);
-            return res.json(update);
+            return res.json(normalizeRecipes(update));
         }
 
         let ingredientNameArray = ingredients.map(e => e.ingredient);
@@ -38,7 +39,7 @@ router.put('/recipe/:id', async (req, res, next)=>{
         }
         await Recipe.findByIdAndUpdate(elem._id, { name, difficulty, rating, preparation, img, category, ingredients });
         const update = await Recipe.findById(id);
-        return res.json(update);
+        return res.json(normalizeRecipes(update));
         
     } catch (error) {
         next(error);

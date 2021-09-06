@@ -15,13 +15,13 @@ export default function Home() {
         useEffect(() => {
                 dispatch(getRecipes());
         }, [dispatch]);
-
+     
         return (
-                <div>
-                        <h2>Plan your meals </h2>
-                        <img src={calendar} class="img-fluid" alt='medium' />
-                        <h2 >We have these recipes for you</h2>
-                        <Cards allRecipes={allRecipes} />
+                <div class={style.order}>
+                 <h2>Plan your meals </h2>
+                 <img src= {calendar} class="img-fluid" alt='medium'/>
+                <h2 >We have these recipes for you</h2>
+                    <Cards allRecipes={allRecipes}/>
                 </div>
         )
 }
