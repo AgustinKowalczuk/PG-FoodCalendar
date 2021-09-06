@@ -21,13 +21,9 @@ export default function Cards(props) {
     setCurrentPage(pageNumber);
   };
 
-
- //Traigo todo
-  
   //Despacho
   const dispatch = useDispatch();
 
- 
 
   return (
     <div class={style.content}>

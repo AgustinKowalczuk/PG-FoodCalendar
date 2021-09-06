@@ -21,19 +21,12 @@ export default function CardRelacionadas(props){
     const paginado = (pageNumber) =>{
         setCurrentPage(pageNumber)
     }
-
-    //Lo despacho
     
     
     //Existen recetas? Mandale mecha.
     
     return (
         <div class={style.content}>
-        <Pagination
-        recipesPerPage = {recipesPerPage}
-        allRecipes = {allRecipes.length}
-        paginado = {paginado}
-        />
         {currentRecipes?.map((e) => {
             return(
                 <div class="card" id={style.carData} Key={e.id}>
@@ -42,6 +35,9 @@ export default function CardRelacionadas(props){
                     <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
                     <div class="card-body" >
                         <h1 class="card-title" >{e.name.toUpperCase()}</h1>
+                        <h4 class="card-text" id={style.normal}>
+                            Dificultad:{e.difficulty}
+                        </h4>
                         <div>
                         <Dificultad difficulty={e.difficulty}/>
                         </div>       
@@ -50,6 +46,13 @@ export default function CardRelacionadas(props){
                 </div>
             )
         })}
+        <div class={style.navFake}>
+            <Pagination
+            recipesPerPage = {recipesPerPage}
+            allRecipes = {allRecipes.length}
+            paginado = {paginado}
+            />
+        </div>
      </div>
     )
 }

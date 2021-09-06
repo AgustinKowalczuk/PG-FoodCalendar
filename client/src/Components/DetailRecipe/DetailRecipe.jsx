@@ -69,7 +69,7 @@ export default function DetailRecipe() {
         </div>
       </div>
 
-      <h2> Recetas Relacionadas</h2>
+      <h2> Otras recetas</h2>
       <CardRelacionadas />
     </div>
   );
