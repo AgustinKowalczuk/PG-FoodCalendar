@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { searchRecipes } from "../../actions/index"
+import React from 'react'
 import Cards from '../Cards/Cards'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 
 export default function SearchCards() {
 
+  const allRecipes = useSelector((state) => state.recipes)
 
- const name = useParams('name')
-
-
-const allRecipes = useSelector((state) => state.recipes)
-
-
- return (
+  return (
     <div>
       <h1> Results: </h1>
       <div>
-        <Cards allRecipes={allRecipes}/>
+        <Cards allRecipes={allRecipes} />
       </div>
     </div>
   );
