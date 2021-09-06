@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {  useState } from "react";
+import {  useDispatch } from "react-redux";
 import style from "../../Styles/StyleCards.module.css";
 import { Link } from "react-router-dom";
 import { getDetail } from "../../actions/index";
@@ -11,7 +11,7 @@ import Pagination from "../Pagination/Pagination";
 
 export default function Cards(props) {
  
-  //Para el paginado
+ 
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(6);
   const lastRecipeIndex = currentPage * recipesPerPage;
@@ -21,7 +21,7 @@ export default function Cards(props) {
     setCurrentPage(pageNumber);
   };
 
-  //Despacho
+
   const dispatch = useDispatch();
 
 

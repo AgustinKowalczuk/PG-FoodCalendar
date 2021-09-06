@@ -14,14 +14,14 @@ export default function SearchBar() {
       setInput(e.target.value)
   }
   const handleSubmit = (e) => {
-    alert("Llenalo Pa")
-};
+    alert("Ingresa una Receta")
+  };
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
- const handleSearch = ( e )=> {
-   dispatch(searchRecipes(input))
- }
+  const handleSearch = ( e )=> {
+  dispatch(searchRecipes(input))
+  }
 
 
   return (
@@ -32,7 +32,6 @@ const dispatch = useDispatch()
       <Link onClick={() => handleSearch()} class="btn btn-outline-success" to={`/search/${input}`} >
          Search
        </Link>
-
       ):( 
         <Link onClick={() => handleSubmit()}  class="btn btn-outline-success" to="/">Search
         </Link>
