@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GET_RECIPES, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,UPDATE_RECIPE} from "./constants";
-import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL } from "../routes";
+import { GET_RECIPES,GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,UPDATE_RECIPE} from "./constants";
+import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT } from "../routes";
 
 export function getRecipes() {
 
@@ -15,13 +15,13 @@ export function getRecipes() {
 }
 //me trae los ingredientes de la db
 export function getIngredients() {
-
-  return async function (dispatch) {
-    const ingredients = await axios.get(INGREDIENTS_URL);
-    return dispatch({
-      type: GET_INGREDIENTS,
-      payload: ingredients.data,
-    });
+  return async  (dispatch) => {
+    try{
+      const ingredients = await axios.get(INGREDIENTS_URL);
+    dispatch({type: GET_INGREDIENTS, payload: ingredients.data,});
+    }catch(error){
+      console.log("No hay Resultado BB")
+    }
   };
 }
 //obtener el detalle de la receta
@@ -46,6 +46,27 @@ export function searchRecipes(name) {
   };
 }
 
+// Creacion de Receta
+
+export function createRecipe(recipe){
+  return async function(){
+    try{
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['malo', 'vegano']})
+      console.log(newRecipe)
+    }catch(error){
+      alert("No se posteo la ReCiPe")
+    }
+  }
+}
+
+export function getUnit(){
+  return async function (dispatch){
+    const unit = await axios.get(UNIT)
+
+    dispatch({type:GETUNIT, payload: unit.data})
+  }
+}
+
 export function orderZA(){
   return {type:ORDER_ZA}
 }
@@ -53,10 +74,10 @@ export function orderAZ(){
   return {type:ORDER_AZ}
 }
 //modificar la receta
-export function putRecipe(value){
+export function putRecipe(id,value){
   return async (dispatch)=>{
     try{
-      const update = await axios.put(RECIPES_URL + `/${value.id}`, value);
+      const update = await axios.put(RECIPES_URL + `/${id}`, value);
       return dispatch ({ 
         type: UPDATE_RECIPE,
       payload:update.data})

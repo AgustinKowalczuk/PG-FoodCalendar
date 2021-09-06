@@ -11,3 +11,12 @@ body{
     max-width: 1300px;
     margin:0 auto;
 }
+span{
+    color: red;
+    font-size: .9rem;
+}
+
+.cosoForm{
+    display: flex;
+    padding-left: 20px;
+}

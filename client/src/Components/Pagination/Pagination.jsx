@@ -7,15 +7,13 @@ export default function Paginado ({recipesPerPage, allRecipes, paginado}){
     }
 
     return(
-        <nav>
-            <ul>
-                {pageNumbers &&
-                pageNumbers.map(number => (
-                    <li>
-                        <a onClick={() => paginado(number)}>{number}</a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        <div>
+            {pageNumbers &&
+            pageNumbers.map(number => (
+                <div>
+                    <button onClick={() => paginado(number)}>{number}</button>
+                </div>
+            ))}
+        </div>
     )
 }

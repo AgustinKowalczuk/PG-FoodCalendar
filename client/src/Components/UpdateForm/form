@@ -1,10 +1,9 @@
 import React ,{useState,useEffect}from "react";
 import style from "../../Styles/StyleFrom.module.css"
 import { putRecipe, getIngredients } from "../../actions/index";
-import { Formik, useFormik,setValues} from "formik";
+import { Formik, useFormik,setValues, Form, Field , FieldArray,ErrorMessage} from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "../CreateRecipe/SelectCard/SelectCard";
-
 
 
 export default function UpdateForm() {
@@ -57,20 +56,17 @@ export default function UpdateForm() {
             }}
 
           onSubmit={(valores)=>{ //valores me da los datos que ingreso en el form
-             dispatch(putRecipe(update.id,valores))
+             console.log('formulario enviado')
               console.log(valores)
               }}
         >
     {({values,errors,handleSubmit,handleChange,handleBlur,touched})=>(
-          <form class={style.forms} onSubmit={handleSubmit}>
+          <Form class={style.forms} onSubmit={handleSubmit}>
           <div div class="mb-3">
             <label class="form-label">Nombre</label>
-            <input
+            <Field
               type='text'
               id='name'
-              value={values.name||update.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
               name="name"
               class="form-control"
             />
@@ -79,100 +75,84 @@ export default function UpdateForm() {
           </div>
   
           <div >
-          {/*   <label class="form-label">Ingredientes</label>
-          <div
+            <label class="form-label">Ingredientes</label>
+          <FieldArray
               defaultValue="none"
-              onChange={handleChange}
-              name={`ingredients[${values?.ingredients?.length}].ingredient`}
+              name={values?.ingredients}
               id="ingredients"
               class="form-control"
-              value={values?.ingredients||update.ingredients}
-            >
+              >
               {ingre2?.map((e) => {
                 return (
-                  <span>{e.ingredient.name} {e.amount} {e.unit.name}{'  '}
-                  <button onClick={(e)=>eliminar(e)} value={e.ingredient.name} key={e.ingredient.id}>   
-                        X    
-                    </button><br/>
-                   </span>
+                  <button onClick={(e)=>eliminar(e)} value={e.ingredient.name} key={e.ingredient.id}>
+                    {e.ingredient.name} {e.amount} {e.unit.name}
+                   </button>
                 );
               })}
-             </div>  */}
+             </FieldArray> 
 
-              <h3>Agregar ingredientes</h3>
-              <select
-            onChange={handleChange}
-            name={`ingredients[${values?.ingredients?.length}].ingredient`}
-            id="disabledSelect"
-            class="form-select"
-          >
-            {ingre?.map((e) => {
-              return (
-                <option name="ingredients" value={e.name}>
-                  {e.name}
-                </option>
-              );
-            })}
-          </select>
-
-          <div class={style.buttonsRemove}>
-              
-            {values?.ingredients?.length > 0 &&
-              values?.ingredients?.map((e, index) => {
-
-                return <SelectCard ingredient={e.ingredient} name={`ingredients[${index}]`}
-                  handleChange={handleChange} />
+              <h3>Agregar ingrediente</h3>
+              {/* <div
+              defaultValue="none"
+              onChange={handleChange}
+              name={`ingredients[${values.ingredients.length}].ingredient`}
+              id="ingredients"
+              class="form-control"
+            >
+              {ingre?.map((e) => {
+                return (
+                  <button onClick={(e)=>addIngre(e)} value={e.ingredient.name} key={e.ingredient.id}>
+                    {e.ingredient.name} {e.amount} {e.unit.name}
+                   </button>
+                );
               })}
-        
+  
+            <div class={style.buttonsRemove}>
+               {values.ingredients.length > 0 &&
+                values.ingredients.map((e, index) => {
+  
+                  return <SelectCard ingredient={e.ingredient} name={`ingredients[${index}]`} handleChange={handleChange} />
+                })}
             </div>
-          </div>
-        
+          </div>*/}
+          </div> 
   
           <div class="mb-3">
             <label class="form-label">Dificultad</label>
-            <select
-              defaultValue="Fácil"
-              onChange={handleChange}
+            <Field
+              as= 'select'
               name="difficulty"
               class="form-control"
             >
               <option defaultValue={update.difficulty}>{update.difficulty}</option>
-              <option name="difficulty" value="Fácil"> 
-                Fácil
-              </option>
-              <option name="difficulty" value="Moderado">  
-                Moderado
-              </option>
-              <option name="difficulty" value="Difícil">
-                Difícil
-              </option>
-            </select>
+              <option name="difficulty" value="Fácil"> Fácil </option>
+              <option name="difficulty" value="Moderado"> Moderado </option>
+              <option name="difficulty" value="Difícil"> Difícil</option>
+            </Field>
           </div>
   
           <div class="mb-3">
             <label class="form-label">Preparacion</label>
-            <textarea
-              onChange={handleChange}
-              value={values.preparation||update.preparation}
-              onBlur={handleBlur}
+            <Field
+              as='textarea'
               class="form-control"
               name="preparation"
               type="text"
-              placeholder={update.preparation}
-            />
+             >
             {errors.preparation && touched.preparation && <div class="cosoForm">{errors.preparation}</div>}
+            </Field>
           </div>
   
           <div class="mb-3">
             <label class="form-label">Imagen</label>
-            <input
+            <Field
               onChange={handleChange}
               value={values.img||update.img}
               onBlur={handleBlur}
               class="form-control"
               name="img"
               type="text"
-              placeholder="write here..."
+             
             />
             {errors.img && touched.img && <div class="cosoForm">{errors.img}</div>}
           </div>
@@ -182,7 +162,7 @@ export default function UpdateForm() {
               Actualizar
             </button>
           </div>
-        </form>
+        </Form>
 
         )}
         </Formik>

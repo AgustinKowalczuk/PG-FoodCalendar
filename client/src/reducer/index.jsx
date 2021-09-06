@@ -5,7 +5,8 @@ import {
   ORDER_ZA,
   ORDER_AZ,
   GET_DETAIL,
-  UPDATE_RECIPE
+  UPDATE_RECIPE,
+  GETUNIT
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -16,6 +17,7 @@ var initialState = {
   ingredients: [],
   detail:{},
   update:{},
+  unit: [],
 };
 
 function reducer(state = initialState, action) {
@@ -62,6 +64,12 @@ function reducer(state = initialState, action) {
           update: action.payload
             } 
 
+      case GETUNIT:
+        return {
+          ...state,
+          unit: action.payload
+        }
+        
     default:
       return state;
   }
