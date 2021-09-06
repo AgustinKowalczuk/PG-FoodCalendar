@@ -24,7 +24,7 @@ const cors = (req, res, next) => {
     app.use(express.json());
     app.use(cookieParser());
     app.use(morgan('dev'));
-    // routes
+    // routes 
     app.use(routes);
 
     app.use(function (req, res, next) {
