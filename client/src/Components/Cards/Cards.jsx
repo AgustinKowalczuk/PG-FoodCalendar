@@ -1,5 +1,5 @@
 import React from "react";
-import { getRecipes } from "../../actions";
+
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "../../Styles/StyleCards.module.css";
@@ -9,27 +9,25 @@ import Dificultad from './Dificultad';
 
 import Pagination from "../Pagination/Pagination";
 
-export default function Cards() {
-  //Traigo todo
-  const allRecipes = useSelector((state) => state.recipes);
-  //Despacho
-  const dispatch = useDispatch();
+export default function Cards(props) {
+ 
   //Para el paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(6);
   const lastRecipeIndex = currentPage * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
-  const currentRecipes = allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
+  const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  //Lo despacho
-  useEffect(() => {
-    dispatch(getRecipes());
-  }, [dispatch]);
 
-  //Existen recetas? Mandale mecha.
+ //Traigo todo
+  
+  //Despacho
+  const dispatch = useDispatch();
+
+ 
 
   return (
     <div class={style.content}>
@@ -61,7 +59,7 @@ export default function Cards() {
       <div class={style.navFake}>
         <Pagination
          recipesPerPage={recipesPerPage}
-         allRecipes={allRecipes.length}
+         allRecipes={props.allRecipes.length}
          paginado={paginado}
         />
       </div>
