@@ -58,11 +58,14 @@ export default function Cards() {
           </div>
         );
       })}
-      <Pagination
+      <div class={style.navFake}>
+        <Pagination
          recipesPerPage={recipesPerPage}
          allRecipes={allRecipes.length}
          paginado={paginado}
         />
+      </div>
+      
     </div>
   );
 }
