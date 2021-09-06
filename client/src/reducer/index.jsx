@@ -5,7 +5,8 @@ import {
   ORDER_ZA,
   ORDER_AZ,
   GET_DETAIL,
-  GETUNIT
+  GETUNIT,
+  FILTERED_BY_INGREDIENT
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -15,7 +16,8 @@ var initialState = {
   copyRecipe: [],
   ingredients: [],
   detail:{},
-  unit: []
+  unit: [],
+  
 };
 
 function reducer(state = initialState, action) {
@@ -62,6 +64,11 @@ function reducer(state = initialState, action) {
           ...state,
           unit: action.payload
         }
+        case FILTERED_BY_INGREDIENT:
+          return{
+            ...state,
+            recipes: action.payload
+          }
         
     default:
       return state;
