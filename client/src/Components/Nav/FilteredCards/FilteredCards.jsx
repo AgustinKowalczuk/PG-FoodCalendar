@@ -23,7 +23,7 @@ export default function FilteredCards() {
 
     return (
         <select class="nav-link dropdown-toggle" id="navbarDropdown" onChange={(e) => handleFilterChange(e)}>
-            <option value="-">By ingredient</option>
+            <option value="-">Por Ingrediente</option>
             {ingre?.map((e) => {
                 return (
                     <option name="ingredients" value={e.name}>

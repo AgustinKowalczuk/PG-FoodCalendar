@@ -71,7 +71,7 @@ export default function CreateRecipe() {
             onBlur={formik.handleBlur}
             name="name"
             class="form-control"
-            placeholder="write here..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.name && formik.touched.name === true ? (
             <div class="cosoForm">
@@ -138,7 +138,7 @@ export default function CreateRecipe() {
             class="form-control"
             name="preparation"
             type="text"
-            placeholder="write here..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.preparation && formik.touched.preparation === true ? (
             <div class="cosoForm">
@@ -156,7 +156,7 @@ export default function CreateRecipe() {
             class="form-control"
             name="img"
             type="text"
-            placeholder="write here..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.img && formik.touched.img === true ? (
             <div class="cosoForm">
