@@ -39,9 +39,11 @@ export function searchRecipes(name) {
   return async  (dispatch) => {
     try{
       const filtRecipes = await axios.get(RECIPES_SEARCH_URL + `${name}`);
-       dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
+      console.log(filtRecipes)
+      return dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
     }catch(error){
-      alert("ERROR EN LA SEARCH")
+     alert("No se encontraron recetas")
+      //return dispatch({ type: SEARCH_RECIPES, payload: ['No encontrado']})
     }
   };
 }
