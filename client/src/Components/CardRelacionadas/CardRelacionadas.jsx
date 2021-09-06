@@ -22,7 +22,6 @@ export default function CardRelacionadas() {
         setCurrentPage(pageNumber)
     }
 
-
     useEffect(() => {
         dispatch(getRecipes());
     }, [dispatch]);
