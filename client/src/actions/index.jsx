@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS} from "./constants";
+import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS,FILTERED_BY_DIFFICULTY} from "./constants";
 import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT ,RECIPES_SEARCH_URL,RECIPES_BY_INGREDIENTS} from "../routes";
 
 export function getRecipes() {
@@ -34,7 +34,7 @@ export function getDetail (id){
     });
   };
 }
-// Despues voy a realizar cambios en la function y el el axios
+
 export function searchRecipes(name) {
   return async  (dispatch) => {
     try{
@@ -43,9 +43,22 @@ export function searchRecipes(name) {
       return dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
     }catch(error){
      alert("No se encontraron recetas")
-      //return dispatch({ type: SEARCH_RECIPES, payload: ['No encontrado']})
     }
   };
+}
+
+export function FilterRecipeByIngredient(name) {
+  return async  (dispatch) => {
+    try{
+      const filtRecipes = await axios.get(RECIPES_BY_INGREDIENTS + `${name}`);
+       dispatch({ type: FILTERED_BY_INGREDIENT, payload: filtRecipes.data});
+    }catch(error){
+      alert("Error En Filtro")
+    }
+  };
+}
+export function FilterRecipeByDifficulty(name) {
+  return {type: FILTERED_BY_DIFFICULTY}
 }
 
 // Creacion de Receta
@@ -76,16 +89,9 @@ export function orderAZ(){
   return {type:ORDER_AZ}
 }
 
-export function FilterRecipeByIngredient(name) {
-  return async  (dispatch) => {
-    try{
-      const filtRecipes = await axios.get(RECIPES_BY_INGREDIENTS + `${name}`);
-       dispatch({ type: FILTERED_BY_INGREDIENT, payload: filtRecipes.data});
-    }catch(error){
-      alert("Error En Filtro")
-    }
-  };
-}
+
+
+
 export function setFormIngredients(payload){
     return {type: SET_FORM_INGREDIENTS, payload}
 }
