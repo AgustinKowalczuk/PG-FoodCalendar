@@ -51,6 +51,16 @@ const validate = {
         if (!re.test(String(url))) throw new Error(`${url} no es un url`);
     },
 
+    premiumValidate(premium){
+        const access = [true, false];
+        if(access.indexOf(premium) < 0) throw new Error(`${premium} no es un valor válido para premium`);
+    },
+
+    availabilityValidate(availability){
+        const available = [true, false];
+        if(available.indexOf(availability) < 0) throw new Error(`${availability} no es un valor válido para availability`);
+    },
+
     amountValidate(amount) {
         if (amount < 0) throw new Error(`${amount} está por debajo del valor minimo (0)`);
     }

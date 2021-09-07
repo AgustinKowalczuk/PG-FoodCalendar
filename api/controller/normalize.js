@@ -13,7 +13,12 @@ const normalize = {
                     amount: i.amount,
                     unit: { id: i.unit._id, name: i.unit.name }
                 })),
-                category: e.category
+                category: e.category.map(j => ({
+                    id: j._id,
+                    name: j.name
+                })),
+                premium: e.premium === true ? "Premium" : "Free",
+                availability: e.availability === true ? "Available" : "Unavailable"
             }));
         } else {
             return normalize.normalizeRecipes([recipes])[0];
@@ -33,6 +38,10 @@ const normalize = {
 
     normalizeUnits(units) {
         return normalize.normalizeIngredients(units);
+    },
+
+    normalizeCategories(category){
+        return normalize.normalizeIngredients(category);
     }
 }
 

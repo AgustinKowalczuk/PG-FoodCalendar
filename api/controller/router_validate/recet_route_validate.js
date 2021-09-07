@@ -6,11 +6,13 @@ const {
     nameValidate,
     preparationValidate,
     ratingValidate,
-    urlValidate
+    urlValidate,
+    premiumValidate,
+    availabilityValidate
  } = require('../validate');
 
 const recipeRouteValidate = {
-    postRecipeValidation(name, difficulty, rating, preparation, img, category, ingredients) {
+    postRecipeValidation(name, difficulty, rating, preparation, img, category, premium, availability, ingredients) {
         argumentsValidate([
             { keyName: 'name', value: name, type: 'string', notEmpty: true },
             { keyName: 'difficulty', value: difficulty, type: 'string', notEmpty: true },
@@ -18,6 +20,8 @@ const recipeRouteValidate = {
             { keyName: 'preparation', value: preparation, type: 'string', notEmpty: true },
             { keyName: 'img', value: img, type: 'string', notEmpty: true },
             { keyName: 'category', value: category, type: 'array', notEmpty: true },
+            { keyName: 'premium', value: premium, type: 'boolean', notEmpty: true },
+            { keyName: 'availability', value: availability, type: 'boolean', notEmpty: true },
             { keyName: 'ingredients', value: ingredients, type: 'array', notEmpty: true },
         ]);
         nameValidate(name);
@@ -31,6 +35,8 @@ const recipeRouteValidate = {
             ]);
             nameValidate(e);
         }
+        premiumValidate(premium);
+        availabilityValidate(availability);
         for (const e of ingredients) {
             argumentsValidate([
                 { keyName: 'ingredients.ingredient value', value: e.ingredient, type: 'string', notEmpty: true },
@@ -43,7 +49,7 @@ const recipeRouteValidate = {
         }
     },
 
-    putRecipeValidation(id, name, difficulty, rating, preparation, img, category, ingredients) {
+    putRecipeValidation(id, name, difficulty, rating, preparation, img, category, premium, availability, ingredients) {
         idMongodb(id);
         if (name !== undefined) {
             argumentsValidate([
@@ -89,6 +95,20 @@ const recipeRouteValidate = {
                 ]);
                 nameValidate(e);
             }
+        }
+
+        if(premium !== undefined){
+            argumentsValidate([
+                { keyName: 'premium', value: premium, type: 'boolean', notEmpty: true }
+            ]);
+            premiumValidate(premium);
+        }
+
+        if(availability !== undefined){
+            argumentsValidate([
+                { keyName: 'availability', value: availability, type: 'boolean', notEmpty: true }
+            ]);
+            availabilityValidate(availability);
         }
 
         if (ingredients !== undefined) {
