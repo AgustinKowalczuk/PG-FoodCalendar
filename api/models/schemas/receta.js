@@ -1,6 +1,7 @@
 const { Schema } = require('mongoose');
 const ingredient = require('./ingredient.js');
-const unit = require('./unit.js')
+const unit = require('./unit.js');
+const category = require('./category.js');
 
 const recipe = new Schema({
     name: { type: String, required: true, validate: {
@@ -32,22 +33,16 @@ const recipe = new Schema({
                 return true;
         }
     } },
-    category: { type: [String], required: true, validate: {
-        validator: function (value) {
-            for (let i = 0; i < value.length; i++) {
-                const re = /^[^{}<>#$%&~^`/*+¿?¡!@]*$/g;
-                if (!re.test(value[i])) return false;               
-            }
-            return true;
-        }
-    } },
+    category: { type: [category], required: true },
     ingredients: { type: [
         {
             ingredient,
             amount : { type: Number, min: 0, required: true },
             unit
         }
-    ], required: true}
+    ], required: true},
+    premium: { type:Boolean, required: true},
+    availability: { type:Boolean, required: true}
 })
 
 module.exports = recipe;
