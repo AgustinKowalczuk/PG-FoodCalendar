@@ -181,3 +181,5 @@ $RECYCLE.BIN/
 # Other
 
 package-lock.json
+
+.vercel
