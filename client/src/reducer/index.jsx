@@ -20,10 +20,7 @@ var initialState = {
   detail:{},
   update:{},
   unit: [],
-<<<<<<< HEAD
-=======
   formIngredients: []
->>>>>>> CopiaSeguridad
 };
 
 function reducer(state = initialState, action) {
