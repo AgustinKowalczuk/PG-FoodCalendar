@@ -11,9 +11,9 @@ router.delete('/ingredients/:id', async (req, res, next) => {
     try {
         validate.idMongodb(id);
 
-        const elem = await Ingredient.findById( id );
+        const elem = await Ingredient.findById(id);
         if (!elem) return res.status(404).send("El ingrediente con el id ingresado no existe");
-        
+
         const remove = await Ingredient.findByIdAndRemove(elem._id);
         return res.json(normalizeIngredients(remove));
     } catch (error) {

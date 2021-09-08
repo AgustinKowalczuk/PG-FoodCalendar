@@ -1,7 +1,7 @@
-const { 
+const {
     argumentsValidate,
     nameValidate
- } = require('../validate');
+} = require('../validate');
 
 const unitRouteValidate = {
     unitValidation(name) {

@@ -1,4 +1,4 @@
-const { 
+const {
     amountValidate,
     argumentsValidate,
     idMongodb,
@@ -9,7 +9,7 @@ const {
     urlValidate,
     premiumValidate,
     availabilityValidate
- } = require('../validate');
+} = require('../validate');
 
 const recipeRouteValidate = {
     postRecipeValidation(name, difficulty, rating, preparation, img, category, premium, availability, ingredients) {
@@ -97,14 +97,14 @@ const recipeRouteValidate = {
             }
         }
 
-        if(premium !== undefined){
+        if (premium !== undefined) {
             argumentsValidate([
                 { keyName: 'premium', value: premium, type: 'boolean', notEmpty: true }
             ]);
             premiumValidate(premium);
         }
 
-        if(availability !== undefined){
+        if (availability !== undefined) {
             argumentsValidate([
                 { keyName: 'availability', value: availability, type: 'boolean', notEmpty: true }
             ]);

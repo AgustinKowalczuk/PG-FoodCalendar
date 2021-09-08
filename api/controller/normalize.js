@@ -40,9 +40,34 @@ const normalize = {
         return normalize.normalizeIngredients(units);
     },
 
-    normalizeCategories(category){
+    normalizeCategories(category) {
         return normalize.normalizeIngredients(category);
-    }
+    },
+
+    normalizeUsers(user){
+        if (Array.isArray(user)) {
+            return user.map(e => ({
+                id: e._id,
+                name: e.name,
+                surname: e.surname,
+                email: e.email,
+                category: e.category
+            }));
+        } else {
+            return normalize.normalizeUsers([user])[0];
+        }
+    },
+
+    // normalizeCalendar(calendar) {
+    //     if (Array.isArray(calendar)) {
+    //         return calendar.map(e => ({
+    //             id: e._id,
+    //         }));
+    //     } else {
+    //         return normalize.normalizeCalendar([calendar])[0];
+    //     }
+    // }
+    
 }
 
 module.exports = normalize;
