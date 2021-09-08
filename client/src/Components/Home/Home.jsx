@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRecipes } from "../../actions";
 import style from '../../Styles/StyleHome.module.css'
 import SiliderImages from './SiliderImages/SiliderImages';
+import MidNav from '../Nav/midNav/midNav'
+
 
 export default function Home() {
 
@@ -17,9 +19,10 @@ export default function Home() {
      
         return (
                 <div class={style.order}>
-                        <SiliderImages allRecipes={allRecipes} />
-                        <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
-                        <Cards allRecipes={allRecipes}/>
+                 <SiliderImages allRecipes={allRecipes} />
+                 <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
+                 <MidNav />
+                 <Cards allRecipes={allRecipes}/>
                 </div>
         )
 }

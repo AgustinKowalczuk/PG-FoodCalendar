@@ -1,10 +1,10 @@
-const {
+const { 
     argumentsValidate,
     nameValidate
-} = require('../validate');
+ } = require('../validate');
 
-const unitRouteValidate = {
-    unitValidation(name) {
+const categoryRouteValidate = {
+    categoryValidation(name) {
         argumentsValidate([
             { keyName: 'name', value: name, type: 'string', notEmpty: true }
         ]);
@@ -12,4 +12,4 @@ const unitRouteValidate = {
     }
 }
 
-module.exports = unitRouteValidate;
+module.exports = categoryRouteValidate;
