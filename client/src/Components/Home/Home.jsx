@@ -4,6 +4,7 @@ import calendar from '../../Image/Menu_semanal.jpg'
 import { useSelector, useDispatch } from 'react-redux';
 import { getRecipes } from "../../actions";
 import style from '../../Styles/StyleHome.module.css'
+import SiliderImages from './SiliderImages/SiliderImages';
 
 export default function Home() {
 
@@ -16,10 +17,9 @@ export default function Home() {
      
         return (
                 <div class={style.order}>
-                 <h2 className={style.margin}>Planea tus comidas :D</h2>
-                 <img src= {calendar} class="img-fluid" alt='medium'/>
-                <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
-                    <Cards allRecipes={allRecipes}/>
+                        <SiliderImages allRecipes={allRecipes} />
+                        <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
+                        <Cards allRecipes={allRecipes}/>
                 </div>
         )
 }

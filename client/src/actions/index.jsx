@@ -3,7 +3,6 @@ import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_
 import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT ,RECIPES_SEARCH_URL,RECIPES_BY_INGREDIENTS} from "../routes";
 
 export function getRecipes() {
-
 //me trae las recetas de la db
   return async function (dispatch) {
     const recipes = await axios.get(RECIPES_URL);
@@ -13,6 +12,7 @@ export function getRecipes() {
     });
   };
 }
+
 //me trae los ingredientes de la db
 export function getIngredients() {
   return async  (dispatch) => {
@@ -20,7 +20,7 @@ export function getIngredients() {
       const ingredients = await axios.get(INGREDIENTS_URL);
     dispatch({type: GET_INGREDIENTS, payload: ingredients.data,});
     }catch(error){
-      console.log("No hay Resultado BB")
+      console.log("No hay Resultado")
     }
   };
 }
@@ -53,10 +53,10 @@ export function searchRecipes(name) {
 export function createRecipe(recipe){
   return async function(){
     try{
-      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['malo', 'vegano']})
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['Vegano', 'Nutritivo']})
       console.log(newRecipe)
     }catch(error){
-      alert("No se posteo la ReCiPe")
+      alert("No se posteo la receta")
     }
   }
 }
