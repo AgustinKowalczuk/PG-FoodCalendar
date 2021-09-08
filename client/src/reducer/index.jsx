@@ -8,7 +8,6 @@ import {
   ORDER_ZA,
   ORDER_AZ,
   UPDATE_RECIPE,
-  GETUNIT,
   FILTERED_BY_INGREDIENT,
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
@@ -77,11 +76,6 @@ function reducer(state = initialState, action) {
           ...state,
           update: action.payload
             } 
-      case GETUNIT:
-        return {
-          ...state,
-          unit: action.payload
-        }
       case GET_UNIT:
         return {
           ...state,
