@@ -1,7 +1,6 @@
 const express = require("express");
-//const { normalizeCalendars } = require("../../controller/normalize");
 const { calendarValidation } = require("../../controller/router_validate/calendar_route_validate");
-const { Calendar, Recipe } = require("../../models/models");
+const { Calendar, Recipe, User } = require("../../models/models");
 const router = express.Router();
 
 router.post('/calendar', async (req, res, next) => {
@@ -10,9 +9,12 @@ router.post('/calendar', async (req, res, next) => {
     try {
         calendarValidation(owner, calendar);
 
+        const ownerID = await User.findById(owner);
+        if (!ownerID) throw new Error(`El user con el id ${owner} no existe.`)
+
         for (let i = 0; i < calendar.length; i++) {
-            let rec = await Recipe.findById(calendar[i]);
-            if (!rec){
+            let recipe = await Recipe.findById(calendar[i]);
+            if (!recipe){
                 throw new Error(`El id en la posicion ${i} no se encuentra en DB de recetas`)
             }
         }

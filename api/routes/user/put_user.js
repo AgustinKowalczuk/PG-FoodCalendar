@@ -18,8 +18,14 @@ router.put('/user/:id', async (req, res, next) => {
         const existentName = await User.findOne({ email });
         if (existentName) return res.status(404).send("El email del usuario ya existe en la base de datos.");
 
-        const hash = await argon.hash(password)
-
+        if(!password){
+            await User.findByIdAndUpdate(elem._id, { name, surname, email, category });
+        const update = await User.findById(id);
+        return res.json(normalizeUsers(update));
+        }
+        
+        const hash = await argon.hash(password);
+                
         await User.findByIdAndUpdate(elem._id, { name, surname, email, password: hash, category });
         const update = await User.findById(id);
         return res.json(normalizeUsers(update));
