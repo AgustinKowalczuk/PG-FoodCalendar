@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { getUnit } from '../../../actions/index'
+import { getUnit, setFormIngredients } from '../../../actions/index'
 import style from '../../../Styles/StyleFrom.module.css'
 
 export default function SelectCard(props) {
@@ -12,7 +12,6 @@ export default function SelectCard(props) {
     },[dispatch])
     
     const selectUnit = (id) => {
-        console.log(id)
         return (
           <select
             defaultValue="gr"
@@ -28,11 +27,14 @@ export default function SelectCard(props) {
           </select>
         );
       }
-    //   const onDelete = (event) => {
-    //     formik.values.ingredients = formik.values.ingredients.filter(
-    //       (e) => e.ingredient === event.target.value
-    //     );
-    //   };
+      const onDelete = (event) => {
+        //console.log(props.formik.values.ingredients)
+        const deleter = props.formik.values.ingredients.filter(
+          (e) => e.ingredient !== event.target.innerHTML
+        );
+        dispatch(setFormIngredients(deleter))
+        props.onChange(deleter)
+      };
     return (
         <div class={style.grid}>
         <input
@@ -45,7 +47,7 @@ export default function SelectCard(props) {
             selectUnit(`${props.name}.unit`)
         }
         <h5
-            // onClick={(x) => onDelete(x)}
+            onClick={(x) => onDelete(x)}
             value={props.ingredient}
             class={style.button}
         >

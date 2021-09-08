@@ -7,3 +7,7 @@ export const GET_DETAIL= 'GET_DETAIL'
 export const UPDATE_RECIPE = 'UPDATE_RECIPE'
 export const GETUNIT = 'GETUNIT'
 export const FILTERED_BY_INGREDIENT='FILTERED_BY_INGREDIENT';
+<<<<<<< HEAD
+=======
+export const SET_FORM_INGREDIENTS='SET_FORM_INGREDIENTS';
+>>>>>>> CopiaSeguridad

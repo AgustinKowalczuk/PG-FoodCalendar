@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
 import { createRecipe, getIngredients } from "../../actions/index";
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
 
@@ -9,10 +9,11 @@ export default function CreateRecipe() {
   const dispatch = useDispatch();
 
   const ingre = useSelector((state) => state.ingredients);
+  const formIngre = useSelector((state) => state.formIngredients);
 
   useEffect(() => {
     dispatch(getIngredients());
-  }, [dispatch]);
+  }, [dispatch, formIngre]);
 
   const initialValues = {
     name: "",
@@ -48,11 +49,14 @@ export default function CreateRecipe() {
     dispatch(createRecipe(formik.values));
     console.log("Values submit", values);
   };
-
+  const onChangeIngredients = (values) =>{
+    formik.values.ingredients = values
+  }
   const formik = useFormik({
     initialValues,
     onSubmit,
     validate,
+    onChangeIngredients
   });
 
  
@@ -67,7 +71,7 @@ export default function CreateRecipe() {
             onBlur={formik.handleBlur}
             name="name"
             class="form-control"
-            placeholder="write here..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.name && formik.touched.name === true ? (
             <div class="cosoForm">
@@ -99,7 +103,7 @@ export default function CreateRecipe() {
             {formik.values.ingredients.length > 0 &&
               formik.values.ingredients.map((e, index) => {
 
-                return <SelectCard ingredient={e.ingredient} name={`ingredients[${index}]`}
+                return <SelectCard formik={formik} onChange={onChangeIngredients} ingredient={e.ingredient} name={`ingredients[${index}]`}
                   handleChange={formik.handleChange} />
               })}
           </div>
@@ -134,7 +138,7 @@ export default function CreateRecipe() {
             class="form-control"
             name="preparation"
             type="text"
-            placeholder="write here..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.preparation && formik.touched.preparation === true ? (
             <div class="cosoForm">
@@ -152,7 +156,7 @@ export default function CreateRecipe() {
             class="form-control"
             name="img"
             type="text"
-            placeholder="write here..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.img && formik.touched.img === true ? (
             <div class="cosoForm">

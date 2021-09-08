@@ -7,7 +7,8 @@ import {
   GET_DETAIL,
   UPDATE_RECIPE,
   GETUNIT,
-  FILTERED_BY_INGREDIENT
+  FILTERED_BY_INGREDIENT,
+  SET_FORM_INGREDIENTS
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -19,6 +20,10 @@ var initialState = {
   detail:{},
   update:{},
   unit: [],
+<<<<<<< HEAD
+=======
+  formIngredients: []
+>>>>>>> CopiaSeguridad
 };
 
 function reducer(state = initialState, action) {
@@ -70,10 +75,15 @@ function reducer(state = initialState, action) {
           ...state,
           unit: action.payload
         }
-        case FILTERED_BY_INGREDIENT:
+      case FILTERED_BY_INGREDIENT:
           return{
             ...state,
             recipes: action.payload
+          }
+      case SET_FORM_INGREDIENTS:
+          return{
+            ...state,
+            formIngredients: action.payload
           }
         
     default:

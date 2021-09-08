@@ -1,5 +1,9 @@
 import axios from "axios";
+<<<<<<< HEAD
 import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT,UPDATE_RECIPE} from "./constants";
+=======
+import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS} from "./constants";
+>>>>>>> CopiaSeguridad
 import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT ,RECIPES_SEARCH_URL,RECIPES_BY_INGREDIENTS} from "../routes";
 
 export function getRecipes() {
@@ -39,9 +43,11 @@ export function searchRecipes(name) {
   return async  (dispatch) => {
     try{
       const filtRecipes = await axios.get(RECIPES_SEARCH_URL + `${name}`);
-       dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
+      console.log(filtRecipes)
+      return dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data});
     }catch(error){
-      alert("ERROR EN LA SEARCH")
+     alert("No se encontraron recetas")
+      //return dispatch({ type: SEARCH_RECIPES, payload: ['No encontrado']})
     }
   };
 }
@@ -95,4 +101,7 @@ export function FilterRecipeByIngredient(name) {
       alert("Error En Filtro")
     }
   };
+}
+export function setFormIngredients(payload){
+    return {type: SET_FORM_INGREDIENTS, payload}
 }
