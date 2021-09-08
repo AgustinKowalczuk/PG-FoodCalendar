@@ -1,7 +1,7 @@
 const express = require("express");
 const argon = require('argon2');
 const { normalizeUsers } = require("../../controller/normalize");
-const { userPutValidation } = require("../../controller/router_validate/User_route_validate");
+const { userPutValidation } = require("../../controller/router_validate/user_route_validate");
 const { User } = require("../../models/models");
 const router = express.Router();
 
