@@ -4,7 +4,7 @@ const user = new Schema({
     name: {
         type: String, required: true, validate: {
             validator: function (value) {
-                const re = /^[^{}<>#$%&~^`/*+¿?¡!@]*$/g;
+                const re = /^[^{}<>#$%&~^`/*+¿?¡!@0-9]*$/g;
                 if (!re.test(value)) {
                     return false;
                 }
@@ -15,7 +15,7 @@ const user = new Schema({
     surname: {
         type: String, required: true, validate: {
             validator: function (value) {
-                const re = /^[^{}<>#$%&~^`/*+¿?¡!@]*$/g;
+                const re = /^[^{}<>#$%&~^`/*+¿?¡!@0-9]*$/g;
                 if (!re.test(value)) {
                     return false;
                 }

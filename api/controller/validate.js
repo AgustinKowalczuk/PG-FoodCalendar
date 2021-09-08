@@ -28,7 +28,7 @@ const validate = {
     },
 
     nameValidate(name) {
-        const re = /^[^{}<>#$%&~^`/*+¿?¡!@]*$/g
+        const re = /^[^{}<>#$%&~^`/*+¿?¡!@]*$/g;
         if (!re.test(String(name))) throw new Error(`${name} no es un nombre válido`)
     },
 
@@ -77,8 +77,11 @@ const validate = {
     userCategoryValidate(userCategory) {
         const difficulties = ["Admin", "User"];
         if (difficulties.indexOf(userCategory) < 0) throw new Error(`${userCategory} no es un valor válido para la categoria de usuario`);
+    },
+    noNumberValidate(name) {
+        const re = /^[^(0-9)]*$/g;
+        if (!re.test(String(name))) throw new Error(`${name} no es un nombre válido`)
     }
-
 }
 
 module.exports = validate;
