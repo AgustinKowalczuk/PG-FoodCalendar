@@ -19,13 +19,6 @@ export default function Nav() {
         <div id={style.noMargin} class="navbar-nav me-auto mb-2 mb-lg-0">
           <Link id={style.link} class="nav-link active" to="/create/recipe">Crear receta</Link>
         </div>
-        <div class="nav-item dropdown">
-          <FilteredCards />
-        </div>
-        <div class="nav-item dropdown">
-          <OrderingCards />
-        </div>
-        <SearchBar />
       </div>
     </div>
   );
