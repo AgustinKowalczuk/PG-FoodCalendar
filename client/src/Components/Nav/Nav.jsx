@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "../SearchBar/SearchBar"
 import logo from '../../Image/Logosinfondo.png'
-import OrderingCards from "./OrderingCards/OrderingCards";
-import FilteredCards from "./FilteredCards/FilteredCards";
 import style from "../../Styles/StyleNav.module.css"
 
 
