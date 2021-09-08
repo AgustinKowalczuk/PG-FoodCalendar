@@ -95,3 +95,15 @@ export function orderAZ(){
 export function setFormIngredients(payload){
     return {type: SET_FORM_INGREDIENTS, payload}
 }
+
+//Creación de ingrediente
+export function createIngredient(ingredient){
+  return async function(){
+    try{
+      const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient})
+      console.log(newIngredient)
+    }catch(error){
+      alert("No se creó el ingrediente")
+    }
+  }
+}
