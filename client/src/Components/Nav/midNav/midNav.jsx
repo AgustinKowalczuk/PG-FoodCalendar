@@ -1,14 +1,17 @@
 import React from 'react'
 import SearchBar from '../../SearchBar/SearchBar'
 import OrderingCards from '../OrderingCards/OrderingCards'
-import FilteredCards from '../FilteredCards/FilteredCards'
-
+import ByIngredient from './FilteredCards/ByIngredient/FilteredByIngredient'
+import ByCategory from './FilteredCards/ByCategory/ByCategory'
+import ByDifficulty from './FilteredCards/ByDifficulty/FilterByDifficulty'
 
 export default function midNav() {
     return (
         <div>
             <OrderingCards />
-            <FilteredCards />
+            <ByIngredient />
+            <ByCategory />
+            <ByDifficulty />
             <SearchBar />
         </div>
     )

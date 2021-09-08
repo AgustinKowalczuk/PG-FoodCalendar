@@ -1,13 +1,16 @@
 import {
   GET_RECIPES,
   GET_INGREDIENTS,
+  GET_CATEGORY,
+  GET_UNIT,
+  GET_DETAIL,
   SEARCH_RECIPES,
   ORDER_ZA,
   ORDER_AZ,
-  GET_DETAIL,
-  GET_UNIT,
   FILTERED_BY_INGREDIENT,
-  SET_FORM_INGREDIENTS
+  FILTERED_BY_CATEGORY,
+  FILTERED_BY_DIFFICULTY,
+  SET_FORM_INGREDIENTS,
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -16,8 +19,10 @@ var initialState = {
   recipes: [],
   copyRecipe: [],
   ingredients: [],
+  category:[],
   detail:{},
   unit: [],
+  difficulty:[],
   formIngredients: []
 };
 
@@ -34,6 +39,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         ingredients: action.payload,
+      };
+      case GET_CATEGORY:
+      return {
+        ...state,
+        category: action.payload,
       };
 
     case SEARCH_RECIPES:
@@ -69,6 +79,16 @@ function reducer(state = initialState, action) {
           return{
             ...state,
             recipes: action.payload
+          }
+      case FILTERED_BY_CATEGORY:
+          return{
+            ...state,
+            recipes: action.payload
+          }
+      case FILTERED_BY_DIFFICULTY:
+          return{
+            ...state,
+            recipes: state.copyRecipe.filter((x) => x.difficulty === action.payload)
           }
       case SET_FORM_INGREDIENTS:
           return{
