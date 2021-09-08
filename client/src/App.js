@@ -7,7 +7,7 @@ import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Footer from './Components/Footer/Footer';
-
+import Register from './Components/Acount/Register';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path = '/search/:name' component={SearchCards}/>
         <Route path='/recipe/:id' component={DetailRecipe}/>
         <Route path = '/create/recipe' component={CreateRecipe}/>
+        <Route path = '/acount/register' component={Register}/>
       </Switch>
       <Footer/>
       </div>

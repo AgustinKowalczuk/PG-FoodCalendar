@@ -38,6 +38,7 @@ export function getRecipes() {
     });
   };
 }
+
 //me trae los ingredientes de la db
 export function getIngredients() {
   return async (dispatch) => {
@@ -60,6 +61,7 @@ export function getCategory() {
     }
   };
 }
+
 //obtener el detalle de la receta
 export function getDetail(id) {
   return async function (dispatch) {
@@ -120,13 +122,13 @@ export function FilterRecipeByCategory(name) {
 
 // Creacion de Receta
 
-export function createRecipe(recipe) {
-  return async function () {
-    try {
-      const newRecipe = await axios.post(RECIPES_URL, { ...recipe, rating: 0, category: ['malo', 'vegano'] })
+export function createRecipe(recipe){
+  return async function(){
+    try{
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['Vegano', 'Tradicional']})
       console.log(newRecipe)
-    } catch (error) {
-      alert("No se posteo la ReCiPe")
+    }catch(error){
+      alert("No se posteo la receta")
     }
   }
 }
@@ -146,14 +148,18 @@ export function orderByDifficultyInv() {
   return { type: ORDER_BY_DIFFICULTY_INV }
 }
 
-
-
-
 export function setFormIngredients(payload){
     return {type: SET_FORM_INGREDIENTS, payload}
 }
 
-//Creación de ingrediente
+export function register(usuer){
+  return async function(dispatch){
+    const reg = await axios.post(REGISTER, usuer)
+
+    return dispatch(reg)
+  }
+}
+
 export function createIngredient(ingredient){
   return async function(){
     try{
