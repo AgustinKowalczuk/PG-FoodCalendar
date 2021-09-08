@@ -51,8 +51,44 @@ router.get('/recipe/filterByIngredient/:name', async (req, res, next) => {
             return res.status(404).json(["La base de datos está vacía"]);
         }
         const filteredRecipes = allRecipes.filter(e => e.ingredients.some(ele => ele.ingredient.name.toUpperCase() === name.toUpperCase()));
-        if (!filteredRecipes.length > 0) {
+        if (filteredRecipes.length === 0) {
             return res.status(404).json(["No se encontraron recetas con el ingrediente indicado"]);
+        }
+        const recipeFilteredNormalized = normalizeRecipes(filteredRecipes);
+        return res.json(recipeFilteredNormalized);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/recipe/filterByCategory/:name', async (req, res, next) => {
+    const { name } = req.params;
+    try {
+        const allRecipes = await Recipe.find();
+        if (allRecipes.length === 0) {
+            return res.status(404).json(["La base de datos está vacía"]);
+        }
+        const filteredRecipes = allRecipes.filter(e => e.category.some(ele => ele.name.toUpperCase() === name.toUpperCase()));
+        if (filteredRecipes.length === 0) {
+            return res.status(404).json(["No se encontraron recetas con la categoría indicada"]);
+        }
+        const recipeFilteredNormalized = normalizeRecipes(filteredRecipes);
+        return res.json(recipeFilteredNormalized);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/recipe/filterByDifficulty/:name', async (req, res, next) => {
+    const { name } = req.params;
+    try {
+        const allRecipes = await Recipe.find();
+        if (allRecipes.length === 0) {
+            return res.status(404).json(["La base de datos está vacía"]);
+        }
+        const filteredRecipes = allRecipes.filter(e => e.difficulty === name);
+        if (filteredRecipes.length === 0) {
+            return res.status(404).json(["No se encontraron recetas con la dificultad indicada"]);
         }
         const recipeFilteredNormalized = normalizeRecipes(filteredRecipes);
         return res.json(recipeFilteredNormalized);

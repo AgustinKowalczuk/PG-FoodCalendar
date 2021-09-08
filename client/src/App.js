@@ -7,8 +7,8 @@ import DetailRecipe from './Components/DetailRecipe/DetailRecipe';
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Footer from './Components/Footer/Footer';
-import UpdateForm from './Components/UpdateForm/UpdateForm';
-
+import UpdateForm from './Components/UpdateForm/UpdateForm'
+import Register from './Components/Acount/Register';
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
         <Route path='/recipe/:id' component={DetailRecipe}/>
         <Route path = '/create/recipe' component={CreateRecipe}/>
         <Route exact path = '/update/:id' component={UpdateForm}/>
+        <Route path = '/acount/register' component={Register}/>
       </Switch>
       <Footer/>
       </div>

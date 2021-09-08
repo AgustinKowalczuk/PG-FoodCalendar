@@ -62,7 +62,7 @@ export default function DetailRecipe() {
                 <tr>
                   {recipeDetail.category?.map((x) => (
                     <td>
-                      <h4>{x}</h4>
+                      <h4>{x.name}</h4>
                     </td>
                   ))}{" "}
                 </tr>

@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getIngredients, FilterRecipeByIngredient, getRecipes } from "../../../actions/index"
+import { getIngredients, FilterRecipeByIngredient, getRecipes } from "../../../../../actions/index"
 
 
 
-export default function FilteredCards() {
+export default function FilteredByIngredient() {
 
     const dispatch = useDispatch();
 
