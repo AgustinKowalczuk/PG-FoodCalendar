@@ -4,6 +4,7 @@ import { createRecipe, getIngredients } from "../../actions/index";
 import { Formik, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
+import CreateIngredient from "../CreateIngredient/CreateIngredient"
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
@@ -97,7 +98,6 @@ export default function CreateRecipe() {
               );
             })}
           </select>
-
           <div class={style.buttonsRemove}>
 
             {formik.values.ingredients.length > 0 &&
@@ -170,6 +170,7 @@ export default function CreateRecipe() {
           </button>
         </div>
       </form>
+      <CreateIngredient/>
     </div>
   );
 }
