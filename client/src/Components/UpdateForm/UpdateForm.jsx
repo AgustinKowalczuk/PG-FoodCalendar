@@ -4,10 +4,11 @@ import { putRecipe,  getIngredients } from "../../actions/index";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "../CreateRecipe/SelectCard/SelectCard";
+import {Link, useParams} from "react-router-dom"
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
-
+  const {id} = useParams()
   const ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
   const update = useSelector((state) => state.detail);
@@ -191,9 +192,11 @@ export default function CreateRecipe() {
           ) : null}
         </div>
         <div class="col-auto">
+          <Link to={`/recipe/${id}`}>
           <button type="submit" class="btn btn-primary mb-3">
             Actualizar
           </button>
+          </Link>
         </div>
       </form>
     </div>

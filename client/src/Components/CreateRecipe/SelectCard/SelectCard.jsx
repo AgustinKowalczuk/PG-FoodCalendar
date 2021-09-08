@@ -8,7 +8,7 @@ export default function SelectCard(props) {
 
     const unit = useSelector((state) => state.unit);
     
-   if(unit[0].name!==' '){
+   if(unit[0]?.name!==' '){
       unit.unshift({name:' '})
     }  
            
