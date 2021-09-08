@@ -10,8 +10,8 @@ router.post('/unit', async (req, res, next) => {
     try {
         unitValidation(name);
 
-        const existentName = await Unit.findOne({name});       
-        if(existentName && !!Object.keys(existentName).length) return res.status(404).send("La unidad ya existe en la base de datos.");
+        const existentName = await Unit.findOne({ name });
+        if (existentName) return res.status(404).send("La unidad ya existe en la base de datos.");
 
         const posted = await Unit.create({ name });
         return res.json(normalizeUnits(posted));

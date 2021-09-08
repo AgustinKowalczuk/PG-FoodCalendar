@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-const ingredient = new Schema({
+const category = new Schema({
     name: {
         type: String, required: true, unique: true, validate: {
             validator: function (value) {
@@ -14,4 +14,4 @@ const ingredient = new Schema({
     }
 });
 
-module.exports = ingredient;
+module.exports = category;
