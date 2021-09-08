@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RECIPES, GETUNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS,FILTERED_BY_DIFFICULTY} from "./constants";
+import { GET_RECIPES, GET_UNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS,FILTERED_BY_DIFFICULTY} from "./constants";
 import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT ,RECIPES_SEARCH_URL,RECIPES_BY_INGREDIENTS} from "../routes";
 
 export function getRecipes() {
@@ -51,9 +51,9 @@ export function FilterRecipeByIngredient(name) {
   return async  (dispatch) => {
     try{
       const filtRecipes = await axios.get(RECIPES_BY_INGREDIENTS + `${name}`);
-       dispatch({ type: FILTERED_BY_INGREDIENT, payload: filtRecipes.data});
+      dispatch({ type: FILTERED_BY_INGREDIENT, payload: filtRecipes.data});
     }catch(error){
-      alert("Error En Filtro")
+      alert("No hay Receta con ese ingrediente")
     }
   };
 }
@@ -78,7 +78,7 @@ export function getUnit(){
   return async function (dispatch){
     const unit = await axios.get(UNIT)
 
-    dispatch({type:GETUNIT, payload: unit.data})
+    dispatch({type:GET_UNIT, payload: unit.data})
   }
 }
 

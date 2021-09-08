@@ -5,7 +5,7 @@ import {
   ORDER_ZA,
   ORDER_AZ,
   GET_DETAIL,
-  GETUNIT,
+  GET_UNIT,
   FILTERED_BY_INGREDIENT,
   SET_FORM_INGREDIENTS
 } from "../actions/constants";
@@ -60,7 +60,7 @@ function reducer(state = initialState, action) {
           detail: action.payload
         }  
       
-      case GETUNIT:
+      case GET_UNIT:
         return {
           ...state,
           unit: action.payload
