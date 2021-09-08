@@ -1,8 +1,12 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { register } from '../../actions/index'
+import { useDispatch } from 'react-redux'
 
 export default function Register() {
 
+    const dispatch = useDispatch()
     const initialValues= {
         name:'',
         surname:'',
@@ -10,45 +14,35 @@ export default function Register() {
         password: ''
     }
 
-    const validate = (value) => {
+    const validationSchema = Yup.object({
+        name: Yup.string()
+            .required('Requerido')
+            .min(3, 'Minimo de 3 letras')
+            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
+        surname: Yup.string()
+            .required('Requerido')
+            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
+        email: Yup.string()
+            .required('Requerido')
+            .email('Formato no valido'),
+        password: Yup.string()
+            .required('Requerido')
+            .matches(
+                /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                "Minimo de 8 caracteres, una mayuscula, una minuscula"
+            ),
+    })
 
-        let errors = {}
-
-        if(!value.name){
-            errors.name = 'Requierido'
-        }else if(!/^[a-zA-Z\s]*$/.test(value.name)){
-            errors.name = 'No es un texto valido'
-        }
-
-        if(!value.surname){
-            errors.surname = 'Requierido'
-        }else if(!/^[a-zA-Z\s]*$/.test(value.surname)){
-            errors.surname = 'No es un texto valido'
-        }
-
-        if(!value.email){
-            errors.email = 'Requierido'
-        }else if(!/^[a-zA-Z\s]*$/.test(value.email)){
-            errors.email = 'No es un texto valido'
-        }
-
-        if(!value.password){
-            errors.password = 'Requierido'
-        }else if(!/^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i.test(value.password)){
-            errors.password = 'No es un texto valido'
-        }
-    }
-
-    const submit = (value) => {
+    const onSubmit = (value) => {
         console.log('Submit value', value)
+        dispatch(Register(value))
     }
 
     return (
         <Formik 
             initialValues={initialValues}
-            validate={validate}
-            onsubmit={submit}
-        >
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}>
             <Form>
                 <div>
                     <label>First name</label>

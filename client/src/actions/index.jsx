@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GET_RECIPES, GET_UNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS,FILTERED_BY_DIFFICULTY} from "./constants";
-import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT ,RECIPES_SEARCH_URL,RECIPES_BY_INGREDIENTS} from "../routes";
+import { GET_RECIPES, GET_UNIT, GET_INGREDIENTS, SEARCH_RECIPES, ORDER_ZA, ORDER_AZ, GET_DETAIL,FILTERED_BY_INGREDIENT, SET_FORM_INGREDIENTS,FILTERED_BY_DIFFICULTY } from "./constants";
+import { RECIPES_URL, INGREDIENTS_URL, RECIPES_DETAIL_URL, UNIT ,RECIPES_SEARCH_URL,RECIPES_BY_INGREDIENTS, REGISTER} from "../routes";
 
 export function getRecipes() {
 //me trae las recetas de la db
@@ -89,9 +89,14 @@ export function orderAZ(){
   return {type:ORDER_AZ}
 }
 
-
-
-
 export function setFormIngredients(payload){
     return {type: SET_FORM_INGREDIENTS, payload}
+}
+
+export function register(usuer){
+  return async function(dispatch){
+    const reg = await axios.post(REGISTER, usuer)
+
+    return dispatch(reg)
+  }
 }
