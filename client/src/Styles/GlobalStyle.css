@@ -3,6 +3,14 @@ h1,h2,h3,h4,h5,h6,p,span,label, input, button, option, select, textarea, div{
     text-transform: none;
     text-indent: 0px;
 }
+Link{
+    text-transform: none;
+    text-indent: 0px;
+}
+body{
+    max-width: 1300px;
+    margin:0 auto;
+}
 span{
     color: red;
     font-size: .9rem;

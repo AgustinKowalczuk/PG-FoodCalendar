@@ -7,22 +7,28 @@ export default function SelectCard(props) {
     const dispatch = useDispatch()
 
     const unit = useSelector((state) => state.unit);
+    
+   if(unit[0].name!==' '){
+      unit.unshift({name:' '})
+    }  
+           
     useEffect(()=> {
-       dispatch(getUnit()); 
-    },[dispatch])
+      dispatch(getUnit()); 
+      },[]) 
 
     const selectUnit = (id) => {
         return (
           <select
-            defaultValue="gr"
+            defaultValue= {props.unit}
             class={style.selectGrid}
             onChange={props.handleChange}
             name={id}
+            required
             id="disabledSelect"
             class="form-select"
           >
             {unit?.map((e) => {
-              return<option name={id}>{e.name}</option>;
+              return<option  name={id}>{e.name}</option>;
             })}
           </select>
         );
@@ -42,6 +48,7 @@ export default function SelectCard(props) {
             class={style.inputGrid}
             onChange={props.handleChange}
             name={`${props.name}.amount`}
+            defaultValue= {props.amount}
         />
         {
             selectUnit(`${props.name}.unit`)

@@ -14,18 +14,21 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
+  UPDATE_RECIPE
 } from "./constants";
 
 import {
   RECIPES_URL,
   CATEGORY_URL,
   INGREDIENTS_URL,
+  UNIT,
   UNIT_URL,
   RECIPES_DETAIL_URL,
   RECIPES_SEARCH_URL,
   RECIPES_BY_INGREDIENTS_URL,
   RECIPES_BY_CATEGORY_URL,
 } from "../routes";
+
 
 export function getRecipes() {
 
@@ -148,6 +151,18 @@ export function orderByDifficultyInv() {
   return { type: ORDER_BY_DIFFICULTY_INV }
 }
 
+//modificar la receta
+export function putRecipe(id,value){
+  return async (dispatch)=>{
+    try{
+      const update = await axios.put(RECIPES_URL + `/${id}`, value);
+      return dispatch ({ 
+        type: UPDATE_RECIPE,
+      payload:update.data})
+    }catch(error){
+      console.log(error)
+   }}}
+
 export function setFormIngredients(payload){
     return {type: SET_FORM_INGREDIENTS, payload}
 }
@@ -155,7 +170,6 @@ export function setFormIngredients(payload){
 export function register(usuer){
   return async function(dispatch){
     const reg = await axios.post(REGISTER, usuer)
-
     return dispatch(reg)
   }
 }

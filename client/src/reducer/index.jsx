@@ -7,6 +7,8 @@ import {
   SEARCH_RECIPES,
   ORDER_ZA,
   ORDER_AZ,
+  UPDATE_RECIPE,
+  GETUNIT,
   FILTERED_BY_INGREDIENT,
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
@@ -21,6 +23,7 @@ var initialState = {
   ingredients: [],
   category:[],
   detail:{},
+  update:{},
   unit: [],
   difficulty:[],
   formIngredients: []
@@ -68,8 +71,17 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           detail: action.payload
-        }  
-      
+        } 
+      case UPDATE_RECIPE:
+        return{
+          ...state,
+          update: action.payload
+            } 
+      case GETUNIT:
+        return {
+          ...state,
+          unit: action.payload
+        }
       case GET_UNIT:
         return {
           ...state,

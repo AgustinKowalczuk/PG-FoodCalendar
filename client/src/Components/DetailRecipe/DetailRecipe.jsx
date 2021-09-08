@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getDetail } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
+
 
 export default function DetailRecipe() {
   const { id } = useParams();
@@ -25,6 +26,7 @@ export default function DetailRecipe() {
           alt="imagen de comida"
           width="500px"
         />
+        
         <div class="card-body">
           <h3 class="card-title">{recipeDetail.name}</h3>
 
@@ -66,6 +68,7 @@ export default function DetailRecipe() {
                 </tr>
               </table>
           </div>
+          <Link id={style.link} class="nav-link active" to="/update/:id">Editar receta</Link>
         </div>
       </div>
 
