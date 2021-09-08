@@ -68,7 +68,7 @@ export default function DetailRecipe() {
                 </tr>
               </table>
           </div>
-          <Link id={style.link} class="nav-link active" to="/update/:id">Editar receta</Link>
+          <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
         </div>
       </div>
 
