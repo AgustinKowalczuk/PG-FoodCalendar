@@ -5,11 +5,6 @@ import { createIngredient} from "../../actions";
 
 export default function CreateIngredient(props) {
     const dispatch = useDispatch();
-    const ingre = useSelector((state) => state.ingredients)
-    useEffect(() => {
-        dispatch(getIngredients())
-    }, [])
-
     const initialValues = {}
 
     useEffect(() => {
