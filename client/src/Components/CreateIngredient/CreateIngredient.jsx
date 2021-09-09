@@ -1,24 +1,22 @@
 import React, { useEffect } from "react";
 //import {Link} from 'react-router-dom';
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { createIngredient, getIngredients } from "../../actions";
+import { useDispatch} from "react-redux";
+import { createIngredient} from "../../actions";
 
-export default function CreateIngredient() {
+export default function CreateIngredient(props) {
     const dispatch = useDispatch();
-    const ingre = useSelector((state) => state.ingredients)
-    useEffect(() => {
-        dispatch(getIngredients())
-        console.log(ingre)
-    }, [])
-
     const initialValues = {}
 
+    useEffect(() => {
+       formik.values.name=''
+    }, [props.toggle])
+    
     const validate = (values) => {
         let error = {}
         if(!values.name){
             error.name = "Se requiere nombre"
-        } else if(!/^[a-zA-Z\s]*$/.test(values.name)){
+        } else if(!/^[^{}<>#$%&~^`/*+¿?¡!@]*$/g.test(values.name)){
             error.name = "No es texto"
         }
         return error
@@ -54,7 +52,7 @@ export default function CreateIngredient() {
 
                     <button
                     type='submit'
-                    disabled={ingre?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
+                    disabled={props.ingre?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
                 </div>
            </form>
         </div>

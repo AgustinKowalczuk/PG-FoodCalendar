@@ -12,6 +12,8 @@ import {
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
+  CREATE_INGREDIENT,
+  SET_FORM_CATEGORY,
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -25,7 +27,10 @@ var initialState = {
   update:{},
   unit: [],
   difficulty:[],
-  formIngredients: []
+  formIngredients:[],
+  toggleAddIngredient:false,
+  formCategory:[],
+  toggleAddCategory:false
 };
 
 function reducer(state = initialState, action) {
@@ -101,6 +106,16 @@ function reducer(state = initialState, action) {
             ...state,
             formIngredients: action.payload
           }
+      case CREATE_INGREDIENT:
+          return {
+            ...state,
+            toggleAddIngredient: !state.toggleAddIngredient
+            }
+      case SET_FORM_CATEGORY:
+          return {
+            ...state,
+            formCategory:action.payload
+              }
         
     default:
       return state;
