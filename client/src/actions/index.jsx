@@ -14,7 +14,9 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
-  UPDATE_RECIPE
+  UPDATE_RECIPE,
+  CREATE_INGREDIENT,
+  SET_FORM_CATEGORY
 } from "./constants";
 
 import {
@@ -128,7 +130,7 @@ export function FilterRecipeByCategory(name) {
 export function createRecipe(recipe){
   return async function(){
     try{
-      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['Vegano', 'Tradicional']})
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0})
       console.log(newRecipe)
     }catch(error){
       alert("No se posteo la receta")
@@ -175,12 +177,16 @@ export function register(usuer){
 }
 
 export function createIngredient(ingredient){
-  return async function(){
+  return async function(dispatch){
     try{
       const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient})
-      console.log(newIngredient)
+      return dispatch({type:CREATE_INGREDIENT})
     }catch(error){
       alert("No se creó el ingrediente")
     }
   }
+}
+
+export function setFormCategory(payload){
+  return {type: SET_FORM_CATEGORY, payload}
 }

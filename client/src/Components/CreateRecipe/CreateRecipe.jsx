@@ -1,20 +1,28 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
-import { createRecipe, getIngredients } from "../../actions/index";
+import { createRecipe, getIngredients,getCategory } from "../../actions/index";
 import { Formik, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
+import SelectCategory from "./SelectCategory/SelectCategory";
 import CreateIngredient from "../CreateIngredient/CreateIngredient"
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
-
+  const toggle = useSelector((state)=>state.toggleAddIngredient)
   const ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
+  const category = useSelector((state)=>state.category)
+  const formCater=useSelector((state)=>state.formCategory)
 
   useEffect(() => {
     dispatch(getIngredients());
-  }, [dispatch, formIngre]);
+    dispatch(getCategory());
+  }, [dispatch,formIngre,toggle,formCater]);
+
+  useEffect(()=>{
+   console.log(formik.values) 
+  },[formCater])
 
   const initialValues = {
     name: "",
@@ -22,6 +30,9 @@ export default function CreateRecipe() {
     difficulty: "",
     ingredients: [],
     img: "",
+    category:[],
+    premium:'',
+    availability:''
   };
 
   const validate = (values) => {
@@ -29,13 +40,13 @@ export default function CreateRecipe() {
 
     if (!values.name) {
       error.name = "Requerido";
-    } else if (!/^[a-zA-Z\s]*$/.test(values.name)) {
+    } else if (!/^[^{}<>#$%&~^`/*+¿?¡!@]*$/g.test(values.name)) {
       error.name = "No es texto";
     }
 
     if (!values.preparation) {
       error.preparation = "Requerido";
-    } else if (!/^[a-zA-Z\s]*$/.test(values.preparation)) {
+    } else if (!/^[^{}<>#$%&~^`/*+¿?¡!@]*$/g.test(values.preparation)) {
       error.preparation = "No es texto";
     }
 
@@ -47,20 +58,36 @@ export default function CreateRecipe() {
   };
 
   const onSubmit = (values) => {
+    if(formik.values.premium==='false'){
+      formik.values.premium=false
+    }
+    if(formik.values.premium==='true'){
+      formik.values.premium=true
+    }
+    if(formik.values.availability==='false'){
+      formik.values.availability=false
+    }
+    if(formik.values.availability==='true'){
+      formik.values.availability=true
+    }
     dispatch(createRecipe(formik.values));
     console.log("Values submit", values);
   };
   const onChangeIngredients = (values) =>{
     formik.values.ingredients = values
   }
+   const onChangeCategory = (values)=>{
+     formik.values.category = values
+   }
   const formik = useFormik({
     initialValues,
     onSubmit,
     validate,
-    onChangeIngredients
+    onChangeIngredients,
+    onChangeCategory
   });
 
- 
+  
   return (
     <div class={style.centrado}>
       <form class={style.forms} onSubmit={formik.handleSubmit}>
@@ -164,13 +191,64 @@ export default function CreateRecipe() {
             </div>
           ) : null}
         </div>
+
+        <div class="mb-3">
+          <label class="form-label">Categorias</label>
+          <select
+            defaultValue="none"
+            onChange={formik.handleChange}
+            name={`category[${formik.values.category?.length}]`}
+            id="disabledSelect"
+            class="form-select"
+          >
+            {category?.map((e) => {
+              return (
+                <option name="category" value={e.name}>
+                  {e.name}
+                </option>
+              );
+            })}
+          </select>
+          <div class={style.buttonsRemove}>
+
+            {formik.values.category.length > 0 &&
+              formik.values.category.map((e, index) => {
+
+                return <SelectCategory formik={formik} onChange={onChangeCategory} category={e} name={`category[${index}]` }
+                  handleChange={formik.handleChange} />
+              })}
+          </div>
+        </div>
+
+        <div>
+            <label class="form-label">Tipo de usuario</label>
+            <select 
+            onChange={formik.handleChange}
+            class="form-control"
+            name="premium">
+              <option value={true}>Premium</option>
+              <option value={false}>Free</option>
+              </select>
+        </div>
+
+        <div>
+            <label class="form-label">Esta Disponible?</label>
+            <select 
+            onChange={formik.handleChange}
+            class="form-control"
+            name="availability">
+              <option value={true}>Available</option>
+              <option value={false}>Unavailable</option>
+              </select>
+        </div>
+
         <div class="col-auto">
           <button type="submit" class="btn btn-primary mb-3">
             Crear
           </button>
         </div>
       </form>
-      <CreateIngredient/>
+      <CreateIngredient ingre={ingre} toggle={toggle}/>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "../CreateRecipe/SelectCard/SelectCard";
 import {Link, useParams} from "react-router-dom"
 
-export default function CreateRecipe() {
+export default function UpdateForm() {
   const dispatch = useDispatch();
   const {id} = useParams()
   const ingre = useSelector((state) => state.ingredients);
@@ -22,7 +22,11 @@ export default function CreateRecipe() {
       formik.values.preparation= update.preparation
       formik.values.difficulty= update.difficulty
       formik.values.img= update.img
-
+      formik.values.category=update.category
+      formik.values.availability= true
+      formik.values.premium= true
+      console.log(update.category,'category')
+      console.log(update.ingredients,'ingredients')
     if (update?.ingredients?.length) {
      let arr= update.ingredients.map(x=>{
        return {
@@ -33,6 +37,12 @@ export default function CreateRecipe() {
      })
         onChangeIngredients(arr);
     }
+    if (update?.category?.length) {
+      let arr= update.category.map(x=>{
+        return x.name
+       })
+         onChangeCategory(arr);
+     }
   }, []); 
  
   const initialValues = {
@@ -41,6 +51,10 @@ export default function CreateRecipe() {
     difficulty: "",
     ingredients:[],
     img: "",
+    category:[],
+    availability:"",
+    premium:""
+
   };
 
   const validate = (values) => {
@@ -72,13 +86,17 @@ export default function CreateRecipe() {
   };
   const onChangeIngredients = (values) => {
     formik.values.ingredients = values;
-    
+  };
+
+  const onChangeCategory =(values)=>{
+    formik.values.category = values;
   };
   const formik = useFormik({
     initialValues,
     onSubmit,
     validate,
     onChangeIngredients,
+    onChangeCategory
   });
 
   return (
@@ -191,13 +209,12 @@ export default function CreateRecipe() {
             </div>
           ) : null}
         </div>
+        
         <div class="col-auto">
-          <Link to={`/recipe/${id}`}>
-          <button type="submit" class="btn btn-primary mb-3">
+        <button type="submit" class="btn btn-primary mb-3">
             Actualizar
           </button>
-          </Link>
-        </div>
+         </div>
       </form>
     </div>
   );
