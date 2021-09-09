@@ -11,7 +11,7 @@ export default function DetailRecipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.detail);
-
+    console.log(recipeDetail,'detalles')
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id));

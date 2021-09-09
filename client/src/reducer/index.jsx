@@ -14,7 +14,10 @@ import {
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
-  PAGE
+  PAGE,
+  CREATE_INGREDIENT,
+  SET_FORM_CATEGORY,
+  CREATE_CATEGORY
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -28,8 +31,11 @@ var initialState = {
   update:{},
   unit: [],
   difficulty:[],
-  formIngredients: [],
   page: 1,
+  formIngredients:[],
+  toggleAddIngredient:false,
+  formCategory:[],
+  toggleAddCategory:false
 };
 
 function reducer(state = initialState, action) {
@@ -125,6 +131,21 @@ function reducer(state = initialState, action) {
           page: action.payload
         }    
         
+      case CREATE_INGREDIENT:
+          return {
+            ...state,
+            toggleAddIngredient: !state.toggleAddIngredient
+            }
+      case SET_FORM_CATEGORY:
+          return {
+            ...state,
+            formCategory:action.payload
+              }
+      case CREATE_CATEGORY:
+        return {
+          ...state,
+          toggleAddCategory: !state.toggleAddCategory
+        }
     default:
       return state;
   }
