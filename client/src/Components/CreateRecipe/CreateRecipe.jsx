@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
 import SelectCategory from "./SelectCategory/SelectCategory";
 import CreateIngredient from "../CreateIngredient/CreateIngredient"
+import CreateCategory from "../CreateCategory/CreateCategory";
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
   const toggle = useSelector((state)=>state.toggleAddIngredient)
+  const toggleCat = useSelector((state)=>state.toggleAddCategory)
   const ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
   const category = useSelector((state)=>state.category)
@@ -18,7 +20,7 @@ export default function CreateRecipe() {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getCategory());
-  }, [dispatch,formIngre,toggle,formCater]);
+  }, [dispatch,formIngre,toggle,formCater, toggleCat]);
 
   useEffect(()=>{
    console.log(formik.values) 
@@ -248,7 +250,7 @@ export default function CreateRecipe() {
           </button>
         </div>
       </form>
-      <CreateIngredient ingre={ingre} toggle={toggle}/>
+      <CreateIngredient ingre={ingre} toggle={toggle}/> <CreateCategory category={category} toggleCat={toggleCat}/>
     </div>
   );
 }

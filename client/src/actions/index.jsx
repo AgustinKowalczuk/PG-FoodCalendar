@@ -16,7 +16,8 @@ import {
   SET_FORM_INGREDIENTS,
   UPDATE_RECIPE,
   CREATE_INGREDIENT,
-  SET_FORM_CATEGORY
+  SET_FORM_CATEGORY,
+  CREATE_CATEGORY
 } from "./constants";
 
 import {
@@ -180,6 +181,7 @@ export function createIngredient(ingredient){
   return async function(dispatch){
     try{
       const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient})
+      console.log(newIngredient)
       return dispatch({type:CREATE_INGREDIENT})
     }catch(error){
       alert("No se creó el ingrediente")
@@ -189,4 +191,16 @@ export function createIngredient(ingredient){
 
 export function setFormCategory(payload){
   return {type: SET_FORM_CATEGORY, payload}
+}
+
+export function createCategory(category){
+  return async function(dispatch){
+    try{
+      const newCategory = await axios.post(CATEGORY_URL, {...category})
+      console.log(newCategory)
+      return dispatch({type:CREATE_CATEGORY})
+    }catch(error){
+      alert("No se creó la categoría")
+    }
+  }
 }
