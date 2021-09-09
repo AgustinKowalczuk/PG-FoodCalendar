@@ -14,6 +14,7 @@ import {
   SET_FORM_INGREDIENTS,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
+  CREATE_CATEGORY
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -116,7 +117,11 @@ function reducer(state = initialState, action) {
             ...state,
             formCategory:action.payload
               }
-        
+      case CREATE_CATEGORY:
+        return {
+          ...state,
+          toggleAddCategory: !state.toggleAddCategory
+        }
     default:
       return state;
   }
