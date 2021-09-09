@@ -35,15 +35,13 @@ router.get('/calendar/user/:id', async (req, res, next) => {
     }
 });
 
-router.get('/calendar/:userId', async (req, res, next) => {
-    const { userId } = req.params;
-    const { calendarId } = req.query;
+router.get('/calendar/:id', async (req, res, next) => {
+    const { id } = req.params;
 
     try {
-        idMongodb(userId);
-        idMongodb(calendarId);
+        idMongodb(id);
 
-        const calendar = await Calendar.find({owner: userId, _id: calendarId})
+        const calendar = await Calendar.find({ _id: id}).populate({path:'owner', select:['name','surname','email','category']})
         .populate({path:'calendar', populate:{path:'firstRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .populate({path:'calendar', populate:{path:'secondRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .lean();
