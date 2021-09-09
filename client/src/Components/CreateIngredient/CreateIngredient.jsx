@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
-//import {Link} from 'react-router-dom';
 import { useFormik } from "formik";
 import { useDispatch} from "react-redux";
 import { createIngredient} from "../../actions";
 
 export default function CreateIngredient(props) {
     const dispatch = useDispatch();
+    const ingre = useSelector((state) => state.ingredients)
+    useEffect(() => {
+        dispatch(getIngredients())
+    }, [])
+
     const initialValues = {}
 
     useEffect(() => {

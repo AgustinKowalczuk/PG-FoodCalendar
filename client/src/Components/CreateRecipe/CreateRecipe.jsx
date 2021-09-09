@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
-import { createRecipe, getIngredients,getCategory } from "../../actions/index";
-import { Formik, useFormik } from "formik";
+import { createRecipe, getIngredients } from "../../actions/index";
+import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
 import SelectCategory from "./SelectCategory/SelectCategory";
