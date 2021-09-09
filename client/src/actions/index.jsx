@@ -14,7 +14,8 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
-  UPDATE_RECIPE
+  UPDATE_RECIPE,
+  PAGE,
 } from "./constants";
 
 import {
@@ -182,5 +183,12 @@ export function createIngredient(ingredient){
     }catch(error){
       alert("No se creó el ingrediente")
     }
+  }
+}
+
+export function page(payload){
+  return{
+    type: PAGE,
+    payload
   }
 }
