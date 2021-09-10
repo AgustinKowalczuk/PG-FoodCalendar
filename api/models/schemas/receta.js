@@ -39,13 +39,15 @@ const recipe = new Schema({
             }
         }
     },
-    category: { type: [category], required: true },
+    category: { 
+        type: [ { type: Schema.Types.ObjectId, required: true, ref: 'Category' } ], required: true 
+    },
     ingredients: {
         type: [
             {
-                ingredient,
+                ingredient: { type: Schema.Types.ObjectId, required: true, ref: 'Ingredient' },
                 amount: { type: Number, min: 0, required: true },
-                unit
+                unit: { type: Schema.Types.ObjectId, required: true, ref: 'Unit' }
             }
         ], required: true
     },

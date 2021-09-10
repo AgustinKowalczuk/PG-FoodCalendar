@@ -10,7 +10,7 @@ export default function SelectCategory(props) {
            const onDelete = (event) => {
               const deleter = props.formik.values.category.filter(
               (e) => e !== event.target.innerHTML);
-            console.log(deleter)
+            console.log(event.target.innerHTML)
          dispatch(setFormCategory(deleter))
             props.onChange(deleter)
           };
