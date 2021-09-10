@@ -19,7 +19,8 @@ import {
   PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
-  CREATE_CATEGORY
+  CREATE_CATEGORY,
+  CLEAN_NEW_RECIPE
 } from "./constants";
 
 import {
@@ -217,4 +218,8 @@ export function createCategory(category){
       alert("No se creó la categoría")
     }
   }
+}
+
+export function cleanNewRecipe(){
+  return {type: CLEAN_NEW_RECIPE}
 }

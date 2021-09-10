@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
 import { createRecipe, getIngredients,getCategory } from "../../actions/index";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
 import SelectCategory from "./SelectCategory/SelectCategory";
@@ -16,7 +16,9 @@ export default function CreateRecipe() {
   const formIngre = useSelector((state) => state.formIngredients);
   const category = useSelector((state)=>state.category)
   const formCater=useSelector((state)=>state.formCategory)
-
+  if(ingre[0]?.name !== ' '){
+    ingre.unshift({name: ' '})
+  }
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getCategory());
@@ -29,12 +31,12 @@ export default function CreateRecipe() {
   const initialValues = {
     name: "",
     preparation: "",
-    difficulty: "",
+    difficulty: "Fácil",
     ingredients: [],
     img: "",
     category:[],
-    premium:'',
-    availability:''
+    premium: false,
+    availability: true
   };
 
   const validate = (values) => {
@@ -119,12 +121,11 @@ export default function CreateRecipe() {
             id="disabledSelect"
             class="form-select"
           >
-            {ingre?.map((e) => {
-              return (
-                <option name="ingredients" value={e.name}>
-                  {e.name}
-                </option>
-              );
+            {ingre?.map((e, index) => {
+              if (!formik.values.ingredients.some(i => e.name === i.ingredient)) {
+                return <option value={e.ingredient} key={`ingredient-${index}`}>{e.name}</option>
+              }
+              return null
             })}
           </select>
           <div class={style.buttonsRemove}>
@@ -212,10 +213,8 @@ export default function CreateRecipe() {
             })}
           </select>
           <div class={style.buttonsRemove}>
-
             {formik.values.category.length > 0 &&
               formik.values.category.map((e, index) => {
-
                 return <SelectCategory formik={formik} onChange={onChangeCategory} category={e} name={`category[${index}]` }
                   handleChange={formik.handleChange} />
               })}
@@ -228,13 +227,13 @@ export default function CreateRecipe() {
             onChange={formik.handleChange}
             class="form-control"
             name="premium">
-              <option value={true}>Premium</option>
               <option value={false}>Free</option>
+              <option value={true}>Premium</option>
               </select>
         </div>
 
         <div>
-            <label class="form-label">Esta Disponible?</label>
+            <label class="form-label">Está Disponible?</label>
             <select 
             onChange={formik.handleChange}
             class="form-control"

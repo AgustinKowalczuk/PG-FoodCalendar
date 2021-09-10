@@ -1,23 +1,31 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
-import { putRecipe,  getIngredients } from "../../actions/index";
+import { putRecipe,  getIngredients, cleanNewRecipe } from "../../actions/index";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "../CreateRecipe/SelectCard/SelectCard";
-import {Link, useParams} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 
 export default function UpdateForm() {
   const dispatch = useDispatch();
-  const {id} = useParams()
+  const history = useHistory()
   const ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
   const update = useSelector((state) => state.detail);
+  const toggleUpdateRecipe = useSelector((state) => state.newRecipe)
    
-    useEffect(() => {
+  useEffect(() => {
     dispatch(getIngredients());
     }, [dispatch, formIngre]);
-    
-   useEffect(() => {  
+
+  useEffect(() =>{
+    if(toggleUpdateRecipe){
+      dispatch(cleanNewRecipe())
+      history.push('/recipe/' + update.id);
+    }
+    }, [dispatch, history, update.id, toggleUpdateRecipe])
+
+  useEffect(() => {  
       formik.values.name= update.name
       formik.values.preparation= update.preparation
       formik.values.difficulty= update.difficulty
@@ -25,23 +33,12 @@ export default function UpdateForm() {
       formik.values.category=update.category
       formik.values.availability= true
       formik.values.premium= true
-      console.log(update.category,'category')
-      console.log(update.ingredients,'ingredients')
+      console.log(update)
     if (update?.ingredients?.length) {
-     let arr= update.ingredients.map(x=>{
-       return {
-         ingredient:x.ingredient.name,
-         amount:x.amount,
-         unit:x.unit.name
-       }
-     })
-        onChangeIngredients(arr);
+        onChangeIngredients(update.ingredients);
     }
     if (update?.category?.length) {
-      let arr= update.category.map(x=>{
-        return x.name
-       })
-         onChangeCategory(arr);
+         onChangeCategory(update.category);
      }
   }, []); 
  
@@ -87,7 +84,6 @@ export default function UpdateForm() {
   const onChangeIngredients = (values) => {
     formik.values.ingredients = values;
   };
-
   const onChangeCategory =(values)=>{
     formik.values.category = values;
   };

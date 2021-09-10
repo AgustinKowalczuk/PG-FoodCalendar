@@ -36,7 +36,7 @@ export default function DetailRecipe() {
                 {
                   recipeDetail.ingredients?.map((x) => (
                     <li>
-                      <h5>{x.ingredient.name} {x.amount} {x.unit.name}</h5>
+                      <h5>{x.ingredient} {x.amount} {x.unit}</h5>
                     </li>
                   ))
                 }
@@ -60,9 +60,9 @@ export default function DetailRecipe() {
             <h3 class={style.leftH3}>Categorias: </h3>
               <table class={style.content}>
                 <tr>
-                  {recipeDetail.category?.map((x) => (
+                  {recipeDetail?.category?.map((x) => (
                     <td>
-                      <h4>{x.name}</h4>
+                      <h4>{x}</h4>
                     </td>
                   ))}{" "}
                 </tr>
