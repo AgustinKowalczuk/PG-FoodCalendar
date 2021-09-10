@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import Cards from '../Cards/Cards';
-import calendar from '../../Image/Menu_semanal.jpg'
 import { useSelector, useDispatch } from 'react-redux';
 import { getRecipes } from "../../actions";
 import style from '../../Styles/StyleHome.module.css'
