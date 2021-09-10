@@ -7,17 +7,20 @@ import {
   SEARCH_RECIPES,
   ORDER_ZA,
   ORDER_AZ,
+  ORDER_BY_DIFFICULTY,
+  ORDER_BY_DIFFICULTY_INV,
   UPDATE_RECIPE,
   FILTERED_BY_INGREDIENT,
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
+  PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY
 } from "../actions/constants";
 
-import { orderAZ } from '../orderFunction/OrderFuncions'
+import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
 
 var initialState = {
   recipes: [],
@@ -28,6 +31,7 @@ var initialState = {
   update:{},
   unit: [],
   difficulty:[],
+  page: 1,
   formIngredients:[],
   toggleAddIngredient:false,
   formCategory:[],
@@ -58,6 +62,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         recipes: action.payload,
+        page: 1
       };
     
       case ORDER_AZ:
@@ -70,6 +75,16 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           recipes: state.recipes.slice().sort(orderAZ).reverse()
+        }
+        case ORDER_BY_DIFFICULTY:
+        return {
+          ...state,
+          recipes: state.recipes.slice().sort(orderDifficultyAsc)
+        }
+        case ORDER_BY_DIFFICULTY_INV:
+        return {
+          ...state,
+          recipes: state.recipes.slice().sort(orderDifficultyAsc).reverse()
         }
 
       case GET_DETAIL:
@@ -90,23 +105,32 @@ function reducer(state = initialState, action) {
       case FILTERED_BY_INGREDIENT:
           return{
             ...state,
-            recipes: action.payload
+            recipes: action.payload,
+            page: 1
           }
       case FILTERED_BY_CATEGORY:
           return{
             ...state,
-            recipes: action.payload
+            recipes: action.payload,
+            page: 1
           }
       case FILTERED_BY_DIFFICULTY:
           return{
             ...state,
-            recipes: state.copyRecipe.filter((x) => x.difficulty === action.payload)
+            recipes: state.copyRecipe.filter((x) => x.difficulty === action.payload),
+            page: 1
           }
       case SET_FORM_INGREDIENTS:
           return{
             ...state,
             formIngredients: action.payload
           }
+      case PAGE:
+        return{
+          ...state,
+          page: action.payload
+        }    
+        
       case CREATE_INGREDIENT:
           return {
             ...state,

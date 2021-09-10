@@ -1,28 +1,26 @@
 import React from "react";
-
-import {  useState } from "react";
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import style from "../../Styles/StyleCards.module.css";
 import { Link } from "react-router-dom";
-import { getDetail } from "../../actions/index";
+import { getDetail, page } from "../../actions/index";
 import Dificultad from './Dificultad';
 
 import Pagination from "../Pagination/Pagination";
 
 export default function Cards(props) {
  
- 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(6);
-  const lastRecipeIndex = currentPage * recipesPerPage;
+ const dispatch = useDispatch();
+ const pages =  useSelector(state => state.page)
+  
+  const recipesPerPage = 6;
+  const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
   const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
   const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(page(pageNumber));
   };
 
 
-  const dispatch = useDispatch();
 
 
   return (

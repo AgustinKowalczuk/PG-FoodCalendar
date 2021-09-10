@@ -15,6 +15,7 @@ import {
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
   UPDATE_RECIPE,
+  PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY
@@ -186,6 +187,13 @@ export function createIngredient(ingredient){
     }catch(error){
       alert("No se creó el ingrediente")
     }
+  }
+}
+
+export function page(payload){
+  return{
+    type: PAGE,
+    payload
   }
 }
 
