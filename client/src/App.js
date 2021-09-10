@@ -6,18 +6,13 @@ import SearchCards from './Components/SearchCards/SearchCards'
 import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
-<<<<<<< HEAD
-import Footer from './Components/Footer/Footer'
-import Register from './Components/Acount/Register'
 import Login from './Components/Acount/Login.jsx'
 import ShopingCart from './Components/ShopingCart/ShopingCart.jsx'
-=======
 import Footer from './Components/Footer/Footer';
 import UpdateForm from './Components/UpdateForm/UpdateForm'
 import Register from './Components/Acount/Register';
 
 
->>>>>>> CopiaSeguridad
 function App() {
   return (
     <BrowserRouter>

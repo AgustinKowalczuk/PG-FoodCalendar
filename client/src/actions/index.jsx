@@ -16,6 +16,7 @@ import {
   SET_FORM_INGREDIENTS,
   CALENDAR_FILTER,
   UPDATE_RECIPE,
+  PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY
@@ -195,6 +196,13 @@ export function createIngredient(ingredient){
 export function getCalendar(payload){
   return { type: CALENDAR_FILTER, payload }
 }
+export function page(payload){
+  return{
+    type: PAGE,
+    payload
+  }
+}
+
 export function setFormCategory(payload){
   return {type: SET_FORM_CATEGORY, payload}
 }
