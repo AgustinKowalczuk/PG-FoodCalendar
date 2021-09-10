@@ -11,14 +11,11 @@ const normalize = {
                 preparation: e.preparation,
                 img: e.img,
                 ingredients: e.ingredients.map(i => ({
-                    ingredient: { id: i.ingredient._id, name: i.ingredient.name },
+                    ingredient: i.ingredient.name,
                     amount: i.amount,
-                    unit: { id: i.unit._id, name: i.unit.name }
+                    unit: i.unit.name
                 })),
-                category: e.category.map(j => ({
-                    id: j._id,
-                    name: j.name
-                })),
+                category: e.category.map(j => j.name),
                 premium: e.premium === true ? "Premium" : "Free",
                 availability: e.availability === true ? "Available" : "Unavailable"
             }));
