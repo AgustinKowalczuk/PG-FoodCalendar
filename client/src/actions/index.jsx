@@ -14,6 +14,7 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
+  CALENDAR_FILTER,
 } from "./constants";
 
 import {
@@ -25,6 +26,7 @@ import {
   RECIPES_SEARCH_URL,
   RECIPES_BY_INGREDIENTS_URL,
   RECIPES_BY_CATEGORY_URL,
+  REGISTER
 } from "../routes";
 
 export function getRecipes() {
@@ -169,4 +171,10 @@ export function createIngredient(ingredient){
       alert("No se creó el ingrediente")
     }
   }
+}
+
+// Calendario
+
+export function getCalendar(payload){
+  return { type: CALENDAR_FILTER, payload }
 }

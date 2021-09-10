@@ -11,6 +11,7 @@ import {
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
+  CALENDAR_FILTER,
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -23,7 +24,8 @@ var initialState = {
   detail:{},
   unit: [],
   difficulty:[],
-  formIngredients: []
+  formIngredients: [],
+  calendar: []
 };
 
 function reducer(state = initialState, action) {
@@ -95,7 +97,12 @@ function reducer(state = initialState, action) {
             ...state,
             formIngredients: action.payload
           }
-        
+          
+      case CALENDAR_FILTER: 
+      return {
+        ...state,
+        calendar: state.calendar.slice(0,14).push(action.payload)
+      }
     default:
       return state;
   }
