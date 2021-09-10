@@ -15,28 +15,29 @@ export default function DetailRecipe() {
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id));
+    window.scrollTo(0,0);
   }, [dispatch, id]);
 
   return (
     <div class={style.order}>
       <div class="card" id={style.maxwidth}>
+        {recipeDetail.availability === 'Unavailable' && 
+        <div>Receta no disponible.</div>}
         <img
           class="card-img-top"
           src={recipeDetail.img}
           alt="imagen de comida"
           width="500px"
-        />
-        
+        />   
         <div class="card-body">
           <h3 class="card-title">{recipeDetail.name}</h3>
-
           <div className={style.ingredientes}>
               <h3>Ingredientes : </h3>
               <ul class={style.content}>
                 {
                   recipeDetail.ingredients?.map((x) => (
                     <li>
-                      <h5>{x.ingredient.name} {x.amount} {x.unit.name}</h5>
+                      <h5>{x.ingredient} {x.amount} {x.unit}</h5>
                     </li>
                   ))
                 }
@@ -53,16 +54,17 @@ export default function DetailRecipe() {
 
           <div className={style.normal}>
             <h3>Instrucciones:</h3>
-            <h5>{recipeDetail.preparation}</h5>
+            <h5>{recipeDetail.availability !== 'Unavailable' && recipeDetail.preparation}</h5>
+            <h5>{recipeDetail.availability === 'Unavailable' && <span>Receta no disponible.</span>}</h5>
           </div>
 
           <div class={style.category}>
             <h3 class={style.leftH3}>Categorias: </h3>
               <table class={style.content}>
                 <tr>
-                  {recipeDetail.category?.map((x) => (
+                  {recipeDetail?.category?.map((x) => (
                     <td>
-                      <h4>{x.name}</h4>
+                      <h4>{x}</h4>
                     </td>
                   ))}{" "}
                 </tr>
