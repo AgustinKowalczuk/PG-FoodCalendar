@@ -14,9 +14,18 @@ export default function Nav() {
         <div id={style.noMargin} className="navbar-nav me-auto mb-2 mb-lg-0">
           <Link id={style.link} className="nav-link active" to="/create/recipe">Crear receta</Link>
         </div>
-        <div  className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div id={style.noMargin} className="navbar-nav me-auto mb-2 mb-lg-0">
           <Link className="nav-link active" to="/create/recipe" to='/acount/register'>Registrar</Link>
         </div>
+        <div>
+          <Link className="nav-link active" to='/acount/login' >Login</Link>
+        </div>
+        <div  id={style.noMargin} className="navbar-nav me-auto mb-2 mb-lg-0">
+          <Link className="nav-link active" to="/shop">
+            Calendar
+            </Link>
+        </div>
+        
       </div>
     </div>
   );

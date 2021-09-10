@@ -14,6 +14,7 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
+  CALENDAR_FILTER,
   UPDATE_RECIPE,
   PAGE,
   CREATE_INGREDIENT,
@@ -190,6 +191,11 @@ export function createIngredient(ingredient){
   }
 }
 
+// Calendario
+
+export function getCalendar(payload){
+  return { type: CALENDAR_FILTER, payload }
+}
 export function page(payload){
   return{
     type: PAGE,
