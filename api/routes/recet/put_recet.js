@@ -6,8 +6,8 @@ const router = express.Router()
 
 router.put('/recipe/:id', async (req, res, next) => {
     const { id } = req.params;
-    const { name, difficulty, rating, preparation, img, category, premium, availability } = req.body;
-    let { ingredients } = req.body;
+    const { name, difficulty, rating, preparation, img, premium, availability } = req.body;
+    let { category, ingredients } = req.body;
 
     try {
         putRecipeValidation(id, name, difficulty, rating, preparation, img, category, premium, availability, ingredients);
@@ -47,6 +47,9 @@ router.put('/recipe/:id', async (req, res, next) => {
             if (!ingredients[i].unit || !ingredients[i].ingredient) {
                 throw new Error(`El ingrediente ${ingredients[i].ingredient} o la unidad ${ingredients[i].unit} no se encuentran en la DB.`);
             }
+
+            ingredients[i].ingredient = ingredients[i].ingredient._id;
+            ingredients[i].unit = ingredients[i].unit._id;
         }
 
         let categoryNameArray = category;
@@ -62,6 +65,8 @@ router.put('/recipe/:id', async (req, res, next) => {
             if (!category[i]) {
                 throw new Error(`La categoría ${category[i]} no se encuentra en la DB.`);
             }
+
+            category[i] = category[i]._id;
         }
 
         await Recipe.findByIdAndUpdate(elem._id, { name, difficulty, rating, preparation, img, category, premium, availability, ingredients });
