@@ -8,6 +8,7 @@ const { Calendar } = models;
 router.get('/calendar', async (req, res, next) => {
     try {
         const calendar = await Calendar.find()
+        .populate({path:'owner', select:['name','surname','email','category']})
         .populate({path:'calendar', populate:{path:'firstRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .populate({path:'calendar', populate:{path:'secondRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .lean();
@@ -28,7 +29,7 @@ router.get('/calendar/user/:id', async (req, res, next) => {
         .populate({path:'calendar', populate:{path:'firstRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .populate({path:'calendar', populate:{path:'secondRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .lean();
-
+        console.log(calendar);
         return res.json(normalizeCalendar(calendar));
     } catch (error) {
         next(error);

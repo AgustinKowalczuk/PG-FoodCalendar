@@ -4,10 +4,10 @@ const { Calendar, Recipe, User } = require("../../models/models");
 const router = express.Router();
 
 router.post('/calendar', async (req, res, next) => {
-    const { owner, calendar } = req.body;
+    const { owner, name, calendar } = req.body;
 
     try {
-        calendarValidation(owner, calendar);
+        calendarValidation(owner, name, calendar);
 
         const ownerID = await User.findById(owner);
         if (!ownerID) throw new Error(`El user con el id ${owner} no existe.`)
@@ -24,7 +24,7 @@ router.post('/calendar', async (req, res, next) => {
             temp[e] = {firstRecipe : calendar.shift(), secondRecipe : calendar.shift()};
             e++;
         }
-        const posted = await Calendar.create({ owner, calendar:temp });
+        const posted = await Calendar.create({ owner, name, calendar:temp });
         return res.json(posted);
     } catch (error) {
         next(error);

@@ -2,6 +2,15 @@ const { Schema } = require('mongoose');
 
 const calendar = new Schema({
     owner: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
+    name: { type: String, default: 'Calendar', required: true, validate: {
+        validator: function (value) {
+            const re = /^[^<>&~^`@]*$/g;
+            if (!re.test(value)) {
+                return false;
+            }
+            return true;
+        }
+    } },
     calendar: {
         type: [{
             firstRecipe: { type: Schema.Types.ObjectId, ref: 'Recipe' },

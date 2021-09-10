@@ -1,3 +1,5 @@
+const { isValidObjectId } = require("mongoose");
+
 const normalize = {
     normalizeRecipes(recipes) {
         if (Array.isArray(recipes)) {
@@ -62,7 +64,8 @@ const normalize = {
         if (Array.isArray(calendario)) {
             return calendario.map(e => ({
                 id: e._id,
-                owner: e.owner,
+                owner: !e.owner.name ? e.owner.toString() : normalize.normalizeUsers(e.owner),
+                name: e.name,
                 calendar: e.calendar.map(k =>({
                     firstRecipe: normalize.normalizeRecipes(k.firstRecipe),
                     secondRecipe: normalize.normalizeRecipes(k.secondRecipe)
