@@ -1,5 +1,5 @@
 import React from 'react'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import style from '../../../Styles/StyleCardShop.module.css'
 
 export default function Calendar(props) {
@@ -12,15 +12,27 @@ export default function Calendar(props) {
                 <tr><p>Almuerzo</p></tr>
                 <tr><p>cena</p></tr>
             </td>
-            {
-                days.map((day, index) => (
-                    <td className={style.Calendar}>
-                        <tr><h5>{day}</h5></tr>
-                        <tr className={style.add}><p>text</p></tr>
-                        <tr className={style.add}><p>text</p></tr>
-                    </td>
-                ))
-            }
+            <Droppable droppableId='Table2'>
+                {
+                    (provided) => (
+                        days.map((day, index) => (
+                            <td className={style.Calendar} ref={provided.innerRef} {...provided.droppableProps}>
+                                <tr><h5>{day}</h5></tr>
+                                <Draggable draggableId={index.toString()} index={index}>
+                                    {
+                                        (provider) => (
+                                            <div {...provider.draggableProps} {...provider.draggableProps} ref={provider.innerRef}>
+                                                <tr className={style.add}><p>text</p></tr>
+                                                <tr className={style.add}><p>text</p></tr>
+                                            </div>
+                                        )
+                                    }
+                                </Draggable>
+                            </td>
+                        ))
+                    )
+                }
+            </Droppable>
         </table>
     )
 }
