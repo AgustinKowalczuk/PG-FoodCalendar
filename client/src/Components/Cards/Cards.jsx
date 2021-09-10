@@ -20,9 +20,6 @@ export default function Cards(props) {
     dispatch(page(pageNumber));
   };
 
-
-
-
   return (
     <div class={style.content}>
       {currentRecipes?.map((e) => {

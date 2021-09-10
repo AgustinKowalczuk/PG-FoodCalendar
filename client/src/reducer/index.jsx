@@ -14,7 +14,7 @@ import {
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
-  CALENDAR_FILTER,
+  RECIPE_CALENDAR,
   PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
@@ -38,7 +38,7 @@ var initialState = {
   toggleAddIngredient:false,
   formCategory:[],
   toggleAddCategory:false,
-  calendar: [],
+  recipeCalendar: [],
   newRecipe:false
 };
 
@@ -131,10 +131,10 @@ function reducer(state = initialState, action) {
             formIngredients: action.payload
           }
 
-      case CALENDAR_FILTER: 
-      return {
-        ...state,
-        calendar: state.calendar.slice(0,14).push(action.payload)
+      case RECIPE_CALENDAR: 
+            return {
+         ...state,
+        recipeCalendar: [...state.recipeCalendar,action.payload]
       }
       case PAGE:
         return{

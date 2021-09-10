@@ -14,7 +14,7 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
-  CALENDAR_FILTER,
+  RECIPE_CALENDAR,
   UPDATE_RECIPE,
   PAGE,
   CREATE_INGREDIENT,
@@ -192,11 +192,15 @@ export function createIngredient(ingredient){
   }
 }
 
-// Calendario
+// Enviar recetas  al stack del Calendario
 
-export function getCalendar(payload){
-  return { type: CALENDAR_FILTER, payload }
+export function setRecipeCalendar(payload){
+   return { 
+    type: RECIPE_CALENDAR,
+    payload 
+  }
 }
+
 export function page(payload){
   return{
     type: PAGE,

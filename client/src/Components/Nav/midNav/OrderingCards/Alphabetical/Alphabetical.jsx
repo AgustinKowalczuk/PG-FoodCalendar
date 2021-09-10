@@ -2,13 +2,6 @@ import React, {useState, useEffect}from "react";
 import {  useDispatch } from "react-redux";
 import{orderZA, orderAZ ,orderByDifficulty, orderByDifficultyInv } from '../../../../../actions/index'
 
-
-
-
-
-
-
-
 export default function OrderingCards(){
 
     const dispatch = useDispatch();   
