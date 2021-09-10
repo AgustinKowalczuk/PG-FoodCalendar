@@ -18,7 +18,8 @@ import {
   PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
-  CREATE_CATEGORY
+  CREATE_CATEGORY,
+  CLEAN_NEW_RECIPE
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -37,7 +38,8 @@ var initialState = {
   toggleAddIngredient:false,
   formCategory:[],
   toggleAddCategory:false,
-  calendar: []
+  calendar: [],
+  newRecipe:false
 };
 
 function reducer(state = initialState, action) {
@@ -97,7 +99,8 @@ function reducer(state = initialState, action) {
       case UPDATE_RECIPE:
         return{
           ...state,
-          update: action.payload
+          update: action.payload,
+          newRecipe: true
             } 
       case GET_UNIT:
         return {
@@ -153,6 +156,11 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           toggleAddCategory: !state.toggleAddCategory
+        }
+      case CLEAN_NEW_RECIPE:
+        return {
+          ...state,
+          newRecipe: false
         }
     default:
       return state;
