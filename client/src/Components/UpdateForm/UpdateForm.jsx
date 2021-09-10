@@ -1,23 +1,44 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
-import { putRecipe,  getIngredients, cleanNewRecipe } from "../../actions/index";
+import { putRecipe,  getIngredients, cleanNewRecipe, getCategory } from "../../actions/index";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "../CreateRecipe/SelectCard/SelectCard";
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import { orderAZ } from "../../orderFunction/OrderFuncions";
+import SelectCategory from "../CreateRecipe/SelectCategory/SelectCategory";
 
 export default function UpdateForm() {
   const dispatch = useDispatch();
   const history = useHistory()
-  const ingre = useSelector((state) => state.ingredients);
+  let ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
   const update = useSelector((state) => state.detail);
   const toggleUpdateRecipe = useSelector((state) => state.newRecipe)
-   
+  let category = useSelector((state)=>state.category);
+  const formCater=useSelector((state)=>state.formCategory)
+
   useEffect(() => {
     dispatch(getIngredients());
-    }, [dispatch, formIngre]);
+    dispatch(getCategory())
+    }, [dispatch, formIngre, formCater]);
 
+    if (ingre[0]?.name !== ' ' && ingre.length > 0){
+      ingre = ingre.sort(orderAZ)
+      ingre.unshift({name: ' '})
+    } else if(ingre.length > 0){
+      ingre.shift();
+      ingre = ingre.sort(orderAZ)
+      ingre.unshift({name: ' '})
+    }
+    if (category[0]?.name !== ' ' && category.length > 0){
+      category = category.sort(orderAZ)
+      category.unshift({name: ' '})
+    } else if(category.length > 0){
+      category.shift();
+      category = category.sort(orderAZ)
+      category.unshift({name: ' '})
+    }
   useEffect(() =>{
     if(toggleUpdateRecipe){
       dispatch(cleanNewRecipe())
@@ -38,7 +59,7 @@ export default function UpdateForm() {
         onChangeIngredients(update.ingredients);
     }
     if (update?.category?.length) {
-         onChangeCategory(update.category);
+        onChangeCategory(update.category);
      }
   }, []); 
  
@@ -77,6 +98,18 @@ export default function UpdateForm() {
   };
 
   const onSubmit = (values) => {
+    if(formik.values.premium==='false'){
+      formik.values.premium=false
+    }
+    if(formik.values.premium==='true'){
+      formik.values.premium=true
+    }
+    if(formik.values.availability==='false'){
+      formik.values.availability=false
+    }
+    if(formik.values.availability==='true'){
+      formik.values.availability=true
+    }
     dispatch(putRecipe(update.id,values));
     console.log("Values submit", values);
     console.log("formulario enviado");
@@ -124,12 +157,11 @@ export default function UpdateForm() {
             id="disabledSelect"
             class="form-select"
           >
-            {ingre?.map((e) => {
-              return (
-                <option name="ingredients" value={e.name}>
-                  {e.name}
-                </option>
-              );
+            {ingre?.map((e, index) => {
+              if (!formik.values.ingredients.some(i => e.name === i.ingredient)) {
+                return <option value={e.ingredient} key={`ingredient-${index}`}>{e.name}</option>
+              }
+              return null
             })}
           </select>
 
@@ -205,7 +237,52 @@ export default function UpdateForm() {
             </div>
           ) : null}
         </div>
-        
+        <div class="mb-3">
+          <label class="form-label">Categorias</label>
+          <select
+            defaultValue="none"
+            onChange={formik.handleChange}
+            name={`category[${formik.values.category?.length}]`}
+            id="disabledSelect"
+            class="form-select"
+          >
+            {category?.map((e, index) => {
+              if (!formik.values.category.some(i => e.name === i)) {
+                return <option value={e.name} key={`category-${index}`}>{e.name}</option>
+              }
+              return null
+            })}
+          </select>
+          <div class={style.buttonsRemove}>
+            {formik.values.category.length > 0 &&
+              formik.values.category.map((e, index) => {
+                return <SelectCategory formik={formik} onChange={onChangeCategory} category={e} name={`category[${index}]` }
+                  handleChange={formik.handleChange} />
+              })}
+          </div>
+        </div>
+
+        <div>
+            <label class="form-label">Tipo de usuario</label>
+            <select 
+            onChange={formik.handleChange}
+            class="form-control"
+            name="premium">
+              <option value={false}>Free</option>
+              <option value={true}>Premium</option>
+              </select>
+        </div>
+
+        <div>
+            <label class="form-label">Está Disponible?</label>
+            <select 
+            onChange={formik.handleChange}
+            class="form-control"
+            name="availability">
+              <option value={true}>Available</option>
+              <option value={false}>Unavailable</option>
+              </select>
+        </div>
         <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3">
             Actualizar

@@ -15,21 +15,22 @@ export default function DetailRecipe() {
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id));
+    window.scrollTo(0,0);
   }, [dispatch, id]);
 
   return (
     <div class={style.order}>
       <div class="card" id={style.maxwidth}>
+        {recipeDetail.availability === 'Unavailable' && 
+        <div>Receta no disponible.</div>}
         <img
           class="card-img-top"
           src={recipeDetail.img}
           alt="imagen de comida"
           width="500px"
-        />
-        
+        />   
         <div class="card-body">
           <h3 class="card-title">{recipeDetail.name}</h3>
-
           <div className={style.ingredientes}>
               <h3>Ingredientes : </h3>
               <ul class={style.content}>
@@ -53,7 +54,8 @@ export default function DetailRecipe() {
 
           <div className={style.normal}>
             <h3>Instrucciones:</h3>
-            <h5>{recipeDetail.preparation}</h5>
+            <h5>{recipeDetail.availability !== 'Unavailable' && recipeDetail.preparation}</h5>
+            <h5>{recipeDetail.availability === 'Unavailable' && <span>Receta no disponible.</span>}</h5>
           </div>
 
           <div class={style.category}>

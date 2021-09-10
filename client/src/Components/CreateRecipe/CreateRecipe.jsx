@@ -7,23 +7,39 @@ import SelectCard from "./SelectCard/SelectCard";
 import SelectCategory from "./SelectCategory/SelectCategory";
 import CreateIngredient from "../CreateIngredient/CreateIngredient"
 import CreateCategory from "../CreateCategory/CreateCategory";
+import { orderAZ } from "../../orderFunction/OrderFuncions";
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
   const toggle = useSelector((state)=>state.toggleAddIngredient)
   const toggleCat = useSelector((state)=>state.toggleAddCategory)
-  const ingre = useSelector((state) => state.ingredients);
+  let ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
-  const category = useSelector((state)=>state.category)
+  let category = useSelector((state)=>state.category)
   const formCater=useSelector((state)=>state.formCategory)
-  if(ingre[0]?.name !== ' '){
-    ingre.unshift({name: ' '})
-  }
+  
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getCategory());
   }, [dispatch,formIngre,toggle,formCater, toggleCat]);
 
+  if (ingre[0]?.name !== ' ' && ingre.length > 0){
+    ingre = ingre.sort(orderAZ)
+    ingre.unshift({name: ' '})
+  } else if(ingre.length > 0){
+    ingre.shift();
+    ingre = ingre.sort(orderAZ)
+    ingre.unshift({name: ' '})
+  }
+  if (category[0]?.name !== ' ' && category.length > 0){
+    category = category.sort(orderAZ)
+    category.unshift({name: ' '})
+  } else if(category.length > 0){
+    category.shift();
+    category = category.sort(orderAZ)
+    category.unshift({name: ' '})
+  }
+  console.log(category)
   useEffect(()=>{
    console.log(formik.values) 
   },[formCater])
@@ -204,12 +220,11 @@ export default function CreateRecipe() {
             id="disabledSelect"
             class="form-select"
           >
-            {category?.map((e) => {
-              return (
-                <option name="category" value={e.name}>
-                  {e.name}
-                </option>
-              );
+            {category?.map((e, index) => {
+              if (!formik.values.category.some(i => e.name === i)) {
+                return <option value={e.name} key={`category-${index}`}>{e.name}</option>
+              }
+              return null
             })}
           </select>
           <div class={style.buttonsRemove}>
