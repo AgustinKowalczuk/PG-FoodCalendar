@@ -1,22 +1,30 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { getDetail } from "../../actions";
+import { getDetail, setRecipeCalendar } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
+import Inventary from "../Inventary/Inventary";
 
 
 export default function DetailRecipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.detail);
+
     console.log(recipeDetail,'detalles')
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id));
     window.scrollTo(0,0);
   }, [dispatch, id]);
+ //envio receta al stack del calendario
+
+  function agregarCalendario(id){
+    dispatch (setRecipeCalendar(id))
+    }
+
 
   return (
     <div class={style.order}>
@@ -43,7 +51,7 @@ export default function DetailRecipe() {
                 }
               </ul>
           </div>
-
+          </div>
           <div className={style.dificulty}>
             <div class={style.maxwidth}>
               <h3>Dificultad:</h3>
@@ -71,11 +79,14 @@ export default function DetailRecipe() {
               </table>
           </div>
           <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
-        </div>
-      </div>
-
+          <button onClick={agregarCalendario(recipeDetail.id)}>Agregala a tu Calendario!</button>
+          </div>
+          <div>
+            <Inventary/>                      
+          </div>          
       <h2> Otras recetas</h2>
       <CardRelacionadas />
     </div>
+
   );
 }
