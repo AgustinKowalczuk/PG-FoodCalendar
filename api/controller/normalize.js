@@ -58,15 +58,20 @@ const normalize = {
         }
     },
 
-    // normalizeCalendar(calendar) {
-    //     if (Array.isArray(calendar)) {
-    //         return calendar.map(e => ({
-    //             id: e._id,
-    //         }));
-    //     } else {
-    //         return normalize.normalizeCalendar([calendar])[0];
-    //     }
-    // }
+    normalizeCalendar(calendario) {
+        if (Array.isArray(calendario)) {
+            return calendario.map(e => ({
+                id: e._id,
+                owner: e.owner,
+                calendar: e.calendar.map(k =>({
+                    firstRecipe: normalize.normalizeRecipes(k.firstRecipe),
+                    secondRecipe: normalize.normalizeRecipes(k.secondRecipe)
+                }))
+            }));
+        } else {
+            return normalize.normalizeCalendar([calendario])[0];
+        }
+    }
     
 }
 

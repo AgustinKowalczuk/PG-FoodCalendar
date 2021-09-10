@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import logo from '../../Image/Logosinfondo.png'
 import style from "../../Styles/StyleNav.module.css"
 
-
-
 export default function Nav() {
 
   return (

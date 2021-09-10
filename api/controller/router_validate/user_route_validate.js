@@ -4,7 +4,8 @@ const {
     emailValidate,
     passwordValidate,
     userCategoryValidate,
-    idMongodb
+    idMongodb,
+    noNumberValidate
 } = require('../validate');
 
 const userRouteValidate = {
@@ -13,24 +14,26 @@ const userRouteValidate = {
             { keyName: 'name', value: name, type: 'string', notEmpty: true },
             { keyName: 'surname', value: surname, type: 'string', notEmpty: true },
             { keyName: 'email', value: email, type: 'string', notEmpty: true },
-            { keyName: 'password', value: password, type: 'string', notEmpty: true },
-            { keyName: 'category', value: category, type: 'string', notEmpty: true }
+            { keyName: 'password', value: password, type: 'string', notEmpty: true }
         ]);
         nameValidate(name);
+        noNumberValidate(name);
         nameValidate(surname);
+        noNumberValidate(surname);
         emailValidate(email);
         passwordValidate(password);
-        userCategoryValidate(category);
     },
     userPutValidation(id, name, surname, email, password, category) {
         idMongodb(id);
         if (name !== undefined){
             argumentsValidate([{ keyName: 'name', value: name, type: 'string', notEmpty: true }]);
             nameValidate(name);
+            noNumberValidate(name);
         }
         if (surname !== undefined){
             argumentsValidate([{ keyName: 'surname', value: surname, type: 'string', notEmpty: true }]);
             nameValidate(surname);
+            noNumberValidate(surname);
         }
         if (email !== undefined){
             argumentsValidate([{ keyName: 'email', value: email, type: 'string', notEmpty: true }]);

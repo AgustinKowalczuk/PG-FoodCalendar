@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useDispatch} from "react-redux";
-import { createIngredient} from "../../actions";
+import { createCategory } from "../../actions";
 
-export default function CreateIngredient(props) {
+export default function CreateCategory(props) {
     const dispatch = useDispatch();
     const initialValues = {}
 
     useEffect(() => {
        formik.values.name=''
-    }, [props.toggle])
+    }, [props.toggleCat])
     
     const validate = (values) => {
         let error = {}
@@ -21,8 +21,8 @@ export default function CreateIngredient(props) {
         return error
     }
     const onSubmit = (e) => {
-        dispatch(createIngredient(formik.values))
-        alert('Tu ingrediente ha sido creado!')
+        dispatch(createCategory(formik.values))
+        alert('Tu categoría ha sido creada!')
         console.log(e)
     }
     const formik = useFormik({
@@ -34,14 +34,14 @@ export default function CreateIngredient(props) {
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <div>
-                    <label>Deseas crear un ingrediente nuevo?</label><br />
+                    <label>Deseas crear una categoría nueva?</label><br />
                     <input
                     onChange={formik.handleChange}
                     type="text"
                     value={formik.values?.name}
                     onBlur={formik.handleBlur}
                     name="name"
-                    placeholder="Agrega tu ingrediente"
+                    placeholder="Agrega tu categoría"
                     />
                     {formik.errors.name && formik.touched.name === true ? (
                     <div>
@@ -51,7 +51,7 @@ export default function CreateIngredient(props) {
 
                     <button
                     type='submit'
-                    disabled={props.ingre?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
+                    disabled={props.category?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
                 </div>
            </form>
         </div>

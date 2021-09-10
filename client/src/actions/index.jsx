@@ -15,6 +15,10 @@ import {
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
   CALENDAR_FILTER,
+  UPDATE_RECIPE,
+  CREATE_INGREDIENT,
+  SET_FORM_CATEGORY,
+  CREATE_CATEGORY
 } from "./constants";
 
 import {
@@ -28,6 +32,7 @@ import {
   RECIPES_BY_CATEGORY_URL,
   REGISTER
 } from "../routes";
+
 
 export function getRecipes() {
 
@@ -127,7 +132,7 @@ export function FilterRecipeByCategory(name) {
 export function createRecipe(recipe){
   return async function(){
     try{
-      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0, category: ['Vegano', 'Tradicional']})
+      const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0})
       console.log(newRecipe)
     }catch(error){
       alert("No se posteo la receta")
@@ -150,6 +155,18 @@ export function orderByDifficultyInv() {
   return { type: ORDER_BY_DIFFICULTY_INV }
 }
 
+//modificar la receta
+export function putRecipe(id,value){
+  return async (dispatch)=>{
+    try{
+      const update = await axios.put(RECIPES_URL + `/${id}`, value);
+      return dispatch ({ 
+        type: UPDATE_RECIPE,
+      payload:update.data})
+    }catch(error){
+      console.log(error)
+   }}}
+
 export function setFormIngredients(payload){
     return {type: SET_FORM_INGREDIENTS, payload}
 }
@@ -157,16 +174,16 @@ export function setFormIngredients(payload){
 export function register(usuer){
   return async function(dispatch){
     const reg = await axios.post(REGISTER, usuer)
-
     return dispatch(reg)
   }
 }
 
 export function createIngredient(ingredient){
-  return async function(){
+  return async function(dispatch){
     try{
       const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient})
       console.log(newIngredient)
+      return dispatch({type:CREATE_INGREDIENT})
     }catch(error){
       alert("No se creó el ingrediente")
     }
@@ -177,4 +194,19 @@ export function createIngredient(ingredient){
 
 export function getCalendar(payload){
   return { type: CALENDAR_FILTER, payload }
+}
+export function setFormCategory(payload){
+  return {type: SET_FORM_CATEGORY, payload}
+}
+
+export function createCategory(category){
+  return async function(dispatch){
+    try{
+      const newCategory = await axios.post(CATEGORY_URL, {...category})
+      console.log(newCategory)
+      return dispatch({type:CREATE_CATEGORY})
+    }catch(error){
+      alert("No se creó la categoría")
+    }
+  }
 }

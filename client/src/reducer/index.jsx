@@ -7,11 +7,15 @@ import {
   SEARCH_RECIPES,
   ORDER_ZA,
   ORDER_AZ,
+  UPDATE_RECIPE,
   FILTERED_BY_INGREDIENT,
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
   CALENDAR_FILTER,
+  CREATE_INGREDIENT,
+  SET_FORM_CATEGORY,
+  CREATE_CATEGORY
 } from "../actions/constants";
 
 import { orderAZ } from '../orderFunction/OrderFuncions'
@@ -22,9 +26,13 @@ var initialState = {
   ingredients: [],
   category:[],
   detail:{},
+  update:{},
   unit: [],
   difficulty:[],
-  formIngredients: [],
+  formIngredients:[],
+  toggleAddIngredient:false,
+  formCategory:[],
+  toggleAddCategory:false,
   calendar: []
 };
 
@@ -70,8 +78,12 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           detail: action.payload
-        }  
-      
+        } 
+      case UPDATE_RECIPE:
+        return{
+          ...state,
+          update: action.payload
+            } 
       case GET_UNIT:
         return {
           ...state,
@@ -97,12 +109,30 @@ function reducer(state = initialState, action) {
             ...state,
             formIngredients: action.payload
           }
+<<<<<<< HEAD
           
       case CALENDAR_FILTER: 
       return {
         ...state,
         calendar: state.calendar.slice(0,14).push(action.payload)
       }
+=======
+      case CREATE_INGREDIENT:
+          return {
+            ...state,
+            toggleAddIngredient: !state.toggleAddIngredient
+            }
+      case SET_FORM_CATEGORY:
+          return {
+            ...state,
+            formCategory:action.payload
+              }
+      case CREATE_CATEGORY:
+        return {
+          ...state,
+          toggleAddCategory: !state.toggleAddCategory
+        }
+>>>>>>> CopiaSeguridad
     default:
       return state;
   }
