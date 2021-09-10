@@ -29,7 +29,6 @@ router.get('/calendar/user/:id', async (req, res, next) => {
         .populate({path:'calendar', populate:{path:'firstRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .populate({path:'calendar', populate:{path:'secondRecipe', select:['name','difficulty','rating','preparation','img','category','ingredients','premium','availability']}})
         .lean();
-        console.log(calendar);
         return res.json(normalizeCalendar(calendar));
     } catch (error) {
         next(error);
