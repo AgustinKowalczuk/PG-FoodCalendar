@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router()
 
 //Requerir las rutas
-//get  
+//get   
 const get_recet = require('./recet/get_recet.js');
 const get_ingredients =require('./ingredient/get_ingredient.js');
 const get_unit = require('./unit/get_unit.js');
