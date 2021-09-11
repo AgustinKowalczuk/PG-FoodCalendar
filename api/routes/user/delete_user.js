@@ -4,8 +4,9 @@ const validate = require("../../controller/validate");
 const router = express.Router();
 const models = require('../../models/models');
 const { User } = models;
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.delete('/user/:id', async (req, res, next) => {
+router.delete('/user/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
 
     try {

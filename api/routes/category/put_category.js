@@ -4,8 +4,9 @@ const { Category } = require("../../models/models");
 const validate = require("../../controller/validate");
 const { categoryValidation } = require("../../controller/router_validate/category_route_validate");
 const { normalizeCategories } = require("../../controller/normalize");
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.put('/category/:id', async (req, res, next) => {
+router.put('/category/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
     const { name } = req.body;
 
