@@ -12,27 +12,28 @@ export default function Calendar(props) {
                 <tr><p>Almuerzo</p></tr>
                 <tr><p>cena</p></tr>
             </td>
-            <Droppable droppableId='Table2'>
-                {
-                    (provided) => (
-                        days.map((day, index) => (
-                            <td className={style.Calendar} ref={provided.innerRef} {...provided.droppableProps}>
-                                <tr><h5>{day}</h5></tr>
-                                <Draggable draggableId={index.toString()} index={index}>
-                                    {
-                                        (provider) => (
-                                            <div {...provider.draggableProps} {...provider.draggableProps} ref={provider.innerRef}>
-                                                <tr className={style.add}><p>text</p></tr>
-                                                <tr className={style.add}><p>text</p></tr>
-                                            </div>
-                                        )
-                                    }
-                                </Draggable>
-                            </td>
-                        ))
-                    )
-                }
-            </Droppable>
+                
+            {days.map((day, index) => (
+                <td className={style.Calendar}>
+                    <tr><h5>{day}</h5></tr>
+                    <Draggable draggableId={`12${index.toString()}`} index={index}>
+                        {
+                            (provider) => (
+                                <tr  {...provider.draggableProps} {...provider.dragHandleProps} ref={provider.innerRef} className={style.add}></tr>
+                                
+                            )
+                        }
+                    </Draggable>
+                    <Draggable draggableId={`14${index.toString()}`} index={index}>
+                        {
+                            (provider) =>(
+                                <tr {...provider.draggableProps} {...provider.dragHandleProps} ref={provider.innerRef} className={style.add}></tr>
+                            )
+                        }
+                    </Draggable>
+                </td>
+            ))}
         </table>
     )
 }
+
