@@ -20,7 +20,9 @@ import {
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY,
-  CLEAN_NEW_RECIPE
+  CLEAN_NEW_RECIPE,
+  DELETE_INVENTARY,
+  CLEAR_INVENTARY
 } from "./constants";
 
 import {
@@ -226,4 +228,18 @@ export function createCategory(category){
 
 export function cleanNewRecipe(){
   return {type: CLEAN_NEW_RECIPE}
+}
+
+export function deleteInventary(id){
+  return {
+    type: DELETE_INVENTARY,
+    payload:id
+  }
+}
+
+export function clearInventary(id){
+  return {
+    type: CLEAR_INVENTARY,
+    payload:id
+  }
 }
