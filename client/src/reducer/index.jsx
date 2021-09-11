@@ -19,7 +19,9 @@ import {
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY,
-  CLEAN_NEW_RECIPE
+  CLEAN_NEW_RECIPE,
+  DELETE_INVENTARY,
+  CLEAR_INVENTARY
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -131,11 +133,11 @@ function reducer(state = initialState, action) {
             formIngredients: action.payload
           }
 
-      case RECIPE_CALENDAR: 
-            return {
-         ...state,
-        recipeCalendar: [...state.recipeCalendar,action.payload]
-      }
+      case RECIPE_CALENDAR:
+        return {
+          ...state,
+          recipeCalendar: state.recipeCalendar.concat(action.payload)
+        }
       case PAGE:
         return{
           ...state,
@@ -161,6 +163,16 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           newRecipe: false
+        }
+      case DELETE_INVENTARY:
+        return {
+          ...state,
+          recipeCalendar: state.recipeCalendar.filter(x=>x.id !==action.payload)
+        }
+      case CLEAR_INVENTARY:
+        return {
+          ...state,
+          recipeCalendar: []
         }
     default:
       return state;

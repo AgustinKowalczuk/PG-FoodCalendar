@@ -12,20 +12,25 @@ export default function DetailRecipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.detail);
-
-    console.log(recipeDetail,'detalles')
+  const stackReceta = useSelector((state) => state.recipeCalendar)
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id));
     window.scrollTo(0,0);
   }, [dispatch, id]);
+
  //envio receta al stack del calendario
-
-  function agregarCalendario(id){
-    dispatch (setRecipeCalendar(id))
+  function agregarCalendario(receta){
+    // if(stackReceta.length === 0){
+    //   return alert('Debes registrarte para poder manejar un calendario.')
+    // }
+    if(stackReceta.length < 14){
+    return dispatch(setRecipeCalendar(receta))
+    } else{
+    return alert('Sólo ser permiten 14 recetas por calendario.')
     }
-
-
+    }
+    console.log(stackReceta)
   return (
     <div class={style.order}>
       <div class="card" id={style.maxwidth}>
@@ -79,7 +84,7 @@ export default function DetailRecipe() {
               </table>
           </div>
           <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
-          <button onClick={agregarCalendario(recipeDetail.id)}>Agregala a tu Calendario!</button>
+          <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>
           </div>
           <div>
             <Inventary/>                      
