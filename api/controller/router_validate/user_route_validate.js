@@ -9,7 +9,7 @@ const {
 } = require('../validate');
 
 const userRouteValidate = {
-    userValidation(name, surname, email, password, category) {
+    userRegisterValidation(name, surname, email, password, category) {
         argumentsValidate([
             { keyName: 'name', value: name, type: 'string', notEmpty: true },
             { keyName: 'surname', value: surname, type: 'string', notEmpty: true },
@@ -20,6 +20,14 @@ const userRouteValidate = {
         noNumberValidate(name);
         nameValidate(surname);
         noNumberValidate(surname);
+        emailValidate(email);
+        passwordValidate(password);
+    },
+    userLoginValidation(email, password) {
+        argumentsValidate([
+            { keyName: 'email', value: email, type: 'string', notEmpty: true },
+            { keyName: 'password', value: password, type: 'string', notEmpty: true }
+        ]);
         emailValidate(email);
         passwordValidate(password);
     },
