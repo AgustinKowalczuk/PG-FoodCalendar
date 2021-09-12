@@ -14,13 +14,15 @@ import {
   FILTERED_BY_DIFFICULTY,
   FILTERED_BY_CATEGORY,
   SET_FORM_INGREDIENTS,
-  CALENDAR_FILTER,
+  RECIPE_CALENDAR,
   UPDATE_RECIPE,
   PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY,
-  CLEAN_NEW_RECIPE
+  CLEAN_NEW_RECIPE,
+  DELETE_INVENTARY,
+  CLEAR_INVENTARY
 } from "./constants";
 
 import {
@@ -32,9 +34,10 @@ import {
   RECIPES_SEARCH_URL,
   RECIPES_BY_INGREDIENTS_URL,
   RECIPES_BY_CATEGORY_URL,
-  REGISTER
+  REGISTER,
+  LOGIN,
+  POST_CALENDAR
 } from "../routes";
-
 
 export function getRecipes() {
 
@@ -180,6 +183,12 @@ export function register(usuer){
   }
 }
 
+export function login(user){
+  return async function(dispatch){
+    const reg = await axios.post(LOGIN, user)
+    return dispatch(reg)
+  }
+}
 export function createIngredient(ingredient){
   return async function(dispatch){
     try{
@@ -192,15 +201,26 @@ export function createIngredient(ingredient){
   }
 }
 
-// Calendario
+// Enviar recetas  al stack del Calendario
 
-export function getCalendar(payload){
-  return { type: CALENDAR_FILTER, payload }
+export function setRecipeCalendar(payload){
+   return { 
+    type: RECIPE_CALENDAR,
+    payload 
+  }
 }
+
 export function page(payload){
   return{
     type: PAGE,
     payload
+  }
+}
+
+export function postcalendar(obj){
+  return async function (dispatch){
+    const aux = await axios.post(POST_CALENDAR,obj)
+    return dispatch(aux)
   }
 }
 
@@ -222,4 +242,18 @@ export function createCategory(category){
 
 export function cleanNewRecipe(){
   return {type: CLEAN_NEW_RECIPE}
+}
+
+export function deleteInventary(id){
+  return {
+    type: DELETE_INVENTARY,
+    payload:id
+  }
+}
+
+export function clearInventary(id){
+  return {
+    type: CLEAR_INVENTARY,
+    payload:id
+  }
 }

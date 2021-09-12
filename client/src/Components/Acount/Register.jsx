@@ -35,6 +35,7 @@ export default function Register() {
 
     const onSubmit = (value) => {
         console.log('Submit value', value)
+        alert('Bienvenido, espero que tengas un lindo dia!!')
         dispatch(Register(value))
     }
 
