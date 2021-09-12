@@ -14,12 +14,14 @@ import {
   FILTERED_BY_CATEGORY,
   FILTERED_BY_DIFFICULTY,
   SET_FORM_INGREDIENTS,
-  CALENDAR_FILTER,
+  RECIPE_CALENDAR,
   PAGE,
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY,
-  CLEAN_NEW_RECIPE
+  CLEAN_NEW_RECIPE,
+  DELETE_INVENTARY,
+  CLEAR_INVENTARY
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -38,7 +40,7 @@ var initialState = {
   toggleAddIngredient:false,
   formCategory:[],
   toggleAddCategory:false,
-  calendar: [],
+  recipeCalendar: [],
   newRecipe:false
 };
 
@@ -131,11 +133,11 @@ function reducer(state = initialState, action) {
             formIngredients: action.payload
           }
 
-      case CALENDAR_FILTER: 
-      return {
-        ...state,
-        calendar: state.calendar.slice(0,14).push(action.payload)
-      }
+      case RECIPE_CALENDAR:
+        return {
+          ...state,
+          recipeCalendar: state.recipeCalendar.concat(action.payload)
+        }
       case PAGE:
         return{
           ...state,
@@ -161,6 +163,16 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           newRecipe: false
+        }
+      case DELETE_INVENTARY:
+        return {
+          ...state,
+          recipeCalendar: state.recipeCalendar.filter(x=>x.id !==action.payload)
+        }
+      case CLEAR_INVENTARY:
+        return {
+          ...state,
+          recipeCalendar: []
         }
     default:
       return state;

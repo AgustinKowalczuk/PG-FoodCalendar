@@ -11,6 +11,8 @@ import ShopingCart from './Components/ShopingCart/ShopingCart.jsx'
 import Footer from './Components/Footer/Footer';
 import UpdateForm from './Components/UpdateForm/UpdateForm'
 import Register from './Components/Acount/Register';
+import Inventary from './Components/Inventary/Inventary';
+import AllRecipe from './Components/Inventary/AllRecipe';
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
         <Route path = '/acount/register' component={Register}/>
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>
+        <Route path = '/AllRecipe' component = {AllRecipe}/>
       </Switch>
       <Footer/>
       </div>
