@@ -1,23 +1,36 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { getDetail } from "../../actions";
+import { getDetail, setRecipeCalendar } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
+import Inventary from "../Inventary/Inventary";
 
 
 export default function DetailRecipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.detail);
-    console.log(recipeDetail,'detalles')
+  const stackReceta = useSelector((state) => state.recipeCalendar)
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id));
     window.scrollTo(0,0);
   }, [dispatch, id]);
 
+ //envio receta al stack del calendario
+  function agregarCalendario(receta){
+    // if(stackReceta.length === 0){
+    //   return alert('Debes registrarte para poder manejar un calendario.')
+    // }
+    if(stackReceta.length < 14){
+    return dispatch(setRecipeCalendar(receta))
+    } else{
+    return alert('Sólo ser permiten 14 recetas por calendario.')
+    }
+    }
+    console.log(stackReceta)
   return (
     <div class={style.order}>
       <div class="card" id={style.maxwidth}>
@@ -43,7 +56,7 @@ export default function DetailRecipe() {
                 }
               </ul>
           </div>
-
+          </div>
           <div className={style.dificulty}>
             <div class={style.maxwidth}>
               <h3>Dificultad:</h3>
@@ -71,11 +84,14 @@ export default function DetailRecipe() {
               </table>
           </div>
           <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
-        </div>
-      </div>
-
+          <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>
+          </div>
+          <div>
+            <Inventary/>                      
+          </div>          
       <h2> Otras recetas</h2>
       <CardRelacionadas />
     </div>
+
   );
 }
