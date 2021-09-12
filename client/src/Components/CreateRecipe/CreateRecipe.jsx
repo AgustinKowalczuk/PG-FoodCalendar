@@ -17,6 +17,7 @@ export default function CreateRecipe() {
   const formIngre = useSelector((state) => state.formIngredients);
   let category = useSelector((state)=>state.category)
   const formCater=useSelector((state)=>state.formCategory)
+  const token = useSelector(state => state.token);
   
   useEffect(() => {
     dispatch(getIngredients());
@@ -90,7 +91,7 @@ export default function CreateRecipe() {
     if(formik.values.availability==='true'){
       formik.values.availability=true
     }
-    dispatch(createRecipe(formik.values));
+    dispatch(createRecipe(formik.values,token));
     console.log("Values submit", values);
   };
   const onChangeIngredients = (values) =>{

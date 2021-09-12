@@ -11,9 +11,25 @@ import ShopingCart from './Components/ShopingCart/ShopingCart.jsx'
 import Footer from './Components/Footer/Footer';
 import UpdateForm from './Components/UpdateForm/UpdateForm'
 import Register from './Components/Acount/Register';
+import { Redirect } from 'react-router';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
+import { setUserAndToken } from './actions';
 
 
 function App() {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const token = normalizeNullOrUndefined(sessionStorage.token);
+    const user = normalizeNullOrUndefined(sessionStorage.user);
+    dispatch(setUserAndToken({ token, user: JSON.parse(user) }));
+  },[]);
+
+  const token = useSelector(state => state.token);
+  const user = useSelector(state => state.user);
+
   return (
     <BrowserRouter>
     <div className="App">
@@ -22,8 +38,8 @@ function App() {
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchCards}/>
         <Route path='/recipe/:id' component={DetailRecipe}/>
-        <Route path = '/create/recipe' component={CreateRecipe}/>
-        <Route exact path = '/update/:id' component={UpdateForm}/>
+        <Route path = '/create/recipe' render= {() => (!!token && user.category === 'Admin') ? <CreateRecipe /> : <Redirect to='/' />}/>
+        <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
         <Route path = '/acount/register' component={Register}/>
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>

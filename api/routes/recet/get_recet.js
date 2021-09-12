@@ -78,7 +78,7 @@ router.get('/recipe/search/guest/:name', async (req,res,next) => {
 });
 
 //Detalles de la receta por "id"
-router.get('/recipe/details/:id', async (req, res, next) => {
+router.get('/recipe/details/user/:id', auth, async (req, res, next) => {
     const { id } = req.params;
 
     try {
@@ -90,7 +90,29 @@ router.get('/recipe/details/:id', async (req, res, next) => {
         .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
         .lean();
 
-        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" }) }
+        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })}
+        
+        return res.json(normalizeRecipes(recipeMatch));
+    } catch (e) {
+        next(e);
+    }
+});
+
+router.get('/recipe/details/guest/:id', async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        validate.idMongodb(id);
+
+        const recipeMatch = await Recipe.findById(id)
+        .populate({path:'category', select:['name','_id']})
+        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
+        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
+        .lean();
+
+        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })};
+
+        if (recipeMatch.premium !== false) throw new Error("No deberías estar viendo esta receta.")
         
         return res.json(normalizeRecipes(recipeMatch));
     } catch (e) {

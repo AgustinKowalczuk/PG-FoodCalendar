@@ -11,10 +11,12 @@ export default function DetailRecipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.detail);
+  const token = useSelector(state => state.token);
+  const user = useSelector(state => state.user);
     console.log(recipeDetail,'detalles')
   //Lo despacho
   useEffect(() => {
-    dispatch(getDetail(id));
+    dispatch(getDetail(id,token));
     window.scrollTo(0,0);
   }, [dispatch, id]);
 
@@ -70,7 +72,11 @@ export default function DetailRecipe() {
                 </tr>
               </table>
           </div>
-          <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
+          {(!!token && user.category === 'Admin') ? 
+          <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link> :
+          <div />
+          }
+          
         </div>
       </div>
 
