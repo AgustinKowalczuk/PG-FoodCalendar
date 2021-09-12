@@ -22,7 +22,10 @@ import {
   CREATE_CATEGORY,
   CLEAN_NEW_RECIPE,
   DELETE_INVENTARY,
-  CLEAR_INVENTARY
+  CLEAR_INVENTARY,
+  GET_CALENDAR,
+  GET_CALENDAR_DETAIL,
+  GET_CALENDAR_USER
 } from "./constants";
 
 import {
@@ -36,7 +39,7 @@ import {
   RECIPES_BY_CATEGORY_URL,
   REGISTER,
   LOGIN,
-  POST_CALENDAR
+  CALENDAR_URL,
 } from "../routes";
 
 export function getRecipes() {
@@ -219,7 +222,7 @@ export function page(payload){
 
 export function postcalendar(obj){
   return async function (dispatch){
-    const aux = await axios.post(POST_CALENDAR,obj)
+    const aux = await axios.post(CALENDAR_URL,obj)
     return dispatch(aux)
   }
 }
@@ -244,10 +247,10 @@ export function cleanNewRecipe(){
   return {type: CLEAN_NEW_RECIPE}
 }
 
-export function deleteInventary(id){
+export function deleteInventary(i){
   return {
     type: DELETE_INVENTARY,
-    payload:id
+    payload:i
   }
 }
 
@@ -256,4 +259,34 @@ export function clearInventary(id){
     type: CLEAR_INVENTARY,
     payload:id
   }
+}
+
+export  function getCalendar(){
+  return async function (dispatch){
+    const calendary=await axios.get(CALENDAR_URL);
+    return dispatch ({
+      type: GET_CALENDAR,
+      payload:calendary.data
+    })
+  }
+}
+
+export function getCalendarDetail(id){
+  return async function (dispatch) {
+    const calendarDetail = await axios.get(CALENDAR_URL + id);
+    return dispatch({
+      type: GET_CALENDAR_DETAIL,
+      payload: calendarDetail.data
+    });
+  }; 
+}
+
+export function getCalendarUser(id){
+  return async function (dispatch){
+    const calendaruser = await axios.get (CALENDAR_URL +'/user');
+    return dispatch ({
+      type : GET_CALENDAR_USER,
+      payload: calendaruser.data
+    });
+  };
 }
