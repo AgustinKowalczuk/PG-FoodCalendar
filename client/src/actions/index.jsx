@@ -37,7 +37,6 @@ import {
   REGISTER
 } from "../routes";
 
-
 export function getRecipes() {
 
   //me trae las recetas de la db
