@@ -7,14 +7,14 @@ export default function Recipes(props) {
         <Droppable droppableId='Table1'>
             {
                 (provided) => (
-                    <div className={style.contentData}  ref={provided.innerRef} {...provided.droppableProps}>
+                    <div className={style.contentData}  innerRef={provided.innerRef} {...provided.droppableProps}>
                     {
                         props.calendar?.map( (recetas, index) => (
-                            <Draggable draggableId={index} index={index}>
+                            <Draggable draggableId={recetas.id} index={index} receta={recetas.name}>
                                 {
-                                    (provider) => (
+                                    (provided) => (
 
-                                        <div key={index} {...provider.draggableProps} {...provider.draggableProps} ref={provider.innerRef}>
+                                        <div key={index} {...provided.draggableProps} {...provided.draggableProps} inneRef={provided.innerRef}>
                                             <h5 className={style.changer}>{recetas.name}</h5>
                                         </div>
                                     )
