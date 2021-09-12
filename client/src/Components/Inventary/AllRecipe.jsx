@@ -8,7 +8,7 @@ export default function AllRecipe() {
         const allRecipes = useSelector((state) => state.recipes);
 
         useEffect(() => {
-                dispatch(getRecipes());
+          dispatch(getRecipes());
         }, [dispatch]);
      
 

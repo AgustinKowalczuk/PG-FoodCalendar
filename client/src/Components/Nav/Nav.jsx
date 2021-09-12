@@ -20,6 +20,12 @@ export default function Nav() {
         <div>
           <Link className="nav-link active" to='/acount/login' >Login</Link>
         </div>
+        <div>
+          <Link className="nav-link active" to='/calendar/user' >Tus Calendarios</Link>
+        </div>
+        <div>
+          <Link className="nav-link active" to='/calendar' >Ver Calendarios</Link>
+        </div>
         <div  id={style.noMargin} className="navbar-nav me-auto mb-2 mb-lg-0">
           <Link className="nav-link active" to="/shop">
             Calendar
