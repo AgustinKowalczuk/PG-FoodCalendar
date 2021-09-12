@@ -34,7 +34,9 @@ import {
   RECIPES_SEARCH_URL,
   RECIPES_BY_INGREDIENTS_URL,
   RECIPES_BY_CATEGORY_URL,
-  REGISTER
+  REGISTER,
+  LOGIN,
+  POST_CALENDAR
 } from "../routes";
 
 export function getRecipes() {
@@ -181,6 +183,12 @@ export function register(usuer){
   }
 }
 
+export function login(user){
+  return async function(dispatch){
+    const reg = await axios.post(LOGIN, user)
+    return dispatch(reg)
+  }
+}
 export function createIngredient(ingredient){
   return async function(dispatch){
     try{
@@ -206,6 +214,13 @@ export function page(payload){
   return{
     type: PAGE,
     payload
+  }
+}
+
+export function postcalendar(obj){
+  return async function (dispatch){
+    const aux = await axios.post(POST_CALENDAR,obj)
+    return dispatch(aux)
   }
 }
 

@@ -2,25 +2,17 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
+import { login } from '../../actions/index'
 
 export default function Login() {
 
     const dispatch = useDispatch()
     const initialValues= {
-        name:'',
-        surname:'',
         email:'',
         password: ''
     }
 
     const validationSchema = Yup.object({
-        name: Yup.string()
-            .required('Requerido')
-            .min(3, 'Minimo de 3 letras')
-            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
-        surname: Yup.string()
-            .required('Requerido')
-            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
         email: Yup.string()
             .required('Requerido')
             .email('Formato no valido'),
@@ -34,6 +26,7 @@ export default function Login() {
 
     const onSubmit = (value) => {
         console.log('Submit value', value)
+        dispatch(login(value))
     }
 
     return (
@@ -42,16 +35,6 @@ export default function Login() {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             <Form>
-                <div>
-                    <label>First name</label>
-                    <Field type="text" name="name" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="name"/>
-                </div>
-                <div>
-                    <label>Last name</label>
-                    <Field type="text" name="surname" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="surname"/> 
-                </div>
                 <div>
                     <label>Email</label>
                     <Field type="text" name="email" placeholder='Escribe aqui'/>

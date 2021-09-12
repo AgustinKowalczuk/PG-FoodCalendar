@@ -3,6 +3,8 @@
     margin: auto !important;
 }
 .order{
+    width: 80%;
+    margin: auto !important;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
