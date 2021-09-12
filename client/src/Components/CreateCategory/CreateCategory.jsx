@@ -23,7 +23,6 @@ export default function CreateCategory(props) {
     const onSubmit = (e) => {
         dispatch(createCategory(formik.values))
         alert('Tu categoría ha sido creada!')
-        console.log(e)
     }
     const formik = useFormik({
         initialValues,

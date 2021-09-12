@@ -1,26 +1,22 @@
-import React from 'react'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions';
+import { useHistory } from 'react-router';
 
 export default function Login() {
+    const token = useSelector(state => state.token);
+    const user = useSelector(state => state.user);
+    const history = useHistory();
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const initialValues= {
-        name:'',
-        surname:'',
         email:'',
         password: ''
-    }
+    };
 
     const validationSchema = Yup.object({
-        name: Yup.string()
-            .required('Requerido')
-            .min(3, 'Minimo de 3 letras')
-            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
-        surname: Yup.string()
-            .required('Requerido')
-            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
         email: Yup.string()
             .required('Requerido')
             .email('Formato no valido'),
@@ -32,39 +28,37 @@ export default function Login() {
             ),
     })
 
+    useEffect(() => {
+        if (token) {
+            history.push('/');
+            sessionStorage.token = token;
+            sessionStorage.user = JSON.stringify(user);
+        }
+    }, [token]);
+
     const onSubmit = (value) => {
-        console.log('Submit value', value)
-    }
+        dispatch(login(value))
+    };
 
     return (
         <Formik 
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
-            <Form>
-                <div>
-                    <label>First name</label>
-                    <Field type="text" name="name" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="name"/>
-                </div>
-                <div>
-                    <label>Last name</label>
-                    <Field type="text" name="surname" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="surname"/> 
-                </div>
+            <Form>                
                 <div>
                     <label>Email</label>
-                    <Field type="text" name="email" placeholder='Escribe aqui'/>
+                    <Field type="text" name="email" placeholder='Escribe aqui' autocomplete='off'/>
                     <ErrorMessage name="email"/> 
                 </div>
                 <div>
                     <label>Password</label>
-                    <Field type="password" name="password" placeholder='Escribe aqui'/>
+                    <Field type="password" name="password" placeholder='Escribe aqui' autocomplete='off'/>
                     <ErrorMessage name="password"/>
                 </div>
 
-                <button type="submit">Registrar</button>
+                <button type="submit">Login</button>
             </Form>
         </Formik>
-    )
+    );
 }

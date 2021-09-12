@@ -34,7 +34,6 @@ export default function Register() {
     })
 
     const onSubmit = (value) => {
-        console.log('Submit value', value)
         dispatch(Register(value))
     }
 

@@ -19,7 +19,8 @@ import {
   CREATE_INGREDIENT,
   SET_FORM_CATEGORY,
   CREATE_CATEGORY,
-  CLEAN_NEW_RECIPE
+  CLEAN_NEW_RECIPE,
+  LOGIN
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -39,7 +40,9 @@ var initialState = {
   formCategory:[],
   toggleAddCategory:false,
   calendar: [],
-  newRecipe:false
+  newRecipe:false,
+  token: null,
+  user: null
 };
 
 function reducer(state = initialState, action) {
@@ -162,6 +165,12 @@ function reducer(state = initialState, action) {
           ...state,
           newRecipe: false
         }
+        case LOGIN:
+          return {
+            ...state,
+            token: action.payload.token, 
+            user: action.payload.user
+          }
     default:
       return state;
   }

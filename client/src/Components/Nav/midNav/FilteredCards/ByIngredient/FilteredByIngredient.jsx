@@ -7,14 +7,15 @@ import { getIngredients, FilterRecipeByIngredient, getRecipes } from "../../../.
 
 export default function FilteredByIngredient() {
 
+    const token = useSelector(state => state.token);
+
     const dispatch = useDispatch();
 
     const ingre = useSelector((state) => state.ingredients)
 
     const handleFilterChange = (e) => {
-        if (e.target.value === "-") dispatch(getRecipes())
-        else if (e.target.value !== "-") dispatch(FilterRecipeByIngredient(e.target.value))
-        console.log(e.target.value)
+        if (e.target.value === "-") dispatch(getRecipes(token));
+        else if (e.target.value !== "-") dispatch(FilterRecipeByIngredient(e.target.value, token));
     }
 
     useEffect(() => {

@@ -33,13 +33,14 @@ router.post('/user/login', async (req, res, next) => {
     try {
         userLoginValidation(email, password);
 
-        const userFound = await User.findOne({email});
+        let userFound = await User.findOne({email});
         if (!userFound) throw new Error (`El usuario con el email ${email} no se encuentra registrado.`);
         
         if (! await argon.verify(userFound.password, password)) throw new Error ("La constraseña ingresada es incorrecta.");
         
         const token = await jwt.sign({ sub: userFound._id }, "EstoEsSecreto", { expiresIn: "12h"});
-        return res.json({ token });                
+        userFound = normalizeUsers(userFound);
+        return res.json({ token,  user: userFound });                
     } catch (error){
         next(error);
     }
