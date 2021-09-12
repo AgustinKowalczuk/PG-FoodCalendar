@@ -40,7 +40,7 @@ export default function CreateRecipe() {
     category = category.sort(orderAZ)
     category.unshift({name: ' '})
   }
-  console.log(category)
+
   useEffect(()=>{
    console.log(formik.values) 
   },[formCater])
@@ -92,7 +92,6 @@ export default function CreateRecipe() {
       formik.values.availability=true
     }
     dispatch(createRecipe(formik.values,token));
-    console.log("Values submit", values);
   };
   const onChangeIngredients = (values) =>{
     formik.values.ingredients = values

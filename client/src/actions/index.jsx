@@ -98,7 +98,6 @@ export function searchRecipes(name,token) {
   return async (dispatch) => {
     try {
       const filtRecipes = await axios.get(url + `${name}`, config(token));
-      console.log(filtRecipes)
       return dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data });
     } catch (error) {
       alert("No se encontraron recetas")
@@ -149,7 +148,6 @@ export function createRecipe(recipe,token){
   return async function(){
     try{
       const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0}, config(token));
-      console.log(newRecipe)
     }catch(error){
       alert("No se posteo la receta")
     }
@@ -222,7 +220,6 @@ export function createIngredient(ingredient){
   return async function(dispatch){
     try{
       const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient})
-      console.log(newIngredient)
       return dispatch({type:CREATE_INGREDIENT})
     }catch(error){
       alert("No se creó el ingrediente")
@@ -250,7 +247,6 @@ export function createCategory(category){
   return async function(dispatch){
     try{
       const newCategory = await axios.post(CATEGORY_URL, {...category})
-      console.log(newCategory)
       return dispatch({type:CREATE_CATEGORY})
     }catch(error){
       alert("No se creó la categoría")

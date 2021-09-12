@@ -34,7 +34,6 @@ export default function SelectCard(props) {
         );
       }
       const onDelete = (event) => {
-        //console.log(props.formik.values.ingredients)
         const deleter = props.formik.values.ingredients.filter(
           (e) => e.ingredient !== event.target.innerHTML
         );

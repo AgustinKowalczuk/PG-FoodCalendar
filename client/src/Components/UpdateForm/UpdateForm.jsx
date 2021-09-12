@@ -55,7 +55,6 @@ export default function UpdateForm() {
       formik.values.category=update.category
       formik.values.availability= true
       formik.values.premium= true
-      console.log(update)
     if (update?.ingredients?.length) {
         onChangeIngredients(update.ingredients);
     }
@@ -112,8 +111,6 @@ export default function UpdateForm() {
       formik.values.availability=true
     }
     dispatch(putRecipe(update.id,values,token));
-    console.log("Values submit", values);
-    console.log("formulario enviado");
   };
   const onChangeIngredients = (values) => {
     formik.values.ingredients = values;

@@ -23,7 +23,6 @@ export default function CreateIngredient(props) {
     const onSubmit = (e) => {
         dispatch(createIngredient(formik.values))
         alert('Tu ingrediente ha sido creado!')
-        console.log(e)
     }
     const formik = useFormik({
         initialValues,

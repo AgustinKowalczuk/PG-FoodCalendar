@@ -16,7 +16,6 @@ export default function FilteredByCategory() {
     const handleFilterChange = (e) => {
         if (e.target.value === "-") dispatch(getRecipes(token));
         else if (e.target.value !== "-") dispatch(FilterRecipeByCategory(e.target.value,token));
-        console.log(e.target.value)
     }
 
     useEffect(() => {

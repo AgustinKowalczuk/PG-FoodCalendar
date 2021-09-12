@@ -16,7 +16,6 @@ export default function FilteredByIngredient() {
     const handleFilterChange = (e) => {
         if (e.target.value === "-") dispatch(getRecipes(token));
         else if (e.target.value !== "-") dispatch(FilterRecipeByIngredient(e.target.value, token));
-        console.log(e.target.value)
     }
 
     useEffect(() => {
