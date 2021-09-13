@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { login } from '../../actions/index'
+import style from '../../Styles/StyleAcount.module.css'
 
 export default function Login() {
 
@@ -30,24 +31,29 @@ export default function Login() {
     }
 
     return (
-        <Formik 
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
-            <Form>
-                <div>
-                    <label>Email</label>
-                    <Field type="text" name="email" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="email"/> 
-                </div>
-                <div>
-                    <label>Password</label>
-                    <Field type="password" name="password" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="password"/>
-                </div>
+        <div className={style.container}>
+            <Formik 
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}>
 
-                <button type="submit">Registrar</button>
-            </Form>
-        </Formik>
+                <Form>
+                    <div className={style.content}>
+                        <div className="mb-3">
+                            <label className="form-label">Email</label>
+                            <Field type="email" name="email" className="form-control" id="exampleInputEmail1" placeholder='Escribe aqui'/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Password</label>
+                            <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui'/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="password"/>
+                        </div>
+
+                        <button id="emailHelp" className="btn btn-primary" type="submit">Registrar</button>
+                    </div>
+                </Form>
+            </Formik>
+        </div>
     )
 }

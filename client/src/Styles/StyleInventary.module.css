@@ -1,6 +1,41 @@
 #stack{
-        display: table;
-    
-    
 
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
+
+}
+
+.title{
+        width: 100%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+}
+
+.contentRecipes{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: space-around;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.recipes{
+        width: 20%;
+        padding: 1%;
+        margin: 1%;
+        border: 1px solid rgba(128, 128, 128, 0.658);
+        border-radius: .25rem;
+}
+
+#exit{
+        text-align: center;
 }

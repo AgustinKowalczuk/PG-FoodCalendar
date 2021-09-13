@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { register } from '../../actions/index'
 import { useDispatch } from 'react-redux'
+import style from '../../Styles/StyleAcount.module.css'
 
 export default function Register() {
 
@@ -36,38 +37,44 @@ export default function Register() {
     const onSubmit = (value) => {
         console.log('Submit value', value)
         alert('Bienvenido, espero que tengas un lindo dia!!')
-        dispatch(Register(value))
+        dispatch(register(value))
     }
 
     return (
-        <Formik 
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
-            <Form>
-                <div>
-                    <label>First name</label>
-                    <Field type="text" name="name" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="name"/>
-                </div>
-                <div>
-                    <label>Last name</label>
-                    <Field type="text" name="surname" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="surname"/> 
-                </div>
-                <div>
-                    <label>Email</label>
-                    <Field type="text" name="email" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="email"/> 
-                </div>
-                <div>
-                    <label>Password</label>
-                    <Field type="password" name="password" placeholder='Escribe aqui'/>
-                    <ErrorMessage name="password"/>
-                </div>
+        <div className={style.container}>
 
-                <button type="submit">Registrar</button>
-            </Form>
-        </Formik>
+            <Formik 
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}>
+                <Form>
+                    <div className={style.content}>
+
+                        <div className="mb-3">
+                            <label className="form-label">First name</label>
+                            <Field type="text" className="form-control" id="exampleInputEmail1" name="name" placeholder='Escribe aqui'/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="name"/>
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Last name</label>
+                            <Field type="text" className="form-control" id="exampleInputEmail1" name="surname" placeholder='Escribe aqui'/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="surname"/> 
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Email</label>
+                            <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='Escribe aqui'/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Password</label>
+                            <Field type="password" className="form-control" id="exampleInputEmail1" name="password" placeholder='Escribe aqui'/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="password"/>
+                        </div>
+
+                        <button type="submit">Registrar</button>
+                    </div>
+                </Form>
+            </Formik>
+        </div>
     )
 }

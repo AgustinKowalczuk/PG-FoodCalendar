@@ -72,12 +72,7 @@ export default function ShopingCart() {
       setInitialValues(newState);
       return;
     }
-    const items = Array.from(reOrder);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setReOrder(items);
-    return;
+   
   };
 
   const onSubmit = () => {
@@ -89,15 +84,18 @@ export default function ShopingCart() {
 
   return (
     <div className={style.contenAll}>
-    <label>Ingrese un nombre al calendario</label>
-      <input type="text" onChange={(e) => handeChange(e)} />
+      <div className="mb-3" id={style.btn}>
+        <label className="form-label">Ingrese un nombre al calendario</label>
+        <input className='form-control' id={style.nameCalendar} type="text" onChange={(e) => handeChange(e)} />
+      </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Recipes reOrder={reOrder} />
+        <div className={style.contenedorCalendar}>
         {initialValues.columsOrder?.map((e, index) => (
           <Droppable droppableId={e}>
             {(provider) => (
-              <div {...provider.droppableProps} ref={provider.innerRef}>
-                <div>
+              <div className={style.horarios} {...provider.droppableProps} ref={provider.innerRef}>
+                <div >
                   <h3>{e}</h3>
                   <Draggable
                     key={initialValues.colums[e].id}
@@ -126,9 +124,13 @@ export default function ShopingCart() {
             )}
           </Droppable>
         ))}
+
+        </div>
       </DragDropContext>
-      <button onClick={onSubmit}>Guardar calendario</button>
-      <Link to="/calendar">Ver mis calendarios</Link>
+      <div className={style.buttonsContent}>
+        <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>
+        <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
+      </div>
     </div>
   );
 }

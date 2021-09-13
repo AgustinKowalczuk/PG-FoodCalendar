@@ -10,14 +10,17 @@
     align-items: center;
 }
 .positivo{
-    width: 7%;
-    background-color: green;
+    width: 4vh;
+    height: 4vh;
+    background-color: rgb(0, 185, 241);
+    border: 2px solid rgba(128, 128, 128, 0.562);
     border-radius: 100%;
 }
 .negativo{
-    width: 7%;
-    border: 1px solid rgba(128, 128, 128, 0.562);
-    background-color: grey;
+    width: 4vh;
+    height: 4vh;
+    border: 2px solid rgba(128, 128, 128, 0.562);
+    background-color: white;
     border-radius: 100%;
 }
 .transparent{
