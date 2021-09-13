@@ -185,16 +185,16 @@ function reducer(state = initialState, action) {
           ...state,
           calendary:action.payload
         }
-        case GET_CALENDAR_DETAIL:
+      case GET_CALENDAR_DETAIL:
         return {
           ...state,
           calendarDetail:action.payload
         }
-        case GET_CALENDAR_USER:
-          return {
-            ...state,
-            calendarUser:action.payload
-          }
+      case GET_CALENDAR_USER:
+        return {
+          ...state,
+          calendarUser:action.payload
+        }
 
     default:
       return state;

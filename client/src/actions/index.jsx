@@ -273,7 +273,7 @@ export  function getCalendar(){
 
 export function getCalendarDetail(id){
   return async function (dispatch) {
-    const calendarDetail = await axios.get(CALENDAR_URL + id);
+    const calendarDetail = await axios.get(CALENDAR_URL + '/' + id);
     return dispatch({
       type: GET_CALENDAR_DETAIL,
       payload: calendarDetail.data
