@@ -25,7 +25,9 @@ import {
   CLEAR_INVENTARY,
   GET_CALENDAR,
   GET_CALENDAR_DETAIL,
-  GET_CALENDAR_USER
+  GET_CALENDAR_USER,
+  DELETE_RECIPE,
+  CLEAN_DELETE_RECIPE
 } from "./constants";
 
 import {
@@ -138,14 +140,15 @@ export function FilterRecipeByCategory(name) {
 // Creacion de Receta
 
 export function createRecipe(recipe){
-  return async function(){
+ return async (dispatch)=>{
     try{
       const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0})
-      console.log(newRecipe)
+      return dispatch ({ 
+        type: UPDATE_RECIPE,
+      payload:newRecipe.data})
     }catch(error){
-      alert("No se posteo la receta")
-    }
-  }
+      console.log(error)
+   }}
 }
 
 export function orderAZ() {
@@ -289,4 +292,18 @@ export function getCalendarUser(id){
       payload: calendaruser.data
     });
   };
+}
+
+export function deleteRecipe(id){
+  return async function (dispatch){
+    const borrar = await axios.delete (RECIPES_URL +'/' + id );
+    return dispatch ({
+      type : DELETE_RECIPE,
+      payload: borrar.data
+    });
+  };
+}
+
+export function cleanDeleteRecipe(){
+  return{ type: CLEAN_DELETE_RECIPE}
 }

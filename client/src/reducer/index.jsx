@@ -24,7 +24,9 @@ import {
   CLEAR_INVENTARY,
   GET_CALENDAR,
   GET_CALENDAR_DETAIL,
-  GET_CALENDAR_USER
+  GET_CALENDAR_USER,
+  DELETE_RECIPE,
+  CLEAN_DELETE_RECIPE
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -47,7 +49,8 @@ var initialState = {
   newRecipe:false,
   calendary:[],
   calendarDetail:[],
-  calendarUser:[]
+  calendarUser:[],
+  deleteRecipe:{}
 };
 
 function reducer(state = initialState, action) {
@@ -108,6 +111,7 @@ function reducer(state = initialState, action) {
         return{
           ...state,
           update: action.payload,
+          detail:action.payload,
           newRecipe: true
             } 
       case GET_UNIT:
@@ -194,6 +198,16 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           calendarUser:action.payload
+        }
+      case DELETE_RECIPE:
+          return {
+            ...state,
+            deleteRecipe: action.payload
+          }
+      case CLEAN_DELETE_RECIPE:
+        return {
+          ...state,
+          deleteRecipe:{}
         }
 
     default:

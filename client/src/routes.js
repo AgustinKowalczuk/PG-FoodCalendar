@@ -23,3 +23,4 @@ export const RECIPES_BY_CATEGORY_URL ='http://localhost:3001/recipe/filterByCate
 export const RECIPES_BY_DIFFICULTY_URL ='http://localhost:3001/recipe/filterByDifficulty/'
 export const LOGIN = 'http://localhost:3001/user/login'
 export const CALENDAR_URL = 'http://localhost:3001/calendar'
+
