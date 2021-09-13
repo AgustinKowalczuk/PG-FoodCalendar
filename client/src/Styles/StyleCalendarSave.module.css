@@ -1,0 +1,15 @@
+.content{
+    width: 80%;
+    margin: auto !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.calendarName{
+    width: 35%;
+    border: 1px solid rgba(128, 128, 128, 0.582);
+}
