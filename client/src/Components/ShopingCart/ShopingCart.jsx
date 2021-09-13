@@ -72,55 +72,65 @@ export default function ShopingCart() {
       setInitialValues(newState);
       return;
     }
+   
+  };
 
-    return (
-        <div className={style.contenAll}>
-            <div >
-                <input id={style.nameCalendar} type="text" onChange={(e)=> handeChange(e)}/>
-            </div>
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-                <Recipes reOrder={reOrder}/>
-                <div className={style.contenedorCalendar}>
-                    {
-                        initialValues.columsOrder?.map((e, index) => (
+  const onSubmit = () => {
+    dispatch(postcalendar(text, sens));
+  };
+  const handeChange = (event) => {
+    setText(event.target.value);
+  };
 
-                            <Droppable droppableId={e}>
-                                {
-                                    (provider) => (
-                                        <div className={style.horarios} {...provider.droppableProps} ref={provider.innerRef}>
-                                            <div>
-                                                <h3>{e}</h3>
-                                            <Draggable key={initialValues.colums[e].id} draggableId={initialValues.colums[e].id} index={index}>
-                                                    {
-                                                        (provided) => (
-                                                            <div className={style.recipes} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-
-                                                                { 
-                                                                    initialValues.colums[e].recipes?.map( (x, con) => {
-                
-                                                                        return(
-                                                                            <h5 key={con} className={style.changer}>{x}</h5> 
-                                                                        )
-                                                                    })
-                                                                }
-
-                                                            </div>
-                                                        )
-                                                    }
-                                            </Draggable>
-                                            {provider.placeholder}
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                            </Droppable>
-                        ))
-                    }             
+  return (
+    <div className={style.contenAll}>
+      <div className="mb-3" id={style.btn}>
+        <label className="form-label">Ingrese un nombre al calendario</label>
+        <input className='form-control' id={style.nameCalendar} type="text" onChange={(e) => handeChange(e)} />
+      </div>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Recipes reOrder={reOrder} />
+        <div className={style.contenedorCalendar}>
+        {initialValues.columsOrder?.map((e, index) => (
+          <Droppable droppableId={e}>
+            {(provider) => (
+              <div className={style.horarios} {...provider.droppableProps} ref={provider.innerRef}>
+                <div >
+                  <h3>{e}</h3>
+                  <Draggable
+                    key={initialValues.colums[e].id}
+                    draggableId={initialValues.colums[e].id}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                      >
+                        {initialValues.colums[e].recipes?.map((x, con) => {
+                          return (
+                            <h5 key={con} className={style.changer}>
+                              {x}
+                            </h5>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </Draggable>
+                  {provider.placeholder}
                 </div>
-            </DragDropContext>
-            <div>
-                <button class="btn btn-primary" id={style.btn} onClick={onSubmit}>Guardar calendario</button>
-            </div>
+              </div>
+            )}
+          </Droppable>
+        ))}
+
         </div>
-    )
-}}
+      </DragDropContext>
+      <div className={style.buttonsContent}>
+        <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>
+        <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
+      </div>
+    </div>
+  );
+}

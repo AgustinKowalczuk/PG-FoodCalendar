@@ -90,7 +90,7 @@ export default function DetailRecipe() {
           {recipeDetail.availability === 'Available' && 
           <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
           </div>
-          <div>
+          <div className={style.inventory}>
             <Inventary/>                      
           </div>          
       <h2> Otras recetas</h2>

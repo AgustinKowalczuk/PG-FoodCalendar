@@ -83,5 +83,15 @@
 }
 
 #btn{
+    margin-top: 1%;
     margin-bottom: 1%;
+}
+
+.buttonsContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: space-around;
 }
