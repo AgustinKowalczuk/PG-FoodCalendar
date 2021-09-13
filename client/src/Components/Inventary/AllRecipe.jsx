@@ -16,7 +16,7 @@ export default function AllRecipe() {
                 <div>
                         <h3> Encuentra Aqui tu receta favorita</h3>
                         <h6>Añadela al calendario y organiza tu semana</h6>
-                <Cards allRecipes={allRecipes}/>       
+                        <Cards allRecipes={allRecipes}/>       
                 </div>
         )
 }
