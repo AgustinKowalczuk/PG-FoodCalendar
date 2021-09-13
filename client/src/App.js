@@ -23,8 +23,9 @@ function App() {
   
   useEffect(() => {
     const token = normalizeNullOrUndefined(sessionStorage.token);
-    const user = normalizeNullOrUndefined(sessionStorage.user);
-    dispatch(setUserAndToken({ token, user: JSON.parse(user) }));
+    let user = normalizeNullOrUndefined(sessionStorage.user);
+    if(user) user = JSON.parse(user);
+    dispatch(setUserAndToken({ token, user }));
   },[]);
 
   const token = useSelector(state => state.token);
