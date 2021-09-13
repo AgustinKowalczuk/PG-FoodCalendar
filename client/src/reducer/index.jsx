@@ -21,7 +21,10 @@ import {
   CREATE_CATEGORY,
   CLEAN_NEW_RECIPE,
   DELETE_INVENTARY,
-  CLEAR_INVENTARY
+  CLEAR_INVENTARY,
+  GET_CALENDAR,
+  GET_CALENDAR_DETAIL,
+  GET_CALENDAR_USER
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -41,7 +44,10 @@ var initialState = {
   formCategory:[],
   toggleAddCategory:false,
   recipeCalendar: [],
-  newRecipe:false
+  newRecipe:false,
+  calendary:[],
+  calendarDetail:[],
+  calendarUser:[]
 };
 
 function reducer(state = initialState, action) {
@@ -167,13 +173,29 @@ function reducer(state = initialState, action) {
       case DELETE_INVENTARY:
         return {
           ...state,
-          recipeCalendar: state.recipeCalendar.filter(x=>x.id !==action.payload)
+          recipeCalendar: state.recipeCalendar.filter((x,index)=> index !==action.payload)
         }
       case CLEAR_INVENTARY:
         return {
           ...state,
           recipeCalendar: []
         }
+      case GET_CALENDAR:
+        return {
+          ...state,
+          calendary:action.payload
+        }
+        case GET_CALENDAR_DETAIL:
+        return {
+          ...state,
+          calendarDetail:action.payload
+        }
+        case GET_CALENDAR_USER:
+          return {
+            ...state,
+            calendarUser:action.payload
+          }
+
     default:
       return state;
   }

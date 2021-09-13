@@ -1,91 +1,76 @@
-import React, { useState } from 'react'
-import Recipes from './Recipes/Recipes'
-import daysColumns from './Lista/dias'
-import { useSelector, useDispatch } from 'react-redux'
-import { postcalendar } from '../../actions/index'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import style from '../../Styles/StyleCardShop.module.css'
+import React, { useState } from "react";
+import Recipes from "./Recipes/Recipes";
+import daysColumns from "./Lista/dias";
+import { useSelector, useDispatch } from "react-redux";
+import { postcalendar } from "../../actions/index";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import style from "../../Styles/StyleCardShop.module.css";
+import { Link } from "react-router-dom";
 
 export default function ShopingCart() {
+  const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipeCalendar);
+  const [initialValues, setInitialValues] = useState(daysColumns);
+  const [reOrder, setReOrder] = useState([...recipes]);
+  const [text, setText] = useState("");
+  const [sens, setSens] = useState([]);
 
-    const dispatch = useDispatch()
-    const recipes = useSelector((state) => state.recipes)
-    const [initialValues, setInitialValues] = useState(daysColumns)
-    const [reOrder, setReOrder] = useState([...recipes])
-    const [text, setText] = useState('')
-    const [sens, setSens] = useState([])
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+    if (
+      result.destination.droppableId === result.source.droppableId &&
+      result.destination.index === result.source.index
+    )
+      return;
 
-    const handleOnDragEnd = (result) => {
+    const start = initialValues.colums[result.source.droppableId];
+    const end = initialValues.colums[result.destination.droppableId];
 
-        if (!result.destination) return;
-        if (result.destination.droppableId === result.source.droppableId && result.destination.index === result.source.index) return;
+    if (start === end && start && end) {
+      const newRecipe = Array.from(start.recipes);
+      newRecipe.splice(result.destination.index, 0, result.draggableId);
 
-        const start = initialValues.colums[result.source.droppableId]
-        const end = initialValues.colums[result.destination.droppableId]
-        
+      const newColumn = {
+        ...start,
+        recipes: newRecipe,
+      };
 
-        if(start === end && start && end) {
+      const newState = {
+        ...initialValues,
+        colums: {
+          ...initialValues.colums,
+          [newColumn.name]: newColumn,
+        },
+      };
 
-            const newRecipe = Array.from(start.recipes)
-            newRecipe.splice(result.destination.index, 0, result.draggableId)
-
-            const newColumn = {
-                ...start,
-                recipes: newRecipe
-            }
-            
-            const newState = {
-                ...initialValues,
-                colums:{
-                    ...initialValues.colums,
-                    [newColumn.name]: newColumn
-                }
-            }
-
-            setInitialValues(newState)
-            return;
-        }
-        if(result.destination.droppableId !== 'recipes'){
-
-            const items = Array.from(reOrder)
-            const [reord] = items.splice(result.source.index, 1) 
-    
-            const newRecipe = Array.from(end.recipes)
-            newRecipe.splice(result.destination.index, 0, reord.name)
-
-            const newColumn = {
-                ...end,
-                recipes: newRecipe
-            }
-    
-            const newState = {
-                ...initialValues,
-                colums:{
-                    ...initialValues.colums,
-                    [newColumn.name]: newColumn
-                }
-            }
-
-            setSens([...sens, reord.id])
-
-            setReOrder(items)
-            setInitialValues(newState)
-            return;
-        }
-        const items = Array.from(reOrder)
-        const [reorderedItem] = items.splice(result.source.index, 1)    
-        items.splice(result.destination.index, 0, reorderedItem)
-    
-        setReOrder(items);
-        return;
+      setInitialValues(newState);
+      return;
     }
+    if (result.destination.droppableId !== "recipes") {
+      const items = Array.from(reOrder);
+      const [reord] = items.splice(result.source.index, 1);
 
-    const onSubmit = () => {
+      const newRecipe = Array.from(end.recipes);
+      newRecipe.splice(result.destination.index, 0, reord.name);
 
-        dispatch(postcalendar(text, sens)) 
-    }
-    const handeChange= (event) => {
-        setText(event.target.value);
+      const newColumn = {
+        ...end,
+        recipes: newRecipe,
+      };
+
+      const newState = {
+        ...initialValues,
+        colums: {
+          ...initialValues.colums,
+          [newColumn.name]: newColumn,
+        },
+      };
+
+      setSens([...sens, reord.id]);
+
+      setReOrder(items);
+      setInitialValues(newState);
+      return;
     }
 
     return (
@@ -138,4 +123,4 @@ export default function ShopingCart() {
             </div>
         </div>
     )
-}
+}}
