@@ -90,47 +90,52 @@ export default function ShopingCart() {
 
     return (
         <div className={style.contenAll}>
-            <input type="text" onChange={(e)=> handeChange(e)}/>
+            <div >
+                <input id={style.nameCalendar} type="text" onChange={(e)=> handeChange(e)}/>
+            </div>
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Recipes reOrder={reOrder}/>
-                {
-                    initialValues.columsOrder?.map((e, index) => (
+                <div className={style.contenedorCalendar}>
+                    {
+                        initialValues.columsOrder?.map((e, index) => (
 
-                        <Droppable droppableId={e}>
-                            {
-                                (provider) => (
-                                    <div {...provider.droppableProps} ref={provider.innerRef}>
-                                        <div>
-                                            <h3>{e}</h3>
-                                        <Draggable key={initialValues.colums[e].id} draggableId={initialValues.colums[e].id} index={index}>
-                                                {
-                                                    (provided) => (
-                                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                            <Droppable droppableId={e}>
+                                {
+                                    (provider) => (
+                                        <div className={style.horarios} {...provider.droppableProps} ref={provider.innerRef}>
+                                            <div>
+                                                <h3>{e}</h3>
+                                            <Draggable key={initialValues.colums[e].id} draggableId={initialValues.colums[e].id} index={index}>
+                                                    {
+                                                        (provided) => (
+                                                            <div className={style.recipes} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 
-                                                            { 
-                                                                initialValues.colums[e].recipes?.map( (x, con) => {
-            
-                                                                    return(
-                                                                        <h5 key={con} className={style.changer}>{x}</h5> 
-                                                                    )
-                                                                })
-                                                            }
+                                                                { 
+                                                                    initialValues.colums[e].recipes?.map( (x, con) => {
+                
+                                                                        return(
+                                                                            <h5 key={con} className={style.changer}>{x}</h5> 
+                                                                        )
+                                                                    })
+                                                                }
 
-                                                        </div>
-                                                    )
-                                                }
-                                        </Draggable>
-                                        {provider.placeholder}
+                                                            </div>
+                                                        )
+                                                    }
+                                            </Draggable>
+                                            {provider.placeholder}
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            }
-                        </Droppable>
-                    ))
-                }             
-                        
+                                    )
+                                }
+                            </Droppable>
+                        ))
+                    }             
+                </div>
             </DragDropContext>
-            <button onClick={onSubmit}>Guardar calendario</button>
+            <div>
+                <button class="btn btn-primary" id={style.btn} onClick={onSubmit}>Guardar calendario</button>
+            </div>
         </div>
     )
 }

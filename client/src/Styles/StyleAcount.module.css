@@ -1,0 +1,11 @@
+.content{
+    width: 100%;
+    padding: 2%;
+    margin-top:20%;
+    margin-bottom: 20%;
+    border: 1px solid rgba(128, 128, 128, 0.534);
+}
+.container{
+    max-width: 70vh;
+    margin: auto;
+}
