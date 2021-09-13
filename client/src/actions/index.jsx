@@ -216,10 +216,10 @@ export function login(user){
 }
 
 
-export function createIngredient(ingredient){
+export function createIngredient(ingredient, token){
   return async function(dispatch){
     try{
-      const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient})
+      const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient}, config(token))
       return dispatch({type:CREATE_INGREDIENT})
     }catch(error){
       alert("No se creó el ingrediente")
@@ -243,10 +243,10 @@ export function setFormCategory(payload){
   return {type: SET_FORM_CATEGORY, payload}
 }
 
-export function createCategory(category){
+export function createCategory(category,token){
   return async function(dispatch){
     try{
-      const newCategory = await axios.post(CATEGORY_URL, {...category})
+      const newCategory = await axios.post(CATEGORY_URL, {...category}, config(token))
       return dispatch({type:CREATE_CATEGORY})
     }catch(error){
       alert("No se creó la categoría")

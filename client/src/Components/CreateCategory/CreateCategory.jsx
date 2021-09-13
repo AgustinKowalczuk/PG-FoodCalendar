@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { createCategory } from "../../actions";
 
 export default function CreateCategory(props) {
     const dispatch = useDispatch();
-    const initialValues = {}
+    const initialValues = {};
+    const token = useSelector(state => state.token);
 
     useEffect(() => {
        formik.values.name=''
@@ -21,7 +22,7 @@ export default function CreateCategory(props) {
         return error
     }
     const onSubmit = (e) => {
-        dispatch(createCategory(formik.values))
+        dispatch(createCategory(formik.values, token))
         alert('Tu categoría ha sido creada!')
     }
     const formik = useFormik({

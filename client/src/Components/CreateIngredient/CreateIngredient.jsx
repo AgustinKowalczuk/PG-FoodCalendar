@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { createIngredient} from "../../actions";
 
 export default function CreateIngredient(props) {
     const dispatch = useDispatch();
-    const initialValues = {}
+    const initialValues = {};
+    const token = useSelector(state => state.token);
 
     useEffect(() => {
        formik.values.name=''
@@ -21,7 +22,7 @@ export default function CreateIngredient(props) {
         return error
     }
     const onSubmit = (e) => {
-        dispatch(createIngredient(formik.values))
+        dispatch(createIngredient(formik.values, token))
         alert('Tu ingrediente ha sido creado!')
     }
     const formik = useFormik({
