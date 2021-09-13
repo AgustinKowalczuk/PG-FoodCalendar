@@ -31,7 +31,7 @@ function App() {
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>
         <Route path = '/AllRecipe' component = {AllRecipe}/>
-        <Route path = '/calendar'component={Calendar}/>
+        <Route exact path = '/calendar'component={Calendar}/>
         <Route path = '/calendar/:id' component={CalendarDetail}/>
       </Switch>
       <Footer/>
