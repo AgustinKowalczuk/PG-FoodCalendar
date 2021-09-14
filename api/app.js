@@ -24,7 +24,7 @@ const cors = (req, res, next) => {
     app.use(express.json());
     app.use(cookieParser());
     app.use(morgan('dev'));
-    // routes
+    // routes 
     app.use(routes);
 
     app.use(function (req, res, next) {
@@ -41,14 +41,3 @@ const cors = (req, res, next) => {
 
     app.listen(port, () => console.log(`${package.name} ${package.version} up on port ${port}`))
 })()
-
-
-
-
-
-
-
-//start the server
-// app.listen(app.get('port'),()=> {
-//     console.log('Server on port',app.get('port'))
-// });

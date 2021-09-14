@@ -16,20 +16,22 @@ export default function DetailRecipe() {
   const stackReceta = useSelector((state) => state.recipeCalendar);
   const borrar = useSelector((state)=>state.deleteRecipe);
   const history = useHistory();
- 
+  const token = useSelector(state => state.token);
+  const user = useSelector(state => state.user);
+  
   //Lo despacho
   useEffect(() => {
-    dispatch(getDetail(id));
+    dispatch(getDetail(id,token));
     window.scrollTo(0,0);
   }, [dispatch, id]);
 
   useEffect(() => {
     if(Object.keys(borrar).length){
-      dispatch(getRecipes())
-      dispatch(cleanDeleteRecipe())
-      history.push('/')
+      dispatch(getRecipes(token));
+      dispatch(cleanDeleteRecipe());
+      history.push('/');
       }
-  }, [history,dispatch])
+  }, [history,dispatch, borrar])
 
  //envio receta al stack del calendario
   function agregarCalendario(receta){
@@ -44,7 +46,7 @@ export default function DetailRecipe() {
     }
 
     function handleClick(id){
-      dispatch(deleteRecipe(id))
+      dispatch(deleteRecipe(id,token));
     }
 
     console.log(stackReceta)
@@ -103,8 +105,13 @@ export default function DetailRecipe() {
                 </tr>
               </table>
           </div>
-          <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
-          <button onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
+          {(!!token && user.category === "Admin") ? 
+            <div>
+              <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
+              <button onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
+            </div>            
+            : <></>
+          }          
           {recipeDetail.availability === 'Available' && 
           <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
           </div>

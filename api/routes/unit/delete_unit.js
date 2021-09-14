@@ -4,8 +4,9 @@ const validate = require("../../controller/validate");
 const router = express.Router();
 const models = require('../../models/models');
 const { Unit } = models;
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.delete('/unit/:id', async (req, res, next) => {
+router.delete('/unit/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
 
     try {
@@ -21,4 +22,4 @@ router.delete('/unit/:id', async (req, res, next) => {
     }
 });
 
-module.exports = router
+module.exports = router;

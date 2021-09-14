@@ -1,11 +1,15 @@
-import React from 'react'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
-import { login } from '../../actions/index'
+import React, { useEffect } from 'react';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions';
+import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
 
 export default function Login() {
+    const token = useSelector(state => state.token);
+    const user = useSelector(state => state.user);
+    const history = useHistory();
 
     const dispatch = useDispatch()
     const initialValues= {
@@ -25,8 +29,15 @@ export default function Login() {
             ),
     })
 
+    useEffect(() => {
+        if (token) {
+            history.push('/');
+            sessionStorage.token = token;
+            sessionStorage.user = JSON.stringify(user);
+        }
+    }, [token]);
+    
     const onSubmit = (value) => {
-        console.log('Submit value', value)
         dispatch(login(value))
     }
 
@@ -36,21 +47,19 @@ export default function Login() {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
-
                 <Form>
                     <div className={style.content}>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" name="email" className="form-control" id="exampleInputEmail1" placeholder='Escribe aqui'/>
+                            <Field type="email" name="email" className="form-control" id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui'/>
+                            <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
-
-                        <button id="emailHelp" className="btn btn-primary" type="submit">Registrar</button>
+                        <button id="emailHelp" className="btn btn-primary" type="submit">Ingresar</button>
                     </div>
                 </Form>
             </Formik>
