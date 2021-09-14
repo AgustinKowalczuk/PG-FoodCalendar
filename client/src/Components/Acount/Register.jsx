@@ -52,22 +52,22 @@ export default function Register() {
 
                         <div className="mb-3">
                             <label className="form-label">First name</label>
-                            <Field type="text" className="form-control" id="exampleInputEmail1" name="name" placeholder='Escribe aqui'/>
+                            <Field type="text" className="form-control" id="exampleInputEmail1" name="name" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="name"/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Last name</label>
-                            <Field type="text" className="form-control" id="exampleInputEmail1" name="surname" placeholder='Escribe aqui'/>
+                            <Field type="text" className="form-control" id="exampleInputEmail1" name="surname" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="surname"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='Escribe aqui'/>
+                            <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <Field type="password" className="form-control" id="exampleInputEmail1" name="password" placeholder='Escribe aqui'/>
+                            <Field type="password" className="form-control" id="exampleInputEmail1" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
 
