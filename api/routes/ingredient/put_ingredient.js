@@ -4,8 +4,9 @@ const { Ingredient } = require("../../models/models");
 const validate = require("../../controller/validate");
 const { ingredientValidation } = require("../../controller/router_validate/ingredient_route_validate");
 const { normalizeIngredients } = require("../../controller/normalize");
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.put('/ingredients/:id', async (req, res, next) => {
+router.put('/ingredients/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
     const { name } = req.body;
 

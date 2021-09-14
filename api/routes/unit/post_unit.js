@@ -3,8 +3,9 @@ const { normalizeUnits } = require("../../controller/normalize");
 const { unitValidation } = require("../../controller/router_validate/unit_route_validate");
 const { Unit } = require("../../models/models");
 const router = express.Router();
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.post('/unit', async (req, res, next) => {
+router.post('/unit', auth, authAdmin, async (req, res, next) => {
     const { name } = req.body;
 
     try {

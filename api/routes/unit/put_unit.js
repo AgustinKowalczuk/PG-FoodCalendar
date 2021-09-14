@@ -4,8 +4,9 @@ const { unitValidation } = require("../../controller/router_validate/unit_route_
 const validate = require("../../controller/validate");
 const { Unit } = require("../../models/models");
 const router = express.Router();
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.put('/unit/:id', async (req, res, next) => {
+router.put('/unit/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
     const { name } = req.body;
 

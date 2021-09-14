@@ -3,8 +3,9 @@ const { normalizeRecipes } = require("../../controller/normalize");
 const { postRecipeValidation } = require("../../controller/router_validate/recet_route_validate");
 const { Recipe, Ingredient, Unit, Category } = require("../../models/models");
 const router = express.Router()
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.post('/recipe', async (req, res, next) => {
+router.post('/recipe', auth, authAdmin, async (req, res, next) => {
     const { name, difficulty, rating, preparation, img, premium, availability } = req.body;
     let { category, ingredients } = req.body;
 
