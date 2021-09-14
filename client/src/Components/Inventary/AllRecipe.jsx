@@ -6,9 +6,9 @@ import Cards from '../Cards/Cards'
 export default function AllRecipe() {
         const dispatch = useDispatch()
         const allRecipes = useSelector((state) => state.recipes);
-
+        const token = useSelector(state => state.token);
         useEffect(() => {
-          dispatch(getRecipes());
+          dispatch(getRecipes(token));
         }, [dispatch]);
      
 

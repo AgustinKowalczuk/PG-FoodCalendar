@@ -26,7 +26,11 @@ import {
   GET_CALENDAR_DETAIL,
   GET_CALENDAR_USER,
   DELETE_RECIPE,
-  CLEAN_DELETE_RECIPE
+  CLEAN_DELETE_RECIPE,
+  LOGIN,
+  CREATE_RECIPE,
+  CREATE_CALENDAR,
+  CLEAN_NEW_CALENDAR
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -37,7 +41,6 @@ var initialState = {
   ingredients: [],
   category:[],
   detail:{},
-  update:{},
   unit: [],
   difficulty:[],
   page: 1,
@@ -47,10 +50,14 @@ var initialState = {
   toggleAddCategory:false,
   recipeCalendar: [],
   newRecipe:false,
+  newRecipeId: "",
   calendary:[],
   calendarDetail:[],
   calendarUser:[],
-  deleteRecipe:{}
+  deleteRecipe:{},
+  token: null,
+  user: null,
+  newCalendar: false
 };
 
 function reducer(state = initialState, action) {
@@ -110,8 +117,6 @@ function reducer(state = initialState, action) {
       case UPDATE_RECIPE:
         return{
           ...state,
-          update: action.payload,
-          detail:action.payload,
           newRecipe: true
             } 
       case GET_UNIT:
@@ -153,7 +158,12 @@ function reducer(state = initialState, action) {
           ...state,
           page: action.payload
         }    
-        
+      case CREATE_RECIPE:
+        return {
+          ...state,
+          newRecipe: true,
+          newRecipeId: action.payload.id
+        }
       case CREATE_INGREDIENT:
           return {
             ...state,
@@ -172,7 +182,8 @@ function reducer(state = initialState, action) {
       case CLEAN_NEW_RECIPE:
         return {
           ...state,
-          newRecipe: false
+          newRecipe: false,
+          newRecipeId: ""
         }
       case DELETE_INVENTARY:
         return {
@@ -209,7 +220,22 @@ function reducer(state = initialState, action) {
           ...state,
           deleteRecipe:{}
         }
-
+      case CREATE_CALENDAR:
+        return {
+          ...state,
+          newCalendar: true
+        }
+      case CLEAN_NEW_CALENDAR:
+        return {
+          ...state,
+          newCalendar: false
+        }
+      case LOGIN:
+        return {
+          ...state,
+          token: action.payload.token, 
+          user: action.payload.user
+        }
     default:
       return state;
   }

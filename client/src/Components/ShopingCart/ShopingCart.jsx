@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Recipes from "./Recipes/Recipes";
 import daysColumns from "./Lista/dias";
 import { useSelector, useDispatch } from "react-redux";
-import { postcalendar } from "../../actions/index";
+import { cleanNewCalendar, clearInventary, postcalendar } from "../../actions/index";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import style from "../../Styles/StyleCardShop.module.css";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 export default function ShopingCart() {
   const dispatch = useDispatch();
@@ -14,6 +15,17 @@ export default function ShopingCart() {
   const [reOrder, setReOrder] = useState([...recipes]);
   const [text, setText] = useState("");
   const [sens, setSens] = useState([]);
+  const token = useSelector(state => state.token);
+  const newCalendar = useSelector(state => state.newCalendar);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (newCalendar) {
+      history.push('calendar/user');
+      dispatch(cleanNewCalendar());
+      dispatch(clearInventary());
+    }
+  },[dispatch, newCalendar, history])
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
@@ -76,7 +88,7 @@ export default function ShopingCart() {
   };
 
   const onSubmit = () => {
-    dispatch(postcalendar(text, sens));
+    dispatch(postcalendar({name:text, calendar: sens}, token));
   };
   const handeChange = (event) => {
     setText(event.target.value);
