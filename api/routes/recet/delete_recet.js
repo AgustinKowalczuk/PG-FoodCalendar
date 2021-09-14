@@ -3,8 +3,9 @@ const { normalizeRecipes } = require("../../controller/normalize");
 const validate = require("../../controller/validate");
 const { Recipe } = require("../../models/models");
 const router = express.Router()
+const { auth, authAdmin } = require('../../controller/auth');
 
-router.delete('/recipe/:id', async (req, res, next) => {
+router.delete('/recipe/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
 
     try {

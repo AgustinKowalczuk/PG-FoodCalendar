@@ -7,11 +7,12 @@ export default function CalendarDetail() {
         const dispatch = useDispatch();
         const history = useHistory();
         const calendarDetail = useSelector((state) => state.calendarDetail);
+        const token = useSelector(state => state.token);
         console.log(calendarDetail);
         let arrDays = new Array(7).fill(0);
         arrDays = arrDays.map((e, i) => e + i + 1);
         const handleClick = (id) => {
-                dispatch(getDetail(id));
+                dispatch(getDetail(id,token));
                 history.push(`/recipe/${id}`)
         }
         return (

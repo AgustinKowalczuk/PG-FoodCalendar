@@ -6,14 +6,14 @@ import { getCategory, FilterRecipeByCategory, getRecipes } from "../../../../../
 
 
 export default function FilteredByCategory() {
-
+    const token = useSelector(state => state.token);
     const dispatch = useDispatch();
 
     const category = useSelector((state) => state.category)
 
     const handleFilterChange = (e) => {
-        if (e.target.value === "-") dispatch(getRecipes())
-        else if (e.target.value !== "-") dispatch(FilterRecipeByCategory(e.target.value))
+        if (e.target.value === "-") dispatch(getRecipes(token))
+        else if (e.target.value !== "-") dispatch(FilterRecipeByCategory(e.target.value,token))
         console.log(e.target.value)
     }
 

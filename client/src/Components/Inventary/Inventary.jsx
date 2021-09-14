@@ -30,9 +30,12 @@ export default function Inventary() {
                                         </div>  
                                 ))}
                         </div>
+                        {(stackReceta.length > 0) && 
                         <div>
                                 <button className="btn btn-danger" onClick={()=>vaciar()}>Vaciar</button>
                         </div>
+                        }
+                        
                 </div>
         )
 }

@@ -3,8 +3,9 @@ const { normalizeCategories } = require("../../controller/normalize");
 const { categoryValidation } = require("../../controller/router_validate/category_route_validate");
 const router = express.Router();
 const { Category } = require("../../models/models");
+const { auth } = require('../../controller/auth');
 
-router.post('/category', async (req, res, next) => {
+router.post('/category', auth, async (req, res, next) => {
     const { name } = req.body;
 
     try {

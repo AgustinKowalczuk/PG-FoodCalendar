@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router()
 
 //Requerir las rutas
-//get 
+//get   
 const get_recet = require('./recet/get_recet.js');
 const get_ingredients =require('./ingredient/get_ingredient.js');
 const get_unit = require('./unit/get_unit.js');
 const get_category = require('./category/get_category.js');
 const get_user = require('./user/get_user.js');
 const get_calendar = require('./calendar/get_calendar.js');
-//put
+//put 
 const put_recet = require('./recet/put_recet.js');
 const put_ingredients= require('./ingredient/put_ingredient.js');
 const put_unit = require('./unit/put_unit.js');
