@@ -287,7 +287,7 @@ export default function UpdateForm() {
         <button type="submit" class="btn btn-primary mb-3">
             Actualizar
           </button>
-         </div>
+        </div>
       </form>
     </div>
   );

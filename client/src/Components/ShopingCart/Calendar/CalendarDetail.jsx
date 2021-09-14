@@ -16,20 +16,20 @@ export default function CalendarDetail() {
         }
         return (
                 <div>
-                <h4>Detalle del calendario:</h4>
+                        <h4>Detalle del calendario:</h4>
                         <h3>{calendarDetail[0]?.name}</h3>
                         <table>
                                 <tr>
                                         {arrDays.map(e => <th>{`Día ${e}`}</th>)}
                                 </tr>
                                 <tr>
-                               {calendarDetail[0]?.calendar?.map((e) =>(
-                                        <td><button onClick={() => handleClick(e.firstRecipe.id)}>{e.firstRecipe.name}</button></td> 
+                                        {calendarDetail[0]?.calendar?.map((e) => (
+                                                <td><button onClick={() => handleClick(e.firstRecipe.id)}>{e.firstRecipe.name}</button></td>
                                         ))}
                                 </tr>
                                 <tr>
-                                {calendarDetail[0]?.calendar?.map((e) =>(
-                                        <td><button onClick={() => handleClick(e.secondRecipe.id)}>{e.secondRecipe.name}</button></td> 
+                                        {calendarDetail[0]?.calendar?.map((e) => (
+                                                <td><button onClick={() => handleClick(e.secondRecipe.id)}>{e.secondRecipe.name}</button></td>
                                         ))}
                                 </tr>
                         </table>

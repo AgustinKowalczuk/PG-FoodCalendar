@@ -7,26 +7,26 @@ export default function Calendar() {
     const state = useSelector(state => state.calendary)
     const dispatch = useDispatch()
     useEffect(() => {
-      dispatch(getCalendar())
-   }, [dispatch])
+        dispatch(getCalendar())
+    }, [dispatch])
 
     return (
         <div>
             <h1>Todos los calendarios</h1>
-            {state?.map((e)=>{
+            {state?.map((e) => {
                 return (
                     <div key={e.id}>
                         <label>Nombre del Calendario</label>
                         <Link to={`/calendar/${e.id}`}>
-                            <button onClick={()=>dispatch(getCalendarDetail(e.id))}>{e.name}</button>
+                            <button onClick={() => dispatch(getCalendarDetail(e.id))}>{e.name}</button>
                         </Link>
-                            <div>
-                    </div> 
+                        <div>
+                        </div>
                     </div>
                 )
             })}
         </div>
-        
+
     )
 }
 

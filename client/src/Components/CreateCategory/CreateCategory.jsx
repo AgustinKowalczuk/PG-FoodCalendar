@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { createCategory } from "../../actions";
 
 export default function CreateCategory(props) {
@@ -8,14 +8,14 @@ export default function CreateCategory(props) {
     const initialValues = {}
 
     useEffect(() => {
-       formik.values.name=''
+        formik.values.name = ''
     }, [props.toggleCat])
-    
+
     const validate = (values) => {
         let error = {}
-        if(!values.name){
+        if (!values.name) {
             error.name = "Se requiere nombre"
-        } else if(!/^[^{}<>#$%&~^`/*+¿?¡!@]*$/g.test(values.name)){
+        } else if (!/^[^{}<>#$%&~^`/*+¿?¡!@]*$/g.test(values.name)) {
             error.name = "No es texto"
         }
         return error
@@ -30,30 +30,30 @@ export default function CreateCategory(props) {
         onSubmit,
         validate
     })
-    return ( 
+    return (
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <div>
                     <label>Deseas crear una categoría nueva?</label><br />
                     <input
-                    onChange={formik.handleChange}
-                    type="text"
-                    value={formik.values?.name}
-                    onBlur={formik.handleBlur}
-                    name="name"
-                    placeholder="Agrega tu categoría"
+                        onChange={formik.handleChange}
+                        type="text"
+                        value={formik.values?.name}
+                        onBlur={formik.handleBlur}
+                        name="name"
+                        placeholder="Agrega tu categoría"
                     />
                     {formik.errors.name && formik.touched.name === true ? (
-                    <div>
-                    <span>{formik.errors.name}</span>
-                    </div>
+                        <div>
+                            <span>{formik.errors.name}</span>
+                        </div>
                     ) : null}
 
                     <button
-                    type='submit'
-                    disabled={props.category?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
+                        type='submit'
+                        disabled={props.category?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
                 </div>
-           </form>
+            </form>
         </div>
-     );
+    );
 }
