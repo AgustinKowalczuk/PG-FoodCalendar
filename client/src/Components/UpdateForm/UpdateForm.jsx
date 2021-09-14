@@ -17,6 +17,7 @@ export default function UpdateForm() {
   const toggleUpdateRecipe = useSelector((state) => state.newRecipe)
   let category = useSelector((state)=>state.category);
   const formCater=useSelector((state)=>state.formCategory)
+  const token = useSelector(state => state.token);
 
   useEffect(() => {
     dispatch(getIngredients());
@@ -110,7 +111,7 @@ export default function UpdateForm() {
     if(formik.values.availability==='true'){
       formik.values.availability=true
     }
-    dispatch(putRecipe(update.id,values));
+    dispatch(putRecipe(update.id,values,token));
     console.log("Values submit", values);
     console.log("formulario enviado");
   };

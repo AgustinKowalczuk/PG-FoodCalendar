@@ -1,30 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react";
 import { searchRecipes } from "../../actions/index"
 
 
 
 export default function SearchBar() {
-
-  const [input, setInput] = useState("")
+  const token = useSelector(state => state.token);
+  const [input, setInput] = useState("");
 
   const handleInputChange = (e) => {  
     setInput(e.target.value)
   }
 
-
-
-  
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSearch = ( e )=> {
     if(input === "") return alert("Ingresa una Receta")
-    dispatch(searchRecipes(input))    
+    dispatch(searchRecipes(input,token))    
   }
-
 
   return (
     <div class="d-flex">

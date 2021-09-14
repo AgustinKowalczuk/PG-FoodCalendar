@@ -2,6 +2,7 @@ const express = require("express");
 const { calendarValidation } = require("../../controller/router_validate/calendar_route_validate");
 const { Calendar, Recipe, User } = require("../../models/models");
 const { auth } = require('../../controller/auth');
+const { normalizeCalendar } = require("../../controller/normalize");
 const router = express.Router();
 
 router.post('/calendar', auth, async (req, res, next) => {

@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect,useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {  FilterRecipeByDifficulty, getRecipes } from "../../../../../actions/index"
 
 
 
 export default function FilteredByDifficulty() {
-
+    const token = useSelector(state => state.token);
     const dispatch = useDispatch();
     const [difficulty, setDifficulty] = useState("")
     
@@ -16,7 +16,7 @@ export default function FilteredByDifficulty() {
     }
 
     useEffect(() => {
-       if(difficulty === "-") dispatch(getRecipes())
+       if(difficulty === "-") dispatch(getRecipes(token))
        else if( difficulty !== "-")dispatch(FilterRecipeByDifficulty(difficulty))
     }, [dispatch,difficulty])
 

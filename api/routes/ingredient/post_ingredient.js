@@ -3,9 +3,9 @@ const { normalizeIngredients } = require("../../controller/normalize");
 const { ingredientValidation } = require("../../controller/router_validate/ingredient_route_validate");
 const router = express.Router();
 const { Ingredient } = require("../../models/models");
-const { auth, authAdmin } = require('../../controller/auth');
+const { auth } = require('../../controller/auth');
 
-router.post('/ingredients', auth, authAdmin, async (req, res, next) => {
+router.post('/ingredients', auth, async (req, res, next) => {
     const { name } = req.body;
 
     try {

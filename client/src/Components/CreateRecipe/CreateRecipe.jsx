@@ -19,9 +19,10 @@ export default function CreateRecipe() {
   let category = useSelector((state)=>state.category);
   const formCater=useSelector((state)=>state.formCategory);
   const history = useHistory();
-  const toggleUpdateRecipe = useSelector((state) => state.newRecipe)
+  const newRecipe = useSelector((state) => state.newRecipe)
+  const token = useSelector(state => state.token);
+  const newRecipeId = useSelector(state => state.newRecipeId);
   
-
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getCategory());
@@ -46,12 +47,17 @@ export default function CreateRecipe() {
   }
  
   useEffect(() =>{
-    if(toggleUpdateRecipe){
-     history.push('/');
-      dispatch(cleanNewRecipe())
+    if(newRecipe){
+      dispatch(getDetail(newRecipeId,token));
     }
-    }, [dispatch, history, toggleUpdateRecipe])
+    }, [dispatch, history, newRecipe]);
 
+    useEffect(() =>{
+      if(newRecipeId){
+        history.push('/recipe/' + newRecipeId);
+        dispatch(cleanNewRecipe());
+      }
+    }, [dispatch, history, newRecipeId]);
    
   const initialValues = {
     name: "",
@@ -99,9 +105,8 @@ export default function CreateRecipe() {
     if(formik.values.availability==='true'){
       formik.values.availability=true
     }
-    dispatch(createRecipe(formik.values));
+    dispatch(createRecipe(formik.values,token));
     console.log("Values submit", values);
-
   };
   const onChangeIngredients = (values) =>{
     formik.values.ingredients = values
