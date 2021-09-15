@@ -6,6 +6,8 @@ import * as BsIcons from "react-icons/bs"
 
 import * as BiIcons from "react-icons/bi"
 
+import * as IoIcons from "react-icons/io5"
+
 
 export const SidebarDataNotUser = [
     {
@@ -41,17 +43,16 @@ export const SidebarDataUser= [
         path: '/',
         icon: <AiIcons.AiFillHome/>,
         cName:'nav-text'
-    },
-    {
-        title:'Crear Receta',
-        path: '/create/recipe',
-        icon: <BsIcons.BsPencilSquare/>,
+    },{
+        title:'Mis Calendarios',
+        path: '/calendar/user',
+        icon: <AiIcons.AiOutlineCalendar/>,
         cName:'nav-text'
     },
     {
-        title:'Mis Calendario',
-        path: '/calendar/user',
-        icon: <AiIcons.AiOutlineCalendar/>,
+        title:'Crea tu calendario',
+        path: '/shop',
+        icon: <IoIcons.IoCreateOutline/>,
         cName:'nav-text'
     },
     {
@@ -76,7 +77,20 @@ export const SidebarDataAdmin = [
         path: '/AllRecipe',
         icon: <BiIcons.BiBookHeart/>,
         cName:'nav-text'
-    }
+    },
+    {
+        title:'Crear Receta',
+        path: '/create/recipe',
+        icon: <BsIcons.BsPencilSquare/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Todos los Calendarios',
+        path: '/create/recipe',
+        icon: <IoIcons.IoDesktopOutline/>,
+        cName:'nav-text'
+    },
+
 ]
 
 export const filterData = (token, user) => {
