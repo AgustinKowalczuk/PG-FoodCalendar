@@ -10,10 +10,11 @@ export default function Home() {
 
         const dispatch = useDispatch()
         const allRecipes = useSelector((state) => state.recipes);
+        const token = useSelector(state => state.token);
 
         useEffect(() => {
-                dispatch(getRecipes());
-        }, [dispatch]);
+                dispatch(getRecipes(token));
+        }, [dispatch, token]);
      
         return (
                 <div class={style.order}>

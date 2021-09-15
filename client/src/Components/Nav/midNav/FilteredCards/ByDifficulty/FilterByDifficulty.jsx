@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch ,useSelector} from "react-redux"
 import { FilterRecipeByDifficulty, getRecipes } from "../../../../../actions/index"
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 
 
 export default function FilteredByDifficulty() {
-
+    const token = useSelector(state => state.token);
     const dispatch = useDispatch();
     const [difficulty, setDifficulty] = useState("")
     const [isOpen, setIsOpen] = useState(false)
@@ -19,8 +19,9 @@ export default function FilteredByDifficulty() {
     }
 
     useEffect(() => {
-        dispatch(getRecipes())
-    }, [dispatch])
+       if(difficulty === "-") dispatch(getRecipes(token))
+       else if( difficulty !== "-")dispatch(FilterRecipeByDifficulty(difficulty))
+    }, [dispatch,difficulty])
 
     return (
         <div >

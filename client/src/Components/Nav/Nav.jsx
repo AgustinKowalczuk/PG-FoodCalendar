@@ -7,9 +7,11 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { IconContext } from 'react-icons';
 import './Nav.css'
-
+import { useSelector } from "react-redux";
 
 export default function Nav() {
+  const token = useSelector(state => state.token);
+  const user = useSelector(state => state.user);
 
 
   const [sidebar, setSidebar] = useState(false)

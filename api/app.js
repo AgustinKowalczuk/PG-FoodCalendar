@@ -41,14 +41,3 @@ const cors = (req, res, next) => {
 
     app.listen(port, () => console.log(`${package.name} ${package.version} up on port ${port}`))
 })()
-
-
-
-
-
-
-
-//start the server
-// app.listen(app.get('port'),()=> {
-//     console.log('Server on port',app.get('port'))
-// });

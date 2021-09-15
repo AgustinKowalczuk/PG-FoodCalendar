@@ -8,10 +8,10 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function AllRecipe() {
         const dispatch = useDispatch()
         const allRecipes = useSelector((state) => state.recipes);
-
+        const token = useSelector(state => state.token);
         useEffect(() => {
-                dispatch(getRecipes());
-        }, [dispatch]);
+          dispatch(getRecipes(token));
+        }, [dispatch, token]);
      
 
         return (

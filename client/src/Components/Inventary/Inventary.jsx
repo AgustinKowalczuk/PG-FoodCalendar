@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteInventary, clearInventary } from '../../actions';
-
-//import Style from "../../Styles/StyleInventary.module.css";
+import style from "../../Styles/StyleInventary.module.css";
 
 
 
@@ -10,22 +9,33 @@ export default function Inventary() {
        let stackReceta = useSelector((state)=>state.recipeCalendar)
        const dispatch = useDispatch();
 
-       function deleteRecipe(id){
-               dispatch(deleteInventary(id))
+       function deleteRecipe(i){
+               dispatch(deleteInventary(i))
        }
        function vaciar() {
            dispatch(clearInventary())
        }
 
         return (
-                <div id={stackReceta.id}>
-                <h6>Aca van las recetas del calendario </h6>
-                {stackReceta?.map((x)=>(
-                <li> <h6>{x.name}</h6>
-                <button onClick={()=>deleteRecipe(x.id)}>X</button> 
-               </li>  
-                ))}
-                <button onClick={()=>vaciar()}>Vaciar</button>
+                <div id={style.stack}>
+                        <div className={style.title}>
+                                <h6>Aca van las recetas del calendario </h6>
+                        </div>
+                        <div className={style.contentRecipes}>
+
+                                {stackReceta?.map((x,i)=>(
+                                        <div className={style.recipes}> 
+                                                <h6>{x.name}</h6>
+                                                <button className="btn btn-danger" id={style.exit} onClick={()=>deleteRecipe(i)}>X</button> 
+                                        </div>  
+                                ))}
+                        </div>
+                        {(stackReceta.length > 0) && 
+                        <div>
+                                <button className="btn btn-danger" onClick={()=>vaciar()}>Vaciar</button>
+                        </div>
+                        }
+                        
                 </div>
         )
 }

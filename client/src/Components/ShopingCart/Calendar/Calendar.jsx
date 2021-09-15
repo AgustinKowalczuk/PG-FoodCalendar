@@ -1,18 +1,41 @@
-import React from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
-import style from '../../../Styles/StyleCardShop.module.css'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCalendar, getCalendarDetail, getCalendarUser } from '../../../actions'
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
-export default function Calendar(props) {
-    
+export default function Calendar( {admin}) {
+    const state = useSelector(state => state.calendary)
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.token);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (admin) {
+            dispatch(getCalendar(token));
+        }
+        else {
+            dispatch(getCalendarUser(token));
+        }      
+   }, [dispatch,location])
+
     return (
-        <table className={style.contenedorCalendar}>
-            <td className={style.horarios}> 
-                <tr><h5>Horarios</h5></tr>
-                <tr><p>Almuerzo</p></tr>
-                <tr><p>cena</p></tr>
-            </td>
-                
-        </table>
+        <div>
+            <h1>Todos los calendarios</h1>
+            {state?.map((e)=>{
+                return (
+                    <div key={e.id}>
+                        <label>Nombre del Calendario</label>
+                        <Link to={`/calendar/${e.id}`}>
+                            <button onClick={()=>dispatch(getCalendarDetail(e.id,token))}>{e.name}</button>
+                        </Link>
+                            <div>
+                    </div> 
+                    </div>
+                )
+            })}
+        </div>
+        
     )
 }
 

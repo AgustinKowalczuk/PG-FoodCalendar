@@ -21,7 +21,16 @@ import {
   CREATE_CATEGORY,
   CLEAN_NEW_RECIPE,
   DELETE_INVENTARY,
-  CLEAR_INVENTARY
+  CLEAR_INVENTARY,
+  GET_CALENDAR,
+  GET_CALENDAR_DETAIL,
+  GET_CALENDAR_USER,
+  DELETE_RECIPE,
+  CLEAN_DELETE_RECIPE,
+  LOGIN,
+  CREATE_RECIPE,
+  CREATE_CALENDAR,
+  CLEAN_NEW_CALENDAR
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -32,7 +41,6 @@ var initialState = {
   ingredients: [],
   category:[],
   detail:{},
-  update:{},
   unit: [],
   difficulty:[],
   page: 1,
@@ -41,7 +49,15 @@ var initialState = {
   formCategory:[],
   toggleAddCategory:false,
   recipeCalendar: [],
-  newRecipe:false
+  newRecipe:false,
+  newRecipeId: "",
+  calendary:[],
+  calendarDetail:[],
+  calendarUser:[],
+  deleteRecipe:{},
+  token: null,
+  user: null,
+  newCalendar: false
 };
 
 function reducer(state = initialState, action) {
@@ -101,7 +117,6 @@ function reducer(state = initialState, action) {
       case UPDATE_RECIPE:
         return{
           ...state,
-          update: action.payload,
           newRecipe: true
             } 
       case GET_UNIT:
@@ -143,7 +158,12 @@ function reducer(state = initialState, action) {
           ...state,
           page: action.payload
         }    
-        
+      case CREATE_RECIPE:
+        return {
+          ...state,
+          newRecipe: true,
+          newRecipeId: action.payload.id
+        }
       case CREATE_INGREDIENT:
           return {
             ...state,
@@ -162,17 +182,59 @@ function reducer(state = initialState, action) {
       case CLEAN_NEW_RECIPE:
         return {
           ...state,
-          newRecipe: false
+          newRecipe: false,
+          newRecipeId: ""
         }
       case DELETE_INVENTARY:
         return {
           ...state,
-          recipeCalendar: state.recipeCalendar.filter(x=>x.id !==action.payload)
+          recipeCalendar: state.recipeCalendar.filter((x,index)=> index !==action.payload)
         }
       case CLEAR_INVENTARY:
         return {
           ...state,
           recipeCalendar: []
+        }
+      case GET_CALENDAR:
+        return {
+          ...state,
+          calendary:action.payload
+        }
+      case GET_CALENDAR_DETAIL:
+        return {
+          ...state,
+          calendarDetail:action.payload
+        }
+      case GET_CALENDAR_USER:
+        return {
+          ...state,
+          calendarUser:action.payload
+        }
+      case DELETE_RECIPE:
+          return {
+            ...state,
+            deleteRecipe: action.payload
+          }
+      case CLEAN_DELETE_RECIPE:
+        return {
+          ...state,
+          deleteRecipe:{}
+        }
+      case CREATE_CALENDAR:
+        return {
+          ...state,
+          newCalendar: true
+        }
+      case CLEAN_NEW_CALENDAR:
+        return {
+          ...state,
+          newCalendar: false
+        }
+      case LOGIN:
+        return {
+          ...state,
+          token: action.payload.token, 
+          user: action.payload.user
         }
     default:
       return state;
