@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecipes } from '../../actions';
 import Cards from '../Cards/Cards'
+import MidNav from '../Nav/midNav/midNav';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function AllRecipe() {
         const dispatch = useDispatch()
@@ -9,14 +11,17 @@ export default function AllRecipe() {
         const token = useSelector(state => state.token);
         useEffect(() => {
           dispatch(getRecipes(token));
-        }, [dispatch]);
+        }, [dispatch, token]);
      
 
         return (
                 <div>
+                        <SearchBar/>
                         <h3> Encuentra Aqui tu receta favorita</h3>
                         <h6>Añadela al calendario y organiza tu semana</h6>
-                        <Cards allRecipes={allRecipes}/>       
+                        
+                        <MidNav />
+                <Cards allRecipes={allRecipes}/>       
                 </div>
         )
 }

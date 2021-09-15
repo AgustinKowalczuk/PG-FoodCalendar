@@ -1,5 +1,5 @@
 import React from 'react'
-import Cards from '../Cards/Cards'
+import Cards from '../../Cards/Cards'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
