@@ -2,7 +2,6 @@ import React,{ useState } from "react";
 import FilteredByCategory from "./ByCategory/ByCategory";
 import FilteredByDifficulty from "./ByDifficulty/FilterByDifficulty";
 import FilteredByIngredient from "./ByIngredient/FilteredByIngredient";
-import Button from 'react-bootstrap/Button'
 import Dropdown  from 'react-bootstrap/Dropdown'
 
 

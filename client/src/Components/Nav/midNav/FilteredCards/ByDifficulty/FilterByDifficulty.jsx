@@ -10,18 +10,15 @@ export default function FilteredByDifficulty() {
     const token = useSelector(state => state.token);
     const dispatch = useDispatch();
     const [difficulty, setDifficulty] = useState("")
-    const [isOpen, setIsOpen] = useState(false)
+
 
     const handleFilterChange = (e) => {
         setDifficulty(e.target.value)
-        if (e.target.value === "Reset") dispatch(getRecipes())
+        if (e.target.value === "Reset") dispatch(getRecipes(token))
         else if (e.target.value !== "Reset") dispatch(FilterRecipeByDifficulty(e.target.value))
     }
 
-    useEffect(() => {
-       if(difficulty === "-") dispatch(getRecipes(token))
-       else if( difficulty !== "-")dispatch(FilterRecipeByDifficulty(difficulty))
-    }, [dispatch,difficulty])
+    
 
     return (
         <div >
