@@ -32,14 +32,15 @@ export default function Cards(props) {
             >
               <img
                 class="card-img-top"
+                id={style.img}
                 src={e.img}
                 alt="No sé encuentra la imagen"
               />
               <div class="card-body">
-                <h1 class="card-title">{e.name.toUpperCase()}</h1>
-                <h4 class="card-text" id={style.normal}>
+                <h4 class="card-title">{e.name.toUpperCase()}</h4>
+                <h5 class="card-text" id={style.normal}>
                     Dificultad:{e.difficulty}
-                </h4>
+                </h5>
                 <Dificultad difficulty={e.difficulty}/>
               </div>
             </Link>

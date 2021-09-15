@@ -1,34 +1,32 @@
 #link {
     font-size: 1.1em;
     padding: .375rem .75rem;
-    color: #ED7A4D;
+    color: #F2F0D5;
     border: 1px solid rgba(128, 128, 128, 0.53);
     border-radius: .25rem;
 }
 #link:hover{
-    background-color: #9E9D9B;
+    background-color: #F2F0D5;
     color: #1E1803;
 }
 
 #nav{
     width: 100%;
-    background-color: #1E1803;
+    background-color: #B1B1AC;
 }
 
 #noMargin{
     margin-right: 0 !important;
 }
-
-
-
-
-
-
-
-
-
-
-
+#button{
+    border-color:#668C4A;
+    color: #668C4A;
+}
+#button:hover{
+    background-color: #F2F0D5;
+    color:#668C4A;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
 #midNav{
-    background-color:#EDCA4D;
+    background-color:#F2F0D5;
 }
