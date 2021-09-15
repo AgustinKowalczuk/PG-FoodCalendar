@@ -9,7 +9,7 @@ import Pagination from '../Pagination/Pagination'
 
 export default function CardRelacionadas() {
     const allRecipes = useSelector((state) => state.recipes)
-
+    const token = useSelector(state => state.token);
     const dispatch = useDispatch()
     const pages =  useSelector(state => state.page)
     
@@ -22,7 +22,7 @@ export default function CardRelacionadas() {
     }
 
     useEffect(() => {
-        dispatch(getRecipes());
+        dispatch(getRecipes(token));
     }, [dispatch]);
 
 

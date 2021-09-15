@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { getDetail, setRecipeCalendar } from "../../actions";
+import {useHistory} from 'react-router'
+import { cleanDeleteRecipe, deleteRecipe, getDetail, getRecipes, setRecipeCalendar } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
@@ -12,12 +13,25 @@ export default function DetailRecipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.detail);
-  const stackReceta = useSelector((state) => state.recipeCalendar)
+  const stackReceta = useSelector((state) => state.recipeCalendar);
+  const borrar = useSelector((state)=>state.deleteRecipe);
+  const history = useHistory();
+  const token = useSelector(state => state.token);
+  const user = useSelector(state => state.user);
+  
   //Lo despacho
   useEffect(() => {
-    dispatch(getDetail(id));
+    dispatch(getDetail(id,token));
     window.scrollTo(0,0);
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if(Object.keys(borrar).length){
+      dispatch(getRecipes(token));
+      dispatch(cleanDeleteRecipe());
+      history.push('/');
+      }
+  }, [history,dispatch, borrar])
 
  //envio receta al stack del calendario
   function agregarCalendario(receta){
@@ -30,6 +44,11 @@ export default function DetailRecipe() {
     return alert('Sólo ser permiten 14 recetas por calendario.')
     }
     }
+
+    function handleClick(id){
+      dispatch(deleteRecipe(id,token));
+    }
+
     console.log(stackReceta)
   return (
     <div class={style.order}>
@@ -86,7 +105,13 @@ export default function DetailRecipe() {
                 </tr>
               </table>
           </div>
-          <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
+          {(!!token && user.category === "Admin") ? 
+            <div>
+              <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
+              <button onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
+            </div>            
+            : <></>
+          }          
           {recipeDetail.availability === 'Available' && 
           <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
           </div>

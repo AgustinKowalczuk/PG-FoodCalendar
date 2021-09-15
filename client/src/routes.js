@@ -1,25 +1,22 @@
-// export const RECIPES_URL='https://recetapp-back.herokuapp.com/recipe'
-// export const INGREDIENTS_URL= 'https://recetapp-back.herokuapp.com/ingredients'
-// export const CATEGORY_URL= 'https://recetapp-back.herokuapp.com/category'
-// export const RECIPES_DETAIL_URL= 'https://recetapp-back.herokuapp.com/recipe/details/'
-// export const RECIPES_SEARCH_URL = 'https://recetapp-back.herokuapp.com/recipe/search/'
-// export const REGISTER = 'https://recetapp-back.herokuapp.com/user'
-// export const UNIT_URL = 'https://recetapp-back.herokuapp.com/unit'
-// export const RECIPES_BY_INGREDIENTS_URL = 'https://recetapp-back.herokuapp.com/recipe/filterByIngredient/'
-// export const RECIPES_BY_CATEGORY_URL ='https://recetapp-back.herokuapp.com/recipe/filterByCategory/'
-// export const RECIPES_BY_DIFFICULTY_URL ='https://recetapp-back.herokuapp.com/recipe/filterByDifficulty/'
 
-//Rutas para arreglar
+const URL = 'http://localhost:3001';
+// const URL = 'https://recetapp-back.herokuapp.com';
 
-export const RECIPES_URL='http://localhost:3001/recipe'
-export const INGREDIENTS_URL= 'http://localhost:3001/ingredients'
-export const CATEGORY_URL= 'http://localhost:3001/category'
-export const RECIPES_DETAIL_URL= 'http://localhost:3001/recipe/details/'
-export const RECIPES_SEARCH_URL = 'http://localhost:3001/recipe/search/'
-export const REGISTER = 'http://localhost:3001/user/register'
-export const UNIT_URL = 'http://localhost:3001/unit'
-export const RECIPES_BY_INGREDIENTS_URL = 'http://localhost:3001/recipe/filterByIngredient/'
-export const RECIPES_BY_CATEGORY_URL ='http://localhost:3001/recipe/filterByCategory/'
-export const RECIPES_BY_DIFFICULTY_URL ='http://localhost:3001/recipe/filterByDifficulty/'
-export const LOGIN = 'http://localhost:3001/user/login'
-export const CALENDAR_URL = 'http://localhost:3001/calendar'
+export const RECIPES_URL=`${URL}/recipe`;
+export const RECIPES_USER_URL=`${URL}/recipe/user`;
+export const RECIPES_GUEST_URL=`${URL}/recipe/guest`;
+export const INGREDIENTS_URL= `${URL}/ingredients`;
+export const CATEGORY_URL= `${URL}/category`;
+export const RECIPES_DETAIL_USER_URL= `${URL}/recipe/details/user/`;
+export const RECIPES_DETAIL_GUEST_URL= `${URL}/recipe/details/guest/`;
+export const RECIPES_SEARCH_USER_URL = `${URL}/recipe/search/user/`;
+export const RECIPES_SEARCH_GUEST_URL = `${URL}/recipe/search/guest/`;
+export const REGISTER_URL = `${URL}/user/register`;
+export const LOGIN_URL = `${URL}/user/login`;
+export const UNIT_URL = `${URL}/unit`;
+export const RECIPES_BY_INGREDIENTS_USER_URL = `${URL}/recipe/filterByIngredient/user/`;
+export const RECIPES_BY_INGREDIENTS_GUEST_URL = `${URL}/recipe/filterByIngredient/guest/`;
+export const RECIPES_BY_CATEGORY_USER_URL =`${URL}/recipe/filterByCategory/user/`;
+export const RECIPES_BY_CATEGORY_GUEST_URL =`${URL}/recipe/filterByCategory/guest/`;
+export const CALENDAR_URL = `${URL}/calendar`;
+export const CALENDAR_USER_URL = `${URL}/calendar/user`;

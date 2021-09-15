@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import style from "../../Styles/StyleFrom.module.css";
-import { createRecipe, getIngredients,getCategory } from "../../actions/index";
+import { createRecipe, getIngredients,getCategory, cleanNewRecipe, getDetail } from "../../actions/index";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import SelectCard from "./SelectCard/SelectCard";
@@ -8,6 +8,7 @@ import SelectCategory from "./SelectCategory/SelectCategory";
 import CreateIngredient from "../CreateIngredient/CreateIngredient"
 import CreateCategory from "../CreateCategory/CreateCategory";
 import { orderAZ } from "../../orderFunction/OrderFuncions";
+import {useHistory} from 'react-router-dom'
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
@@ -15,12 +16,17 @@ export default function CreateRecipe() {
   const toggleCat = useSelector((state)=>state.toggleAddCategory)
   let ingre = useSelector((state) => state.ingredients);
   const formIngre = useSelector((state) => state.formIngredients);
-  let category = useSelector((state)=>state.category)
-  const formCater=useSelector((state)=>state.formCategory)
+  let category = useSelector((state)=>state.category);
+  const formCater=useSelector((state)=>state.formCategory);
+  const history = useHistory();
+  const newRecipe = useSelector((state) => state.newRecipe)
+  const token = useSelector(state => state.token);
+  const newRecipeId = useSelector(state => state.newRecipeId);
   
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getCategory());
+
   }, [dispatch,formIngre,toggle,formCater, toggleCat]);
 
   if (ingre[0]?.name !== ' ' && ingre.length > 0){
@@ -39,11 +45,20 @@ export default function CreateRecipe() {
     category = category.sort(orderAZ)
     category.unshift({name: ' '})
   }
-  console.log(category)
-  useEffect(()=>{
-   console.log(formik.values) 
-  },[formCater])
+ 
+  useEffect(() =>{
+    if(newRecipe){
+      dispatch(getDetail(newRecipeId,token));
+    }
+    }, [dispatch, history, newRecipe]);
 
+    useEffect(() =>{
+      if(newRecipeId){
+        history.push('/recipe/' + newRecipeId);
+        dispatch(cleanNewRecipe());
+      }
+    }, [dispatch, history, newRecipeId]);
+   
   const initialValues = {
     name: "",
     preparation: "",
@@ -90,7 +105,7 @@ export default function CreateRecipe() {
     if(formik.values.availability==='true'){
       formik.values.availability=true
     }
-    dispatch(createRecipe(formik.values));
+    dispatch(createRecipe(formik.values,token));
     console.log("Values submit", values);
   };
   const onChangeIngredients = (values) =>{
@@ -237,7 +252,7 @@ export default function CreateRecipe() {
         </div>
 
         <div>
-            <label class="form-label">Tipo de usuario</label>
+            <label class="form-label">Tipo de receta</label>
             <select 
             onChange={formik.handleChange}
             class="form-control"
