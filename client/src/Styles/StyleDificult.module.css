@@ -12,7 +12,7 @@
 .positivo{
     width: 4vh;
     height: 4vh;
-    background-color: rgb(0, 185, 241);
+    background-color: #ED7A4D;
     border: 2px solid rgba(128, 128, 128, 0.562);
     border-radius: 100%;
 }
