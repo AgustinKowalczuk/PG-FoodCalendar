@@ -6,6 +6,7 @@ const { User } = require("../../models/models");
 const router = express.Router();
 const { auth, authAdmin } = require('../../controller/auth');
 
+//El usuario puede modificar sus características.
 router.put('/user/noAdmin/:id', auth, async (req, res, next) => {
     const { id } = req.params;
     const { name, surname, email, password} = req.body;
@@ -35,6 +36,7 @@ router.put('/user/noAdmin/:id', auth, async (req, res, next) => {
     }
 });
 
+//El Admin modifica características de un usuario.
 router.put('/user/admin/:id', auth, authAdmin, async (req, res, next) => {
     const { id } = req.params;
     const { name, surname, email, password, category } = req.body;
