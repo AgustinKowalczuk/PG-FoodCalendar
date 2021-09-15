@@ -69,6 +69,22 @@ const normalize = {
         } else {
             return normalize.normalizeCalendar([calendario])[0];
         }
+    },
+    
+    normalizeReview(review){
+        if (Array.isArray(review)) {
+            return review.map(e => ({
+                id: e._id,
+                owner: !e.owner.name ? e.owner.toString() : normalize.normalizeUsers(e.owner),
+                recipe: !e.recipe.name ? e.recipe.toString() : normalize.normalizeUsers(e.recipe),
+                date: e.date,
+                rating: e.rating,
+                comment: e.comment
+            }));
+        }
+        else {
+            return normalize.normalizeReview([review])[0];
+        }
     }
     
 }

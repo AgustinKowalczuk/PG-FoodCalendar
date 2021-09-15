@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 export default function midNav() {
     return (
-        <div id={style.midNav} className="navbar navbar-light bg-light" >
+        <div id={style.midNav} className="navbar navbar-light" >
             <Order />
             <ByIngredient />
             <ByCategory />

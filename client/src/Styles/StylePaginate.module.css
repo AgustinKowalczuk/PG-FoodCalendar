@@ -1,0 +1,9 @@
+#color{
+    color: #ED7A4D;
+    background-color:#EDCA4D;
+}
+
+#color:hover{
+    background-color: #ED7A4D;
+    color: #1E1803;
+}
