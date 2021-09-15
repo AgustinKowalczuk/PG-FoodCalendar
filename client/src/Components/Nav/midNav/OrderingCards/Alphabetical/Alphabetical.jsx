@@ -1,10 +1,12 @@
-import React, {useState, useEffect}from "react";
-import {  useDispatch } from "react-redux";
-import{orderZA, orderAZ ,orderByDifficulty, orderByDifficultyInv } from '../../../../../actions/index'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Button from 'react-bootstrap/Button'
+import Dropdown  from 'react-bootstrap/Dropdown'
+import { orderZA, orderAZ, orderByDifficulty, orderByDifficultyInv } from '../../../../../actions/index'
+export default function OrderingCards() {
 
-export default function OrderingCards(){
+    const dispatch = useDispatch();
 
-    const dispatch = useDispatch();   
     
     const [order, setOrder] = useState("")
 
@@ -16,23 +18,29 @@ export default function OrderingCards(){
     useEffect(() => {
         if (order === "A-Z") dispatch(orderAZ())
         else if (order === "Z-A") dispatch(orderZA())
-        else if  (order === "↑") dispatch(orderByDifficulty())
-        else if (order === "↓") dispatch(orderByDifficultyInv())
+        else if (order === "Menor") dispatch(orderByDifficulty())
+        else if (order === "Mayor") dispatch(orderByDifficultyInv())
     }, [dispatch, order])
 
 
 
-    return(
-        
-           <select class="nav-link dropdown-toggle" id="navbarDropdown" onChange={(e) => handleOrderChange(e)}>
-               <option>Ordenamiento</option>
-               <option value= "A-Z">"A-Z"</option>
-                <option value= "Z-A">"Z-A"</option>
-                <option value= "↑">"↑"</option>
-                <option value= "↓">"↓"</option>
-            </select>
+    return (
+        <Dropdown>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+                Ordenamiento
+            </Dropdown.Toggle>
 
-    
-    
+            <Dropdown.Menu  >
+            <h4>Por Orden Alfabetico:</h4>       
+               <li><Button variant="light" value= "A-Z"  onClick={(e) => handleOrderChange(e)}>"A-Z"</Button></li>     
+                <li> <Button variant="light" value= "Z-A" onClick={(e) => handleOrderChange(e)}>"Z-A"</Button></li>
+                <Dropdown.Divider />
+                <h4>Por Dificultad:</h4>
+                <li> <Button variant="light" value= "Menor" onClick={(e) => handleOrderChange(e)}> "Menor"</Button></li>
+                <li><Button variant="light" value= "Mayor" onClick={(e) => handleOrderChange(e)}>"Mayor"</Button></li>
+            </Dropdown.Menu>
+        </Dropdown>
+
+
     )
 }

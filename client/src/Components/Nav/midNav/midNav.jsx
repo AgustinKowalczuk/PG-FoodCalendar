@@ -6,6 +6,7 @@ import ByCategory from './FilteredCards/ByCategory/ByCategory'
 import ByDifficulty from './FilteredCards/ByDifficulty/FilterByDifficulty'
 import style from '../../../Styles/StyleNav.module.css'
 import { Link } from 'react-router-dom'
+import FilteredCards from './FilteredCards/FilteredCards'
 
 
 
@@ -13,11 +14,8 @@ export default function midNav() {
     return (
         <div id={style.midNav} className="navbar navbar-light bg-light" >
             <Order />
-            <ByIngredient />
-            <ByCategory />
-            <ByDifficulty />
-            <SearchBar />
-           <Link to='/AllRecipe'><h6> Ver todas la recetas </h6></Link> 
+            <FilteredCards />
+          
         </div>
     )
 }

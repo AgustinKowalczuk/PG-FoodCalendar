@@ -17,3 +17,6 @@
     margin-right: 0 !important;
 }
 
+#midNav{
+    z-index:1;
+}
