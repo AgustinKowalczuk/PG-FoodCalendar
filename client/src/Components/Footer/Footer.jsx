@@ -7,7 +7,7 @@ import style from "../../Styles/StyleNav.module.css"
 export default function Footer() {
 
     return (
-    <div id={style.nav} class="navbar navbar-light bg-light">
+    <div id={style.nav} class="navbar navbar-light">
       <div class="container-fluid">
         <Link class="navbar-brand" to = '/'>
           <img width="55%" height="45%" src= {logo} alt='logo'/>

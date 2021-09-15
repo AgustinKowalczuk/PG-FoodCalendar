@@ -1,7 +1,8 @@
-h1,h2,h3,h4,h5,h6,p,span,label, input, button, option, select, textarea, div{
+h1,h2,h3,h4,h5,h6,p,span,label, input, button, option, select, textarea, a, div, Link{
     font-family: 'Balsamiq Sans', cursive;
     text-transform: none;
     text-indent: 0px;
+    color: #ED7A4D;
 }
 Link{
     text-transform: none;
@@ -9,9 +10,9 @@ Link{
 }
 body {
     min-height:100vh;
+    background-color: #EDCA4D;
 }
 span{
-    color: red;
     font-size: .9rem;
 }
 

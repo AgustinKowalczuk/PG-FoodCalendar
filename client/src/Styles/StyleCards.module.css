@@ -12,12 +12,13 @@
     width: 400px;
     min-width: 20%;
     margin-top: 5px;
+    background-color: #FDFAEF;
+    box-shadow: #1e1803c5 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
 #normal{
     outline: none; 
     text-decoration: none;
-    color:black;
 }
 
 .navFake{
