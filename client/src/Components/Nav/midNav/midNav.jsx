@@ -7,7 +7,7 @@ import FilteredCards from './FilteredCards/FilteredCards'
 
 export default function midNav() {
     return (
-        <div id={style.midNav} className="navbar navbar-light bg-light" >
+        <div id={style.midNav} className="navbar navbar-light" >
             <Order />
             <FilteredCards />
           

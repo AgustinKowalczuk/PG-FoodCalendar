@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react";
 import { searchRecipes } from "../../actions/index"
-
+import styles from "../../Styles/StyleNav.module.css"
 
 
 export default function SearchBar() {
@@ -25,9 +25,9 @@ export default function SearchBar() {
     <div class="d-flex">
       <input
         class="form-control me-2" type="text" placeholder="Buscar" onChange={(e) => handleInputChange(e)} /> 
-      <Link onClick={() => handleSearch()} class="btn btn-outline-success" to={`/search/${input}`} >
+      <Link id={styles.button} onClick={() => handleSearch()} class="btn btn-outline-success" to={`/search/${input}`} >
          Buscar
-       </Link>
+      </Link>
     </div>
   );
 }
