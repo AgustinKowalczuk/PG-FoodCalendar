@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAndToken } from '../../actions';
 import * as GrIcons from "react-icons/gr";
-
+import { IconContext } from 'react-icons';
 
 
 export default function Logout(){  
@@ -16,7 +16,9 @@ export default function Logout(){
 
     return (
         <div>
-            <GrIcons.GrLogout onClick={handleClick}>Logout</GrIcons.GrLogout>
+             <IconContext.Provider value={{ color: '#F2F0D5' }}>
+            <span> <GrIcons.GrLogout onClick={handleClick}/> Logout</span>
+            </IconContext.Provider>
         </div>
     )
 }

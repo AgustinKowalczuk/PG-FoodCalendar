@@ -83,9 +83,9 @@ export default function Nav() {
           }
           {
            ( !!token ) ?
-              <li>
+              
                 <Logout/>
-              </li>:
+              :
               null
           }
             
