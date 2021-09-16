@@ -81,6 +81,14 @@ const validate = {
     noNumberValidate(name) {
         const re = /^[^(0-9)]*$/g;
         if (!re.test(String(name))) throw new Error(`${name} no es un nombre válido`)
+    },
+    likeValidate(like) {
+        const likes = [true, false];
+        if (likes.indexOf(like) < 0) throw new Error(`${like} no es un valor válido para like`);
+    },
+    disabledValidate(disabled) {
+        const disableds = [true, false];
+        if (disableds.indexOf(disabled) < 0) throw new Error(`${disabled} no es un valor válido para disabled`);
     }
 }
 

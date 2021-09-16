@@ -43,7 +43,14 @@ export const SidebarDataUser= [
         path: '/',
         icon: <AiIcons.AiFillHome/>,
         cName:'nav-text'
-    },{
+    },
+    {
+        title:'Todas las Recetas',
+        path: '/AllRecipe',
+        icon: <BiIcons.BiBookHeart/>,
+        cName:'nav-text'
+    },
+    {
         title:'Mis Calendarios',
         path: '/calendar/user',
         icon: <AiIcons.AiOutlineCalendar/>,
@@ -53,12 +60,6 @@ export const SidebarDataUser= [
         title:'Crea tu calendario',
         path: '/shop',
         icon: <IoIcons.IoCreateOutline/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Todas las Recetas',
-        path: '/AllRecipe',
-        icon: <BiIcons.BiBookHeart/>,
         cName:'nav-text'
     },
 
@@ -71,7 +72,6 @@ export const SidebarDataAdmin = [
         icon: <AiIcons.AiFillHome/>,
         cName:'nav-text'
     },
-    
     {
         title:'Todas las Recetas',
         path: '/AllRecipe',
@@ -86,10 +86,16 @@ export const SidebarDataAdmin = [
     },
     {
         title:'Todos los Calendarios',
-        path: '/create/recipe',
+        path: '/calendar',
         icon: <IoIcons.IoDesktopOutline/>,
         cName:'nav-text'
     },
+    {
+        title:'Todos los usuarios',
+        path: '/user',
+        icon: <IoIcons.IoDesktopOutline/>,
+        cName:'nav-text'
+    }
 
 ]
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAndToken } from '../../actions';
 import * as GrIcons from "react-icons/gr";
-import { IconContext } from 'react-icons';
-import swal from 'sweetalert';
 
+import swal from 'sweetalert';
+import style from '../../Styles/StyleLogout.module.css'
 
 export default function Logout(){  
     const dispatch = useDispatch();
@@ -13,13 +13,17 @@ export default function Logout(){
         sessionStorage.token = null;
         sessionStorage.user = null;
         dispatch(setUserAndToken({token: null, user: null}));
+        swal({
+            title: "Haz salido de la cuenta",
+            text: "Saliste de la cuenta exitosamente",
+            icon: "error",
+            button: "Aceptar",
+        })
     }
 
     return (
-        <div>
-             <IconContext.Provider value={{ color: '#F2F0D5' }}>
-            <span> <GrIcons.GrLogout onClick={handleClick}/> Logout</span>
-            </IconContext.Provider>
+        <div className={style.content}>
+            <GrIcons.GrLogout onClick={handleClick}>Logout</GrIcons.GrLogout>
         </div>
     )
 }

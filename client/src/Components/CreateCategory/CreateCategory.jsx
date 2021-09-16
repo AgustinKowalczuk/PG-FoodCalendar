@@ -52,7 +52,8 @@ export default function CreateCategory(props) {
 
                     <button
                     type='submit'
-                    disabled={props.category?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
+                    disabled={props.category?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}
+                    >Agregar</button>
                 </div>
            </form>
         </div>

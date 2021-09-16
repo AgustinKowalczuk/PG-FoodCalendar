@@ -43,6 +43,7 @@ export default function CreateIngredient(props) {
                     onBlur={formik.handleBlur}
                     name="name"
                     placeholder="Agrega tu ingrediente"
+                    class="form-control"
                     />
                     {formik.errors.name && formik.touched.name === true ? (
                     <div>
@@ -52,7 +53,8 @@ export default function CreateIngredient(props) {
 
                     <button
                     type='submit'
-                    disabled={props.ingre?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}>Agregar</button>
+                    disabled={props.ingre?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}
+                    >Agregar</button>
                 </div>
            </form>
         </div>

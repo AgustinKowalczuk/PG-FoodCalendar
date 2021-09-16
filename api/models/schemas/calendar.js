@@ -25,7 +25,8 @@ const calendar = new Schema({
                 return true;
             }
         }
-    }
+    },
+    date: { type: Date, default: Date.now }
 });
 
 module.exports = calendar;

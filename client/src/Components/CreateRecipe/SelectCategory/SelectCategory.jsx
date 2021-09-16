@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 import { useDispatch } from "react-redux"
 import { setFormCategory } from '../../../actions/index'
 import style from '../../../Styles/StyleFrom.module.css'
