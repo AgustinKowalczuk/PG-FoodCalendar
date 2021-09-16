@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions';
 import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
+import swal from 'sweetalert';
 
 export default function Login() {
     const token = useSelector(state => state.token);
@@ -39,6 +40,12 @@ export default function Login() {
     
     const onSubmit = (value) => {
         dispatch(login(value))
+        swal({
+            title: "Ingresaste a tu cuenta",
+            text: "Ingresaste a tu cienta con exito",
+            icon: "success",
+            button: "Aceptar",
+        })
     }
 
     return (
