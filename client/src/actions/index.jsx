@@ -32,7 +32,8 @@ import {
   REGISTER,
   CREATE_RECIPE,
   CREATE_CALENDAR,
-  CLEAN_NEW_CALENDAR
+  CLEAN_NEW_CALENDAR,
+  ADMIN_USERS
 } from "./constants";
 
 import {
@@ -54,6 +55,7 @@ import {
   RECIPES_BY_CATEGORY_USER_URL,
   RECIPES_BY_CATEGORY_GUEST_URL,
   CALENDAR_USER_URL,
+  ADMIN_USERS_URL
 } from "../routes";
 
 import config from './config';
@@ -392,4 +394,19 @@ export function cleanDeleteRecipe(){
 
 export function setUserAndToken(payload){
   return {type: LOGIN, payload}
+}
+
+export function setUserForAdmin(userId, token){
+  return async function (dispatch){
+    try{
+      const usersAdmin = await axios.get(ADMIN_USERS_URL + '/' + userId, config(token));
+      return dispatch({
+        type:ADMIN_USERS,
+        payload: usersAdmin.data
+      })
+    }
+    catch(error){
+      return alert('No existen los usuarios.')
+    }
+  }
 }

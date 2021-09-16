@@ -31,3 +31,4 @@ export const REGISTER = 'REGISTER';
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const CREATE_CALENDAR = 'CREATE_CALENDAR';
 export const CLEAN_NEW_CALENDAR = 'CLEAN_NEW_CALENDAR';
+export const ADMIN_USERS = 'ADMIN_USERS';

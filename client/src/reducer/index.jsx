@@ -30,7 +30,8 @@ import {
   LOGIN,
   CREATE_RECIPE,
   CREATE_CALENDAR,
-  CLEAN_NEW_CALENDAR
+  CLEAN_NEW_CALENDAR,
+  ADMIN_USERS
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -57,7 +58,8 @@ var initialState = {
   deleteRecipe:{},
   token: null,
   user: null,
-  newCalendar: false
+  newCalendar: false,
+  adminUsers: []
 };
 
 function reducer(state = initialState, action) {
@@ -235,6 +237,11 @@ function reducer(state = initialState, action) {
           ...state,
           token: action.payload.token, 
           user: action.payload.user
+        }
+      case ADMIN_USERS:
+        return {
+          ...state,
+          adminUsers: action.payload
         }
     default:
       return state;
