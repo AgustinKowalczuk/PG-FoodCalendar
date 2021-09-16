@@ -17,8 +17,9 @@ router.post('/review/:id', auth, async (req, res, next) => {
         const existentRecipe = await Recipe.findById(recipeId);       
         if(!existentRecipe) return res.status(404).send("La receta con el id proporcionado no existe.");
 
-        await Review.create({ recipe: recipeId, owner: userId, like, comment });
-        const posted = await Review.find({owner: userId});
+        const newReview = await Review.create({ recipe: recipeId, owner: userId, like, comment });
+        const posted = await Review.findById(newReview._id)
+        .populate({path:'owner', select:['name','surname']});
         return res.json(normalizeReview(posted));
     } catch (error) {
         next(error);
