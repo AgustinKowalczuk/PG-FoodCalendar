@@ -30,7 +30,9 @@ import {
   LOGIN,
   CREATE_RECIPE,
   CREATE_CALENDAR,
-  CLEAN_NEW_CALENDAR
+  CLEAN_NEW_CALENDAR,
+  POST_COMENTARIO,
+  GET_COMENTARIOS_RECETA
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -57,7 +59,8 @@ var initialState = {
   deleteRecipe:{},
   token: null,
   user: null,
-  newCalendar: false
+  newCalendar: false,
+  comments:[],
 };
 
 function reducer(state = initialState, action) {
@@ -236,6 +239,17 @@ function reducer(state = initialState, action) {
           token: action.payload.token, 
           user: action.payload.user
         }
+       case POST_COMENTARIO:
+         return {
+           ...state,
+           comments:[action.payload,...state.comments]
+         } 
+        case GET_COMENTARIOS_RECETA:
+          return {
+            ...state,
+            comments: action.payload.reverse()
+        }
+
     default:
       return state;
   }
