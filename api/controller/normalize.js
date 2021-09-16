@@ -15,7 +15,8 @@ const normalize = {
                 })),
                 category: e.category.map(j => j.name),
                 premium: e.premium === true ? "Premium" : "Free",
-                availability: e.availability === true ? "Available" : "Unavailable"
+                availability: e.availability === true ? "Available" : "Unavailable",
+                disabled: e.disabled
             }));
         } else {
             return normalize.normalizeRecipes([recipes])[0];
@@ -78,7 +79,7 @@ const normalize = {
                 owner: !e.owner.name ? e.owner.toString() : normalize.normalizeUsers(e.owner),
                 recipe: !e.recipe.name ? e.recipe.toString() : normalize.normalizeUsers(e.recipe),
                 date: e.date,
-                rating: e.rating,
+                like: e.like,
                 comment: e.comment
             }));
         }

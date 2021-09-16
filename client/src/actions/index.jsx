@@ -33,7 +33,11 @@ import {
   REGISTER,
   CREATE_RECIPE,
   CREATE_CALENDAR,
-  CLEAN_NEW_CALENDAR
+  CLEAN_NEW_CALENDAR,
+  ADMIN_USERS,
+  POST_COMENTARIO,
+  GET_COMENTARIOS_RECETA,
+  DELETE_USER
 } from "./constants";
 
 import {
@@ -55,6 +59,10 @@ import {
   RECIPES_BY_CATEGORY_USER_URL,
   RECIPES_BY_CATEGORY_GUEST_URL,
   CALENDAR_USER_URL,
+  ADMIN_USERS_URL,
+  POST_COMENTARIO_URL,
+  GET_COMENTARIOS_RECETA_URL,
+  ADMIN_USERS_DELETE_URL
 } from "../routes";
 
 import config from './config';
@@ -71,8 +79,7 @@ export function getRecipes(token) {
     });
     } catch (error) {
       console.log(error);
-    }
-    
+    }    
   };
 }
 
@@ -306,8 +313,8 @@ export function createCategory(category,token){
       const newCategory = await axios.post(CATEGORY_URL, {...category}, config(token));
       return dispatch({type:CREATE_CATEGORY, payload: newCategory.data});
     }catch(error){
-      return alert("No se creó la categoría");
       console.log(error);
+      return alert("No se creó la categoría");
     }
   }
 }
@@ -398,4 +405,62 @@ export function cleanDeleteRecipe(){
 
 export function setUserAndToken(payload){
   return {type: LOGIN, payload}
+}
+
+export function setUserForAdmin(token){
+  return async function (dispatch){
+    try{
+      const adminUsers = await axios.get(ADMIN_USERS_URL, config(token));
+      return dispatch({
+        type:ADMIN_USERS,
+        payload: adminUsers.data
+      })
+    }
+    catch(error){
+      return console.log('No existen los usuarios.')
+    }
+  }
+}
+
+export function deleteUserForAdmin(id, token){
+  return async function (dispatch){
+    try{
+      const deleteUsers = await axios.delete(ADMIN_USERS_DELETE_URL +'/' + id, config(token));
+      return dispatch({
+        type:DELETE_USER,
+        payload: deleteUsers.data
+      })
+    }
+    catch(error){
+      return console.log('No se puede borrar el usuario.')
+    }
+  }
+}
+
+export function postComentario(valor,id,token){
+  return async function (dispatch){
+    try {
+      const aux = await axios.post(POST_COMENTARIO_URL+'/'+ id, valor,config(token));
+      console.log(aux.data,'aux')
+      return dispatch({type: POST_COMENTARIO, payload: aux.data});
+    } catch (error) {
+      console.log(error);
+      return alert("El comentario no fue enviado");
+    }    
+  }
+}
+
+export function getComentarios(id) {
+  return async function (dispatch) {
+    try {
+      const comentarios = await axios.get(GET_COMENTARIOS_RECETA_URL+'/'+ id);
+      console.log(comentarios.data)
+      return dispatch({
+        type: GET_COMENTARIOS_RECETA,
+        payload: comentarios.data,
+    });
+    } catch (error) {
+      console.log(error);
+    }    
+  };
 }

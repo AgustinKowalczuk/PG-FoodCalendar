@@ -86,10 +86,16 @@ export const SidebarDataAdmin = [
     },
     {
         title:'Todos los Calendarios',
-        path: '/create/recipe',
+        path: '/calendar',
         icon: <IoIcons.IoDesktopOutline/>,
         cName:'nav-text'
     },
+    {
+        title:'Todos los usuarios',
+        path: '/user',
+        icon: <IoIcons.IoDesktopOutline/>,
+        cName:'nav-text'
+    }
 
 ]
 
