@@ -14,7 +14,7 @@ import Register from './Components/Acount/Register';
 import AllRecipe from './Components/Inventary/AllRecipe';
 import Calendar from './Components/ShopingCart/Calendar/Calendar';
 import CalendarDetail from './Components/ShopingCart/Calendar/CalendarDetail';
-import AdminUser from './Components/AdminUser/AdminUser';
+import AdminUser from './Components/Usuarios/AdminUser/AdminUser';
 import { Redirect } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,7 +53,7 @@ function App() {
         <Route exact path = '/calendar'render= {() => (!!token) ? <Calendar admin={true}/> : <Redirect to='/' />}/>
         <Route exact path = '/calendar/user'render= {() => (!!token) ? <Calendar /> : <Redirect to='/' />}/>
         <Route path = '/calendar/:id' render= {() => (!!token) ? <CalendarDetail /> : <Redirect to='/' />}/>
-        <Route path = '/user' component={AdminUser}/>
+        <Route path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
       </Switch>
       <Footer/>
       </div>

@@ -35,8 +35,8 @@ import {
   CLEAN_NEW_CALENDAR,
   ADMIN_USERS,
   POST_COMENTARIO,
-  GET_COMENTARIOS_RECETA
-
+  GET_COMENTARIOS_RECETA,
+  DELETE_USER
 } from "./constants";
 
 import {
@@ -60,7 +60,8 @@ import {
   CALENDAR_USER_URL,
   ADMIN_USERS_URL,
   POST_COMENTARIO_URL,
-  GET_COMENTARIOS_RECETA_URL
+  GET_COMENTARIOS_RECETA_URL,
+  ADMIN_USERS_DELETE_URL
 } from "../routes";
 
 import config from './config';
@@ -400,17 +401,32 @@ export function setUserAndToken(payload){
   return {type: LOGIN, payload}
 }
 
-export function setUserForAdmin(userId, token){
+export function setUserForAdmin(token){
   return async function (dispatch){
     try{
-      const usersAdmin = await axios.get(ADMIN_USERS_URL + '/' + userId, config(token));
+      const adminUsers = await axios.get(ADMIN_USERS_URL, config(token));
       return dispatch({
         type:ADMIN_USERS,
-        payload: usersAdmin.data
+        payload: adminUsers.data
       })
     }
     catch(error){
-      return alert('No existen los usuarios.')
+      return console.log('No existen los usuarios.')
+    }
+  }
+}
+
+export function deleteUserForAdmin(id, token){
+  return async function (dispatch){
+    try{
+      const deleteUsers = await axios.delete(ADMIN_USERS_DELETE_URL +'/' + id, config(token));
+      return dispatch({
+        type:DELETE_USER,
+        payload: deleteUsers.data
+      })
+    }
+    catch(error){
+      return console.log('No se puede borrar el usuario.')
     }
   }
 }

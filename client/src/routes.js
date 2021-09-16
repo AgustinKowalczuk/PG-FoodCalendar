@@ -23,3 +23,4 @@ export const CALENDAR_USER_URL = `${URL}/calendar/user`;
 export const ADMIN_USERS_URL = `${URL}/user`;
 export const POST_COMENTARIO_URL = `${URL}/review`
 export const GET_COMENTARIOS_RECETA_URL = `${URL}/reviews/recipe`
+export const ADMIN_USERS_DELETE_URL = `${URL}/user/admin`;
