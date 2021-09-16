@@ -17,7 +17,7 @@ router.put('/recipe/:id', auth, authAdmin, async (req, res, next) => {
         if (!elem) return res.status(404).send("La receta con el id ingresado no existe");
 
         if (!ingredients && !category) {
-            await Recipe.findByIdAndUpdate(elem._id, { name, difficulty, rating, preparation, img });
+            await Recipe.findByIdAndUpdate(elem._id, { name, difficulty, rating, preparation, img});
             const update = await Recipe.findById(id);
             return res.json(normalizeRecipes(update));
         }

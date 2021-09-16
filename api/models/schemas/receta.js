@@ -52,7 +52,8 @@ const recipe = new Schema({
         ], required: true
     },
     premium: { type: Boolean, required: true },
-    availability: { type: Boolean, required: true }
+    availability: { type: Boolean, required: true },
+    disabled: { type: Boolean, required: true }
 })
 
 module.exports = recipe;

@@ -7,6 +7,8 @@ import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
 import Inventary from "../Inventary/Inventary";
+import Reviews from "./Reviews";
+import { VerComentarios } from "./VerComentarios";
 
 
 export default function DetailRecipe() {
@@ -116,8 +118,10 @@ export default function DetailRecipe() {
           <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
           </div>
           <div className={style.inventory}>
-            <Inventary/>                      
-          </div>          
+          <Inventary/>                      
+          </div>   
+          <Reviews id={recipeDetail.id}/>   
+          <VerComentarios id={recipeDetail.id}/>    
       <h2> Otras recetas</h2>
       <CardRelacionadas />
     </div>

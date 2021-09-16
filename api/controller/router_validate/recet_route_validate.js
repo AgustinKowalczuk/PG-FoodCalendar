@@ -8,7 +8,8 @@ const {
     ratingValidate,
     urlValidate,
     premiumValidate,
-    availabilityValidate
+    availabilityValidate,
+    disabledValidate
 } = require('../validate');
 
 const recipeRouteValidate = {
@@ -22,7 +23,7 @@ const recipeRouteValidate = {
             { keyName: 'category', value: category, type: 'array', notEmpty: true },
             { keyName: 'premium', value: premium, type: 'boolean', notEmpty: true },
             { keyName: 'availability', value: availability, type: 'boolean', notEmpty: true },
-            { keyName: 'ingredients', value: ingredients, type: 'array', notEmpty: true },
+            { keyName: 'ingredients', value: ingredients, type: 'array', notEmpty: true }
         ]);
         nameValidate(name);
         difficultyValidate(difficulty);
@@ -49,7 +50,7 @@ const recipeRouteValidate = {
         }
     },
 
-    putRecipeValidation(id, name, difficulty, rating, preparation, img, category, premium, availability, ingredients) {
+    putRecipeValidation(id, name, difficulty, rating, preparation, img, category, premium, availability, ingredients, disabled) {
         idMongodb(id);
         if (name !== undefined) {
             argumentsValidate([
@@ -125,6 +126,13 @@ const recipeRouteValidate = {
                 amountValidate(e.amount);
                 nameValidate(e.unit);
             }
+        }
+
+        if (disabled !== undefined) {
+            argumentsValidate([
+                { keyName: 'disabled', value: disabled, type: 'boolean', notEmpty: true }
+            ]);
+            disabledValidate(disabled);
         }
     }
 }
