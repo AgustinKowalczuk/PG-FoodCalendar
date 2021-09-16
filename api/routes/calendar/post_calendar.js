@@ -20,7 +20,9 @@ router.post('/calendar', auth, async (req, res, next) => {
             if (!recipe){
                 throw new Error(`El id en la posicion ${i} no se encuentra en DB de recetas`)
             }
+            await Recipe.findByIdAndUpdate(calendar[i],{disabled: true});
         }
+
         const temp = [];
         let e = 0;
         while(calendar.length > 0){
