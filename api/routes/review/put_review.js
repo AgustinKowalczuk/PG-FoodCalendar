@@ -7,11 +7,11 @@ const { putReviewValidation } = require("../../controller/router_validate/review
 
 router.put('/review/:id', auth, async (req, res, next) => {
     const { id } = req.params;
-    const { rating, comment } = req.body;
+    const { like, comment } = req.body;
     const { userId } = req;
 
     try {
-        putReviewValidation(id, rating, comment);
+        putReviewValidation(id, like, comment);
 
         const elem = await Review.findById(id);
         if (!elem) return res.status(404).send("La review con el id ingresado no existe");
@@ -19,7 +19,7 @@ router.put('/review/:id', auth, async (req, res, next) => {
         const reviewUser = await Review.find({owner: userId, _id: id});
         if (!reviewUser.length) return res.status(404).send('La review no corresponde al usuario que lo quiere editar');
         
-        await Review.findByIdAndUpdate(elem._id, { rating, comment, date: new Date });
+        await Review.findByIdAndUpdate(elem._id, { like, comment, date: new Date });
 
         const update = await Review.findById(id);
         return res.json(normalizeReview(update));

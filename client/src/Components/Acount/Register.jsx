@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { register } from '../../actions/index'
 import { useDispatch } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
+import swal from 'sweetalert';
 
 export default function Register() {
 
@@ -36,8 +37,13 @@ export default function Register() {
 
     const onSubmit = (value) => {
         console.log('Submit value', value)
-        alert('Bienvenido, espero que tengas un lindo dia!!')
         dispatch(register(value))
+        swal({
+            title: "Cuenta Registrada",
+            text: "Te registraste con exito",
+            icon: "success",
+            button: "Aceptar",
+        })
     }
 
     return (
@@ -51,27 +57,27 @@ export default function Register() {
                     <div className={style.content}>
 
                         <div className="mb-3">
-                            <label className="form-label">First name</label>
-                            <Field type="text" className="form-control" id="exampleInputEmail1" name="name" placeholder='Escribe aqui' autocomplete="off"/>
+                            <label className="form-label">Nombre</label>
+                            <Field type="text" className="form-control" id="exampleInputEmail1" name="name" placeholder='Escriba aqui su nombre' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="name"/>
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Last name</label>
-                            <Field type="text" className="form-control" id="exampleInputEmail1" name="surname" placeholder='Escribe aqui' autocomplete="off"/>
+                            <label className="form-label">Apellido</label>
+                            <Field type="text" className="form-control" id="exampleInputEmail1" name="surname" placeholder='Escriba aqui su calendario' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="surname"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='ejemplo@jemplo.com' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Password</label>
-                            <Field type="password" className="form-control" id="exampleInputEmail1" name="password" placeholder='Escribe aqui' autocomplete="off"/>
+                            <label className="form-label">Clave</label>
+                            <Field type="password" className="form-control" id="exampleInputEmail1" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
 
-                        <button type="submit">Registrar</button>
+                        <button type="submit">Registrarse</button>
                     </div>
                 </Form>
             </Formik>

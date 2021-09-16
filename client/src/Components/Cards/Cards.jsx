@@ -2,7 +2,7 @@ import React from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import style from "../../Styles/StyleCards.module.css";
 import { Link } from "react-router-dom";
-import { getDetail, page } from "../../actions/index";
+import { getDetail, page, setRecipeCalendar } from "../../actions/index";
 import Dificultad from './Dificultad';
 
 import Pagination from "../Pagination/Pagination";
@@ -16,9 +16,17 @@ export default function Cards(props) {
   const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
   const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
+  const stackReceta = useSelector((state) => state.recipeCalendar);
   const paginado = (pageNumber) => {
     dispatch(page(pageNumber));
   };
+  function agregarCalendario(receta){
+    if(stackReceta.length < 14){
+    return dispatch(setRecipeCalendar(receta))
+    } else{
+    return alert('Sólo ser permiten 14 recetas por calendario.')
+    }
+    }
 
   return (
     <div class={style.content}>
@@ -44,7 +52,10 @@ export default function Cards(props) {
                 <Dificultad difficulty={e.difficulty}/>
               </div>
             </Link>
-            
+            <div>
+              {e.availability === 'Available' && 
+          <button onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>}</div>
+           
           </div>
         );
       })}

@@ -14,6 +14,8 @@ router.delete('/recipe/:id', auth, authAdmin, async (req, res, next) => {
         const elem = await Recipe.findById(id);
         if (!elem) return res.status(404).send("La receta con el id ingresado no existe");
 
+        if (elem.disabled) return res.status(404).send("La receta con el id ingresado existe en un calendario");
+
         const remove = await Recipe.findByIdAndRemove(elem._id);
         return res.json(normalizeRecipes(remove));
     } catch (error) {

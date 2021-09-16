@@ -24,6 +24,7 @@ const delete_unit= require('./unit/delete_unit.js');
 const delete_category = require('./category/delete_category.js');
 const delete_user = require('./user/delete_user.js');
 const delete_review = require('./review/delete_review.js');
+const delete_calendar = require('./calendar/delete_calendar.js');
 //post
 const post_recet = require('./recet/post_recet.js');
 const post_ingredients= require('./ingredient/post_ingredient.js');
@@ -55,6 +56,7 @@ router.use(delete_unit);
 router.use(delete_category);
 router.use(delete_user);
 router.use(delete_review);
+router.use(delete_calendar);
 //post
 router.use(post_recet);
 router.use(post_ingredients);

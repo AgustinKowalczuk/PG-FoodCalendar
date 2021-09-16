@@ -48,7 +48,9 @@ router.post('/recipe', auth, async (req, res, next) => {
             category[i] = category[i]._id;
         }
 
-        const recipeCreated = await Recipe.create({ name, difficulty, rating, preparation, img, ingredients, category, premium, availability });
+        const disabled = false; 
+
+        const recipeCreated = await Recipe.create({ name, difficulty, rating, preparation, img, ingredients, category, premium, availability, disabled });
         return res.json(normalizeRecipes(recipeCreated));
     } catch (error) {
         next(error);

@@ -6,6 +6,8 @@ import * as BsIcons from "react-icons/bs"
 
 import * as BiIcons from "react-icons/bi"
 
+import * as IoIcons from "react-icons/io5"
+
 
 export const SidebarDataNotUser = [
     {
@@ -43,21 +45,21 @@ export const SidebarDataUser= [
         cName:'nav-text'
     },
     {
-        title:'Crear Receta',
-        path: '/create/recipe',
-        icon: <BsIcons.BsPencilSquare/>,
+        title:'Todas las Recetas',
+        path: '/AllRecipe',
+        icon: <BiIcons.BiBookHeart/>,
         cName:'nav-text'
     },
     {
-        title:'Mis Calendario',
+        title:'Mis Calendarios',
         path: '/calendar/user',
         icon: <AiIcons.AiOutlineCalendar/>,
         cName:'nav-text'
     },
     {
-        title:'Todas las Recetas',
-        path: '/AllRecipe',
-        icon: <BiIcons.BiBookHeart/>,
+        title:'Crea tu calendario',
+        path: '/shop',
+        icon: <IoIcons.IoCreateOutline/>,
         cName:'nav-text'
     },
 
@@ -70,13 +72,31 @@ export const SidebarDataAdmin = [
         icon: <AiIcons.AiFillHome/>,
         cName:'nav-text'
     },
-    
     {
         title:'Todas las Recetas',
         path: '/AllRecipe',
         icon: <BiIcons.BiBookHeart/>,
         cName:'nav-text'
+    },
+    {
+        title:'Crear Receta',
+        path: '/create/recipe',
+        icon: <BsIcons.BsPencilSquare/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Todos los Calendarios',
+        path: '/calendar',
+        icon: <IoIcons.IoDesktopOutline/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Todos los usuarios',
+        path: '/user',
+        icon: <IoIcons.IoDesktopOutline/>,
+        cName:'nav-text'
     }
+
 ]
 
 export const filterData = (token, user) => {
