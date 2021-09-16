@@ -110,7 +110,7 @@ export default function DetailRecipe() {
           {(!!token && user.category === "Admin") ? 
             <div>
               <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
-              <button onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
+              <button className="btn btn-primary" onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
             </div>            
             : <></>
           }          

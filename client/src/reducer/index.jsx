@@ -31,8 +31,10 @@ import {
   CREATE_RECIPE,
   CREATE_CALENDAR,
   CLEAN_NEW_CALENDAR,
+  ADMIN_USERS,
   POST_COMENTARIO,
-  GET_COMENTARIOS_RECETA
+  GET_COMENTARIOS_RECETA,
+  DELETE_USER
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -60,6 +62,7 @@ var initialState = {
   token: null,
   user: null,
   newCalendar: false,
+  adminUsers: [],
   comments:[],
 };
 
@@ -239,6 +242,11 @@ function reducer(state = initialState, action) {
           token: action.payload.token, 
           user: action.payload.user
         }
+      case ADMIN_USERS:
+        return {
+          ...state,
+          adminUsers: action.payload
+        }
        case POST_COMENTARIO:
          return {
            ...state,
@@ -250,6 +258,11 @@ function reducer(state = initialState, action) {
             comments: action.payload.reverse()
         }
 
+      case DELETE_USER:
+        return {
+          ...state,
+          adminUsers: state.adminUsers.filter((e) => e.id !== action.payload.id)
+        }
     default:
       return state;
   }
