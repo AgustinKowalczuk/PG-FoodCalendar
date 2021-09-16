@@ -57,7 +57,7 @@ var initialState = {
   deleteRecipe:{},
   token: null,
   user: null,
-  newCalendar: false
+  newCalendar: false,
 };
 
 function reducer(state = initialState, action) {

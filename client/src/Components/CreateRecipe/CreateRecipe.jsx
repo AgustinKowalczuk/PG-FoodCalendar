@@ -9,6 +9,7 @@ import CreateIngredient from "../CreateIngredient/CreateIngredient"
 import CreateCategory from "../CreateCategory/CreateCategory";
 import { orderAZ } from "../../orderFunction/OrderFuncions";
 import {useHistory} from 'react-router-dom'
+import swal from 'sweetalert';
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
@@ -106,6 +107,12 @@ export default function CreateRecipe() {
       formik.values.availability=true
     }
     dispatch(createRecipe(formik.values,token));
+    swal({
+      title: "Receta Creada",
+      text: "Se creo la receta con exito",
+      iicon: "success",
+      button: "Aceptar",
+    })
     console.log("Values submit", values);
   };
   const onChangeIngredients = (values) =>{
@@ -166,7 +173,8 @@ export default function CreateRecipe() {
 
                 return <SelectCard formik={formik} onChange={onChangeIngredients} ingredient={e.ingredient} name={`ingredients[${index}]`}
                   handleChange={formik.handleChange} />
-              })}
+              })
+              }
           </div>
         </div>
 

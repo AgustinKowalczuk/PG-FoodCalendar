@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from 'sweetalert';
 import {
   GET_RECIPES,
   GET_UNIT,
@@ -125,7 +126,12 @@ export function searchRecipes(name,token) {
       return dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data });
     } catch (error) {
       console.log(error);
-      alert("No se encontraron recetas")
+      swal({
+        title: "No se encontro",
+        text: "Escribio una receta o algo que no existe",
+        icon: "error",
+        button: "Aceptar",
+    })
     }
   };
 }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react";
 import { searchRecipes } from "../../actions/index"
 import styles from "../../Styles/StyleNav.module.css"
+import swal from 'sweetalert';
 
 
 export default function SearchBar() {
@@ -17,7 +18,12 @@ export default function SearchBar() {
   const dispatch = useDispatch();
 
   const handleSearch = ( e )=> {
-    if(input === "") return alert("Ingresa una Receta")
+    if(input === "") return swal({
+      title: "Campo incompleto",
+      text: "EL campo esta vacio",
+      icon: "error",
+      button: "Aceptar",
+  })
     dispatch(searchRecipes(input,token))    
   }
 
