@@ -5,13 +5,11 @@ const {
     likeValidate} = require("../validate")
 
 const reviewRouteValidate={
-    postReviewValidation(like, comment, recipeId) {
+    postReviewValidation(comment, recipeId) {
         argumentsValidate([
-            { keyName: 'like', value: like, type: 'boolean', notEmpty: true },
             { keyName: 'comment', value: comment, type: 'string', notEmpty: true },
             { keyName: 'recipeId', value: recipeId, type: 'string', notEmpty: true}
         ]);
-        likeValidate(like);
         preparationValidate(comment);
         idMongodb(recipeId);
     },
