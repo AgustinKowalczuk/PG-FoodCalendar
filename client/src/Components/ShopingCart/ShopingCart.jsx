@@ -7,6 +7,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import style from "../../Styles/StyleCardShop.module.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import Tasks from "./Tasks";
+
 
 export default function ShopingCart() {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ export default function ShopingCart() {
     const start = initialValues.colums[result.source.droppableId];
     const end = initialValues.colums[result.destination.droppableId];
 
-    if (start === end && start && end) {
+    if ( start && end && start === end) {
       const newRecipe = Array.from(start.recipes);
       newRecipe.splice(result.destination.index, 0, result.draggableId);
 
@@ -84,11 +86,11 @@ export default function ShopingCart() {
       setInitialValues(newState);
       return;
     }
-   
   };
 
   const onSubmit = () => {
     dispatch(postcalendar({name:text, calendar: sens}, token));
+
   };
   const handeChange = (event) => {
     setText(event.target.value);
@@ -109,27 +111,14 @@ export default function ShopingCart() {
               <div className={style.horarios} {...provider.droppableProps} ref={provider.innerRef}>
                 <div >
                   <h3>{e}</h3>
-                  <Draggable
-                    key={initialValues.colums[e].id}
-                    draggableId={initialValues.colums[e].id}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                      >
-                        {initialValues.colums[e].recipes?.map((x, con) => {
-                          return (
-                            <h5 key={con} className={style.changer}>
-                              {x}
-                            </h5>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </Draggable>
+                  {
+                    initialValues.colums[e].recipes?.map((x,con) => {
+
+                      return (
+                        <Tasks con={con} x={x}/>
+                      )
+                    })
+                  }
                   {provider.placeholder}
                 </div>
               </div>

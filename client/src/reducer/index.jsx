@@ -112,7 +112,7 @@ function reducer(state = initialState, action) {
       case GET_DETAIL:
         return {
           ...state,
-          detail: action.payload
+          detail: action.payload,
         } 
       case UPDATE_RECIPE:
         return{
@@ -213,7 +213,7 @@ function reducer(state = initialState, action) {
       case DELETE_RECIPE:
           return {
             ...state,
-            deleteRecipe: action.payload
+            deleteRecipe: action.payload,
           }
       case CLEAN_DELETE_RECIPE:
         return {

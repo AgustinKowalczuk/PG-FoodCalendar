@@ -301,7 +301,6 @@ export function createCategory(category,token){
       return dispatch({type:CREATE_CATEGORY, payload: newCategory.data});
     }catch(error){
       return alert("No se creó la categoría");
-      console.log(error);
     }
   }
 }
