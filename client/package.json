@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "react-slideshow-image": "^3.5.0",
     "redux-thunk": "^2.3.0",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
   },

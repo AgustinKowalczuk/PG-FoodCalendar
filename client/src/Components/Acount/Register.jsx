@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { register } from '../../actions/index'
 import { useDispatch } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
+import swal from 'sweetalert';
 
 export default function Register() {
 
@@ -36,8 +37,13 @@ export default function Register() {
 
     const onSubmit = (value) => {
         console.log('Submit value', value)
-        alert('Bienvenido, espero que tengas un lindo dia!!')
         dispatch(register(value))
+        swal({
+            title: "Cuenta Registrada",
+            text: "Te registraste con exito",
+            icon: "success",
+            button: "Aceptar",
+        })
     }
 
     return (

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setUserAndToken } from '../../actions';
 import * as GrIcons from "react-icons/gr";
 import { IconContext } from 'react-icons';
+import swal from 'sweetalert';
 
 
 export default function Logout(){  

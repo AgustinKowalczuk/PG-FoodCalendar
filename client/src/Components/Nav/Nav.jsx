@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../../Image/Logosinfondo.png'
-//import style from "../../Styles/StyleNav.module.css"
+import style from "../../Styles/StyleNav.module.css"
 import { SidebarDataNotUser, SidebarDataUser, SidebarDataAdmin} from "./SidebarData";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
@@ -9,7 +9,7 @@ import { IconContext } from 'react-icons';
 import './Nav.css'
 import { useSelector } from "react-redux";
 import Logout from "../Acount/Logout"
-
+import SearchBar from '../SearchBar/SearchBar'
 
 
 
@@ -24,17 +24,19 @@ export default function Nav() {
 
   const showSidebar = () => setSidebar(!sidebar)
 
- // const alho = filter(token, user)
  
   return (
-    <div>
+    <div id={style.nav}>
       <IconContext.Provider value={{ color: '#F2F0D5' }}>
-        <div className='navbar'>
+
+        <div>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+        </div>
+        <div className='navbar'>
           <Link className="navbar-brand" to='/'>
-            <img width="55%" height="45%" src={logo} alt='logo' />
+            <img className={style.img} src={logo} alt='logo' />
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
@@ -92,7 +94,10 @@ export default function Nav() {
           </ul>
         </nav>
       </IconContext.Provider>
+      <div className={style.search}>
 
+       <SearchBar />
+      </div>
     </div>
   );
 }
