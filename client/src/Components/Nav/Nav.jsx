@@ -85,16 +85,16 @@ export default function Nav() {
           }
           {
            ( !!token ) ?
-              <li>
+              <div>
                 <Logout/>
-              </li>:
+              </div>:
               null
           }
             
           </ul>
         </nav>
       </IconContext.Provider>
-      <div className={style.search}>
+      <div className={style.cName}>
 
        <SearchBar />
       </div>
