@@ -34,7 +34,8 @@ import {
   ADMIN_USERS,
   POST_COMENTARIO,
   GET_COMENTARIOS_RECETA,
-  DELETE_USER
+  DELETE_USER,
+  UPDATE_USER
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -257,11 +258,18 @@ function reducer(state = initialState, action) {
             ...state,
             comments: action.payload.reverse()
         }
-
       case DELETE_USER:
         return {
           ...state,
           adminUsers: state.adminUsers.filter((e) => e.id !== action.payload.id)
+        }
+      case UPDATE_USER:
+        const index = state.adminUsers.findIndex((e) => e.id === action.payload.id)
+        const newUsers = [...state.adminUsers]
+        newUsers.splice(index, 1, action.payload)
+        return {
+          ...state,
+          adminUsers: newUsers
         }
     default:
       return state;
