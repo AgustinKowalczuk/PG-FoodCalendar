@@ -64,7 +64,8 @@ export default function Recipes() {
     })
 
     const handleCards = (_card, source, destination) => {
-        const ofMoved = moveCard(daysColumns, source, destination)
+
+        const ofMoved = moveCard(daysColumns, source, destination)       
         const send = []
         ofMoved.columns.forEach((e, index) => {
             if(e.id !== 0 ){
@@ -74,11 +75,10 @@ export default function Recipes() {
                 })
             }
         })
-
-        console.log(send)
         setday(ofMoved)
 
         dispatch(sendCalendar(send))
+        
     }
     return(
         <Board onCardDragEnd={handleCards} disableColumnDrag>
