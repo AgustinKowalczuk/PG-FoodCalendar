@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUserForAdmin } from "../../../actions";
 import DeleteUser from "./DeleteUser";
+import UpdateUser from "./UpdateUser";
 import { Link } from "react-router-dom";
 
 
@@ -14,7 +15,7 @@ export default function AdminUser () {
     useEffect(() => {
         dispatch(setUserForAdmin(token))
     }, [dispatch, token])
-
+    console.log(userDetails)
     return ( 
         <div>
             <h3>Usuarios:</h3>
@@ -23,7 +24,12 @@ export default function AdminUser () {
                         <Link to={`/user/${e.id}`}>
                         <br/><h6>Nombre: {e.name}</h6>
                         </Link>
-                        <h6>Categoría: {e.category}.<br/>Correo: {e.email}<br/></h6>
+                        <h6>Categoría: {e.category}.
+                        <UpdateUser
+                        id={e.id}
+                        category={e.category}
+                        surname={e.surname}/>
+                        Correo: {e.email}</h6>
                         <DeleteUser id={e.id}/>
                     </div>
                     ))}

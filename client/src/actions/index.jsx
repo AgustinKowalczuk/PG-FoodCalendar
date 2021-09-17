@@ -37,7 +37,8 @@ import {
   ADMIN_USERS,
   POST_COMENTARIO,
   GET_COMENTARIOS_RECETA,
-  DELETE_USER
+  DELETE_USER,
+  UPDATE_USER
 } from "./constants";
 
 import {
@@ -62,7 +63,8 @@ import {
   ADMIN_USERS_URL,
   POST_COMENTARIO_URL,
   GET_COMENTARIOS_RECETA_URL,
-  ADMIN_USERS_DELETE_URL
+  ADMIN_USERS_DELETE_URL,
+  UPDATE_USERS_URL
 } from "../routes";
 
 import config from './config';
@@ -464,3 +466,14 @@ export function getComentarios(id) {
     }    
   };
 }
+
+export function updateUser(id,token){
+  return async (dispatch)=>{
+    try{
+      const update = await axios.put(UPDATE_USERS_URL + `/${id}`, config(token));
+      return dispatch ({ 
+        type: UPDATE_USER,
+        payload:update.data})
+    }catch(error){
+      console.log(error);
+   }}}
