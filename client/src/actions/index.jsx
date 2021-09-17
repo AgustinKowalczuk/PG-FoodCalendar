@@ -38,7 +38,8 @@ import {
   POST_COMENTARIO,
   GET_COMENTARIOS_RECETA,
   DELETE_USER,
-  CALENDAR_SEND
+  CALENDAR_SEND,
+  UPDATE_USER
 } from "./constants";
 
 import {
@@ -63,7 +64,8 @@ import {
   ADMIN_USERS_URL,
   POST_COMENTARIO_URL,
   GET_COMENTARIOS_RECETA_URL,
-  ADMIN_USERS_DELETE_URL
+  ADMIN_USERS_DELETE_URL,
+  UPDATE_USERS_URL
 } from "../routes";
 
 import config from './config';
@@ -470,3 +472,18 @@ export function sendCalendar(recipe) {
 
   return {type: CALENDAR_SEND, payload: recipe}
 }
+
+
+export function updateUser(id,obj,token){
+  return async (dispatch)=>{
+    try{
+      const update = await axios.put(UPDATE_USERS_URL + `/${id}`, obj, config(token));
+      return dispatch ({ 
+        type: UPDATE_USER,
+        payload:update.data})
+    }catch(error){
+      console.log(error);
+   }
+  }
+}
+
