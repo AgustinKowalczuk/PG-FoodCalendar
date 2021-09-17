@@ -4,6 +4,9 @@ import { getRecipes } from '../../actions';
 import Cards from '../Cards/Cards'
 import MidNav from '../Nav/midNav/midNav';
 
+
+
+
 export default function AllRecipe() {
         const dispatch = useDispatch()
         const allRecipes = useSelector((state) => state.recipes);

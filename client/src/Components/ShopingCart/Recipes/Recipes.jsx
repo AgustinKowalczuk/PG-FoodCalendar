@@ -63,17 +63,22 @@ export default function Recipes() {
         ],
     })
 
-    const handleCards = (_card, source, destination) => {
-
-        const ofMoved = moveCard(daysColumns, source, destination)       
+    const handleCards = (_card, source, destination,board) => {
+        const ofMoved = moveCard(daysColumns, source, destination)
         const send = []
+        
         ofMoved.columns.forEach((e, index) => {
+        
             if(e.id !== 0 ){
                 
                 e.cards.forEach(c => {
                     send.push(c.id)
                 })
             }
+           
+           
+               
+        
         })
         setday(ofMoved)
 
