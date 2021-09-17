@@ -43,7 +43,7 @@ const validate = {
     },
 
     preparationValidate(preparation) {
-        const re = /^[^<>#%&~^`/@]*$/g;
+        const re = /^[^<>#%&~^`@]*$/g;
         if (!re.test(String(preparation))) throw new Error(`${preparation} no es un texto válido`);
     },
 
