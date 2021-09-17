@@ -27,8 +27,7 @@ export default function AdminUser () {
                         <h6>Categoría: {e.category}.
                         <UpdateUser
                         id={e.id}
-                        category={e.category}
-                        surname={e.surname}/>
+                        category={e.category}/>
                         Correo: {e.email}</h6>
                         <DeleteUser id={e.id}/>
                     </div>

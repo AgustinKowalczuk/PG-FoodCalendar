@@ -467,10 +467,10 @@ export function getComentarios(id) {
   };
 }
 
-export function updateUser(id,token){
+export function updateUser(id,obj,token){
   return async (dispatch)=>{
     try{
-      const update = await axios.put(UPDATE_USERS_URL + `/${id}`, config(token));
+      const update = await axios.put(UPDATE_USERS_URL + `/${id}`, obj, config(token));
       return dispatch ({ 
         type: UPDATE_USER,
         payload:update.data})

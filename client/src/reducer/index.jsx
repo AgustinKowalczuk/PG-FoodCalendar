@@ -258,16 +258,18 @@ function reducer(state = initialState, action) {
             ...state,
             comments: action.payload.reverse()
         }
-
       case DELETE_USER:
         return {
           ...state,
           adminUsers: state.adminUsers.filter((e) => e.id !== action.payload.id)
         }
       case UPDATE_USER:
+        const index = state.adminUsers.findIndex((e) => e.id === action.payload.id)
+        const newUsers = [...state.adminUsers]
+        newUsers.splice(index, 1, action.payload)
         return {
           ...state,
-          adminUsers: action.payload
+          adminUsers: newUsers
         }
     default:
       return state;
