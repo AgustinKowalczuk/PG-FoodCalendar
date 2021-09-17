@@ -47,14 +47,15 @@ export default function Cards(props) {
               <div class="card-body">
                 <h4 class="card-title">{e.name.toUpperCase()}</h4>
                 <h5 class="card-text" id={style.normal}>
-                    Dificultad:{e.difficulty}
+                    Dificultad:
                 </h5>
                 <Dificultad difficulty={e.difficulty}/>
               </div>
             </Link>
             <div>
               {e.availability === 'Available' && 
-          <button onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>}</div>
+              <button id={style.btn} onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>}
+            </div>
            
           </div>
         );

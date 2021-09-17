@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useSelector } from 'react-redux'
 import style from '../../../Styles/StyleCardShop.module.css'
+import '@lourenci/react-kanban/dist/styles.css'
 import Board, { moveCard } from '@lourenci/react-kanban'
 
 export default function Recipes() {
