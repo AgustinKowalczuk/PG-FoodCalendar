@@ -34,7 +34,8 @@ import {
   ADMIN_USERS,
   POST_COMENTARIO,
   GET_COMENTARIOS_RECETA,
-  DELETE_USER
+  DELETE_USER,
+  CALENDAR_SEND
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -64,6 +65,7 @@ var initialState = {
   newCalendar: false,
   adminUsers: [],
   comments:[],
+  sendCalendar:[],
 };
 
 function reducer(state = initialState, action) {
@@ -262,6 +264,12 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           adminUsers: state.adminUsers.filter((e) => e.id !== action.payload.id)
+        }
+      
+      case CALENDAR_SEND:
+        return {
+          ...state,
+          sendCalendar: action.payload
         }
     default:
       return state;

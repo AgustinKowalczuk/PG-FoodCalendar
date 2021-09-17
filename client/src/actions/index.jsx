@@ -37,7 +37,8 @@ import {
   ADMIN_USERS,
   POST_COMENTARIO,
   GET_COMENTARIOS_RECETA,
-  DELETE_USER
+  DELETE_USER,
+  CALENDAR_SEND
 } from "./constants";
 
 import {
@@ -463,4 +464,9 @@ export function getComentarios(id) {
       console.log(error);
     }    
   };
+}
+
+export function sendCalendar(recipe) {
+
+  return {type: CALENDAR_SEND, payload: recipe}
 }

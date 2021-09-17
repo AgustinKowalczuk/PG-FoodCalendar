@@ -105,7 +105,7 @@ export default function DetailRecipe() {
                     <td>
                       <h4>{x}</h4>
                     </td>
-                  ))}{" "}
+                  ))}
                 </tr>
               </table>
           </div>
