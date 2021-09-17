@@ -6,6 +6,7 @@ import style from "../../Styles/StyleCardShop.module.css";
 import { Link } from "react-router-dom";
 import '@lourenci/react-kanban/dist/styles.css'
 import { useHistory } from "react-router";
+import swal from 'sweetalert';
 
 export default function ShopingCart() {
 
@@ -28,6 +29,12 @@ export default function ShopingCart() {
   const onSubmit = () => {
 
     dispatch(postcalendar({name:text, calendar: calendar}, token));
+    swal({
+      title: "Receta guardada",
+      text: "La receta se guardo con exito",
+      icon: "success",
+      button: "Aceptar",
+    })
   };
   const handeChange = (event) => {
     setText(event.target.value)
