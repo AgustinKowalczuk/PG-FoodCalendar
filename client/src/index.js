@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import store from './store/index'
+import store from './store/index';
+import { CssBaseline } from '@nextui-org/react';
 
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
+  <CssBaseline/>  
     <App />
   </React.StrictMode>
   </Provider>,

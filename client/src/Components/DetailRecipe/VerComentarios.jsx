@@ -1,11 +1,14 @@
+import { User } from "@nextui-org/react";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComentarios } from "../../actions";
 
-export function VerComentarios({id}){
+export function VerComentarios({id,userId}){
 
         const comments = useSelector(state => state.comments)
+        const token = useSelector(state => state.token);
+ 
         const dispatch = useDispatch()
 
       useEffect(() => {
@@ -19,16 +22,22 @@ export function VerComentarios({id}){
                            const dia= fecha.getDate()
                            const anio= fecha.getFullYear()
                             return (
+                                    <div key={e.id}>
                                     <div>
-                                    <div>
-                                      Usuario:{e.owner.name}</div>
+                                      Usuario:{e?.owner.name}</div>
                                     <label
                                     type='date'
                                          >{`${dia}/${mes}/${anio}`}</label>
                                          
-                                         <div>{e.comment}</div>
-                                         </div>
-                                         )
+                                         <div>{e?.comment}</div>
+                                        
+                                        
+                                {(!!token&& userId === e?.comment.owner.id)? 
+                                <div>
+                                <button>Eliminar</button> 
+                                <button>Mofificar</button> </div> : <></>}
+                                  </div> )
+
                         })}
 
                 </div>

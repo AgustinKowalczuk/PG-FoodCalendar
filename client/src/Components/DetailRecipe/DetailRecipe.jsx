@@ -9,7 +9,7 @@ import Dificultad from "../Cards/Dificultad";
 import Inventary from "../Inventary/Inventary";
 import Reviews from "./Reviews";
 import { VerComentarios } from "./VerComentarios";
-
+import { Checkbox } from '@nextui-org/react';
 
 export default function DetailRecipe() {
   const { id } = useParams();
@@ -119,8 +119,11 @@ export default function DetailRecipe() {
           </div>
           <div className={style.inventory}>
           <Inventary/>                      
-          </div>   
-          <Reviews id={recipeDetail.id}/>   
+          </div> 
+          <label>¿Te gusto la receta? </label> <Checkbox color="gradient" textColor="primary" name='like' checked={true}></Checkbox> 
+           <br/>  
+          {(!!token) ? 
+          <Reviews id={recipeDetail.id}/> : <></>} 
           <VerComentarios id={recipeDetail.id}/>    
       <h2> Otras recetas</h2>
       <CardRelacionadas />
