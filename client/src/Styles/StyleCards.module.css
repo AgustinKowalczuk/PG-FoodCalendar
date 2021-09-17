@@ -9,7 +9,7 @@
 }
 
 #carData{
-    width: 400px;
+    width: 350px;
     min-width: 20%;
     margin-top: 5px;
     background-color: #F2F0D5;
@@ -38,4 +38,14 @@
     size: cover;
     border-bottom-left-radius: .25rem;
     border-bottom-right-radius: .25rem;
+}
+
+#btn{
+    border-color:#668C4A;
+    color: #668C4A;
+    background-color: #F2F0D5;
+}
+
+#btn:hover{
+    background-color: #B1B1AC;
 }

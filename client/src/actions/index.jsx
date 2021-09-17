@@ -38,6 +38,7 @@ import {
   POST_COMENTARIO,
   GET_COMENTARIOS_RECETA,
   DELETE_USER,
+  CALENDAR_SEND,
   UPDATE_USER
 } from "./constants";
 
@@ -467,6 +468,12 @@ export function getComentarios(id) {
   };
 }
 
+export function sendCalendar(recipe) {
+
+  return {type: CALENDAR_SEND, payload: recipe}
+}
+
+
 export function updateUser(id,obj,token){
   return async (dispatch)=>{
     try{
@@ -476,4 +483,7 @@ export function updateUser(id,obj,token){
         payload:update.data})
     }catch(error){
       console.log(error);
-   }}}
+   }
+  }
+}
+

@@ -17,6 +17,7 @@
 #maxwidth{
     max-width: 90%;
     min-width: 60%;
+    margin-top: 2%;
     margin-bottom: 2%;
 }
 .normal{
@@ -47,6 +48,7 @@
     padding:20px;
     text-align: left;
     border-radius: .25rem;
+    max-height: 400px;
 }
 
 .detailCard{
@@ -85,4 +87,19 @@
 }
 .inventory{
     width: 90%;
+}
+
+#img{
+    width: 100%;
+}
+.li{
+    width: 40%;
+}
+.ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: space-around;
 }

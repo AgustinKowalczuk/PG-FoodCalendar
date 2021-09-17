@@ -8,27 +8,29 @@ import '@lourenci/react-kanban/dist/styles.css'
 import { useHistory } from "react-router";
 
 export default function ShopingCart() {
-  const dispatch = useDispatch();
-  const [text, setText] = useState("");
-  const [sens, setSens] = useState([]);
-  const token = useSelector(state => state.token);
-  const newCalendar = useSelector(state => state.newCalendar);
-  const history = useHistory();
 
+  const dispatch = useDispatch();
+  const [text, setText] = useState("")
+  const calendar = useSelector(state => state.sendCalendar)
+  const token = useSelector(state => state.token)
+  const newCalendar = useSelector(state => state.newCalendar)
+  const history = useHistory()
   
+  console.log(calendar)
   useEffect(() => {
     if (newCalendar) {
-      history.push('calendar/user');
-      dispatch(cleanNewCalendar());
-      dispatch(clearInventary());
+      history.push('calendar/user')
+      dispatch(cleanNewCalendar())
+      dispatch(clearInventary())
     }
   },[dispatch, newCalendar, history])
 
   const onSubmit = () => {
-    dispatch(postcalendar({name:text, calendar: sens}, token));
+
+    dispatch(postcalendar({name:text, calendar: calendar}, token));
   };
   const handeChange = (event) => {
-    setText(event.target.value);
+    setText(event.target.value)
   };
 
   return (
