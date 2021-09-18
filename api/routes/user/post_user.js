@@ -5,6 +5,9 @@ const { normalizeUsers } = require("../../controller/normalize");
 const { userRegisterValidation, userLoginValidation } = require("../../controller/router_validate/user_route_validate");
 const router = express.Router();
 const { User } = require("../../models/models");
+const { env: { JWT_SECRET } } = process;
+const fs = require('fs');
+const { transportEmail } = require("../transport");
 
 router.post('/user/register', async (req, res, next) => {
     const { name, surname, email, password } = req.body;
@@ -21,6 +24,10 @@ router.post('/user/register', async (req, res, next) => {
 
         await User.create({ name, surname, email, password: hash, category });
         const posted = await User.findOne({ email });
+
+        const html = await fs.readFileSync(__dirname + '/emailUsersMessages/register_message.html');        
+        await transportEmail(email, html);
+        
         return res.json(normalizeUsers(posted));
     } catch (error) {
         next(error);
@@ -38,7 +45,7 @@ router.post('/user/login', async (req, res, next) => {
         
         if (! await argon.verify(userFound.password, password)) throw new Error ("La constraseña ingresada es incorrecta.");
         
-        const token = await jwt.sign({ sub: userFound._id }, "EstoEsSecreto", { expiresIn: "12h"});
+        const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});
         userFound = normalizeUsers(userFound);
         return res.json({ token,  user: userFound });                
     } catch (error){

@@ -9,10 +9,10 @@ const { auth, authAdmin } = require('../../controller/auth');
 router.get('/recipe/user', auth, async (req, res, next) => {
     try {
         const recipeBrought = await Recipe.find()
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();       
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         return res.json(normalizeRecipes(recipeBrought));
     } catch (error) {
@@ -23,11 +23,11 @@ router.get('/recipe/user', auth, async (req, res, next) => {
 //Recetas para usuarios sin registrar
 router.get('/recipe/guest', async (req, res, next) => {
     try {
-        const recipeBrought = await Recipe.find({premium: false})
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();       
+        const recipeBrought = await Recipe.find({ premium: false })
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         return res.json(normalizeRecipes(recipeBrought));
     } catch (error) {
@@ -36,17 +36,17 @@ router.get('/recipe/guest', async (req, res, next) => {
 });
 
 //Todas las recetas que contengan en su nombre "name"
-router.get('/recipe/search/user/:name', auth, async (req,res,next) => {
-    const {name} = req.params;
+router.get('/recipe/search/user/:name', auth, async (req, res, next) => {
+    const { name } = req.params;
 
-    try{
-        const recipeFound = await Recipe.find({name: {$regex: new RegExp(name, "i") }})
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();   
+    try {
+        const recipeFound = await Recipe.find({ name: { $regex: new RegExp(name, "i") } })
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
-        if(recipeFound.length === 0){
+        if (recipeFound.length === 0) {
             return res.status(404).json(["No hay recetas con el nombre ingresado."]);
         }
 
@@ -57,17 +57,17 @@ router.get('/recipe/search/user/:name', auth, async (req,res,next) => {
 });
 
 //Ruta creada para todo tipo de usuario
-router.get('/recipe/search/guest/:name', async (req,res,next) => {
-    const {name} = req.params;
+router.get('/recipe/search/guest/:name', async (req, res, next) => {
+    const { name } = req.params;
 
-    try{
-        const recipeFound = await Recipe.find({name: {$regex: new RegExp(name, "i") }, premium: false})
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();   
+    try {
+        const recipeFound = await Recipe.find({ name: { $regex: new RegExp(name, "i") }, premium: false })
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
-        if(recipeFound.length === 0){
+        if (recipeFound.length === 0) {
             return res.status(404).json(["No hay recetas con el nombre ingresado."]);
         }
 
@@ -80,20 +80,25 @@ router.get('/recipe/search/guest/:name', async (req,res,next) => {
 //Detalles de la receta por "id"
 router.get('/recipe/details/user/:id', auth, async (req, res, next) => {
     const { id } = req.params;
+    const { userId } = req;
 
     try {
         validate.idMongodb(id);
 
         const recipeMatch = await Recipe.findById(id)
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
+        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" }) };
 
-        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })}
         const newObject = normalizeRecipes(recipeMatch);
-        const likes = await Like.find({recipe: id, like:true});
+        const likes = await Like.find({ recipe: id, like: true });
         newObject.likes = likes.length;
+
+        const likeFound = await Like.findOne({ recipe: id, owner: userId });
+        !!likeFound ? newObject.like = likeFound.like : newObject.like = false;
+
         return res.json(newObject);
     } catch (e) {
         next(e);
@@ -107,16 +112,20 @@ router.get('/recipe/details/guest/:id', async (req, res, next) => {
         validate.idMongodb(id);
 
         const recipeMatch = await Recipe.findById(id)
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
-        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })};
+        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" }) };
 
         if (recipeMatch.premium !== false) throw new Error("No deberías estar viendo esta receta.")
-        
-        return res.json(normalizeRecipes(recipeMatch));
+
+        const newObject = normalizeRecipes(recipeMatch);
+        const likes = await Like.find({ recipe: id, like: true });
+        newObject.likes = likes.length;
+
+        return res.json(newObject);
     } catch (e) {
         next(e);
     }
@@ -128,10 +137,10 @@ router.get('/recipe/filterByIngredient/user/:name', auth, async (req, res, next)
 
     try {
         const allRecipes = await Recipe.find()
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         if (allRecipes.length === 0) {
             return res.status(404).json(["La base de datos está vacía"]);
@@ -153,11 +162,11 @@ router.get('/recipe/filterByIngredient/guest/:name', async (req, res, next) => {
     const { name } = req.params;
 
     try {
-        const allRecipes = await Recipe.find({premium: false})
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+        const allRecipes = await Recipe.find({ premium: false })
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         if (allRecipes.length === 0) {
             return res.status(404).json(["La base de datos está vacía"]);
@@ -181,10 +190,10 @@ router.get('/recipe/filterByCategory/user/:name', auth, async (req, res, next) =
 
     try {
         const allRecipes = await Recipe.find()
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         if (allRecipes.length === 0) {
             return res.status(404).json(["La base de datos está vacía"]);
@@ -194,7 +203,7 @@ router.get('/recipe/filterByCategory/user/:name', auth, async (req, res, next) =
         if (filteredRecipes.length === 0) {
             return res.status(404).json(["No se encontraron recetas con la categoría indicada"]);
         }
-        
+
         return res.json(normalizeRecipes(filteredRecipes));
     } catch (error) {
         next(error);
@@ -206,11 +215,11 @@ router.get('/recipe/filterByCategory/guest/:name', async (req, res, next) => {
     const { name } = req.params;
 
     try {
-        const allRecipes = await Recipe.find({premium: false})
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+        const allRecipes = await Recipe.find({ premium: false })
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         if (allRecipes.length === 0) {
             return res.status(404).json(["La base de datos está vacía"]);
@@ -220,7 +229,7 @@ router.get('/recipe/filterByCategory/guest/:name', async (req, res, next) => {
         if (filteredRecipes.length === 0) {
             return res.status(404).json(["No se encontraron recetas con la categoría indicada"]);
         }
-        
+
         return res.json(normalizeRecipes(filteredRecipes));
     } catch (error) {
         next(error);
@@ -234,10 +243,10 @@ router.get('/recipe/filterByDifficulty/user/:name', auth, async (req, res, next)
 
     try {
         const allRecipes = await Recipe.find()
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         if (allRecipes.length === 0) {
             return res.status(404).json(["La base de datos está vacía"]);
@@ -247,7 +256,7 @@ router.get('/recipe/filterByDifficulty/user/:name', auth, async (req, res, next)
         if (filteredRecipes.length === 0) {
             return res.status(404).json(["No se encontraron recetas con la dificultad indicada"]);
         }
-        
+
         return res.json(normalizeRecipes(filteredRecipes));
     } catch (error) {
         next(error);
@@ -259,11 +268,11 @@ router.get('/recipe/filterByDifficulty/guest/:name', async (req, res, next) => {
     const { name } = req.params;
 
     try {
-        const allRecipes = await Recipe.find({premium: false})
-        .populate({path:'category', select:['name','_id']})
-        .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
-        .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
-        .lean();
+        const allRecipes = await Recipe.find({ premium: false })
+            .populate({ path: 'category', select: ['name', '_id'] })
+            .populate({ path: 'ingredients', populate: { path: 'ingredient', select: ['name', '_id'] } })
+            .populate({ path: 'ingredients', populate: { path: 'unit', select: ['name', '_id'] } })
+            .lean();
 
         if (allRecipes.length === 0) {
             return res.status(404).json(["La base de datos está vacía"]);
@@ -273,7 +282,7 @@ router.get('/recipe/filterByDifficulty/guest/:name', async (req, res, next) => {
         if (filteredRecipes.length === 0) {
             return res.status(404).json(["No se encontraron recetas con la dificultad indicada"]);
         }
-        
+
         return res.json(normalizeRecipes(filteredRecipes));
     } catch (error) {
         next(error);
