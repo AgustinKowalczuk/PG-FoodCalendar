@@ -13,14 +13,8 @@ const reviewRouteValidate={
         preparationValidate(comment);
         idMongodb(recipeId);
     },
-    putReviewValidation(id, like, comment) {
+    putReviewValidation(id, comment) {
         idMongodb(id);
-        if (like !== undefined) {
-            argumentsValidate([
-                { keyName: 'like', value: like, type: 'boolean', notEmpty: true }
-            ]);
-            likeValidate(like);
-        };
 
         if (comment !== undefined) {
             argumentsValidate([

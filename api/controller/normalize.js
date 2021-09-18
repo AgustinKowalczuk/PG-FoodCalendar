@@ -79,12 +79,24 @@ const normalize = {
                 owner: !e.owner.name ? e.owner.toString() : normalize.normalizeUsers(e.owner),
                 recipe: !e.recipe.name ? e.recipe.toString() : normalize.normalizeUsers(e.recipe),
                 date: e.date,
-                like: e.like,
                 comment: e.comment
             }));
         }
         else {
             return normalize.normalizeReview([review])[0];
+        }
+    },
+    
+    normalizeLike(like){
+        if (Array.isArray(like)) {
+            return like.map(e => ({
+                id: e._id,
+                recipe: !e.recipe.name ? e.recipe.toString() : normalize.normalizeUsers(e.recipe),
+                like: e.like
+            }));
+        }
+        else {
+            return normalize.normalizeLike([like])[0];
         }
     }
     

@@ -10,6 +10,7 @@ const get_category = require('./category/get_category.js');
 const get_user = require('./user/get_user.js');
 const get_calendar = require('./calendar/get_calendar.js');
 const get_review = require('./review/get_review.js');
+const get_like = require('./like/get_like.js');
 //put 
 const put_recet = require('./recet/put_recet.js');
 const put_ingredients= require('./ingredient/put_ingredient.js');
@@ -33,6 +34,7 @@ const post_category = require('./category/post_category.js');
 const post_user = require('./user/post_user.js');
 const post_calendar = require('./calendar/post_calendar.js');
 const post_review = require('./review/post_review.js');
+const post_like = require('./like/post_like.js');
 
 //get
 router.use(get_recet);
@@ -42,6 +44,7 @@ router.use(get_category);
 router.use(get_user);
 router.use(get_calendar);
 router.use(get_review);
+router.use(get_like);
 //put
 router.use(put_recet);
 router.use(put_ingredients);
@@ -65,5 +68,6 @@ router.use(post_category);
 router.use(post_user);
 router.use(post_calendar);
 router.use(post_review);
+router.use(post_like);
 
 module.exports = router
