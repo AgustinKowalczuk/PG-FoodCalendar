@@ -66,7 +66,7 @@ export default function Login() {
                             <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
-                        <button id="emailHelp" className="btn btn-primary" type="submit">Ingresar</button>
+                        <button id={style.btn} className="btn btn-primary" type="submit">Ingresar</button>
                     </div>
                 </Form>
             </Formik>

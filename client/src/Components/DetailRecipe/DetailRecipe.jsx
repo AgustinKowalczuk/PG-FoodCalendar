@@ -9,7 +9,7 @@ import Dificultad from "../Cards/Dificultad";
 import Inventary from "../Inventary/Inventary";
 import Reviews from "./Reviews";
 import { VerComentarios } from "./VerComentarios";
-
+import swal from 'sweetalert';
 
 export default function DetailRecipe() {
   const { id } = useParams();
@@ -37,13 +37,15 @@ export default function DetailRecipe() {
 
  //envio receta al stack del calendario
   function agregarCalendario(receta){
-    // if(stackReceta.length === 0){
-    //   return alert('Debes registrarte para poder manejar un calendario.')
-    // }
-    if(stackReceta.length < 14){
+
+    if(stackReceta.length < 14 && !stackReceta.includes(receta)){
     return dispatch(setRecipeCalendar(receta))
     } else{
-    return alert('Sólo ser permiten 14 recetas por calendario.')
+    return swal({
+      title: "Receta no agregada",
+      text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
+      icon: "error",
+    });
     }
     }
 
@@ -109,7 +111,7 @@ export default function DetailRecipe() {
                 </tr>
               </table>
           </div>
-          {(!!token && user.category === "Admin") ? 
+          {( recipeDetail.disabled === false && !!token && user.category === "Admin") ? 
             <div>
               <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
               <button className="btn btn-primary" onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
@@ -117,11 +119,8 @@ export default function DetailRecipe() {
             : <></>
           }          
           {recipeDetail.availability === 'Available' && 
-          <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
-          </div>
-          <div className={style.inventory}>
-          <Inventary/>                      
-          </div>   
+          <button className="btn btn-primary" onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
+        </div>  
           <Reviews id={recipeDetail.id}/>   
           <VerComentarios id={recipeDetail.id}/>    
       <h2> Otras recetas</h2>

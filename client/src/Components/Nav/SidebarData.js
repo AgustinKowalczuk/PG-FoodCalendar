@@ -8,6 +8,8 @@ import * as BiIcons from "react-icons/bi"
 
 import * as IoIcons from "react-icons/io5"
 
+import * as IoAlbumsOutline from "react-icons/io5";
+
 
 export const SidebarDataNotUser = [
     {
@@ -51,6 +53,12 @@ export const SidebarDataUser= [
         cName:'nav-text'
     },
     {
+        title:'Inventario',
+        path: '/inventary',
+        icon:<IoIcons.IoAlbumsOutline/>,
+        cName:'nav-text'
+    },
+    {
         title:'Mis Calendarios',
         path: '/calendar/user',
         icon: <AiIcons.AiOutlineCalendar/>,
@@ -82,6 +90,12 @@ export const SidebarDataAdmin = [
         title:'Crear Receta',
         path: '/create/recipe',
         icon: <BsIcons.BsPencilSquare/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Inventario',
+        path: '/inventary',
+        icon:<IoIcons.IoAlbumsOutline/>,
         cName:'nav-text'
     },
     {
