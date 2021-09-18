@@ -13,18 +13,16 @@ export default function Paginado ({recipesPerPage, allRecipes, paginado}){
         <div>
             <ul className="pagination">
                 {
-                    pageNumbers?.length > 0 &&
+                    pageNumbers?.length !== 1 &&
                     pageNumbers?.map(number => (
                         
                         page !== number ?
-                        pageNumbers.length !== 0?
                             <li className="page-item">
                                 <a className="page-link" id={style.color} onClick={() => paginado(number)}>{number}</a>
                             </li>:
                             <li className="page-item">
                                 <a className="page-link" id={style.color2} onClick={() => paginado(number)}>{number}</a>
-                            </li>: 
-                            null
+                            </li>
                         
                     ))
                 } 

@@ -80,11 +80,10 @@ export default function Recipes() {
                
         
         })
-        console.log(board)
-        
         setday(ofMoved)
 
         dispatch(sendCalendar(send))
+        
     }
     return(
         <Board onCardDragEnd={handleCards} disableColumnDrag>

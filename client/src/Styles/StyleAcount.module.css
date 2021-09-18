@@ -1,12 +1,21 @@
 .content{
     width: 100%;
     padding: 2%;
-    margin-top:20%;
-    margin-bottom: 20%;
+    margin-top:2%;
+    margin-bottom: 2%;
     border: 1px solid rgba(128, 128, 128, 0.534);
 }
 .container{
-    max-width: 70vh;
+    max-width: 80%;
     margin: auto;
     height: 52vh;
+}
+
+#btn{
+    color: #668C4A;
+    background-color: #F2F0D5;
+    border-color: #668C4A;
+}
+#btn:hover{
+    background-color: #B1B1AC;
 }
