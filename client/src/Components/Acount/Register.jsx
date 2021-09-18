@@ -77,7 +77,7 @@ export default function Register() {
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
 
-                        <button type="submit">Registrarse</button>
+                        <button id={style.btn} className="btn btn-primary" type="submit">Registrarse</button>
                     </div>
                 </Form>
             </Formik>

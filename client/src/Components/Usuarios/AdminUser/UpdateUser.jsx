@@ -21,7 +21,7 @@ export default function UpdateUser ({id, category}) {
     }
     return ( 
         <div>
-            <button onClick={() => handleClick(id)}>Cambiar categoría</button>
+            <button className="btn btn-danger" onClick={() => handleClick(id)}>Cambiar categoría</button>
         </div>
      );
 }

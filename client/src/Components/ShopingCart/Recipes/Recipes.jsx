@@ -74,11 +74,10 @@ export default function Recipes() {
                 })
             }
         })
-        
-        
         setday(ofMoved)
 
         dispatch(sendCalendar(send))
+        
     }
     
     return(

@@ -20,7 +20,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
 import { setUserAndToken } from './actions';
-
+import Inventary from './Components/Inventary/Inventary.jsx'
 
 
 function App() {
@@ -54,9 +54,10 @@ function App() {
         <Route exact path = '/calendar/user'render= {() => (!!token) ? <Calendar /> : <Redirect to='/' />}/>
         <Route path = '/calendar/:id' render= {() => (!!token) ? <CalendarDetail /> : <Redirect to='/' />}/>
         <Route path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
+        <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
       </Switch>
-      <Footer/>
       </div>
+      <Footer/>
     </BrowserRouter>
   );
 }
