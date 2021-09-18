@@ -63,31 +63,26 @@ export default function Recipes() {
         ],
     })
 
-    const handleCards = (_card, source, destination,board) => {
+    const handleCards = (_card, source, destination) => {
         const ofMoved = moveCard(daysColumns, source, destination)
         const send = []
-        
+        console.log(destination)
         ofMoved.columns.forEach((e, index) => {
-        
             if(e.id !== 0 ){
-                
                 e.cards.forEach(c => {
                     send.push(c.id)
                 })
             }
-           
-           
-               
-        
         })
-        console.log(board)
+        
         
         setday(ofMoved)
 
         dispatch(sendCalendar(send))
     }
+    
     return(
-        <Board onCardDragEnd={handleCards} disableColumnDrag>
+        <Board onCardDragEnd={handleCards} disableColumnDrag >
             {daysColumns}
         </Board>
     )
