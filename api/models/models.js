@@ -7,6 +7,7 @@ const category = require('./schemas/category.js');
 const user = require('./schemas/user.js');
 const calendar = require('./schemas/calendar.js');
 const review = require('./schemas/review.js');
+const like = require('./schemas/like');
 const model = mongoose.model.bind(mongoose);
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
     Category: model('Category', category),
     User: model('User', user),
     Calendar: model('Calendar', calendar),
-    Review: model('Review', review)
+    Review: model('Review', review),
+    Like: model('Like', like)
 }
