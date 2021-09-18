@@ -4,6 +4,8 @@ const { Calendar, Recipe, User } = require("../../models/models");
 const { auth } = require('../../controller/auth');
 const { normalizeCalendar } = require("../../controller/normalize");
 const router = express.Router();
+const fs = require('fs');
+const { transportEmail } = require("../transport");
 
 router.post('/calendar', auth, async (req, res, next) => {
     const { name, calendar } = req.body;
@@ -30,6 +32,10 @@ router.post('/calendar', auth, async (req, res, next) => {
             e++;
         }
         const posted = await Calendar.create({ owner: userId, name, calendar:temp });
+
+        const html = await fs.readFileSync(__dirname + '/emailCalendarsMessages/calendar_message.html');        
+        await transportEmail(owner.email, html);
+
         return res.json(posted);
     } catch (error) {
         next(error);
