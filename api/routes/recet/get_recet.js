@@ -2,7 +2,7 @@ const express = require("express");
 const { normalizeRecipes } = require("../../controller/normalize");
 const validate = require("../../controller/validate");
 const router = express.Router();
-const { Recipe } = require('../../models/models');
+const { Recipe, Like } = require('../../models/models');
 const { auth, authAdmin } = require('../../controller/auth');
 
 //Todas las recetas solo para usuarios pagos
@@ -91,8 +91,10 @@ router.get('/recipe/details/user/:id', auth, async (req, res, next) => {
         .lean();
 
         if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })}
-        
-        return res.json(normalizeRecipes(recipeMatch));
+        const newObject = normalizeRecipes(recipeMatch);
+        const likes = await Like.find({recipe: id, like:true});
+        newObject.likes = likes.length;
+        return res.json(newObject);
     } catch (e) {
         next(e);
     }
