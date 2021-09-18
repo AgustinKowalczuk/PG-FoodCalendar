@@ -33,6 +33,7 @@ const post_category = require('./category/post_category.js');
 const post_user = require('./user/post_user.js');
 const post_calendar = require('./calendar/post_calendar.js');
 const post_review = require('./review/post_review.js');
+const post_like = require('./like/post_like.js');
 
 //get
 router.use(get_recet);
@@ -65,5 +66,6 @@ router.use(post_category);
 router.use(post_user);
 router.use(post_calendar);
 router.use(post_review);
+router.use(post_like);
 
 module.exports = router

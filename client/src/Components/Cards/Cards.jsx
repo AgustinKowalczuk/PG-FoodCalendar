@@ -4,11 +4,12 @@ import style from "../../Styles/StyleCards.module.css";
 import { Link } from "react-router-dom";
 import { getDetail, page, setRecipeCalendar } from "../../actions/index";
 import Dificultad from './Dificultad';
-
+import swal from 'sweetalert';
 import Pagination from "../Pagination/Pagination";
 
 export default function Cards(props) {
  
+  
  const dispatch = useDispatch();
  const pages =  useSelector(state => state.page)
   
@@ -21,10 +22,14 @@ export default function Cards(props) {
     dispatch(page(pageNumber));
   };
   function agregarCalendario(receta){
-    if(stackReceta.length < 14){
+    if(stackReceta.length < 14  && !stackReceta.includes(receta)){
     return dispatch(setRecipeCalendar(receta))
     } else{
-    return alert('Sólo ser permiten 14 recetas por calendario.')
+    return swal({
+      title: "Receta no agregada",
+      text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
+      icon: "error",
+    });
     }
     }
 
@@ -47,14 +52,16 @@ export default function Cards(props) {
               <div class="card-body">
                 <h4 class="card-title">{e.name.toUpperCase()}</h4>
                 <h5 class="card-text" id={style.normal}>
-                    Dificultad:{e.difficulty}
+                    Dificultad:
                 </h5>
                 <Dificultad difficulty={e.difficulty}/>
               </div>
             </Link>
             <div>
               {e.availability === 'Available' && 
-          <button onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>}</div>
+              <button id={style.btn} onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>
+              }
+            </div>
            
           </div>
         );

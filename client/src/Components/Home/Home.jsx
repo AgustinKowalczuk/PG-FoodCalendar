@@ -19,7 +19,7 @@ export default function Home() {
                 <div class={style.order}>
                  <SiliderImages allRecipes={allRecipes} />
                  <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
-           
+              
                  <Cards allRecipes={allRecipes}/>
                 </div>
         )

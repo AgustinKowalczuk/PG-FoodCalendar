@@ -1,0 +1,50 @@
+.contentData{
+    margin: auto;
+    padding: 1%;
+    min-width: 40%;
+    max-width: 90%;
+    border: 1px solid #668C4A;
+    border-radius: .25rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.name{
+    grid-column: 2;
+    grid-row: 1;
+}
+.category{
+    display: flex;
+    grid-column-start:1;
+    grid-column-end:4;
+    grid-row: 2;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.gmail{
+    display: flex;
+    grid-column-start:1;
+    grid-column-end:4;
+    grid-row: 3;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.change{
+    grid-column:2;
+    grid-row: 4;
+}
+
+.delete{
+    display: flex;
+    grid-column: 3;
+    grid-row: 1;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.content{
+    margin-bottom:2%;
+    margin-top: 2%;
+}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nextui-org/react": "^1.0.1-alpha.32",
     "@lourenci/react-kanban": "^2.1.0",
     "@nextui-org/react": "^1.0.1-alpha.32",
     "@testing-library/jest-dom": "^5.14.1",
@@ -10,6 +11,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
+    "cloudinary-react": "^1.7.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",

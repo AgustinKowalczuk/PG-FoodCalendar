@@ -8,7 +8,7 @@ export default function SiliderImages(props) {
     
     return (
         <div className={Style.container}>
-           <Slide easing="ease">
+           <Slide arrows={null} easing="ease">
                 {
                     props.allRecipes.map((e, index) => {
                         return (
