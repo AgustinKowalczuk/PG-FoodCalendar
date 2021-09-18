@@ -22,7 +22,7 @@ export function VerComentarios({id,userId}){
                            const dia= fecha.getDate()
                            const anio= fecha.getFullYear()
                             return (
-                                    <div key={e.id}>
+                                    <div key={e?.id}>
                                     <div>
                                       Usuario:{e?.owner.name}</div>
                                     <label
