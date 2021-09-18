@@ -80,6 +80,7 @@ router.get('/recipe/search/guest/:name', async (req,res,next) => {
 //Detalles de la receta por "id"
 router.get('/recipe/details/user/:id', auth, async (req, res, next) => {
     const { id } = req.params;
+    const {userId} = req;
 
     try {
         validate.idMongodb(id);
@@ -89,11 +90,15 @@ router.get('/recipe/details/user/:id', auth, async (req, res, next) => {
         .populate({path:'ingredients', populate:{path: 'ingredient', select:['name','_id']}})
         .populate({path:'ingredients', populate:{path: 'unit', select:['name','_id']}})
         .lean();
+        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })};
 
-        if (!recipeMatch) { return res.status(404).json({ error: "La receta con el id ingresado no existe" })}
         const newObject = normalizeRecipes(recipeMatch);
         const likes = await Like.find({recipe: id, like:true});
         newObject.likes = likes.length;
+
+        const likeFound = await Like.findOne({recipe: id, owner: userId});
+        !!likeFound ? newObject.like = likeFound.like : newObject.like = false;
+        
         return res.json(newObject);
     } catch (e) {
         next(e);
