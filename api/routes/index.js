@@ -10,7 +10,6 @@ const get_category = require('./category/get_category.js');
 const get_user = require('./user/get_user.js');
 const get_calendar = require('./calendar/get_calendar.js');
 const get_review = require('./review/get_review.js');
-const get_user_mail = require('./user/test-send-mail.js');
 const get_user_interval = require('./user/test-set-interval.js');
 //put 
 const put_recet = require('./recet/put_recet.js');
@@ -45,7 +44,6 @@ router.use(get_category);
 router.use(get_user);
 router.use(get_calendar);
 router.use(get_review);
-router.use(get_user_mail);
 router.use(get_user_interval);
 //put
 router.use(put_recet);
