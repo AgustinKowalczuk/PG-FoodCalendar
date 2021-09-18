@@ -21,6 +21,8 @@ router.delete('/user/admin/:id', auth, authAdmin, async (req, res, next) => {
 
         await Review.deleteMany({owner: elem._id});
 
+        await Like.deleteMany({owner: elem._id});
+
         const remove = await User.findByIdAndRemove(elem._id);
         return res.json(normalizeUsers(remove));
     } catch (error) {
@@ -41,6 +43,8 @@ router.delete('/user/delete', auth, async (req, res, next) => {
         await Calendar.deleteMany({owner: elem._id});
 
         await Review.deleteMany({owner: elem._id});
+
+        await Like.deleteMany({owner: elem._id});
 
         const remove = await User.findByIdAndRemove(elem._id);
         return res.json(normalizeUsers(remove));
