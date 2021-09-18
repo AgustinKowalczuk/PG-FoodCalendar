@@ -9,11 +9,8 @@ import Dificultad from "../Cards/Dificultad";
 import Inventary from "../Inventary/Inventary";
 import Reviews from "./Reviews";
 import { VerComentarios } from "./VerComentarios";
-<<<<<<< HEAD
 import { Checkbox } from '@nextui-org/react';
-=======
 import swal from 'sweetalert';
->>>>>>> CopiaSeguridad
 
 export default function DetailRecipe() {
   const { id } = useParams();
