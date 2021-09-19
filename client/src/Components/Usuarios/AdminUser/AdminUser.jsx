@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUserForAdmin } from "../../../actions";
 import DeleteUser from "./DeleteUser";
+import UpdateUser from "./UpdateUser";
 import { Link } from "react-router-dom";
-
+import { Grid } from '@nextui-org/react';
+import style from '../../../Styles/StyleAcountList.module.css'
 
 export default function AdminUser () {
     const dispatch = useDispatch();
@@ -14,19 +16,41 @@ export default function AdminUser () {
     useEffect(() => {
         dispatch(setUserForAdmin(token))
     }, [dispatch, token])
-
+    console.log(userDetails)
     return ( 
-        <div>
-            <h3>Usuarios:</h3>
-                    {userDetails?.map((e) => (
-                    <div key={e.id}>
-                        <Link to={`/user/${e.id}`}>
-                        <br/><h6>Nombre: {e.name}</h6>
-                        </Link>
-                        <h6>Categoría: {e.category}.<br/>Correo: {e.email}<br/></h6>
-                        <DeleteUser id={e.id}/>
-                    </div>
-                    ))}
+        <div className={style.content}>
+            <h1>Usuarios</h1>
+            <Grid.Container gap={2} justify="center">
+
+                {userDetails?.map((e) => (
+                    <Grid xs={12} md={6}>
+                        <div className={style.contentData}>
+                            <div className={style.name}>
+                                <Link to={`/user/${e.id}`}>
+                                <h3>Nombre: {e.name}</h3>
+                                </Link>
+                            </div>
+                            <div className={style.category}>
+                                <h5>Categoría: {e.category}</h5>
+                            </div>
+                            <div className={style.gmail}>
+                                <h5> Correo: {e.email}</h5>
+                            </div>
+                            <div className={style.change}>
+
+                            <UpdateUser
+                                id={e.id}
+                                category={e.category}/>
+                            </div>
+                            <div className={style.delete}>
+
+                                <DeleteUser id={e.id}/>
+                            </div>
+                        </div>
+                    </Grid>
+
+                ))}
+            </Grid.Container>
         </div>
      );
 }

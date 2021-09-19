@@ -224,8 +224,7 @@ export default function CreateRecipe() {
             onBlur={formik.handleBlur}
             class="form-control"
             name="img"
-            type="text"
-            placeholder="Escribe Aqui..."
+            type="file"
           />
           {formik.errors.img && formik.touched.img === true ? (
             <div class="cosoForm">
