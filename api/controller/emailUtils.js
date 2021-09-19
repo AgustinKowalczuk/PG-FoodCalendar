@@ -35,4 +35,14 @@ const transportEmail = async (email, html) => {
     });
 }
 
-module.exports = { transportEmail };
+const htmlReplacer = (oldText, newText) => {
+    const obj = {}
+    oldText.forEach((e, i) => obj[e] = newText[i]);
+    const re = new RegExp(Object.keys(obj).join("|"),"gi");
+    return [re, obj];
+}
+
+module.exports = {
+    transportEmail,
+    htmlReplacer
+};
