@@ -16,11 +16,13 @@
     background-color: #B1B1AC;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     align-content: space-around;
     flex-wrap: nowrap;
+    
 }
+
 
 #footer{
     width: 100%;
@@ -39,6 +41,7 @@
 #button{
     border-color:#668C4A;
     color: #668C4A;
+    margin-right: 5%;
 }
 #button:hover{
     background-color: #F2F0D5;
@@ -56,10 +59,16 @@
 }
 
 .search{
-    width: 25%;
+    
+    margin-right: 5%;
 }
 
 .img{
     width: 50%;
     margin: auto;
+}
+
+#inputSearch{
+    width: 50vh;
+    
 }

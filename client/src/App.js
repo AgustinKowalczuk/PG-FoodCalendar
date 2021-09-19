@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Nav from './Components/Nav/Nav'
 import Home from './Components/Home/Home'
 import SearchCards from './Components/SearchBar/SearchCards/SearchCards'
-import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
+
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Login from './Components/Acount/Login.jsx'
@@ -21,6 +21,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
 import { setUserAndToken } from './actions';
 import Inventary from './Components/Inventary/Inventary.jsx'
+import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
+import Asdfasf from './Components/DetailRecipe/asdasd'
+
 
 
 function App() {
@@ -43,7 +46,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchCards}/>
-        <Route path='/recipe/:id' component={DetailRecipe}/>
+        <Route path='/recipe/:id' component={Asdfasf}/>
         <Route path = '/create/recipe' render= {() => (!!token) ? <CreateRecipe /> : <Redirect to='/' />}/>
         <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
         <Route path = '/acount/register' component={Register}/>

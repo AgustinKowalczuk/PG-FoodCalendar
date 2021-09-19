@@ -1,3 +1,52 @@
+.content{
+    max-width: 98%;
+    min-width: 60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+
+
+.imgContainer{
+    width: 45%;
+    margin-left: 10%;
+}
+
+.category{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.titleH3{
+    margin-right: 40%;
+    text-align: left;
+}
+
+.containerTitles{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.categoryH3{
+    margin-right: 40%;
+    text-align: left;
+}
+
+.difficultyH3{
+    margin-right: 40%;
+    text-align: left;
+}
+
 .carData{
     width: 400px;
     min-width: 20%;
@@ -14,12 +63,7 @@
     align-items: center;
     align-content: space-around;
 }
-#maxwidth{
-    max-width: 90%;
-    min-width: 60%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
+
 .normal{
     
     text-align: left;
@@ -33,9 +77,9 @@
     padding: 20px;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: left;
     justify-content: space-around;
-    align-content: center;       
+    align-content: left;       
 }
 .rating{
     text-align: right;
@@ -71,27 +115,14 @@
     align-content: space-between;
 }
 
-.category{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    align-content: stretch;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 
-.leftH3{
-    text-align: left;
-    margin-left: 1%;
-}
+
+
 .inventory{
     width: 90%;
 }
 
-#img{
-    width: 100%;
-}
+
 .li{
     width: 30%;
 }

@@ -42,7 +42,7 @@ export default function Login() {
         dispatch(login(value))
         swal({
             title: "Ingresaste a tu cuenta",
-            text: "Ingresaste a tu cienta con exito",
+            text: "Ingresaste a tu cuenta con exito",
             icon: "success",
             button: "Aceptar",
         })
