@@ -7,11 +7,11 @@ const router = express.Router();
 const { User } = require("../../models/models");
 const { env: { JWT_SECRET } } = process;
 const fs = require('fs');
-const { transportEmail } = require("../transport");
+const { transportEmail, htmlReplacer } = require("../../controller/emailUtils");
 
 router.post('/user/register', async (req, res, next) => {
     const { name, surname, email, password } = req.body;
-
+    const path = '/emailUsersMessages/register_message.html';
     try {
         userRegisterValidation(name, surname, email, password);
 
@@ -25,7 +25,11 @@ router.post('/user/register', async (req, res, next) => {
         await User.create({ name, surname, email, password: hash, category });
         const posted = await User.findOne({ email });
 
-        const html = await fs.readFileSync(__dirname + '/emailUsersMessages/register_message.html');        
+        const oldText = ['{name}', '{surname}'];
+        const newText = [name, surname];
+        const [re, obj] = htmlReplacer(oldText, newText);
+        const html = await fs.readFileSync(__dirname + path, 'utf8')
+            .replace(re, (match)=>obj[match]);
         await transportEmail(email, html);
         
         return res.json(normalizeUsers(posted));

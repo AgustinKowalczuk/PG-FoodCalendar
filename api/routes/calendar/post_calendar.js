@@ -5,12 +5,12 @@ const { auth } = require('../../controller/auth');
 const { normalizeCalendar } = require("../../controller/normalize");
 const router = express.Router();
 const fs = require('fs');
-const { transportEmail } = require("../transport");
+const { transportEmail, htmlReplacer } = require("../../controller/emailUtils");
 
 router.post('/calendar', auth, async (req, res, next) => {
     const { name, calendar } = req.body;
     const { userId } = req;
-
+    const path = '/emailCalendarsMessages/calendar_message.html';
     try {
         calendarValidation(userId, name, calendar);
 
@@ -33,7 +33,11 @@ router.post('/calendar', auth, async (req, res, next) => {
         }
         const posted = await Calendar.create({ owner: userId, name, calendar:temp });
 
-        const html = await fs.readFileSync(__dirname + '/emailCalendarsMessages/calendar_message.html');        
+        const oldText = ['{name}', '{surname}'];
+        const newText = [owner.name, owner.surname];
+        const [re, obj] = htmlReplacer(oldText, newText);
+        const html = await fs.readFileSync(__dirname + path, 'utf8')
+            .replace(re, (match)=>obj[match]);
         await transportEmail(owner.email, html);
 
         return res.json(posted);
