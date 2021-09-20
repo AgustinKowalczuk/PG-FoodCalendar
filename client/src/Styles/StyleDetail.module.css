@@ -110,8 +110,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-content: space-around;
-    align-items: stretch;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: space-evenly;
 }
 
   
@@ -182,4 +183,13 @@
     justify-content: flex-start;
     align-items: stretch;
     align-content: space-around;
+}
+
+.buttonComent{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

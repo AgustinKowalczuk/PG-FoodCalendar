@@ -48,7 +48,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchCards}/>
-        <Route path='/recipe/:id' component={DetailRecipe}/>
+        <Route path='/recipe/:id' component={Asdfasf}/>
         <Route path = '/create/recipe' render= {() => (!!token) ? <CreateRecipe /> : <Redirect to='/' />}/>
         <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
         <Route path = '/acount/register' component={Register}/>
