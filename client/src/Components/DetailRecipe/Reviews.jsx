@@ -1,6 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { postComentario } from '../../actions';
+import style from "../../Styles/StyleComent.module.css"
+import * as IoIcons from "react-icons/io5";
+
+
+
 
 
 export default function Reviews({id}) {
@@ -19,18 +24,17 @@ export default function Reviews({id}) {
         }    
         return (
                 <form onSubmit={handleSubmit}>
-                <div>
-                        <label>{user?.name}</label><br/>
-                        <label htmlFor='comentario'>Comentario:</label><br/>
-                        <textarea 
+                <div className={style.contenSendComent}>
+                        <label className={style.textLabel} htmlFor='comentario'></label>
+                        <input 
+                        className={style.comentBox}
                         id='comentario'
                         name='comentario'
                         placeholder='Ingrese su comentario'
                         rows='2'
                         colums='300'
-                         ></textarea><br/>
-                         <button type='submit'>Comentar</button>
-                         
+                                />      
+                   <button className={style.btn} type='submit'><IoIcons.IoSend/></button>
                 </div>      
                 </form>
         )

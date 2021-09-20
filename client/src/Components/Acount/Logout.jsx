@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserAndToken } from '../../actions';
 import * as GrIcons from "react-icons/gr";
-
+import { Button } from '@nextui-org/react';
 import swal from 'sweetalert';
 import style from '../../Styles/StyleLogout.module.css'
 
@@ -23,7 +23,7 @@ export default function Logout(){
 
     return (
         <div className={style.content}>
-            <GrIcons.GrLogout onClick={handleClick}>Logout</GrIcons.GrLogout>
+           <Button  auto onClick={handleClick}   icon={<GrIcons.GrLogout/>} color="error" flat> Logout </Button>
         </div>
     )
 }
