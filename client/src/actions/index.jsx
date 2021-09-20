@@ -39,7 +39,8 @@ import {
   GET_COMENTARIOS_RECETA,
   DELETE_USER,
   CALENDAR_SEND,
-  UPDATE_USER
+  UPDATE_USER,
+  POST_LIKE
 } from "./constants";
 
 import {
@@ -65,7 +66,8 @@ import {
   POST_COMENTARIO_URL,
   GET_COMENTARIOS_RECETA_URL,
   ADMIN_USERS_DELETE_URL,
-  UPDATE_USERS_URL
+  UPDATE_USERS_URL,
+  POST_LIKE_URL
 } from "../routes";
 
 import config from './config';
@@ -487,3 +489,15 @@ export function updateUser(id,obj,token){
   }
 }
 
+export function postLike(id,token){
+  return async (dispatch)=>{
+    try{
+       await axios.post(POST_LIKE_URL + `/${id}`, config(token));
+      return dispatch ({ 
+        type: POST_LIKE
+       })
+    }catch(error){
+      console.log(error);
+   }
+  }
+}

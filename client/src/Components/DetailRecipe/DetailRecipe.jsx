@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import {useHistory} from 'react-router'
-import { cleanDeleteRecipe, deleteRecipe, getDetail, getRecipes, setRecipeCalendar } from "../../actions";
+import { cleanDeleteRecipe, deleteRecipe, getDetail, getRecipes, postLike, setRecipeCalendar } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
 import Inventary from "../Inventary/Inventary";
 import Reviews from "./Reviews";
 import { VerComentarios } from "./VerComentarios";
-import { Checkbox } from '@nextui-org/react';
 import swal from 'sweetalert';
+
 
 export default function DetailRecipe() {
   const { id } = useParams();
@@ -22,6 +22,7 @@ export default function DetailRecipe() {
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
   
+  console.log (recipeDetail,'recipeDetail')
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
@@ -54,7 +55,11 @@ export default function DetailRecipe() {
       dispatch(deleteRecipe(id,token));
     }
 
-    console.log(stackReceta)
+    function onChange(id,token){
+     console.log('post')
+      dispatch(postLike(id,token));
+    }
+
   return (
     <div class={style.order}>
       <div class="card" id={style.maxwidth}>
@@ -93,7 +98,16 @@ export default function DetailRecipe() {
             </div>
             <h3 >Rating: {recipeDetail.rating}</h3>
           </div>
-
+          <div>
+            {recipeDetail.likes===1 ? <h4>A 1 persona le gusta esta receta </h4>:
+            recipeDetail.likes>1 ? <h4>{`A ${recipeDetail.likes} personas le gusta esta receta`}</h4>:
+            <></>}
+          </div>
+              <div>
+          <label>¿Te gusto la receta? </label> 
+          <button className="btn btn-primary" name='like' onClick={()=>dispatch(postLike(recipeDetail?.id,token))}>Dale Like</button> 
+          
+            </div>
           <div className={style.normal}>
             <h3>Instrucciones:</h3>
             <h5>{recipeDetail.availability !== 'Unavailable' && recipeDetail.preparation}</h5>
@@ -125,7 +139,7 @@ export default function DetailRecipe() {
           <div className={style.inventory}>
           <Inventary/>                      
           </div> 
-          <label>¿Te gusto la receta? </label> <Checkbox color="gradient" textColor="primary" name='like' checked={true}></Checkbox> 
+          
            <br/>  
           {(!!token) ? 
           <Reviews id={recipeDetail.id}/> : <></>} 

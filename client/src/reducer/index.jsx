@@ -36,7 +36,8 @@ import {
   GET_COMENTARIOS_RECETA,
   DELETE_USER,
   CALENDAR_SEND,
-  UPDATE_USER
+  UPDATE_USER,
+  POST_LIKE
 
 } from "../actions/constants";
 
@@ -68,7 +69,7 @@ var initialState = {
   adminUsers: [],
   comments:[],
   sendCalendar:[],
-};
+  };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -281,6 +282,7 @@ function reducer(state = initialState, action) {
               ...state,
               adminUsers: newUsers
             }
+        
     default:
       return state;
   }
