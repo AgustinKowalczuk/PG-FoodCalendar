@@ -79,7 +79,7 @@ export default function DetailRecipe() {
           />  
         } 
         <div class="card-body">
-          <h3 >{recipeDetail.name}</h3>
+          <h3 class="card-title">{recipeDetail.name}</h3>
           <div className={style.ingredientes}>
               <h3>Ingredientes : </h3>
               <ul class={style.ul}>
@@ -132,7 +132,7 @@ export default function DetailRecipe() {
               <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
               <button className="btn btn-primary" onClick={handleClick}>Eliminar receta</button>
             </div>            
-            : null
+            : <></>
           }          
           {recipeDetail.availability === 'Available' && 
           <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}

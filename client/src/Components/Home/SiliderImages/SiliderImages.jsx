@@ -13,7 +13,7 @@ export default function SiliderImages(props) {
                     props.allRecipes.map((e, index) => {
                         return (
                             <div key={index} className={Style.sliders}>
-                                <img className={Style.imgs} src={e.img} alt={"img not found"}/> 
+                                <img className={Style.imgs} src={e.img}/> 
                             </div>
                         )
                     })

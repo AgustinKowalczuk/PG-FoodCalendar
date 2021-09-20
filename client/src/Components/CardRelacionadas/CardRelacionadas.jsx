@@ -3,10 +3,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
 import { Link } from 'react-router-dom';
-import { getDetail,getRecipes,page,setRecipeCalendar } from '../../actions/index'
+import { getDetail,getRecipes,page } from '../../actions/index'
 import Dificultad from '../Cards/Dificultad'
 import Pagination from '../Pagination/Pagination'
-import swal from 'sweetalert';
 
 export default function CardRelacionadas() {
     const allRecipes = useSelector((state) => state.recipes)
@@ -21,18 +20,6 @@ export default function CardRelacionadas() {
     const paginado = (pageNumber) => {
         dispatch(page(pageNumber))
     }
-    const stackReceta = useSelector((state) => state.recipeCalendar);
-    function agregarCalendario(receta){
-        if(stackReceta.length < 14  && !stackReceta.includes(receta)){
-        return dispatch(setRecipeCalendar(receta))
-        } else{
-        return swal({
-          title: "Receta no agregada",
-          text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
-          icon: "error",
-        });
-        }
-        }
 
     useEffect(() => {
         dispatch(getRecipes(token));
@@ -50,15 +37,10 @@ export default function CardRelacionadas() {
                             onClick={() => dispatch(getDetail(e.id,token))} id={style.normal}>
                             <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
                             <div class="card-body" >
-                                <h4 class="card-title" >{e.name.toUpperCase()}</h4>
+                                <h3 class="card-title" >{e.name.toUpperCase()}</h3>
                                 <div>
                                     <Dificultad difficulty={e.difficulty} />
                                 </div>
-                                <div>
-              {e.availability === 'Available' && 
-              <button id={style.btn} onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>
-              }
-            </div>
                             </div>
                         </Link>
                     </div>

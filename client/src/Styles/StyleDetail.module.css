@@ -1,127 +1,25 @@
-.content{
-    max-width: 95%;
-    min-width: 60%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    border: 1px solid #668C4A;
-    margin: auto !important;
-    padding: 1%;
-    border-radius: .25rem;
-}
-.table{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-
-.imgContainer{
-    width: 45%;
-    margin-left: 10%;
-}
-
-#img{
-    border-radius: .25rem;
-}
-
-
-
-.category{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    align-content: stretch;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-
-.containerTitles{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    
-}
-
-.titleH3{
-    margin-right: 40%;
-    text-align: left;
-}
-.categoryH3{
-    margin-bottom: 1%;
-    text-align: left;
-}
-
-
-
-.dificulty {
-    display: flex;
-    width: 100%;
-    margin-bottom: 1%;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    
-}
-.maxwidth{
-    display: flex;
-    max-width: 100%;
-    min-width: 35%;
-    height: 40%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: space-around;
-}
-.difficultyH3{
-    
-    text-align: left;
-}
-.tabsContainer{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-#controlled-tab-example{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-
-}
-
-
-.contentComent{
-    width: 95%;
-    background-color: rgba(177, 177, 172, 0.733);
-    border: 1px solid #668C4A;
-    border-bottom-left-radius: .25rem;
-    border-bottom-left-radius: .25rem !important;
-    margin: 0 auto !important;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: space-around;
-    align-items: stretch;
-}
-
-  
 .carData{
     width: 400px;
     min-width: 20%;
     margin-top: 5px;
     background-color: coral;
 }
-
+.maxwidth{
+    display: flex;
+    max-width: 100%;
+    min-width: 35%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: space-around;
+}
+#maxwidth{
+    max-width: 90%;
+    min-width: 60%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
 .normal{
     
     text-align: left;
@@ -129,7 +27,16 @@
     margin-bottom: 2%;
 }
 
-
+.dificulty {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;       
+}
 .rating{
     text-align: right;
     font-size: 1.4rem;
@@ -145,7 +52,7 @@
 }
 
 .detailCard{
-    width:100%;
+    width:80%;
     padding:3%;
     border: 1px solid rgba(128, 128, 128, 0.644);
     border-radius: .25rem;
@@ -164,14 +71,27 @@
     align-content: space-between;
 }
 
+.category{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-
-
+.leftH3{
+    text-align: left;
+    margin-left: 1%;
+}
 .inventory{
     width: 90%;
 }
 
-
+#img{
+    width: 100%;
+}
 .li{
     width: 30%;
 }
