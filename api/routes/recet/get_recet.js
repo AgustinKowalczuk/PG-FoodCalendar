@@ -97,7 +97,7 @@ router.get('/recipe/details/user/:id', auth, async (req, res, next) => {
         newObject.likes = likes.length;
 
         const likeFound = await Like.findOne({ recipe: id, owner: userId });
-        !!likeFound ? newObject.like = likeFound.like : newObject.like = false;
+        newObject.like  = !!likeFound ? likeFound.like : false;
 
         return res.json(newObject);
     } catch (e) {

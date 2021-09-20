@@ -37,7 +37,7 @@ router.post('/like/:id', auth, async (req, res, next) => {
         newObject.likes = likes.length;
 
         const likeFound = await Like.findOne({ recipe: recipeId, owner: userId });
-        !!likeFound ? newObject.like = likeFound.like : newObject.like = false;
+        newObject.like  = !!likeFound ? likeFound.like : false;
 
         return res.json(newObject);
     } catch (error) {

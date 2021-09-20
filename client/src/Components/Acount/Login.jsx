@@ -6,6 +6,7 @@ import { login } from '../../actions';
 import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const token = useSelector(state => state.token);
@@ -42,7 +43,7 @@ export default function Login() {
         dispatch(login(value))
         swal({
             title: "Ingresaste a tu cuenta",
-            text: "Ingresaste a tu cienta con exito",
+            text: "Ingresaste a tu cuenta con exito",
             icon: "success",
             button: "Aceptar",
         })
@@ -70,6 +71,16 @@ export default function Login() {
                     </div>
                 </Form>
             </Formik>
+            <div>
+            <Link to="/acount/register" >
+                ¿Aún no te registraste? Haz click Aqui
+            </Link>
+            </div>
+            <div>
+                <Link to="/acount/recovery">
+                    Olvidaste tu contraseña?
+                </Link>
+            </div>
         </div>
     )
 }

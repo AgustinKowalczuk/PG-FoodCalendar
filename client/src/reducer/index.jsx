@@ -36,8 +36,11 @@ import {
   GET_COMENTARIOS_RECETA,
   DELETE_USER,
   CALENDAR_SEND,
-  UPDATE_USER
-
+  UPDATE_USER,
+  POST_LIKE,
+  DELETE_REVIEWS,
+  PUT_REVIEWS,
+  GET_USER_DETAIL
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -68,6 +71,8 @@ var initialState = {
   adminUsers: [],
   comments:[],
   sendCalendar:[],
+  toggleReviews:false,
+  userCommentsDetails: []
 };
 
 function reducer(state = initialState, action) {
@@ -281,6 +286,42 @@ function reducer(state = initialState, action) {
               ...state,
               adminUsers: newUsers
             }
+        case DELETE_REVIEWS:{
+          const index = state.comments.findIndex((e) => e.id === action.payload.id)
+          const newComments = [...state.comments]
+          newComments.splice(index, 1)
+         return{
+           ...state,
+           comments:newComments
+         } 
+        }
+      case PUT_REVIEWS: {
+          const index = state.comments.findIndex((e) => e.id === action.payload.id)
+          const newComm = [...state.comments]
+          newComm.splice(index, 1, action.payload)
+        return {
+              ...state,
+              comments: newComm,
+              toggleReviews:!state.toggleReviews
+            }
+        } 
+      case POST_LIKE:{
+       return{
+          ...state,
+          detail:{
+            ...state.detail,
+            ingredients:[...state.detail.ingredients],
+            category:[...state.detail.category],
+            like:action.payload.like,
+            likes:action.payload.likes
+          }
+        }
+      }
+        case GET_USER_DETAIL:
+          return{
+            ...state,
+            userCommentsDetails: action.payload
+          }
     default:
       return state;
   }
