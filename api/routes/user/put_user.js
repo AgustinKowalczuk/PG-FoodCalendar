@@ -39,7 +39,7 @@ router.put('/user/noAdmin', auth, async (req, res, next) => {
         const [re, obj] = htmlReplacer(oldText, newText);
         const html = await fs.readFileSync(__dirname + path, 'utf8')
             .replace(re, (match)=>obj[match]);
-        await transportEmail(elem.email, html);                
+        await transportEmail(elem.email, html, 'Cambio de contraseña');                
         
         const update = await User.findById(elem._id);
         return res.json(normalizeUsers(update));
@@ -102,7 +102,7 @@ router.put('/guest/passwordForm', async (req, res, next) => {
         const [re, obj] = htmlReplacer(oldText, newText);
         const html = await fs.readFileSync(__dirname + path, 'utf8')
             .replace(re, (match)=>obj[match]);
-        await transportEmail(email, html);
+        await transportEmail(email, html, 'Recuperación de contraseña');
                 
         await User.findByIdAndUpdate(elem._id, { password: hash });
         const update = await User.findById(elem._id);
