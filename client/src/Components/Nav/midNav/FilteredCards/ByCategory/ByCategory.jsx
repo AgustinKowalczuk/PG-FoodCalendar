@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCategory, FilterRecipeByCategory, getRecipes } from "../../../../../actions/index"
 import Button from 'react-bootstrap/Button'
 import Dropdown  from 'react-bootstrap/Dropdown'
-
+import style from '../../../../../Styles/StyleNav.module.css'
 
 export default function FilteredByCategory() {
     const token = useSelector(state => state.token);
@@ -31,10 +31,10 @@ export default function FilteredByCategory() {
             <Dropdown.Toggle variant="light" id="dropdown-basic" aling="end"  drop={"end"}>
                 Categorias
             </Dropdown.Toggle>
-            <Dropdown.Menu align="end"  drop={"end"}  >
+            <Dropdown.Menu className={style.drop} align="end"  drop={"end"}  >
                 {category?.map((e) => {
                     return (
-                        <li>
+                        <li className={style.buttons}>
                         <Button variant="light"
                         key="end"
                         id={e.id}

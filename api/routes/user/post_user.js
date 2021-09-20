@@ -5,10 +5,13 @@ const { normalizeUsers } = require("../../controller/normalize");
 const { userRegisterValidation, userLoginValidation } = require("../../controller/router_validate/user_route_validate");
 const router = express.Router();
 const { User } = require("../../models/models");
+const { env: { JWT_SECRET } } = process;
+const fs = require('fs');
+const { transportEmail, htmlReplacer } = require("../../controller/emailUtils");
 
 router.post('/user/register', async (req, res, next) => {
     const { name, surname, email, password } = req.body;
-
+    const path = '/emailUsersMessages/register_message.html';
     try {
         userRegisterValidation(name, surname, email, password);
 
@@ -21,6 +24,14 @@ router.post('/user/register', async (req, res, next) => {
 
         await User.create({ name, surname, email, password: hash, category });
         const posted = await User.findOne({ email });
+
+        const oldText = ['{name}', '{surname}'];
+        const newText = [name, surname];
+        const [re, obj] = htmlReplacer(oldText, newText);
+        const html = await fs.readFileSync(__dirname + path, 'utf8')
+            .replace(re, (match)=>obj[match]);
+        await transportEmail(email, html, 'Registro exitoso');
+        
         return res.json(normalizeUsers(posted));
     } catch (error) {
         next(error);
@@ -38,7 +49,7 @@ router.post('/user/login', async (req, res, next) => {
         
         if (! await argon.verify(userFound.password, password)) throw new Error ("La constraseña ingresada es incorrecta.");
         
-        const token = await jwt.sign({ sub: userFound._id }, "EstoEsSecreto", { expiresIn: "12h"});
+        const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});
         userFound = normalizeUsers(userFound);
         return res.json({ token,  user: userFound });                
     } catch (error){
