@@ -20,9 +20,8 @@
     align-items: center;
     align-content: space-around;
     flex-wrap: nowrap;
-    
+    margin-bottom: 1%;
 }
-
 
 #footer{
     width: 100%;

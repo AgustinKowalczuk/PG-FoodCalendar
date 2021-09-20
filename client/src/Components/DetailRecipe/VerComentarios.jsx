@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComentarios } from "../../actions";
+import style from "../../Styles/StyleComent.module.css"
+
+
 
 export function VerComentarios({id}){
 
@@ -19,16 +22,13 @@ export function VerComentarios({id}){
                            const dia= fecha.getDate()
                            const anio= fecha.getFullYear()
                             return (
-                                    <div>
-                                    <div>
-                                      Usuario:{e.owner.name}</div>
-                                    <label
-                                    type='date'
-                                         >{`${dia}/${mes}/${anio}`}</label>
-                                         
-                                         <div>{e.comment}</div>
-                                         </div>
-                                         )
+                                    
+                                <div className={style.coment}>
+                                        <label id={style.diaComent} className={style.textLabel} type='date'>{`${dia}/${mes}/${anio}`}</label>     
+                                        <span className={style.dateComent}>{e.comment}</span>
+                                </div>
+                                
+                                )
                         })}
 
                 </div>

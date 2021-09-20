@@ -37,7 +37,7 @@ export default function CardRelacionadas() {
                             onClick={() => dispatch(getDetail(e.id))} id={style.normal}>
                             <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
                             <div class="card-body" >
-                                <h3 class="card-title" >{e.name.toUpperCase()}</h3>
+                                <h4 class="card-title" >{e.name.toUpperCase()}</h4>
                                 <div>
                                     <Dificultad difficulty={e.difficulty} />
                                 </div>

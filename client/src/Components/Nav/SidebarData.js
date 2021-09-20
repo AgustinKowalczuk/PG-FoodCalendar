@@ -24,6 +24,12 @@ export const SidebarDataNotUser = [
         icon: <BiIcons.BiBookHeart/>,
         cName:'nav-text'
     },
+    {
+        title:'Crea tu calendario',
+        path: '/shop',
+        icon: <IoIcons.IoCreateOutline/>,
+        cName:'nav-text'
+    },
     
 
 ]
