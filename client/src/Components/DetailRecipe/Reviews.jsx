@@ -7,6 +7,7 @@ import * as IoIcons from "react-icons/io5";
 
 
 
+
 export default function Reviews({id}) {
         
         const token = useSelector(state => state.token) 
@@ -17,14 +18,14 @@ export default function Reviews({id}) {
                 e.preventDefault();
             const valor={
                       comment:e.target['comentario'].value,
-                      rating:Number(e.target['rating'].value),
-                         }
-           dispatch(postComentario(valor,id,token))
+                      }
+                         console.log (valor,'valor')
+               dispatch(postComentario(valor,id,token))
         }    
         return (
                 <form onSubmit={handleSubmit}>
                 <div className={style.contenSendComent}>
-                        <label className={style.textLabel} htmlFor='comentario'>Comentario:</label>
+                        <label className={style.textLabel} htmlFor='comentario'></label>
                         <input 
                         className={style.comentBox}
                         id='comentario'

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import {useHistory} from 'react-router'
-import { cleanDeleteRecipe, deleteRecipe, getDetail, getRecipes, setRecipeCalendar } from "../../actions";
+import { cleanDeleteRecipe,postLike , deleteRecipe, getDetail, getRecipes, setRecipeCalendar } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
@@ -15,7 +15,7 @@ import Tab from 'react-bootstrap/Tab'
 import IngredientsPanel from "./IngredientsPanel";
 import InstrunctionsPanel from "./InstrunctionsPanel";
 import * as FaIcons from "react-icons/fa";
-
+import { Button } from '@nextui-org/react';
 
 
 
@@ -30,9 +30,9 @@ export default function DetailRecipe() {
   const user = useSelector(state => state.user);
   const [key, setKey]  = useState('')
 
+  const [buttonGhost, setGhost] = useState(false)
 
-
-
+  const changeGhost = () => setGhost(!buttonGhost)
 
 
   //Lo despacho
@@ -66,8 +66,12 @@ export default function DetailRecipe() {
     function handleClick(id){
       dispatch(deleteRecipe(id,token));
     }
+    function handleClick2(){
+      changeGhost()
+      dispatch(postLike(recipeDetail.id,token));
+     }
 
-    console.log(stackReceta)
+    console.log(buttonGhost)
   return (
     <div>
 
@@ -137,9 +141,22 @@ export default function DetailRecipe() {
       
         </Tabs>
             </div>
+            <div>
+            <div>
+            {recipeDetail.likes===1 ? <h4>A 1 persona le gusta esta receta </h4>:
+            recipeDetail.likes>1 ? <h4>{`A ${recipeDetail.likes} personas le gusta esta receta`}</h4>:
+            <></>}
+          </div>
+              <div>
+          <label>¿Te gusto la receta? </label> 
+          <Button ghost={buttonGhost} color="primary" name='like' onClick={handleClick2}>Dale Like</Button> 
+          
+            </div>
+            </div>
       <div className={style.contentComent}>
         <div className={style.buttonComent}>      
-          <Reviews id={recipeDetail.id}/> 
+        {(!!token) ? 
+          <Reviews id={recipeDetail.id}/> : null}
           {recipeDetail.availability === 'Available' && 
             <button  onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus/></button>
           }  

@@ -100,18 +100,21 @@
 }
 
 
-
-
 .contentComent{
     width: 95%;
     background-color: rgba(177, 177, 172, 0.733);
     border: 1px solid #668C4A;
     border-bottom-left-radius: .25rem;
-    border-bottom-left-radius: .25rem;
+    border-bottom-left-radius: .25rem !important;
     margin: 0 auto !important;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: stretch;
 }
 
-
+  
 .carData{
     width: 400px;
     min-width: 20%;

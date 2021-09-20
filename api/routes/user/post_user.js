@@ -30,7 +30,7 @@ router.post('/user/register', async (req, res, next) => {
         const [re, obj] = htmlReplacer(oldText, newText);
         const html = await fs.readFileSync(__dirname + path, 'utf8')
             .replace(re, (match)=>obj[match]);
-        await transportEmail(email, html);
+        await transportEmail(email, html, 'Registro exitoso');
         
         return res.json(normalizeUsers(posted));
     } catch (error) {

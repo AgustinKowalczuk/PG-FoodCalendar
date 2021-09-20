@@ -12,7 +12,7 @@ import Logout from "../Acount/Logout"
 import SearchBar from '../SearchBar/SearchBar'
 import ButtonLogin from "../Acount/ButtonLogin";
 import ButtonRegister from "../Acount/ButtonRegister";
-
+import Inventary from "../Inventary/Inventary";
 
 export default function Nav() {
   const token = useSelector(state => state.token);
@@ -73,6 +73,7 @@ export default function Nav() {
           {
            ( !!token ) ?
               <div>
+                <Inventary/>
                 <Logout/>
               </div>:
               null

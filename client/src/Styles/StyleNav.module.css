@@ -48,7 +48,6 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 #midNav{
-    background-color:#F2F0D5;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -69,5 +68,22 @@
 
 #inputSearch{
     width: 50vh;
-    
+}
+.drop{
+    overflow-y: scroll;
+    width: 30vh;
+    max-height: 50vh;
+}
+
+.buttons{
+    width: 50%;
+}
+
+.droppDown{
+    width: 50vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }

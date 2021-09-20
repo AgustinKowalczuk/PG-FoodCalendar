@@ -39,7 +39,12 @@ import {
   GET_COMENTARIOS_RECETA,
   DELETE_USER,
   CALENDAR_SEND,
-  UPDATE_USER
+  UPDATE_USER,
+  POST_LIKE,
+  DELETE_REVIEWS,
+  PUT_REVIEWS,
+  GET_USER_DETAIL,
+  RECOVER_PASS
 } from "./constants";
 
 import {
@@ -65,7 +70,12 @@ import {
   POST_COMENTARIO_URL,
   GET_COMENTARIOS_RECETA_URL,
   ADMIN_USERS_DELETE_URL,
-  UPDATE_USERS_URL
+  UPDATE_USERS_URL,
+  POST_LIKE_URL,
+  DELETE_REVIEWS_URL,
+  PUT_REVIEWS_URL,
+  GET_USER_DETAILS_URL,
+  PUT_RECOVERY_PASS_URL
 } from "../routes";
 
 import config from './config';
@@ -113,7 +123,7 @@ export function getCategory() {
 
 //obtener el detalle de la receta
 export function getDetail(id,token) {
-  const url = token ? RECIPES_DETAIL_USER_URL : RECIPES_DETAIL_GUEST_URL;
+  const url = !!token ? RECIPES_DETAIL_USER_URL : RECIPES_DETAIL_GUEST_URL;
   return async function (dispatch) {
     try {
       const detail = await axios.get(url + id, config(token));
@@ -248,6 +258,17 @@ export function register(user){
     }    
   }
 }
+
+export function putRecoveryPass(email){
+  return async (dispatch)=>{
+    try{
+      const recover = await axios.put(PUT_RECOVERY_PASS_URL + `/${email}`);
+      return dispatch ({ 
+        type: RECOVER_PASS,
+      payload:recover.data})
+    }catch(error){
+      console.log(error);
+   }}}
 
 export function login(user){
   return async function(dispatch){
@@ -472,8 +493,6 @@ export function sendCalendar(recipe) {
 
   return {type: CALENDAR_SEND, payload: recipe}
 }
-
-
 export function updateUser(id,obj,token){
   return async (dispatch)=>{
     try{
@@ -486,4 +505,60 @@ export function updateUser(id,obj,token){
    }
   }
 }
+export function postLike(id,token){
+  console.log (id,token)
+  return async (dispatch)=>{
+    try{
+     const aux = await axios.post(POST_LIKE_URL + `/${id}`, {},config(token));
+      return dispatch ({ 
+        type: POST_LIKE,
+        payload:aux.data
+       })
+    }catch(error){
+      console.log(error);
+   }
+  }
+}
 
+export function deleteReviews(id,token){
+  return async function (dispatch){
+    try {
+      console.log(id,'id de action')
+      const borrar = await axios.delete(DELETE_REVIEWS_URL +'/' + id, config(token));
+      console.log(borrar.data,'reducer')
+      return dispatch ({
+        type : DELETE_REVIEWS,
+        payload: borrar.data
+      });
+    } catch (error) {
+      console.log(error);
+      return alert("No existen comentarios para borrar");
+    }    
+  };
+}
+export function putReviews(idReview,valor,token) {
+  return async (dispatch)=>{
+    try{
+      const putrev = await axios.put(PUT_REVIEWS_URL + `/${idReview}`, valor, config(token));
+      return dispatch ({ 
+        type: PUT_REVIEWS,
+        payload:putrev.data})
+    }catch(error){
+      console.log(error);
+   }
+  }
+}
+
+export function getComentaryDetail(id,token){
+  return async function (dispatch) {
+    try {
+      const comentaryDetail = await axios.get(GET_USER_DETAILS_URL + '/' + id, config(token));
+      return dispatch({
+        type: GET_USER_DETAIL,
+        payload: comentaryDetail.data
+      });
+    } catch (error) {
+      return alert("No existen comentarios de este usuario");
+    }    
+  }; 
+}

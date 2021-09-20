@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '../../../Styles/StyleCardShop.module.css'
 import '@lourenci/react-kanban/dist/styles.css'
-import Board, { moveCard } from '@lourenci/react-kanban'
+import Board, { moveCard, removeCard } from '@lourenci/react-kanban'
 import { sendCalendar } from '../../../actions/index'
+import swal from 'sweetalert'
 
 export default function Recipes() {
 
@@ -14,7 +15,6 @@ export default function Recipes() {
             id: e.id,
             title: e.name,
             description: e.category[0]+ ' ' + e.category[1],
-
         }
     })
     const [daysColumns, setday] = useState(
@@ -64,22 +64,31 @@ export default function Recipes() {
     })
 
     const handleCards = (_card, source, destination) => {
-        const ofMoved = moveCard(daysColumns, source, destination)
-        const send = []
-        console.log(destination)
-        ofMoved.columns.forEach((e, index) => {
-            if(e.id !== 0 ){
-                e.cards.forEach(c => {
-                    send.push(c.id)
-                })
-            }
-        })
-        setday(ofMoved)
-
-        dispatch(sendCalendar(send))
         
-    }
+        if(destination.toColumnId === 0  || daysColumns.columns[destination.toColumnId].cards.length < 2) {
+
+            const ofMoved = moveCard(daysColumns, source, destination)
+            const send = []
+            
+            ofMoved.columns.forEach((e, index) => {    
+                if(e.id !== 0 ){
+                    
+                    e.cards.forEach(c => {
+                        send.push(c.id)
+                    })
+                }
+            })
+            setday(ofMoved)
     
+            dispatch(sendCalendar(send))
+        }else{
+            return swal({
+                title: 'Receta no agregada',
+                text: 'Solo se puede tener 2 recetas por dai',
+                icon: 'error',
+            })
+        }
+    }
     return(
         <Board onCardDragEnd={handleCards} disableColumnDrag >
             {daysColumns}

@@ -30,6 +30,13 @@ export const SidebarDataNotUser = [
         icon: <IoIcons.IoCreateOutline/>,
         cName:'nav-text'
     },
+    {
+        title:'Registrate',
+        path: '/acount/register',
+        icon: <BsIcons.BsFillPeopleFill/>,
+        cName:'nav-text'
+    },
+    
     
 
 ]
