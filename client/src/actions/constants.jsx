@@ -40,5 +40,4 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const POST_LIKE = 'POST_LIKE';
 export const DELETE_REVIEWS = 'DELETE_REVIEWS';
 export const PUT_REVIEWS = 'PUT_REVIEWS';
-
-
+export const GET_USER_DETAIL = 'GET_USER_DETAIL'

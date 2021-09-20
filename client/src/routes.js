@@ -28,3 +28,4 @@ export const UPDATE_USERS_URL = `${URL}/user/admin`;
 export const POST_LIKE_URL = `${URL}/like`;
 export const DELETE_REVIEWS_URL =`${URL}/review/user`;
 export const PUT_REVIEWS_URL = `${URL}/review`
+export const GET_USER_DETAILS_URL = `${URL}/reviews/user`

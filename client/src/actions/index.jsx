@@ -43,7 +43,8 @@ import {
   POST_LIKE,
   DELETE_REVIEWS,
   PUT_REVIEWS,
- } from "./constants";
+  GET_USER_DETAIL
+} from "./constants";
 
 import {
   RECIPES_URL,
@@ -71,7 +72,8 @@ import {
   UPDATE_USERS_URL,
   POST_LIKE_URL,
   DELETE_REVIEWS_URL,
-  PUT_REVIEWS_URL
+  PUT_REVIEWS_URL,
+  GET_USER_DETAILS_URL
 } from "../routes";
 
 import config from './config';
@@ -534,3 +536,16 @@ export function putReviews(idReview,valor,token) {
   }
 }
 
+export function getComentaryDetail(id,token){
+  return async function (dispatch) {
+    try {
+      const comentaryDetail = await axios.get(GET_USER_DETAILS_URL + '/' + id, config(token));
+      return dispatch({
+        type: GET_USER_DETAIL,
+        payload: comentaryDetail.data
+      });
+    } catch (error) {
+      return alert("No existen comentarios de este usuario");
+    }    
+  }; 
+}

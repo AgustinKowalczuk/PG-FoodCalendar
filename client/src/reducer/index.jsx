@@ -40,7 +40,8 @@ import {
   POST_LIKE,
   DELETE_REVIEWS,
   PUT_REVIEWS,
-  } from "../actions/constants";
+  GET_USER_DETAIL
+} from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
 
@@ -71,7 +72,8 @@ var initialState = {
   comments:[],
   sendCalendar:[],
   toggleReviews:false,
-  };
+  userCommentsDetails: []
+};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -315,7 +317,12 @@ function reducer(state = initialState, action) {
           }
         }
       }
-     default:
+        case GET_USER_DETAIL:
+          return{
+            ...state,
+            userCommentsDetails: action.payload
+          }
+    default:
       return state;
   }
 }
