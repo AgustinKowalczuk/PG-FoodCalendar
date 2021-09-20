@@ -40,8 +40,10 @@ import {
   DELETE_USER,
   CALENDAR_SEND,
   UPDATE_USER,
-  POST_LIKE
-} from "./constants";
+  POST_LIKE,
+  DELETE_REVIEWS,
+  PUT_REVIEWS,
+ } from "./constants";
 
 import {
   RECIPES_URL,
@@ -67,7 +69,9 @@ import {
   GET_COMENTARIOS_RECETA_URL,
   ADMIN_USERS_DELETE_URL,
   UPDATE_USERS_URL,
-  POST_LIKE_URL
+  POST_LIKE_URL,
+  DELETE_REVIEWS_URL,
+  PUT_REVIEWS_URL
 } from "../routes";
 
 import config from './config';
@@ -115,7 +119,7 @@ export function getCategory() {
 
 //obtener el detalle de la receta
 export function getDetail(id,token) {
-  const url = token ? RECIPES_DETAIL_USER_URL : RECIPES_DETAIL_GUEST_URL;
+  const url = !!token ? RECIPES_DETAIL_USER_URL : RECIPES_DETAIL_GUEST_URL;
   return async function (dispatch) {
     try {
       const detail = await axios.get(url + id, config(token));
@@ -474,8 +478,6 @@ export function sendCalendar(recipe) {
 
   return {type: CALENDAR_SEND, payload: recipe}
 }
-
-
 export function updateUser(id,obj,token){
   return async (dispatch)=>{
     try{
@@ -488,16 +490,47 @@ export function updateUser(id,obj,token){
    }
   }
 }
-
 export function postLike(id,token){
+  console.log (id,token)
   return async (dispatch)=>{
     try{
-       await axios.post(POST_LIKE_URL + `/${id}`, config(token));
+     const aux = await axios.post(POST_LIKE_URL + `/${id}`, {},config(token));
       return dispatch ({ 
-        type: POST_LIKE
+        type: POST_LIKE,
+        payload:aux.data
        })
     }catch(error){
       console.log(error);
    }
   }
 }
+
+export function deleteReviews(id,token){
+  return async function (dispatch){
+    try {
+      console.log(id,'id de action')
+      const borrar = await axios.delete(DELETE_REVIEWS_URL +'/' + id, config(token));
+      console.log(borrar.data,'reducer')
+      return dispatch ({
+        type : DELETE_REVIEWS,
+        payload: borrar.data
+      });
+    } catch (error) {
+      console.log(error);
+      return alert("No existen comentarios para borrar");
+    }    
+  };
+}
+export function putReviews(idReview,valor,token) {
+  return async (dispatch)=>{
+    try{
+      const putrev = await axios.put(PUT_REVIEWS_URL + `/${idReview}`, valor, config(token));
+      return dispatch ({ 
+        type: PUT_REVIEWS,
+        payload:putrev.data})
+    }catch(error){
+      console.log(error);
+   }
+  }
+}
+

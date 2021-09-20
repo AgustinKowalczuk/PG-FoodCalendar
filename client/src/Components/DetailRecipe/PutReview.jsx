@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteReviews, putReviews } from '../../actions';
+import { putReviews } from '../../actions';
 
 export default function PutReview({idReview,comm}) {
+
         const token = useSelector(state => state.token) 
         const dispatch = useDispatch()
         const user= useSelector(state => state.user)
@@ -27,7 +28,7 @@ export default function PutReview({idReview,comm}) {
         return (
                 <>
                 <button onClick={()=>modificar()}>Modificar</button> 
-                {flag  ?
+                {flag &&
                    <form onSubmit={handleSubmit}>
                 <div>     
                         <label>{user?.name}</label><br/>
@@ -41,9 +42,9 @@ export default function PutReview({idReview,comm}) {
                         
                          ></textarea><br/>
                          <button type='submit'>Modificar</button>
-                         
                 </div>      
-                </form>: <> </>}
+                </form>
+                }
                </>
         )         
      
