@@ -20,7 +20,7 @@ export default function DetailRecipe() {
   const history = useHistory();
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
-  
+
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
@@ -103,11 +103,14 @@ export default function DetailRecipe() {
             <h3 class={style.leftH3}>Categorias: </h3>
               <table class={style.content}>
                 <tr>
-                  {recipeDetail?.category?.map((x) => (
-                    <td>
-                      <h4>{x}</h4>
-                    </td>
-                  ))}
+                  {recipeDetail?.category?.map((x, index) => {
+                    
+                    return(
+                      <td>
+                        <h4>{x}</h4>
+                      </td>
+                    )
+                  })}
                 </tr>
               </table>
           </div>
@@ -123,8 +126,12 @@ export default function DetailRecipe() {
         </div>  
           <Reviews id={recipeDetail.id}/>   
           <VerComentarios id={recipeDetail.id}/>    
-      <h2> Otras recetas</h2>
-      <CardRelacionadas />
+      {
+        !!token ?
+        <h2>Recetas relacionadas</h2>:
+        <h2>Otras recetas</h2>
+      }
+      <CardRelacionadas/>
     </div>
 
   );

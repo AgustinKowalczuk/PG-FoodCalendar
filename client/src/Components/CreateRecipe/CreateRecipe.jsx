@@ -140,7 +140,6 @@ export default function CreateRecipe() {
             value={formik.values.name}
             onBlur={formik.handleBlur}
             name="name"
-            class="form-control"
             placeholder="Escribe Aqui..."
           />
           {formik.errors.name && formik.touched.name === true ? (
@@ -157,7 +156,6 @@ export default function CreateRecipe() {
             onChange={formik.handleChange}
             name={`ingredients[${formik.values.ingredients.length}].ingredient`}
             id="disabledSelect"
-            class="form-select"
           >
             {ingre?.map((e, index) => {
               if (!formik.values.ingredients.some(i => e.name === i.ingredient)) {
@@ -184,7 +182,6 @@ export default function CreateRecipe() {
             defaultValue="Fácil"
             onChange={formik.handleChange}
             name="difficulty"
-            class="form-control"
           >
             <option name="difficulty" value="Fácil"> 
               Fácil
@@ -204,7 +201,6 @@ export default function CreateRecipe() {
             onChange={formik.handleChange}
             value={formik.values.preparation}
             onBlur={formik.handleBlur}
-            class="form-control"
             name="preparation"
             type="text"
             placeholder="Escribe Aqui..."
@@ -222,7 +218,6 @@ export default function CreateRecipe() {
             onChange={formik.handleChange}
             value={formik.values.img}
             onBlur={formik.handleBlur}
-            class="form-control"
             name="img"
             type="file"
           />
@@ -240,7 +235,6 @@ export default function CreateRecipe() {
             onChange={formik.handleChange}
             name={`category[${formik.values.category?.length}]`}
             id="disabledSelect"
-            class="form-select"
           >
             {category?.map((e, index) => {
               if (!formik.values.category.some(i => e.name === i)) {
@@ -262,7 +256,6 @@ export default function CreateRecipe() {
             <label class="form-label">Tipo de receta</label>
             <select 
             onChange={formik.handleChange}
-            class="form-control"
             name="premium">
               <option value={false}>Free</option>
               <option value={true}>Premium</option>
@@ -273,7 +266,6 @@ export default function CreateRecipe() {
             <label class="form-label">Está Disponible?</label>
             <select 
             onChange={formik.handleChange}
-            class="form-control"
             name="availability">
               <option value={true}>Available</option>
               <option value={false}>Unavailable</option>

@@ -58,12 +58,12 @@ export default function Login() {
                     <div className={style.content}>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" name="email" className="form-control" id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field type="email" name="email" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
                         <button id={style.btn} className="btn btn-primary" type="submit">Ingresar</button>

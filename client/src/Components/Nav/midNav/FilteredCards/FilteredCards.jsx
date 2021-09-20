@@ -8,10 +8,8 @@ import style  from '../../../../Styles/StyleNav.module.css';
 
 export default function FilteredCards() {
    
-   
+  
     const [isOpen, setIsOpen] = useState(false)
-
-
 
     return (
         <div>
@@ -29,5 +27,4 @@ export default function FilteredCards() {
             </Dropdown>
         </div>
     )
-
 }
