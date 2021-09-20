@@ -43,8 +43,7 @@ import {
   POST_LIKE,
   DELETE_REVIEWS,
   PUT_REVIEWS,
-  GET_USER_DETAIL,
-  RECOVER_PASS
+  GET_USER_DETAIL
 } from "./constants";
 
 import {
@@ -74,8 +73,7 @@ import {
   POST_LIKE_URL,
   DELETE_REVIEWS_URL,
   PUT_REVIEWS_URL,
-  GET_USER_DETAILS_URL,
-  PUT_RECOVERY_PASS_URL
+  GET_USER_DETAILS_URL
 } from "../routes";
 
 import config from './config';
@@ -258,17 +256,6 @@ export function register(user){
     }    
   }
 }
-
-export function putRecoveryPass(email){
-  return async (dispatch)=>{
-    try{
-      const recover = await axios.put(PUT_RECOVERY_PASS_URL + `/${email}`);
-      return dispatch ({ 
-        type: RECOVER_PASS,
-      payload:recover.data})
-    }catch(error){
-      console.log(error);
-   }}}
 
 export function login(user){
   return async function(dispatch){

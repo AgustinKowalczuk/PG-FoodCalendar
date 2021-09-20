@@ -1,10 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import style from "../../Styles/StyleComent.module.css"
-
-
 import { deleteReviews, getComentarios } from "../../actions";
 import PutReview from "./PutReview";
 
@@ -29,27 +25,27 @@ export function VerComentarios({id}){
  
         return (
                 <div>
-                        {comments?.map((e)=>{
-                          const fecha = new Date(e.date)
-                           const mes= fecha.getMonth()+1
-                           const dia= fecha.getDate()
-                           const anio= fecha.getFullYear()
-                            return (
-                                    
-                                <div className={style.coment}>
-                                          <div>
-                        
-                        {e?.owner.name
-                        }:</div>
-                                        <label id={style.diaComent} className={style.textLabel} type='date'>{`${dia}/${mes}/${anio}`}</label>     
-                                        <span className={style.dateComent}>{e.comment}</span>
-                                        {(!!token && user.id === e?.owner.id)? 
+        {comments?.map((e)=>{
+                const fecha = new Date(e.date)
+                const mes= fecha.getMonth()+1
+                const dia= fecha.getDate()
+                const anio= fecha.getFullYear()
+                return (
+                        <div key={e?.id}>
+                        <div>
+                        Usuario:{e?.owner.name}</div>
+                        <label
+                        type='date'
+                                >{`${dia}/${mes}/${anio}`}</label>
+                                
+                                <div>{e?.comment}</div>                                                  
+                {(!!token && user.id === e?.owner.id)? 
                 <div>
                 <button onClick={()=>borrar(e.id)}>Eliminar</button> 
-                <PutReview comm={e.comment} idReview={e.id} /> </div> : null}
-                                </div>
-                                
-                                )
+                <PutReview comm={e.comment} idReview={e.id} /> </div> : <></>} 
+                        
+                        </div> )
+
                         })}
 
                 </div>
