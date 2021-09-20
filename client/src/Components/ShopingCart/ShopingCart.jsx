@@ -30,8 +30,8 @@ export default function ShopingCart() {
 
     dispatch(postcalendar({name:text, calendar: calendar}, token));
     swal({
-      title: "Receta guardada",
-      text: "La receta se guardo con exito",
+      title: "Calendario Guardado",
+      text: "El calendario se guardó con éxito",
       icon: "success",
       button: "Aceptar",
     })

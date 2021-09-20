@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
 import { Link } from 'react-router-dom';

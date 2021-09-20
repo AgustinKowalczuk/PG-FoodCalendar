@@ -89,9 +89,8 @@ export default function Recipes() {
             })
         }
     }
-
     return(
-        <Board onCardDragEnd={handleCards} disableColumnDrag>
+        <Board onCardDragEnd={handleCards} disableColumnDrag >
             {daysColumns}
         </Board>
     )

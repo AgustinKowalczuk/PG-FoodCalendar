@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Nav from './Components/Nav/Nav'
 import Home from './Components/Home/Home'
 import SearchCards from './Components/SearchBar/SearchCards/SearchCards'
-import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
+
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Login from './Components/Acount/Login.jsx'
@@ -21,6 +21,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
 import { setUserAndToken } from './actions';
 import Inventary from './Components/Inventary/Inventary.jsx'
+import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
+import Asdfasf from './Components/DetailRecipe/DetailEnProcesoPrueba'
+import RecoverPass from './Components/Acount/RecoverPass';
+
+import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 
 
 function App() {
@@ -47,6 +52,7 @@ function App() {
         <Route path = '/create/recipe' render= {() => (!!token) ? <CreateRecipe /> : <Redirect to='/' />}/>
         <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
         <Route path = '/acount/register' component={Register}/>
+        <Route path = '/acount/recovery' component={RecoverPass}/>
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>
         <Route path = '/AllRecipe' component = {AllRecipe}/>
@@ -54,6 +60,7 @@ function App() {
         <Route exact path = '/calendar/user'render= {() => (!!token) ? <Calendar /> : <Redirect to='/' />}/>
         <Route path = '/calendar/:id' render= {() => (!!token) ? <CalendarDetail /> : <Redirect to='/' />}/>
         <Route path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
+        <Route path = '/reviews/user/:id' render= {() => (!!token && user.category === 'Admin') ? <UserDetails /> : <Redirect to='/' />}/>
         <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
       </Switch>
       </div>
