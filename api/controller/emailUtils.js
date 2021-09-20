@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 const { env: { USER_MAIL, PASSWORD_MAIL } } = process;
 
-const transportEmail = async (email, html) => {
+const transportEmail = async (email, html, subject) => {
     const transport = nodemailer.createTransport({
         host: 'smtp.mailtrap.io',
         port: 2525,
@@ -22,7 +22,7 @@ const transportEmail = async (email, html) => {
     const message = {
         from: USER_MAIL, // Sender address
         to: email, // List of recipients
-        subject: 'Recipes Calendar - Registro exitoso', // Subject line
+        subject: `Recipes Calendar - ${subject}`, // Subject line
         html: html // Plain text body
     };
     await transport.sendMail(message, function(err, info) {
