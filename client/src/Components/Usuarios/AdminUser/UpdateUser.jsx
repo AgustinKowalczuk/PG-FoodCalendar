@@ -15,7 +15,6 @@ export default function UpdateUser ({id, category}) {
             } else if(category === 'Admin'){
                 category= 'User';
             }
-            console.log(category)
         dispatch(updateUser(id,{category}, token))
         }
     }
