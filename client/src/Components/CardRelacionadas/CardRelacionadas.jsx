@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ export default function CardRelacionadas() {
                 return (
                     <div class="card" id={style.carData} Key={e.id}>
                         <Link to={`/recipe/${e.id}`}
-                            onClick={() => dispatch(getDetail(e.id))} id={style.normal}>
+                            onClick={() => dispatch(getDetail(e.id,token))} id={style.normal}>
                             <img class="card-img-top" src={e.img} alt="No sé encuentra la imagen" />
                             <div class="card-body" >
                                 <h3 class="card-title" >{e.name.toUpperCase()}</h3>

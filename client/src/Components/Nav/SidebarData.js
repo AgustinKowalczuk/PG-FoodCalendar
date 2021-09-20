@@ -25,6 +25,12 @@ export const SidebarDataNotUser = [
         cName:'nav-text'
     },
     {
+        title:'Crea tu calendario',
+        path: '/shop',
+        icon: <IoIcons.IoCreateOutline/>,
+        cName:'nav-text'
+    },
+    {
         title:'Registrar',
         path: '/acount/register',
         icon: <BsIcons.BsFillPeopleFill/>,
