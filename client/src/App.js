@@ -24,6 +24,7 @@ import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
 import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
+import UserOnly from './Components/Usuarios/User/UserOnly';
 
 
 function App() {
@@ -58,9 +59,10 @@ function App() {
         <Route exact path = '/calendar'render= {() => (!!token) ? <Calendar admin={true}/> : <Redirect to='/' />}/>
         <Route exact path = '/calendar/user'render= {() => (!!token) ? <Calendar /> : <Redirect to='/' />}/>
         <Route path = '/calendar/:id' render= {() => (!!token) ? <CalendarDetail /> : <Redirect to='/' />}/>
-        <Route path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
+        <Route exact path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
         <Route path = '/reviews/user/:id' render= {() => (!!token && user.category === 'Admin') ? <UserDetails /> : <Redirect to='/' />}/>
         <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
+        <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
       </Switch>
       </div>
       <Footer/>

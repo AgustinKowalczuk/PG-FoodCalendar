@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUserForAdmin} from "../../../actions";
+import { deleteSelfUser} from "../../../actions";
 
 
 export default function DeleteUserOnly ({id}) {
@@ -10,12 +10,12 @@ export default function DeleteUserOnly ({id}) {
     function handleClick(id){
         const ok = window.confirm('Deseas borrar tu usuario?')
         if(ok){
-        dispatch(deleteUserForAdmin(id, token))
+        dispatch(deleteSelfUser(id, token))
         }
     }
     return ( 
         <div>
-            <button className="btn btn-danger" onClick={() => handleClick(id)}>Borrar tu usuario</button>
+            <button className="btn btn-danger" onClick={() => handleClick(id)}></button>
         </div>
      );
 }

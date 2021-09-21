@@ -12,6 +12,8 @@ export default function AdminUser () {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const userDetails = useSelector((state) => state.adminUsers);
+    const commentDetails = useSelector((state) => state.userCommentsDetails)
+    console.log(commentDetails)
 
     useEffect(() => {
         dispatch(setUserForAdmin(token))

@@ -1,7 +1,7 @@
 export default function UserPasswordRecovery() {
     return ( 
         <div>
-            Recuperar contraseña
+            <button>Cambiar contraseña</button>
         </div>
      );
 }

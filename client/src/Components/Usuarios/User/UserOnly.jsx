@@ -1,26 +1,33 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setUserForAdmin } from "../../../actions";
-import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+import DeleteUser from "../AdminUser/DeleteUser";
+import UserPasswordRecovery from "./UserPasswordRecovery";
 
-export default function UserOnly () {
-    const {id} = useParams();
-    const dispatch = useDispatch();
-    const user = useSelector(((state) => state.adminUsers));
-    const token = useSelector((state) => state.token);
-    useEffect(() => {
-        dispatch(setUserForAdmin(id,token))
-    }, [dispatch, id, token])
+export default function UserOnly() {
+
+    const user = useSelector((state) => state.user)
     console.log(user)
     return ( 
         <div>
+            <h4>Detalles del usuario:</h4>
             <div>
-                <h4>Detalles:</h4>
-                {user?.map((e) => (
-                    <h5>{e.name}</h5>
-                ))}
+                <label>Nombre: {user.name}</label>
             </div>
+            <div>
+                <label>Apellido: {user.surname}</label>
+            </div>
+            <div>
+                <label>Email: {user.email}</label>
+            </div>
+            <div>
+                <label>Eliminar Usuario</label>
+                <DeleteUser/>
+            </div>
+            <div>
+                <UserPasswordRecovery/>
+            </div>
+            <button>Aceptar</button>
+            <button>Modificar datos de usuario</button>
         </div>
      );
 }

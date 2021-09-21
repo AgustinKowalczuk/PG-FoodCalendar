@@ -31,3 +31,5 @@ export const PUT_REVIEWS_URL = `${URL}/review`;
 export const GET_USER_DETAILS_URL = `${URL}/reviews/user`;
 export const PUT_RECOVERY_PASS_URL = `${URL}/guest/passwordForm`;
 export const GET_GOOGLE_AUTH_URL = `${URL}/auth/google/url`;
+export const PUT_USER_DETAILS_URL = `${URL}/user/noAdmin`;
+export const USERS_DELETE_URL = `${URL}/user/delete`;

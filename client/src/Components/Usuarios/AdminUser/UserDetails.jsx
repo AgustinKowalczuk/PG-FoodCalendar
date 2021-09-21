@@ -15,23 +15,24 @@ export default function UserDetails () {
     }, [dispatch, id, token])
     return (
             <div>
-                {commentDetails?.map((e)=> {
-                        const fecha = new Date(e.date)
-                        const mes= fecha.getMonth()+1
-                        const dia= fecha.getDate()
-                        const anio= fecha.getFullYear()
-                        return                 (
-                            <ul>
-                                <li>{e.owner.name}</li>
-                                <li>"{e.comment}"</li>
-                                <li>{e.recipe.name}</li>
-                                <label
-                                type='date'
-                                >Fecha: {`${dia}/${mes}/${anio}`}
-                                </label>
-                            </ul>
-                        )
-                })}
+                {commentDetails.length > 0 ?
+                    commentDetails?.map((e)=> {
+                            const fecha = new Date(e.date)
+                            const mes= fecha.getMonth()+1
+                            const dia= fecha.getDate()
+                            const anio= fecha.getFullYear()
+                            return                 (
+                                <ul>
+                                    <li>{e.owner.name}</li>
+                                    <li>"{e.comment}"</li>
+                                    <li>{e.recipe.name}</li>
+                                    <label
+                                    type='date'
+                                    >Fecha: {`${dia}/${mes}/${anio}`}
+                                    </label>
+                                </ul>
+                            )
+                    }) : <h5>Este usuario no tiene comentarios</h5>}
             </div>
     );
 }

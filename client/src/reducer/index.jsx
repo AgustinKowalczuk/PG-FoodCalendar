@@ -41,7 +41,9 @@ import {
   DELETE_REVIEWS,
   PUT_REVIEWS,
   GET_USER_DETAIL,
-  GET_GOOGLE_AUTH
+  GET_GOOGLE_AUTH,
+  PUT_USER_DETAILS,
+  DELETE_SELF_USER
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -74,7 +76,8 @@ var initialState = {
   sendCalendar:[],
   toggleReviews:false,
   userCommentsDetails: [],
-  googleAuthUrl: ''
+  googleAuthUrl: '',
+  userChangesDetails: []
 };
 
 function reducer(state = initialState, action) {
@@ -329,6 +332,16 @@ function reducer(state = initialState, action) {
            ...state,
            googleAuthUrl: action.payload
          }
+      case PUT_USER_DETAILS:
+        return{
+          ...state,
+          userChangesDetails: action.payload
+        }
+      case DELETE_SELF_USER:
+        return{
+          ...state,
+          adminUsers: state.adminUsers.filter((e) => e.id !== action.payload.id)
+        }
     default:
       return state;
   }
