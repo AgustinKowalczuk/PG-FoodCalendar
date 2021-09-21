@@ -43,3 +43,4 @@ export const PUT_REVIEWS = 'PUT_REVIEWS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL'
 export const RECOVER_PASS = 'RECOVER_PASS';
 export const SET_CALENDAR = 'SET_CALENDAR';
+export const GET_GOOGLE_AUTH = 'GET_GOOGLE_AUTH_URL';
