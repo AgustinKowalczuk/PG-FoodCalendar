@@ -8,7 +8,7 @@ import * as BiIcons from "react-icons/bi"
 
 import * as IoIcons from "react-icons/io5"
 
-import * as IoAlbumsOutline from "react-icons/io5";
+
 
 
 export const SidebarDataNotUser = [
@@ -28,18 +28,6 @@ export const SidebarDataNotUser = [
         title:'Crea tu calendario',
         path: '/shop',
         icon: <IoIcons.IoCreateOutline/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Registrar',
-        path: '/acount/register',
-        icon: <BsIcons.BsFillPeopleFill/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Login',
-        path: '/acount/login',
-        icon: <AiIcons.AiOutlineLogin/>,
         cName:'nav-text'
     },
 
@@ -80,6 +68,7 @@ export const SidebarDataUser= [
 ]
 
 export const SidebarDataAdmin = [
+    
     {
         title:'Home',
         path: '/',
@@ -115,19 +104,17 @@ export const SidebarDataAdmin = [
         path: '/user',
         icon: <IoIcons.IoDesktopOutline/>,
         cName:'nav-text'
-    }
+    },
+    
 
 ]
 
 export const filterData = (token, user) => {
-
-    if(!token){  
-        return SidebarDataNotUser;
+    if(!!token && user.category !== 'Admin'){  
+        return SidebarDataUser;
     }
-    else if(!!token){
-        if(user.category === 'Admin'){
-            return SidebarDataAdmin
-        }
-        return SidebarDataUser
+    if(!!token && user.category === 'Admin'){    
+        return SidebarDataAdmin
     }
+    return SidebarDataNotUser
 }

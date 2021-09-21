@@ -9,16 +9,11 @@ import Pagination from "../Pagination/Pagination";
 
 export default function Cards(props) {
  
- let recipesPerPage
+  
  const dispatch = useDispatch();
  const pages =  useSelector(state => state.page)
- const token = useSelector(state => state.token)
-
-  if(props.confirmador){
-     recipesPerPage = 3;
-  }else{
-     recipesPerPage = 6;
-  }
+  
+  const recipesPerPage = 6;
   const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
   const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
@@ -27,12 +22,12 @@ export default function Cards(props) {
     dispatch(page(pageNumber));
   };
   function agregarCalendario(receta){
-    if(stackReceta.length < 14 ){
+    if(stackReceta.length < 14  && !stackReceta.includes(receta)){
     return dispatch(setRecipeCalendar(receta))
     } else{
     return swal({
       title: "Receta no agregada",
-      text: "El calendario ya tiene 14 elementos",
+      text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
       icon: "error",
     });
     }
@@ -45,7 +40,7 @@ export default function Cards(props) {
           <div class="card" id={style.carData} Keys={e.id}>
             <Link
               to={`/recipe/${e.id}`}
-              onClick={() => dispatch(getDetail(e.id, token))}
+              onClick={() => dispatch(getDetail(e.id))}
               id={style.normal}
             >
               <img

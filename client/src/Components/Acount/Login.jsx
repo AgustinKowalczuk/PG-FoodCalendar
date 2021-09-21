@@ -6,6 +6,7 @@ import { login } from '../../actions';
 import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const token = useSelector(state => state.token);
@@ -42,7 +43,7 @@ export default function Login() {
         dispatch(login(value))
         swal({
             title: "Ingresaste a tu cuenta",
-            text: "Ingresaste a tu cienta con exito",
+            text: "Ingresaste a tu cuenta con exito",
             icon: "success",
             button: "Aceptar",
         })
@@ -58,18 +59,29 @@ export default function Login() {
                     <div className={style.content}>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" name="email" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field type="email" name="email" className="form-control" id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <Field type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
                         <button id={style.btn} className="btn btn-primary" type="submit">Ingresar</button>
                     </div>
                 </Form>
             </Formik>
+            <div>
+            <Link to="/acount/register" >
+                ¿Aún no te registraste? Haz click Aqui
+            </Link>
+            </div>
+            <div>
+                <Link to="/acount/recovery">
+                    Olvidaste tu contraseña?
+                </Link>
+            </div>
         </div>
     )
 }
+

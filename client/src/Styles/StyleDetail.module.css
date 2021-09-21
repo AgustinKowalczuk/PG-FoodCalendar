@@ -49,20 +49,6 @@
     align-content: flex-start;
     justify-content: space-evenly;
 }
-
-  
-.carData{
-    width: 400px;
-    min-width: 20%;
-    margin-top: 5px;
-    background-color: coral;
-}
-#maxwidth{
-    max-width: 90%;
-    min-width: 60%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
 .normal{
     
     text-align: left;
