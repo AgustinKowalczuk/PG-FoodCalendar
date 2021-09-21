@@ -316,10 +316,21 @@ export function postcalendar(obj,token){
   return async function (dispatch){
     try {
       const aux = await axios.post(CALENDAR_URL, obj, config(token));
+      swal({
+        title: "Calendario Guardado",
+        text: "El calendario se guardó con éxito",
+        icon: "success",
+        button: "Aceptar",
+      })
       return dispatch({type: CREATE_CALENDAR, payload: aux.data});
     } catch (error) {
       console.log(error);
-      return alert("Usuario no registrado/logueado.");
+      return swal({
+        title: "Calendario no Guardado",
+        text: "Faltan parametros para poder guardar el calendario",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   }
 }
