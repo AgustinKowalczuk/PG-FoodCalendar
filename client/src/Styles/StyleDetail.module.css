@@ -1,3 +1,23 @@
+.content{
+    width: 90%;
+    border:1px solid #668C4A;
+    border-radius: .25rem; 
+    margin: auto !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: space-around;
+}
+.containerTitles{
+    
+}
+
+#img{
+    width: 100%;
+}
+
 .carData{
     width: 400px;
     min-width: 20%;
@@ -118,9 +138,8 @@
     width: 90%;
 }
 
-#img{
-    width: 100%;
-}
+
+
 .li{
     width: 30%;
 }
