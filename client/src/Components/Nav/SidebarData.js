@@ -8,7 +8,7 @@ import * as BiIcons from "react-icons/bi"
 
 import * as IoIcons from "react-icons/io5"
 
-
+import * as IoAlbumsOutline from "react-icons/io5";
 
 
 export const SidebarDataNotUser = [
@@ -31,13 +31,17 @@ export const SidebarDataNotUser = [
         cName:'nav-text'
     },
     {
-        title:'Registrate',
+        title:'Registrar',
         path: '/acount/register',
         icon: <BsIcons.BsFillPeopleFill/>,
         cName:'nav-text'
     },
-    
-    
+    {
+        title:'Login',
+        path: '/acount/login',
+        icon: <AiIcons.AiOutlineLogin/>,
+        cName:'nav-text'
+    },
 
 ]
 

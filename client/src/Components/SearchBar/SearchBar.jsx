@@ -28,9 +28,9 @@ export default function SearchBar() {
   }
 
   return (
-    <div class="d-flex" id={styles.inputSearch}>
+    <div class="d-flex">
       <input
-        class="form-control me-2"  type="text" placeholder="Buscar" onChange={(e) => handleInputChange(e)} /> 
+        class="form-control me-2" type="text" placeholder="Buscar" onChange={(e) => handleInputChange(e)} /> 
       <Link id={styles.button} onClick={() => handleSearch()} class="btn btn-outline-success" to={`/search/${input}`} >
          Buscar
       </Link>

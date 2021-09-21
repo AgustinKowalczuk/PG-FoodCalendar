@@ -12,6 +12,8 @@ export default function Cards(props) {
  let recipesPerPage
  const dispatch = useDispatch();
  const pages =  useSelector(state => state.page)
+ const token = useSelector(state => state.token)
+ 
   if(props.confirmador){
      recipesPerPage = 3;
   }else{
@@ -43,7 +45,7 @@ export default function Cards(props) {
           <div class="card" id={style.carData} Keys={e.id}>
             <Link
               to={`/recipe/${e.id}`}
-              onClick={() => dispatch(getDetail(e.id))}
+              onClick={() => dispatch(getDetail(e.id, token))}
               id={style.normal}
             >
               <img

@@ -2,10 +2,7 @@ import React from 'react';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
-import { Link } from 'react-router-dom';
-import { FilterRecipeByCategory,getRecipes,page } from '../../actions/index'
-import Dificultad from '../Cards/Dificultad'
-import Pagination from '../Pagination/Pagination'
+import { FilterRecipeByCategory } from '../../actions/index'
 import Cards from '../Cards/Cards'
 
 export default function CardRelacionadas(props) {
@@ -23,10 +20,9 @@ export default function CardRelacionadas(props) {
 
 
     return (
-        <div class={style.content}>
+        <div className={style.content}>
             
             <Cards confirmador={true} allRecipes={allRecipes}/>
-            
         </div>
     )
 }
