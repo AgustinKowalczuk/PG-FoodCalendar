@@ -13,7 +13,7 @@ const { emailValidate } = require("../../controller/validate");
 router.put('/user/noAdmin', auth, async (req, res, next) => {
     const { userId } = req;
     const { name, surname, email, password} = req.body;
-    const path = '/emailUsersMessages/update_password.html';
+    const path = '/emailUsersMessages/update_user.html';
 
     try {
         userPutValidation(userId, name, surname, email, password);
@@ -39,7 +39,7 @@ router.put('/user/noAdmin', auth, async (req, res, next) => {
         const [re, obj] = htmlReplacer(oldText, newText);
         const html = await fs.readFileSync(__dirname + path, 'utf8')
             .replace(re, (match)=>obj[match]);
-        await transportEmail(elem.email, html, 'Cambio de contraseña');                
+        await transportEmail(elem.email, html, 'Actualización de datos');                
         
         const update = await User.findById(elem._id);
         return res.json(normalizeUsers(update));

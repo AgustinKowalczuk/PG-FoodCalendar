@@ -13,11 +13,10 @@ import swal from 'sweetalert';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import IngredientsPanel from "./IngredientsPanel";
-import InstrunctionsPanel from "./InstrunctionsPanel";
+import InstrunctionsPanel from "./InstructionsPanel";
 import * as FaIcons from "react-icons/fa";
-import { Button } from '@nextui-org/react';
 
-
+import * as FcIcons from "react-icons/fc";
 
 export default function DetailRecipe() {
   const { id } = useParams();
@@ -28,18 +27,14 @@ export default function DetailRecipe() {
   const history = useHistory();
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
-  const [key, setKey]  = useState('')
+ 
 
-  const [buttonGhost, setGhost] = useState(false)
-
-  const changeGhost = () => setGhost(!buttonGhost)
-
-
+  console.log( user)
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
     window.scrollTo(0,0);
-  }, [dispatch, id]);
+  }, [dispatch, id,token]);
 
   useEffect(() => {
     if(Object.keys(borrar).length){
@@ -47,19 +42,19 @@ export default function DetailRecipe() {
       dispatch(cleanDeleteRecipe());
       history.push('/');
       }
-  }, [history,dispatch, borrar])
+  }, [history,dispatch, borrar,token])
 
  //envio receta al stack del calendario
   function agregarCalendario(receta){
 
     if(stackReceta.length < 14 && !stackReceta.includes(receta)){
-    return dispatch(setRecipeCalendar(receta))
+      return dispatch(setRecipeCalendar(receta))
     } else{
-    return swal({
-      title: "Receta no agregada",
-      text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
-      icon: "error",
-    });
+      return swal({
+        title: "Receta no agregada",
+        text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
+        icon: "error",
+      });
     }
     }
 
@@ -67,11 +62,9 @@ export default function DetailRecipe() {
       dispatch(deleteRecipe(id,token));
     }
     function handleClick2(){
-      changeGhost()
       dispatch(postLike(recipeDetail.id,token));
      }
 
-    console.log(buttonGhost)
   return (
     <div>
 
@@ -124,42 +117,42 @@ export default function DetailRecipe() {
             </div>
             } */}
             
-      </div>
-      <div className={style.tabsContainer}>
-            <Tabs
-        id="controlled-tab-example"
-        className="mb-3"
-        defaultActiveKey="Ingredientes"
-      >
-        
-        <Tab eventKey="Ingredientes" title="Ingredientes" >
-          <IngredientsPanel/>
-        </Tab>
-        <Tab eventKey="Instrucciones" title="Instrucciones">
-        <InstrunctionsPanel/>
-        </Tab > 
-      
-        </Tabs>
-            </div>
-            <div>
-            <div>
-            {recipeDetail.likes===1 ? <h4>A 1 persona le gusta esta receta </h4>:
-            recipeDetail.likes>1 ? <h4>{`A ${recipeDetail.likes} personas le gusta esta receta`}</h4>:
-            <></>}
-          </div>
-              <div>
-          <label>¿Te gusto la receta? </label> 
-          <Button ghost={buttonGhost} color="primary" name='like' onClick={handleClick2}>Dale Like</Button> 
+        <div className={style.tabsContainer}>
+              <Tabs
+          id="controlled-tab-example"
+          className="mb-3"
+          defaultActiveKey="Ingredientes"
+        >
           
-            </div>
-            </div>
+          <Tab eventKey="Ingredientes" title="Ingredientes" >
+            <IngredientsPanel/>
+          </Tab>
+          <Tab eventKey="Instrucciones" title="Instrucciones">
+          <InstrunctionsPanel/>
+          </Tab > 
+        
+          </Tabs>
+          </div>
+      </div>
       <div className={style.contentComent}>
         <div className={style.buttonComent}>      
-        {(!!token) ? 
-          <Reviews id={recipeDetail.id}/> : null}
+          {(!!token) ? 
+            <Reviews id={recipeDetail.id}/> : null}
           {recipeDetail.availability === 'Available' && 
             <button  onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus/></button>
-          }  
+          }
+          <div>
+          {
+            user.like === true? 
+            <button onClick={handleClick2}><FcIcons.FcLike /></button> :
+            <button onClick={handleClick2}><FcIcons.FcLikePlaceholder /></button>
+          }
+          {
+            recipeDetail.likes===1 ? <span>1 Me gusta</span>:
+              recipeDetail.likes>1 ? <span>{`${recipeDetail.likes} Me gusta`}</span>:
+            null
+          }
+          </div>
         </div>
         <VerComentarios id={recipeDetail.id}/> 
       </div>
@@ -168,7 +161,5 @@ export default function DetailRecipe() {
         <CardRelacionadas />
       </div>
     </div>
-
-
   );
 }

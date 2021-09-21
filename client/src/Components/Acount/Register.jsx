@@ -58,22 +58,22 @@ export default function Register() {
 
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
-                            <Field type="text" className="form-control" id="exampleInputEmail1" name="name" placeholder='Escriba aqui su nombre' autocomplete="off"/>
+                            <Field type="text" name="name" placeholder='Escriba aqui su nombre' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="name"/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Apellido</label>
-                            <Field type="text" className="form-control" id="exampleInputEmail1" name="surname" placeholder='Escriba aqui su calendario' autocomplete="off"/>
+                            <Field type="text"  name="surname" placeholder='Escriba aqui su calendario' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="surname"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='ejemplo@jemplo.com' autocomplete="off"/>
+                            <Field type="email" name="email" placeholder='ejemplo@jemplo.com' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Clave</label>
-                            <Field type="password" className="form-control" id="exampleInputEmail1" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
+                            <Field type="password" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
 

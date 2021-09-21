@@ -23,7 +23,7 @@ const transportEmail = async (email, html, subject) => {
         from: USER_MAIL, // Sender address
         to: email, // List of recipients
         subject: `Recipes Calendar - ${subject}`, // Subject line
-        html: html // Plain text body
+        html: html // html head and body
     };
     await transport.sendMail(message, function(err, info) {
         if (err) {

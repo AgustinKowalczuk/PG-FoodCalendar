@@ -21,14 +21,11 @@ export default function DetailRecipe() {
   const history = useHistory();
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
-  
-  console.log (recipeDetail,'recipeDetail')
- 
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
     window.scrollTo(0,0);
-    }, [token]);
+    }, [dispatch,id,token]);
 
   useEffect(() => {
     if(Object.keys(borrar).length){
@@ -36,7 +33,7 @@ export default function DetailRecipe() {
       dispatch(cleanDeleteRecipe());
       history.push('/');
       }
-  }, [history,borrar])
+  }, [dispatch , history, borrar, token])
 
 
  //envio receta al stack del calendario
@@ -79,7 +76,7 @@ export default function DetailRecipe() {
           />  
         } 
         <div class="card-body">
-          <h3 >{recipeDetail.name}</h3>
+          <h3 class="card-title">{recipeDetail.name}</h3>
           <div className={style.ingredientes}>
               <h3>Ingredientes : </h3>
               <ul class={style.ul}>
@@ -119,11 +116,14 @@ export default function DetailRecipe() {
             <h3 class={style.leftH3}>Categorias: </h3>
               <table class={style.content}>
                 <tr>
-                  {recipeDetail?.category?.map((x) => (
-                    <td>
-                      <h4>{x}</h4>
-                    </td>
-                  ))}
+                  {recipeDetail?.category?.map((x, index) => {
+                    
+                    return(
+                      <td>
+                        <h4>{x}</h4>
+                      </td>
+                    )
+                  })}
                 </tr>
               </table>
           </div>
@@ -132,7 +132,7 @@ export default function DetailRecipe() {
               <Link id={style.link} class="nav-link active" to={`/update/${id}`}>Editar receta</Link>
               <button className="btn btn-primary" onClick={handleClick}>Eliminar receta</button>
             </div>            
-            : null
+            : <></>
           }          
           {recipeDetail.availability === 'Available' && 
           <button onClick={() => agregarCalendario(recipeDetail)}>Agregala a tu Calendario!</button>}
@@ -145,8 +145,12 @@ export default function DetailRecipe() {
           {(!!token) ? 
           <Reviews id={recipeDetail.id}/> : <></>} 
           <VerComentarios id={recipeDetail.id}/>    
-      <h2> Otras recetas</h2>
-      <CardRelacionadas />
+      {
+        !!token ?
+        <h2>Recetas relacionadas</h2>:
+        <h2>Otras recetas</h2>
+      }
+      <CardRelacionadas/>
     </div>
 
   );

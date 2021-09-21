@@ -30,14 +30,6 @@ export const SidebarDataNotUser = [
         icon: <IoIcons.IoCreateOutline/>,
         cName:'nav-text'
     },
-    {
-        title:'Registrate',
-        path: '/acount/register',
-        icon: <BsIcons.BsFillPeopleFill/>,
-        cName:'nav-text'
-    },
-    
-    
 
 ]
 
@@ -76,6 +68,7 @@ export const SidebarDataUser= [
 ]
 
 export const SidebarDataAdmin = [
+    
     {
         title:'Home',
         path: '/',
@@ -111,19 +104,17 @@ export const SidebarDataAdmin = [
         path: '/user',
         icon: <IoIcons.IoDesktopOutline/>,
         cName:'nav-text'
-    }
+    },
+    
 
 ]
 
 export const filterData = (token, user) => {
-
-    if(!token){  
-        return SidebarDataNotUser;
+    if(!!token && user.category !== 'Admin'){  
+        return SidebarDataUser;
     }
-    else if(!!token){
-        if(user.category === 'Admin'){
-            return SidebarDataAdmin
-        }
-        return SidebarDataUser
+    if(!!token && user.category === 'Admin'){    
+        return SidebarDataAdmin
     }
+    return SidebarDataNotUser
 }

@@ -34,8 +34,11 @@
     flex-direction: row;
 }
 
+.contentAllComent{
+    width: 90%;
+}
 .coment{
-    width: 70vh;
+    width: 70%;
     display: flex;
     background-color: #F2F0D5;
     border-radius: .25rem;

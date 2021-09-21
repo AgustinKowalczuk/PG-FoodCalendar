@@ -2,18 +2,20 @@ import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../actions';
+import { getGoogleAuthUrl, login } from '../../actions';
 import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Login() {
     const token = useSelector(state => state.token);
     const user = useSelector(state => state.user);
     const history = useHistory();
-
-    const dispatch = useDispatch()
+    const googleAuthUrl = useSelector(state => state.googleAuthUrl);
+    const params = useParams();
+    const dispatch = useDispatch();
+    
     const initialValues= {
         email:'',
         password: ''
@@ -33,11 +35,27 @@ export default function Login() {
 
     useEffect(() => {
         if (token) {
-            history.push('/');
             sessionStorage.token = token;
             sessionStorage.user = JSON.stringify(user);
+            history.push('/');
         }
     }, [token]);
+
+    useEffect(() => {        
+        if (!!Object.keys(params).length) {
+            const { token, user } = params;
+            sessionStorage.token = token;
+            sessionStorage.user = user;
+            history.push('/');
+        }
+    }, [params])
+
+    useEffect(() => {
+        if (googleAuthUrl) {
+            const anchor = document.getElementById('GoogleAuth');
+            anchor.click();
+        }
+    },[googleAuthUrl])
     
     const onSubmit = (value) => {
         dispatch(login(value))
@@ -47,6 +65,10 @@ export default function Login() {
             icon: "success",
             button: "Aceptar",
         })
+    }
+
+    const GoogleChange = () => {
+        dispatch(getGoogleAuthUrl('auth'));
     }
 
     return (
@@ -72,6 +94,10 @@ export default function Login() {
                 </Form>
             </Formik>
             <div>
+                <button onClick={GoogleChange}>Ingresa con tu cuenta de Google</button>
+                <a href={googleAuthUrl} id={'GoogleAuth'}/>
+            </div>
+            <div>
             <Link to="/acount/register" >
                 ¿Aún no te registraste? Haz click Aqui
             </Link>
@@ -84,3 +110,4 @@ export default function Login() {
         </div>
     )
 }
+

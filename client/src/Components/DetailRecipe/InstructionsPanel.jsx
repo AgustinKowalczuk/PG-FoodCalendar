@@ -1,12 +1,12 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import style from "../../Styles/StyleDetail.module.css";
 
 
 
 
 export default function InstrunctionsPanel() {
-    const dispatch = useDispatch();
+    
     const recipeDetail = useSelector((state) => state.detail);
 
 

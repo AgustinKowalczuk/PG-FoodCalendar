@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const querystring = require('query-string');
-const axios = require('axios');
 const { USER_GOOGLE_ID, USER_GOOGLE_SECRET, GOOGLE_PUBLIC_KEY, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 const argon = require('argon2');
@@ -9,48 +7,17 @@ const { User } = require('../../models/models');
 const { normalizeUsers } = require('../../controller/normalize');
 const { htmlReplacer, transportEmail } = require('../../controller/emailUtils');
 const fs = require('fs');
+const { getGoogleAuthUrl, getTokens } = require('../../controller/mediaAuth');
 
-function getGoogleAuthUrl () {
-    const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const options = {
-        redirect_uri: 'http://localhost:3001/auth/google',
-        client_id: `${USER_GOOGLE_ID}`,
-        access_type: 'offline',
-        response_type: 'code',
-        prompt: 'consent',
-        scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email'                       
-        ].join(' ')
-    }
-    return `${rootUrl}?${querystring.stringify(options)}`
-}
-
-router.get('/auth/google/url', async (req, res, next) => {
+router.get('/auth/google/url/:type', async (req, res, next) => {
+    const { type } = req.params;
     try {
-        return res.send(getGoogleAuthUrl());
+        if ( type !== 'auth' ||  type !== 'register') throw new Error("Type debe ser 'auth' o 'register' ");
+        return res.send(getGoogleAuthUrl(type));
     } catch (error) {
         next(error);
     }
 });
-
-const getTokens = async (code, client_id, client_secret, redirect_uri) => {
-    const url = 'https://oauth2.googleapis.com/token';
-    const values = {
-        code,
-        client_id,
-        client_secret,
-        redirect_uri,
-        grant_type: 'authorization_code'
-    };
-    try {
-        const response = await axios.post(url, querystring.stringify(values), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-   
-}
 
 router.get('/auth/google', async (req,res,next) => {
     const code = req.query.code;
@@ -64,7 +31,7 @@ router.get('/auth/google', async (req,res,next) => {
         if (userFound){
             const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});
             userFound = normalizeUsers(userFound);
-            return res.json({ token,  user: userFound }); 
+            return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userFound)); 
         }
         
         const password = await argon.hash(sub);
@@ -77,11 +44,12 @@ router.get('/auth/google', async (req,res,next) => {
         const [re, obj] = htmlReplacer(oldText, newText);
         const html = await fs.readFileSync(__dirname + path, 'utf8')
             .replace(re, (match)=>obj[match]);
-        await transportEmail(email, html);
+        await transportEmail(email, html, 'Registro exitoso');
         
         const token = await jwt.sign({ sub: userCreated._id }, JWT_SECRET, { expiresIn: "12h"});
         userCreated = normalizeUsers(userCreated);
-        return res.json({ token,  user: userCreated }); 
+        // { token,  user: userCreated }
+        return res.redirect('http://localhost:3000/'+token); 
     } catch (error) {
         next(error);
     }

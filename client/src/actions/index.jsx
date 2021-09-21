@@ -44,7 +44,9 @@ import {
   DELETE_REVIEWS,
   PUT_REVIEWS,
   GET_USER_DETAIL,
-  RECOVER_PASS
+  RECOVER_PASS,
+  SET_CALENDAR,
+  GET_GOOGLE_AUTH
 } from "./constants";
 
 import {
@@ -75,7 +77,8 @@ import {
   DELETE_REVIEWS_URL,
   PUT_REVIEWS_URL,
   GET_USER_DETAILS_URL,
-  PUT_RECOVERY_PASS_URL
+  PUT_RECOVERY_PASS_URL,
+  GET_GOOGLE_AUTH_URL
 } from "../routes";
 
 import config from './config';
@@ -315,10 +318,21 @@ export function postcalendar(obj,token){
   return async function (dispatch){
     try {
       const aux = await axios.post(CALENDAR_URL, obj, config(token));
+      swal({
+        title: "Calendario Guardado",
+        text: "El calendario se guardó con éxito",
+        icon: "success",
+        button: "Aceptar",
+      })
       return dispatch({type: CREATE_CALENDAR, payload: aux.data});
     } catch (error) {
       console.log(error);
-      return alert("Usuario no registrado/logueado.");
+      return swal({
+        title: "Calendario no Guardado",
+        text: "Faltan parametros para poder guardar el calendario",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   }
 }
@@ -561,4 +575,24 @@ export function getComentaryDetail(id,token){
       return alert("No existen comentarios de este usuario");
     }    
   }; 
+}
+export function setCalendar(payload){
+  return{
+    type:SET_CALENDAR,
+    payload
+  }
+}
+
+export function getGoogleAuthUrl(type) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(GET_GOOGLE_AUTH_URL + '/' + type)
+      return dispatch({
+        type: GET_GOOGLE_AUTH,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }  
 }

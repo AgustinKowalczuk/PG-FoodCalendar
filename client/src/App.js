@@ -3,7 +3,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Nav from './Components/Nav/Nav'
 import Home from './Components/Home/Home'
 import SearchCards from './Components/SearchBar/SearchCards/SearchCards'
-
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
 import GlobalStyles from './Styles/GlobalStyle.css'
 import Login from './Components/Acount/Login.jsx'
@@ -22,9 +21,8 @@ import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
 import { setUserAndToken } from './actions';
 import Inventary from './Components/Inventary/Inventary.jsx'
 import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
-import Asdfasf from './Components/DetailRecipe/DetailEnProcesoPrueba'
+import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
-
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 
 
@@ -53,6 +51,7 @@ function App() {
         <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
         <Route path = '/acount/register' component={Register}/>
         <Route path = '/acount/recovery' component={RecoverPass}/>
+        <Route path = '/acount/google/:token/:user' component={Login} />
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>
         <Route path = '/AllRecipe' component = {AllRecipe}/>
