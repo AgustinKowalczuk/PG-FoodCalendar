@@ -5,7 +5,7 @@ import style from '../../Styles/StyleCards.module.css';
 import { FilterRecipeByCategory } from '../../actions/index'
 import Cards from '../Cards/Cards'
 
-export default function CardRelacionadas(props) {
+export default function CardRelacionadas() {
     const allRecipes = useSelector((state) => state.recipes)
     const token = useSelector(state => state.token);
     const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export default function CardRelacionadas(props) {
             console.log('GOL',recipeDetail.category[0]);
             dispatch(FilterRecipeByCategory(recipeDetail.category[0], token)) 
         } 
-    }, [dispatch,recipeDetail]);
+    }, [dispatch,recipeDetail,token]);
 
 
     return (
