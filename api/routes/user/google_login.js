@@ -9,9 +9,11 @@ const { htmlReplacer, transportEmail } = require('../../controller/emailUtils');
 const fs = require('fs');
 const { getGoogleAuthUrl, getTokens } = require('../../controller/mediaAuth');
 
-router.get('/auth/google/url', async (req, res, next) => {
+router.get('/auth/google/url/:type', async (req, res, next) => {
+    const { type } = req.params;
     try {
-        return res.send(getGoogleAuthUrl());
+        if ( type !== 'auth' ||  type !== 'register') throw new Error("Type debe ser 'auth' o 'register' ");
+        return res.send(getGoogleAuthUrl(type));
     } catch (error) {
         next(error);
     }
@@ -29,7 +31,7 @@ router.get('/auth/google', async (req,res,next) => {
         if (userFound){
             const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});
             userFound = normalizeUsers(userFound);
-            return res.json({ token,  user: userFound }); 
+            return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userFound)); 
         }
         
         const password = await argon.hash(sub);
@@ -46,7 +48,8 @@ router.get('/auth/google', async (req,res,next) => {
         
         const token = await jwt.sign({ sub: userCreated._id }, JWT_SECRET, { expiresIn: "12h"});
         userCreated = normalizeUsers(userCreated);
-        return res.json({ token,  user: userCreated }); 
+        // { token,  user: userCreated }
+        return res.redirect('http://localhost:3000/'+token); 
     } catch (error) {
         next(error);
     }

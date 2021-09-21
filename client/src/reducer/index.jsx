@@ -40,7 +40,8 @@ import {
   POST_LIKE,
   DELETE_REVIEWS,
   PUT_REVIEWS,
-  GET_USER_DETAIL
+  GET_USER_DETAIL,
+  GET_GOOGLE_AUTH
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -72,7 +73,8 @@ var initialState = {
   comments:[],
   sendCalendar:[],
   toggleReviews:false,
-  userCommentsDetails: []
+  userCommentsDetails: [],
+  googleAuthUrl: ''
 };
 
 function reducer(state = initialState, action) {
@@ -322,6 +324,11 @@ function reducer(state = initialState, action) {
             ...state,
             userCommentsDetails: action.payload
           }
+      case GET_GOOGLE_AUTH:
+         return  {
+           ...state,
+           googleAuthUrl: action.payload
+         }
     default:
       return state;
   }
