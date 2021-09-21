@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { setUserForAdmin } from "../../../actions";
 import DeleteUser from "./DeleteUser";
 import UpdateUser from "./UpdateUser";
-import UserDetails from "./UserDetails";
 import { Link } from "react-router-dom";
 import { Grid } from '@nextui-org/react';
 import style from '../../../Styles/StyleAcountList.module.css'
