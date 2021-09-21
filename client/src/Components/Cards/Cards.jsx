@@ -13,7 +13,7 @@ export default function Cards(props) {
  const dispatch = useDispatch();
  const pages =  useSelector(state => state.page)
  const token = useSelector(state => state.token)
- 
+
   if(props.confirmador){
      recipesPerPage = 3;
   }else{
@@ -27,12 +27,12 @@ export default function Cards(props) {
     dispatch(page(pageNumber));
   };
   function agregarCalendario(receta){
-    if(stackReceta.length < 14  && !stackReceta.includes(receta)){
+    if(stackReceta.length < 14 ){
     return dispatch(setRecipeCalendar(receta))
     } else{
     return swal({
       title: "Receta no agregada",
-      text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
+      text: "El calendario ya tiene 14 elementos",
       icon: "error",
     });
     }

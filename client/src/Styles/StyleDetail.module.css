@@ -14,7 +14,6 @@
     align-items: center;
     align-content: space-around;
 }
-<<<<<<< HEAD
 .difficultyH3{
     
     text-align: left;
@@ -57,13 +56,12 @@
     min-width: 20%;
     margin-top: 5px;
     background-color: coral;
-=======
+}
 #maxwidth{
     max-width: 90%;
     min-width: 60%;
     margin-top: 2%;
     margin-bottom: 2%;
->>>>>>> CopiaSeguridad
 }
 .normal{
     

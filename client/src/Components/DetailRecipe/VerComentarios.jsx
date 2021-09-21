@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReviews, getComentarios } from "../../actions";
 import PutReview from "./PutReview";
+import style from "../../Styles/StyleComent.module.css"
 
 export function VerComentarios({id}){
 

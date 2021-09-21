@@ -29,12 +29,6 @@ export default function ShopingCart() {
   const onSubmit = () => {
 
     dispatch(postcalendar({name:text, calendar: calendar}, token));
-    swal({
-      title: "Calendario Guardado",
-      text: "El calendario se guardó con éxito",
-      icon: "success",
-      button: "Aceptar",
-    })
   };
   const handeChange = (event) => {
     setText(event.target.value)
