@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../../Image/Logosinfondo.png'
 import style from "../../Styles/StyleNav.module.css"
-import { SidebarDataNotUser, SidebarDataUser, SidebarDataAdmin} from "./SidebarData";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { IconContext } from 'react-icons';
@@ -10,12 +9,18 @@ import './Nav.css'
 import { useSelector } from "react-redux";
 import Logout from "../Acount/Logout"
 import SearchBar from '../SearchBar/SearchBar'
+import { filterData } from "./SidebarData";
+import ButtonLogin from "../Acount/ButtonLogin";
+import ButtonRegister from "../Acount/ButtonRegister";
 
 
 
 export default function Nav() {
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
+
+  const data = filterData(token, user)
+
 
 
   const [sidebar, setSidebar] = useState(false)
@@ -24,11 +29,10 @@ export default function Nav() {
 
   const showSidebar = () => setSidebar(!sidebar)
 
- 
+
   return (
     <div id={style.nav}>
       <IconContext.Provider value={{ color: '#F2F0D5' }}>
-
         <div>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
@@ -46,57 +50,38 @@ export default function Nav() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-            {(!token) ? 
-              SidebarDataNotUser.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span color ="#F2F0D5">{item.title}</span>
-                  </Link>
-                </li>
-              );
-            }) : null
+            {
+              data.map((item, index) => {
+                return (
+                  <li key={index} className={item.cName}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span color="#F2F0D5">{item.title}</span>
+                    </Link>
+                  </li>
+                )
+              })
             }
-            {!!token  && user.category !== 'Admin' ? 
-            SidebarDataUser.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );} 
-            ) : null
+            {
+              (!token) ?
+                <div>
+                  < ButtonLogin />
+                  < ButtonRegister />
+                </div> :
+                null
             }
-            {(!!token && user.category === 'Admin') ? 
-            SidebarDataAdmin.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>    
-                </li>
-              );
-            }) : null
-
-          }
-          {
-           ( !!token ) ?
-              <div>
-                <Logout/>
-              </div>:
-              null
-          }
-            
+            {
+              (!!token) ?
+                <div>
+                  <Logout />
+                </div> :
+                null
+            }
           </ul>
         </nav>
       </IconContext.Provider>
       <div className={style.cName}>
-
-       <SearchBar />
+        <SearchBar />
       </div>
     </div>
   );

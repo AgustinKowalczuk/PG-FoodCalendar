@@ -25,7 +25,7 @@ export default function DetailRecipe() {
   useEffect(() => {
     dispatch(getDetail(id,token));
     window.scrollTo(0,0);
-    }, [token]);
+    }, [dispatch,id,token]);
 
   useEffect(() => {
     if(Object.keys(borrar).length){
@@ -33,7 +33,7 @@ export default function DetailRecipe() {
       dispatch(cleanDeleteRecipe());
       history.push('/');
       }
-  }, [history,borrar])
+  }, [dispatch , history, borrar, token])
 
 
  //envio receta al stack del calendario

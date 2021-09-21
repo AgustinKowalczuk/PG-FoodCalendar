@@ -13,9 +13,9 @@ import swal from 'sweetalert';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import IngredientsPanel from "./IngredientsPanel";
-import InstrunctionsPanel from "./InstrunctionsPanel";
+import InstrunctionsPanel from "./InstructionsPanel";
 import * as FaIcons from "react-icons/fa";
-import { Button } from '@nextui-org/react';
+
 import * as FcIcons from "react-icons/fc";
 
 export default function DetailRecipe() {
@@ -27,14 +27,14 @@ export default function DetailRecipe() {
   const history = useHistory();
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
-  const [key, setKey]  = useState('')
+ 
 
   console.log( user)
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
     window.scrollTo(0,0);
-  }, [dispatch, id]);
+  }, [dispatch, id,token]);
 
   useEffect(() => {
     if(Object.keys(borrar).length){
@@ -42,7 +42,7 @@ export default function DetailRecipe() {
       dispatch(cleanDeleteRecipe());
       history.push('/');
       }
-  }, [history,dispatch, borrar])
+  }, [history,dispatch, borrar,token])
 
  //envio receta al stack del calendario
   function agregarCalendario(receta){
