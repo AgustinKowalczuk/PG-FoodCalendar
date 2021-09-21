@@ -12,9 +12,10 @@ export default function Recipes() {
     const recipes = useSelector((state => state.recipeCalendar))
     const maping = recipes?.map((e,index) => {
         return {
-            id: e.id,
+            id: index,
             title: e.name,
-            description: e.category[0]+ ' ' + e.category[1],
+            description: e.category.length > 2? e.category[0]+ ' ' + e.category[1]: e.category.join(' '),
+            recipeID: e.id,
         }
     })
     const [daysColumns, setday] = useState(
@@ -74,7 +75,7 @@ export default function Recipes() {
                 if(e.id !== 0 ){
                     
                     e.cards.forEach(c => {
-                        send.push(c.id)
+                        send.push(c.recipeID)
                     })
                 }
             })
