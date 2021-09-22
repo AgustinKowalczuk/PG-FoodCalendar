@@ -27,6 +27,7 @@ import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 import UserOnly from './Components/Usuarios/User/UserOnly';
 import Checkout from './Components/Checkout/Checkout';
 
+import InventaryNav from './Components/Inventary/InventaryNav'
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Nav/>
+      <InventaryNav/>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchCards}/>

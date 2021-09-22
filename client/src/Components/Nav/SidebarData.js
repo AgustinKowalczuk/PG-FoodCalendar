@@ -8,6 +8,7 @@ import * as BiIcons from "react-icons/bi"
 
 import * as IoIcons from "react-icons/io5"
 
+import * as RiIcons from 'react-icons/ri';
 
 
 
@@ -35,6 +36,12 @@ export const SidebarDataNotUser = [
 
 export const SidebarDataUser= [
     {
+        title:'Mi Perfil',
+        path: '/',
+        icon: <AiIcons.AiFillHome/>,
+        cName:'nav-text'
+    },
+    {
         title:'Home',
         path: '/',
         icon: <AiIcons.AiFillHome/>,
@@ -47,23 +54,13 @@ export const SidebarDataUser= [
         cName:'nav-text'
     },
     {
-        title:'Inventario',
-        path: '/inventary',
-        icon:<IoIcons.IoAlbumsOutline/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Mis Calendarios',
-        path: '/calendar/user',
-        icon: <AiIcons.AiOutlineCalendar/>,
-        cName:'nav-text'
-    },
-    {
         title:'Crea tu calendario',
         path: '/shop',
         icon: <IoIcons.IoCreateOutline/>,
         cName:'nav-text'
     },
+   
+   
 
 ]
 
@@ -88,23 +85,29 @@ export const SidebarDataAdmin = [
         cName:'nav-text'
     },
     {
-        title:'Inventario',
-        path: '/inventary',
-        icon:<IoIcons.IoAlbumsOutline/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Todos los Calendarios',
-        path: '/calendar',
+        title:'Gestion',
+        path: '/gestion',
         icon: <IoIcons.IoDesktopOutline/>,
-        cName:'nav-text'
+        cName:'nav-text',
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title:'Todos los Calendarios',
+                path: '/gestion/calendar',
+                icon: <IoIcons.IoDesktopOutline/>,
+                cName:'nav-text'
+            },
+            {
+                title:'Todos los usuarios',
+                path: '/gestion/user',
+                icon: <IoIcons.IoDesktopOutline/>,
+                cName:'nav-text'
+            },
+          ]
     },
-    {
-        title:'Todos los usuarios',
-        path: '/user',
-        icon: <IoIcons.IoDesktopOutline/>,
-        cName:'nav-text'
-    },
+    
+    
     
 
 ]

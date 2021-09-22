@@ -12,7 +12,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import { filterData } from "./SidebarData";
 import ButtonLogin from "../Acount/ButtonLogin";
 import ButtonRegister from "../Acount/ButtonRegister";
-
+import SubNav from './SubNav'
 
 
 export default function Nav() {
@@ -29,6 +29,12 @@ export default function Nav() {
 
   const showSidebar = () => setSidebar(!sidebar)
 
+  //<li key={index} className={item.cName}>
+    //                <Link to={item.path}>
+      //                {item.icon}
+        //              <span color="#F2F0D5">{item.title}</span>
+          //          </Link>
+            //      </li>
 
   return (
     <div id={style.nav}>
@@ -40,31 +46,24 @@ export default function Nav() {
         </div>
         <div className='navbar'>
           <Link className="navbar-brand" to='/'>
-            <img className={style.img} src={logo} alt='logo' />
+            <img className='logo-link' src={logo} alt='logo' />
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items' onClick={showSidebar}>
+          <ul className='nav-menu-items' >
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
-                <AiIcons.AiOutlineClose />
+                <AiIcons.AiOutlineClose onClick={showSidebar}/>
               </Link>
             </li>
             {
               data.map((item, index) => {
-                return (
-                  <li key={index} className={item.cName}>
-                    <Link to={item.path}>
-                      {item.icon}
-                      <span color="#F2F0D5">{item.title}</span>
-                    </Link>
-                  </li>
-                )
+                return <SubNav item={item} key={index} />;
               })
             }
             {
               (!token) ?
-                <div>
+                <div className='logRegButton'>
                   < ButtonLogin />
                   < ButtonRegister />
                 </div> :
