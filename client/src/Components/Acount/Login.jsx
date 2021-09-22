@@ -60,12 +60,6 @@ export default function Login() {
     
     const onSubmit = (value) => {
         dispatch(login(value))
-        swal({
-            title: "Ingresaste a tu cuenta",
-            text: "Ingresaste a tu cuenta con exito",
-            icon: "success",
-            button: "Aceptar",
-        })
     }
 
     const GoogleChange = () => {

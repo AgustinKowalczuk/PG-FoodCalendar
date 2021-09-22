@@ -266,12 +266,23 @@ export function register(user){
   return async function(dispatch){
     try {
       const reg = await axios.post(REGISTER_URL, user)
+      swal({
+        title: "Cuenta Registrada",
+        text: "Te registraste con exito",
+        icon: "success",
+        button: "Aceptar",
+    })
       return dispatch({
         type: REGISTER,
         payload: reg.data
       })
     } catch (error) {
-      return console.log(error);
+      return swal({
+        title: "Cuenta no Registrada",
+        text: "Tu cuenta no se a podido registrar",
+        icon: "error",
+        button: "Aceptar",
+    })
     }    
   }
 }
@@ -291,12 +302,23 @@ export function login(user){
   return async function(dispatch){
     try {
       const logi = await axios.post(LOGIN_URL, user);
+      swal({
+        title: "Bienvenido!!",
+        text: "Ingresaste a tu cuenta con exito",
+        icon: "success",
+        button: "Aceptar",
+        })
       return dispatch({
         type: LOGIN,
         payload: logi.data
       })
     } catch(error) {
-      return console.log(error);
+      return swal({
+        title: "No ingresaste a tu cuenta",
+        text: "No ingresaste a tu cuenta con exito",
+        icon: "error",
+        button: "Aceptar",
+        })
     }    
   }
 }
@@ -636,12 +658,23 @@ export function getGoogleAuthUrl(type) {
   return async function (dispatch) {
     try {
       const response = await axios.get(GET_GOOGLE_AUTH_URL + '/' + type)
+      swal({
+        title: "Bienvenido!!",
+        text: "Haz ingresado a la cuenta",
+        icon: "success",
+        button: "Aceptar",
+    })
       return dispatch({
         type: GET_GOOGLE_AUTH,
         payload: response.data
       })
     } catch (error) {
-      console.log(error);
+      swal({
+        title: "Cuenta no Registrada",
+        text: "Tu cuenta no se a podido registrar",
+        icon: "error",
+        button: "Aceptar",
+      })
     }
   }  
 }

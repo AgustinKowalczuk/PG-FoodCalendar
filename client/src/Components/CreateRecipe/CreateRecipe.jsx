@@ -278,7 +278,8 @@ export default function CreateRecipe() {
           </button>
         </div>
       </form>
-      <CreateIngredient ingre={ingre} toggle={toggle}/> <CreateCategory category={category} toggleCat={toggleCat}/>
+      <CreateIngredient ingre={ingre} toggle={toggle}/> 
+      <CreateCategory category={category} toggleCat={toggleCat}/>
     </div>
   );
 }
