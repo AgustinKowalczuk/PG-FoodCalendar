@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DeleteUser from "../AdminUser/DeleteUser";
 import UserPasswordRecovery from "./UserPasswordRecovery";
+import PutUser from './PutUser'
 
 export default function UserOnly() {
 
     const user = useSelector((state) => state.user)
-    console.log(user)
     return ( 
         <div>
             <h4>Detalles del usuario:</h4>
@@ -27,7 +27,7 @@ export default function UserOnly() {
                 <UserPasswordRecovery/>
             </div>
             <button>Aceptar</button>
-            <button>Modificar datos de usuario</button>
+            <PutUser/>
         </div>
      );
 }
