@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRecipes } from "../../actions";
 import style from '../../Styles/StyleHome.module.css'
 import SiliderImages from './SiliderImages/SiliderImages';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
 

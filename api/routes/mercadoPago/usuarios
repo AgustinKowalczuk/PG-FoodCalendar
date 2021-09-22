@@ -1,0 +1,13 @@
+curl -X POST \
+-H "Content-Type: application/json" \
+-H 'Authorization: Bearer TEST-2185238007154684-092104-9a82cacff18595b77ff29cc8139a1af8-11083476' \
+"https://api.mercadopago.com/users/test_user" \
+-d '{"site_id":"MLA"}'
+
+//usser 1 VENDERDOR
+{"id":828679094,"nickname":"TESTUP3DCKGU","password":"qatest8408","site_status":"active","email":"test_user_74079480@testuser.com"}
+
+//usser 2 COMPRADOR
+
+{"id":828680925,"nickname":"TESTWSN8ACIQ","password":"qatest3697","site_status":"active","email":"test_user_56425113@testuser.com"}
+
