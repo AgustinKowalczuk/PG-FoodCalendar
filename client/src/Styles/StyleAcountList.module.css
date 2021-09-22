@@ -7,7 +7,8 @@
     border-radius: .25rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    box-shadow: #1e1803c5 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;
 }
 .name{
     grid-column: 2;
@@ -30,10 +31,17 @@
     flex-direction: row;
     justify-content: flex-start;
 }
-
+.getComent{
+    display: flex;
+    grid-column-start:1;
+    grid-column-end:4;
+    grid-row: 4;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 .change{
     grid-column:2;
-    grid-row: 4;
+    grid-row: 5;
 }
 
 .delete{

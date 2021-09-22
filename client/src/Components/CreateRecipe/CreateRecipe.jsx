@@ -131,10 +131,10 @@ export default function CreateRecipe() {
 
   
   return (
-    <div class={style.centrado}>
-      <form class={style.forms} onSubmit={formik.handleSubmit}>
-        <div div class="mb-3">
-          <label class="form-label">Nombre</label>
+    <div className={style.centrado}>
+      <form className={style.forms} onSubmit={formik.handleSubmit}>
+        <div div className="mb-3">
+          <label className="form-label">Nombre</label>
           <input
             onChange={formik.handleChange}
             value={formik.values.name}
@@ -143,14 +143,14 @@ export default function CreateRecipe() {
             placeholder="Escribe Aqui..."
           />
           {formik.errors.name && formik.touched.name === true ? (
-            <div class="cosoForm">
+            <div className="cosoForm">
               <span>{formik.errors.name}</span>
             </div>
           ) : null}
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Ingredientes</label>
+        <div className="mb-3">
+          <label className="form-label">Ingredientes</label>
           <select
             defaultValue="none"
             onChange={formik.handleChange}
@@ -164,7 +164,7 @@ export default function CreateRecipe() {
               return null
             })}
           </select>
-          <div class={style.buttonsRemove}>
+          <div className={style.buttonsRemove}>
 
             {formik.values.ingredients.length > 0 &&
               formik.values.ingredients.map((e, index) => {
@@ -176,8 +176,8 @@ export default function CreateRecipe() {
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Dificultad</label>
+        <div className="mb-3">
+          <label className="form-label">Dificultad</label>
           <select
             defaultValue="Fácil"
             onChange={formik.handleChange}
@@ -195,8 +195,8 @@ export default function CreateRecipe() {
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Preparacion</label>
+        <div className="mb-3">
+          <label className="form-label">Preparacion</label>
           <textarea
             onChange={formik.handleChange}
             value={formik.values.preparation}
@@ -206,14 +206,14 @@ export default function CreateRecipe() {
             placeholder="Escribe Aqui..."
           />
           {formik.errors.preparation && formik.touched.preparation === true ? (
-            <div class="cosoForm">
+            <div className="cosoForm">
               <span>{formik.errors.preparation}</span>
             </div>
           ) : null}
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Imagen</label>
+        <div className="mb-3">
+          <label className="form-label">Imagen</label>
           <input
             onChange={formik.handleChange}
             value={formik.values.img}
@@ -222,14 +222,14 @@ export default function CreateRecipe() {
             type="file"
           />
           {formik.errors.img && formik.touched.img === true ? (
-            <div class="cosoForm">
+            <div className="cosoForm">
               <span>{formik.errors.img}</span>
             </div>
           ) : null}
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Categorias</label>
+        <div className="mb-3">
+          <label className="form-label">Categorias</label>
           <select
             defaultValue="none"
             onChange={formik.handleChange}
@@ -243,7 +243,7 @@ export default function CreateRecipe() {
               return null
             })}
           </select>
-          <div class={style.buttonsRemove}>
+          <div className={style.buttonsRemove}>
             {formik.values.category.length > 0 &&
               formik.values.category.map((e, index) => {
                 return <SelectCategory formik={formik} onChange={onChangeCategory} category={e} name={`category[${index}]` }
@@ -253,7 +253,7 @@ export default function CreateRecipe() {
         </div>
 
         <div>
-            <label class="form-label">Tipo de receta</label>
+            <label className="form-label">Tipo de receta</label>
             <select 
             onChange={formik.handleChange}
             name="premium">
@@ -263,7 +263,7 @@ export default function CreateRecipe() {
         </div>
 
         <div>
-            <label class="form-label">Está Disponible?</label>
+            <label className="form-label">Está Disponible?</label>
             <select 
             onChange={formik.handleChange}
             name="availability">
@@ -272,8 +272,8 @@ export default function CreateRecipe() {
               </select>
         </div>
 
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">
+        <div className="col-auto">
+          <button type="submit" className="btn btn-primary mb-3" id={style.btnCreate}>
             Crear
           </button>
         </div>
