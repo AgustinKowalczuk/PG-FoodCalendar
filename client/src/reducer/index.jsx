@@ -45,7 +45,8 @@ import {
   RESET_PAGE,
   PUT_USER_DETAILS,
   DELETE_SELF_USER,
-  CLEAN_GOOGLE_AUTH
+  CLEAN_GOOGLE_AUTH,
+  GET_CHECKOUT
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -79,7 +80,8 @@ var initialState = {
   toggleReviews:false,
   userCommentsDetails: [],
   googleAuthUrl: '',
-  userChangesDetails: []
+  userChangesDetails: [],
+  mercadoPagoUrl: ''
 };
 
 function reducer(state = initialState, action) {
@@ -354,6 +356,12 @@ function reducer(state = initialState, action) {
           ...state,
           page: 1,
         }
+      case GET_CHECKOUT:
+        return {
+          ...state,
+          mercadoPagoUrl:action.payload
+        }
+      
     default:
       return state;
   }

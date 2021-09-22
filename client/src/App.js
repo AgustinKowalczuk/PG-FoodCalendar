@@ -25,6 +25,7 @@ import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 import UserOnly from './Components/Usuarios/User/UserOnly';
+import Checkout from './Components/Checkout/Checkout';
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
         <Route path = '/reviews/user/:id' render= {() => (!!token && user.category === 'Admin') ? <UserDetails /> : <Redirect to='/' />}/>
         <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
         <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
+        <Route path = '/checkout' component={Checkout}/>
       </Switch>
       </div>
       <Footer/>

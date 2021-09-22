@@ -48,3 +48,4 @@ export const RESET_PAGE = 'RESET_PAGE';
 export const PUT_USER_DETAILS = 'PUT_USER_DETAILS';
 export const DELETE_SELF_USER = 'DELETE_SELF_USER';
 export const CLEAN_GOOGLE_AUTH = 'CLEAN_GOOGLE_AUTH';
+export const GET_CHECKOUT = 'GET_CHECKOUT';

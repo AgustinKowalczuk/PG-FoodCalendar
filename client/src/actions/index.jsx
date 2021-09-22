@@ -50,7 +50,8 @@ import {
   RESET_PAGE,
   PUT_USER_DETAILS,
   DELETE_SELF_USER,
-  CLEAN_GOOGLE_AUTH
+  CLEAN_GOOGLE_AUTH,
+  GET_CHECKOUT,
 } from "./constants";
 
 import {
@@ -84,7 +85,8 @@ import {
   PUT_RECOVERY_PASS_URL,
   GET_GOOGLE_AUTH_URL,
   PUT_USER_DETAILS_URL,
-  USERS_DELETE_URL
+  USERS_DELETE_URL,
+  GET_CHECKOUT_URL
 } from "../routes";
 
 import config from './config';
@@ -724,4 +726,21 @@ export function cleanGoogleAuthUrl() {
 ///////////////////// Page
 export function resetPage() {
   return {type:RESET_PAGE}
+}
+///CHECKOUT
+
+export function getCheckout(){
+  
+    return async function (dispatch){
+      try {
+        console.log('hola');
+        const aux = await axios.get(GET_CHECKOUT_URL);
+        console.log(aux.data)
+        return dispatch({type: GET_CHECKOUT, payload: aux.data});
+      } catch (error) {
+        console.log(error);
+        
+      }    
+    }
+ 
 }
