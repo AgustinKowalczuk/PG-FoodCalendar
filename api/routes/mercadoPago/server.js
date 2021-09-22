@@ -11,7 +11,8 @@ mercadopago.configure({
 });
 
 
-router.get('/checkout', async (req, res) => {
+router.get('/checkout', async (req, res,next) => {
+  console.log('entré a checkout');
   let preference = {
     items: [
       {
@@ -19,14 +20,27 @@ router.get('/checkout', async (req, res) => {
         unit_price: 500,
         quantity: 1,
       }
-    ]
+    ],
+    back_urls: {
+      success : "http://localhost:3001/checkout/success",
+      failure : "http://localhost:3000/checkout",
+      pending : "http://localhost:3001/checkout/pending"
+  }
+      
   };
-
-  mercadopago.preferences.create(preference)
-  .then(function(response){
-  // Este valor reemplazará el string "<%= global.id %>" en tu HTML
-    global.id = response.body.id;
-  }).catch(function(error){
+  try {
+   const response= await mercadopago.preferences.create(preference);
+   
+     res.send(response.body.init_point);
+  } catch (error) {
     console.log(error);
-  });
+    next(error)
+    
+  }   
 });
+
+router.get('/checkout/success', (req, res, next) => {
+  console.log(req.query);
+})
+
+module.exports= router;

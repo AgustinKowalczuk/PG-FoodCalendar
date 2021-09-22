@@ -6,8 +6,16 @@ curl -X POST \
 
 //usser 1 VENDERDOR
 {"id":828679094,"nickname":"TESTUP3DCKGU","password":"qatest8408","site_status":"active","email":"test_user_74079480@testuser.com"}
+clave mongo= Tester1234
 
 //usser 2 COMPRADOR
 
 {"id":828680925,"nickname":"TESTWSN8ACIQ","password":"qatest3697","site_status":"active","email":"test_user_56425113@testuser.com"}
+clave mongo= Tester123
 
+Carlos estuvo aquí ¯\_(ツ)_/¯
+
+Tarjeta	Número  	Código de seguridad	Fecha de vencimiento
+Mastercard	        5031 7557 3453 0604	123	11/25
+Visa	                4509 9535 6623 3704	123	11/25
+American Express	3711 803032 57522	1234	11/25

@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCheckout } from '../../actions';
+
+
 
 
 export default function Checkout() {
+        const mercadoPagoUrl = useSelector(state => state.mercadoPagoUrl)
+        const dispatch = useDispatch()
+
+        function handleSubmit(e){
+                e.preventDefault();
+                dispatch(getCheckout())
+        }
+        useEffect(() => {
+             if (mercadoPagoUrl){
+                const anchor = document.getElementById('mercadoPagoUrl');
+                anchor.click();
+             }  
+        }, [mercadoPagoUrl])
+        
         return (
         <div className="container">
                 <h3 className= "displayh4">Plan Tu Calendario</h3> 
@@ -19,10 +37,10 @@ export default function Checkout() {
                                         <hr />
                                         <h4>Precio $500 por mes</h4>
                                         <div>
-                                                <form action="http://localhost:3001/checkout" method="POST">
-                                                        <input type="hidden" name= "title" value="Recipe Calendar"/>
-                                                        <input type="hidden" name="price" value="2500"/>
-                                                        <input type="submit" value="Suscribirse" className="btn btn-primary btn-block"/>
+                                                <form onSubmit={handleSubmit}>
+                                                       
+                                                 <button type="submit" className="btn btn-primary btn-block">Suscribirse</button>
+                                                <a href={mercadoPagoUrl} id='mercadoPagoUrl'></a>
                                                 </form>
                                         </div>
                                 </div>
