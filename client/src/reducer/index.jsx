@@ -41,7 +41,8 @@ import {
   DELETE_REVIEWS,
   PUT_REVIEWS,
   GET_USER_DETAIL,
-  GET_GOOGLE_AUTH
+  GET_GOOGLE_AUTH,
+  CLEAN_GOOGLE_AUTH
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -329,6 +330,11 @@ function reducer(state = initialState, action) {
            ...state,
            googleAuthUrl: action.payload
          }
+      case CLEAN_GOOGLE_AUTH:
+        return {
+          ...state,
+           googleAuthUrl: ''
+        }
     default:
       return state;
   }

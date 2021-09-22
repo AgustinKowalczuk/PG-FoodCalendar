@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGoogleAuthUrl, login } from '../../actions';
+import { cleanGoogleAuthUrl, getGoogleAuthUrl, login } from '../../actions';
 import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
@@ -53,7 +53,8 @@ export default function Login() {
     useEffect(() => {
         if (googleAuthUrl) {
             const anchor = document.getElementById('GoogleAuth');
-            anchor.click();
+            anchor.click();            
+            dispatch(cleanGoogleAuthUrl());            
         }
     },[googleAuthUrl])
     
