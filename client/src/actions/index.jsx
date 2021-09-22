@@ -47,6 +47,7 @@ import {
   RECOVER_PASS,
   SET_CALENDAR,
   GET_GOOGLE_AUTH,
+  RESET_PAGE,
   PUT_USER_DETAILS,
   DELETE_SELF_USER,
   CLEAN_GOOGLE_AUTH
@@ -269,12 +270,23 @@ export function register(user){
   return async function(dispatch){
     try {
       const reg = await axios.post(REGISTER_URL, user)
+      swal({
+        title: "Cuenta Registrada",
+        text: "Te registraste con exito",
+        icon: "success",
+        button: "Aceptar",
+    })
       return dispatch({
         type: REGISTER,
         payload: reg.data
       })
     } catch (error) {
-      return console.log(error);
+      return swal({
+        title: "Cuenta no Registrada",
+        text: "Tu cuenta no se a podido registrar",
+        icon: "error",
+        button: "Aceptar",
+    })
     }    
   }
 }
@@ -294,12 +306,23 @@ export function login(user){
   return async function(dispatch){
     try {
       const logi = await axios.post(LOGIN_URL, user);
+      swal({
+        title: "Bienvenido!!",
+        text: "Ingresaste a tu cuenta con exito",
+        icon: "success",
+        button: "Aceptar",
+        })
       return dispatch({
         type: LOGIN,
         payload: logi.data
       })
     } catch(error) {
-      return console.log(error);
+      return swal({
+        title: "No ingresaste a tu cuenta",
+        text: "No ingresaste a tu cuenta con exito",
+        icon: "error",
+        button: "Aceptar",
+        })
     }    
   }
 }
@@ -395,10 +418,9 @@ export function deleteInventary(i){
 }
 
 //Borra todos los items del inventario
-export function clearInventary(id){
+export function clearInventary(){
   return {
-    type: CLEAR_INVENTARY,
-    payload:id
+    type: CLEAR_INVENTARY
   }
 }
 
@@ -455,11 +477,17 @@ export function deleteRecipe(id,token){
   return async function (dispatch){
     try {
       const borrar = await axios.delete (RECIPES_URL +'/' + id, config(token));
+      swal({
+        title: "Receta Borrada!",
+        icon: "success",
+        button: "Aceptar",
+      });
       return dispatch ({
         type : DELETE_RECIPE,
         payload: borrar.data
       });
     } catch (error) {
+
       console.log(error)
       return swal({
         title: "No existen calendarios o el usuario no se logueó",
@@ -645,7 +673,12 @@ export function getGoogleAuthUrl(type) {
         payload: response.data
       })
     } catch (error) {
-      console.log(error);
+      swal({
+        title: "Cuenta no Registrada",
+        text: "Tu cuenta no se a podido registrar",
+        icon: "error",
+        button: "Aceptar",
+      })
     }
   } 
 } 
@@ -681,4 +714,9 @@ export function deleteSelfUser(id, token){
 
 export function cleanGoogleAuthUrl() {
   return {type: CLEAN_GOOGLE_AUTH}
+}
+
+///////////////////// Page
+export function resetPage() {
+  return {type:RESET_PAGE}
 }

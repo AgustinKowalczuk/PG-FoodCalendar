@@ -15,7 +15,7 @@ export default function Home() {
                 dispatch(getRecipes(token));
         }, [dispatch, token]);
 
-        const recipesHome = allRecipes.filter(e => e.rating > 7)
+        const recipesHome = allRecipes.filter(e => e.rating > 5)
         return (
                 <div class={style.order}>
                  <SiliderImages allRecipes={allRecipes} />

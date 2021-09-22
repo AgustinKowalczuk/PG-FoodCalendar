@@ -62,12 +62,6 @@ export default function Register() {
     const onSubmit = (value) => {
         console.log('Submit value', value)
         dispatch(register(value))
-        swal({
-            title: "Cuenta Registrada",
-            text: "Te registraste con exito",
-            icon: "success",
-            button: "Aceptar",
-        })
     }
 
     const GoogleChange = () => {

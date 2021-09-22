@@ -47,6 +47,12 @@ export default function Login() {
             sessionStorage.token = token;
             sessionStorage.user = user;
             history.push('/');
+            swal({
+                title: "Bienvenido!!",
+                text: "Haz ingresado a la cuenta",
+                icon: "success",
+                button: "Aceptar",
+            })
         } else if (Object.keys(params).length === 1) {
             const { email } = params;
             swal({
@@ -56,6 +62,7 @@ export default function Login() {
                 button: "Aceptar",
             });
             history.push('/acount/login');
+           
         }
     }, [params]);
 
@@ -69,12 +76,6 @@ export default function Login() {
     
     const onSubmit = (value) => {
         dispatch(login(value))
-        swal({
-            title: "Ingresaste a tu cuenta",
-            text: "Ingresaste a tu cuenta con exito",
-            icon: "success",
-            button: "Aceptar",
-        })
     }
 
     const GoogleChange = () => {

@@ -53,7 +53,24 @@ export default function DetailRecipe() {
     }
 
     function handleClick(id){
-      dispatch(deleteRecipe(id,token));
+      swal({
+        title: "Seguro de borrar la receta?",
+        text: "Una vez borrada la receta no hay vuelta atras!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(deleteRecipe(id,token));
+        } else {
+          swal({
+            title: "Receta no borrada",
+            icon: "error",
+            button: "Aceptar",
+          });
+        }
+      });
     }
     function handleClick2(){
       dispatch(postLike(recipeDetail.id,token));

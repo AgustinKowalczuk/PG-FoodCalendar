@@ -42,6 +42,7 @@ import {
   PUT_REVIEWS,
   GET_USER_DETAIL,
   GET_GOOGLE_AUTH,
+  RESET_PAGE,
   PUT_USER_DETAILS,
   DELETE_SELF_USER,
   CLEAN_GOOGLE_AUTH
@@ -214,7 +215,7 @@ function reducer(state = initialState, action) {
       case CLEAR_INVENTARY:
         return {
           ...state,
-          recipeCalendar: []
+          recipeCalendar: [],
         }
       case GET_CALENDAR:
         return {
@@ -347,6 +348,11 @@ function reducer(state = initialState, action) {
         return {
           ...state,
            googleAuthUrl: ''
+        }
+      case RESET_PAGE:
+        return{
+          ...state,
+          page: 1,
         }
     default:
       return state;
