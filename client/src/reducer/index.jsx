@@ -339,6 +339,7 @@ function reducer(state = initialState, action) {
       case PUT_USER_DETAILS:
         return{
           ...state,
+          user: action.payload,
           userChangesDetails: action.payload
         }
       case DELETE_SELF_USER:
