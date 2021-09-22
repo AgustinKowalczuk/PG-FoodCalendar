@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector} from "react-redux";
 import { createCategory } from "../../actions";
+import style from "../../Styles/StyleFrom.module.css"
 
 export default function CreateCategory(props) {
     const dispatch = useDispatch();
@@ -32,10 +33,10 @@ export default function CreateCategory(props) {
         validate
     })
     return ( 
-        <div>
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label>Deseas crear una categoría nueva?</label><br />
+        <div className={style.centrado} id={style.content}>
+            <form className={style.forms} onSubmit={formik.handleSubmit}>
+                <div className="mb-3">
+                    <label className="form-label">Deseas crear una categoría nueva?</label><br />
                     <input
                     onChange={formik.handleChange}
                     type="text"
@@ -50,7 +51,8 @@ export default function CreateCategory(props) {
                     </div>
                     ) : null}
 
-                    <button
+                    <button className="btn btn-primary mb-3"
+                    id={style.btnCreate}
                     type='submit'
                     disabled={props.category?.some(e => e.name?.toLowerCase() === formik.values?.name?.toLowerCase())}
                     >Agregar</button>

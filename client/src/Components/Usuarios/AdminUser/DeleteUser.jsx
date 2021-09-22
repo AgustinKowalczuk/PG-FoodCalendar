@@ -1,17 +1,33 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUserForAdmin} from "../../../actions";
-
+import swal from 'sweetalert';
 
 export default function DeleteUser ({id}) {
     const dispatch = useDispatch()
     const token = useSelector((state) => state.token);
 
     function handleClick(id){
-        const ok = window.confirm('Deseas borrar a este usuario?')
-        if(ok){
-        dispatch(deleteUserForAdmin(id, token))
-        }
+        
+        swal({
+            title: "Estas seguro de eliminar al usuario?",
+            text: "Una vez eliminado no hay vuelta atras!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                dispatch(deleteUserForAdmin(id, token))
+            } else {
+              swal({
+                  title: "Usuario no eliminado",
+                  icon:'error',
+                  button:'Aceptar'
+              });
+            }
+          });
+        
     }
     return ( 
         <div>

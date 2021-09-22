@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getComentaryDetail } from "../../../actions";
-
+import styles from "../../../Styles/StyleAllComent.module.css"
 
 
 export default function UserDetails () {
@@ -14,7 +14,7 @@ export default function UserDetails () {
         dispatch(getComentaryDetail(id, token))
     }, [dispatch, id, token])
     return (
-            <div>
+            <div className={styles.content}>
                 {commentDetails.length > 0 ?
                     commentDetails?.map((e)=> {
                             const fecha = new Date(e.date)
@@ -22,11 +22,12 @@ export default function UserDetails () {
                             const dia= fecha.getDate()
                             const anio= fecha.getFullYear()
                             return                 (
-                                <ul>
-                                    <li>{e.owner.name}</li>
-                                    <li>"{e.comment}"</li>
-                                    <li>{e.recipe.name}</li>
+                                <ul className={styles.contentData}>
+                                    <li className={styles.name}>{e.owner.name}</li>
+                                    <li className={styles.comment}>"{e.comment}"</li>
+                                    <li className={styles.recipe}>{e.recipe.name}</li>
                                     <label
+                                    className={styles.day}
                                     type='date'
                                     >Fecha: {`${dia}/${mes}/${anio}`}
                                     </label>
