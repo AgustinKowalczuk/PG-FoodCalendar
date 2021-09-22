@@ -47,8 +47,10 @@ import {
   RECOVER_PASS,
   SET_CALENDAR,
   GET_GOOGLE_AUTH,
-  CLEAN_GOOGLE_AUTH,
-  RESET_PAGE
+  RESET_PAGE,
+  PUT_USER_DETAILS,
+  DELETE_SELF_USER,
+  CLEAN_GOOGLE_AUTH
 } from "./constants";
 
 import {
@@ -80,7 +82,9 @@ import {
   PUT_REVIEWS_URL,
   GET_USER_DETAILS_URL,
   PUT_RECOVERY_PASS_URL,
-  GET_GOOGLE_AUTH_URL
+  GET_GOOGLE_AUTH_URL,
+  PUT_USER_DETAILS_URL,
+  USERS_DELETE_URL
 } from "../routes";
 
 import config from './config';
@@ -473,11 +477,17 @@ export function deleteRecipe(id,token){
   return async function (dispatch){
     try {
       const borrar = await axios.delete (RECIPES_URL +'/' + id, config(token));
+      swal({
+        title: "Receta Borrada!",
+        icon: "success",
+        button: "Aceptar",
+      });
       return dispatch ({
         type : DELETE_RECIPE,
         payload: borrar.data
       });
     } catch (error) {
+
       console.log(error)
       return swal({
         title: "No existen calendarios o el usuario no se logueó",
@@ -658,12 +668,6 @@ export function getGoogleAuthUrl(type) {
   return async function (dispatch) {
     try {
       const response = await axios.get(GET_GOOGLE_AUTH_URL + '/' + type)
-      swal({
-        title: "Bienvenido!!",
-        text: "Haz ingresado a la cuenta",
-        icon: "success",
-        button: "Aceptar",
-    })
       return dispatch({
         type: GET_GOOGLE_AUTH,
         payload: response.data
@@ -676,7 +680,36 @@ export function getGoogleAuthUrl(type) {
         button: "Aceptar",
       })
     }
-  }  
+  } 
+} 
+export function putUserDetails(value, token){
+  return async function(dispatch) {
+    try {
+      const putUserDetails = await axios.put(PUT_USER_DETAILS_URL, value, config(token));
+      return dispatch({
+        type: PUT_USER_DETAILS,
+        payload: putUserDetails.data
+      })
+    } catch(error){
+      return alert('No se realizaron los cambios')
+    }
+  }
+}
+
+export function deleteSelfUser(id, token){
+  return async function (dispatch){
+    try{
+      const deleteUser = await axios.delete(USERS_DELETE_URL + '/' + id, config(token));
+      return dispatch({
+        type:DELETE_SELF_USER,
+        payload: deleteUser.data
+      })
+    }
+    catch(error){
+      return console.log('No se puede borrar el usuario.')
+    }
+  }
+
 }
 
 export function cleanGoogleAuthUrl() {

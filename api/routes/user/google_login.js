@@ -29,14 +29,15 @@ router.get('/auth/google', async (req,res,next) => {
         
         let userFound = await User.findOne({email});
         if (!userFound){
-            throw new Error(`El usuario con el email ${email} no se encuentra registrado.`);
+            return res.redirect(`http://localhost:3000/acount/login/${email}`);
         }
         const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});        
 
         userFound = normalizeUsers(userFound);
         return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userFound)); 
     } catch (error) {
-        next(error);
+        res.redirect('http://localhost:3000/');
+        return next(error);
     }
 });
 
@@ -50,7 +51,7 @@ router.get('/register/google', async (req,res,next) => {
         
         let userFound = await User.findOne({email});
         if (userFound){
-            throw new Error(`El usuario con el email ${email} ya se encuentra registrado.`);
+            return res.redirect(`http://localhost:3000/acount/register/${email}`);
         }
         
         const category = 'User';
@@ -70,7 +71,8 @@ router.get('/register/google', async (req,res,next) => {
         userCreated = normalizeUsers(userCreated);
         return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userCreated)); 
     } catch (error) {
-        next(error);
+        res.redirect('http://localhost:3000/');
+        return next(error);
     }
 });
 

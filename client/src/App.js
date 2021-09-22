@@ -24,6 +24,7 @@ import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
 import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
+import UserOnly from './Components/Usuarios/User/UserOnly';
 
 
 function App() {
@@ -49,18 +50,21 @@ function App() {
         <Route path='/recipe/:id' component={PruebaDetail}/>
         <Route path = '/create/recipe' render= {() => (!!token) ? <CreateRecipe /> : <Redirect to='/' />}/>
         <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
+        <Route path = '/acount/register/:email' component={Register}/>
         <Route path = '/acount/register' component={Register}/>
         <Route path = '/acount/recovery' component={RecoverPass}/>
         <Route path = '/acount/google/:token/:user' component={Login} />
+        <Route path = '/acount/login/:email' component={Login}/>
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>
         <Route path = '/AllRecipe' component = {AllRecipe}/>
         <Route exact path = '/calendar'render= {() => (!!token) ? <Calendar admin={true}/> : <Redirect to='/' />}/>
         <Route exact path = '/calendar/user'render= {() => (!!token) ? <Calendar /> : <Redirect to='/' />}/>
         <Route path = '/calendar/:id' render= {() => (!!token) ? <CalendarDetail /> : <Redirect to='/' />}/>
-        <Route path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
+        <Route exact path = '/user' render= {() => (!!token && user.category === 'Admin') ? <AdminUser /> : <Redirect to='/' />}/>
         <Route path = '/reviews/user/:id' render= {() => (!!token && user.category === 'Admin') ? <UserDetails /> : <Redirect to='/' />}/>
         <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
+        <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
       </Switch>
       </div>
       <Footer/>

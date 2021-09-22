@@ -42,13 +42,29 @@ export default function Login() {
     }, [token]);
 
     useEffect(() => {        
-        if (!!Object.keys(params).length) {
+        if (Object.keys(params).length === 2) {
             const { token, user } = params;
             sessionStorage.token = token;
             sessionStorage.user = user;
             history.push('/');
+            swal({
+                title: "Bienvenido!!",
+                text: "Haz ingresado a la cuenta",
+                icon: "success",
+                button: "Aceptar",
+            })
+        } else if (Object.keys(params).length === 1) {
+            const { email } = params;
+            swal({
+                title: "Usuario no registrado",
+                text: `El usuario con el email ${email} no se encuentra registrado.`,
+                icon: "error",
+                button: "Aceptar",
+            });
+            history.push('/acount/login');
+           
         }
-    }, [params])
+    }, [params]);
 
     useEffect(() => {
         if (googleAuthUrl) {

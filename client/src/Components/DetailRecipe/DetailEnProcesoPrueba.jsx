@@ -28,8 +28,6 @@ export default function DetailRecipe() {
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
  
-
-  console.log( user)
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
@@ -65,11 +63,6 @@ export default function DetailRecipe() {
       .then((willDelete) => {
         if (willDelete) {
           dispatch(deleteRecipe(id,token));
-          swal({
-            title: "Receta Borrada!",
-            icon: "success",
-            button: "Aceptar",
-          });
         } else {
           swal({
             title: "Receta no borrada",

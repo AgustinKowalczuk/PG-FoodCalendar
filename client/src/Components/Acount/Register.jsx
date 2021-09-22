@@ -5,9 +5,11 @@ import { cleanGoogleAuthUrl, getGoogleAuthUrl, register } from '../../actions/in
 import { useDispatch, useSelector } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
+import { useHistory, useParams } from 'react-router'
 
 export default function Register() {
-
+    const params = useParams();
+    const history = useHistory();
     const dispatch = useDispatch()
     const initialValues= {
         name:'',
@@ -23,7 +25,20 @@ export default function Register() {
             anchor.click();
             dispatch(cleanGoogleAuthUrl());
         }
-    },[googleAuthUrl])
+    },[googleAuthUrl]);
+
+    useEffect(() => {        
+        if (!!Object.keys(params).length) {
+            const { email } = params;
+            swal({
+                title: "Usuario ya registrado",
+                text: `El usuario con el email ${email} ya se encuentra registrado.`,
+                icon: "error",
+                button: "Aceptar",
+            });
+            history.push('/acount/register');
+        }
+    }, [params])
 
     const validationSchema = Yup.object({
         name: Yup.string()

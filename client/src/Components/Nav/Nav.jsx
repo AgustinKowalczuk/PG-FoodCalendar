@@ -82,6 +82,9 @@ export default function Nav() {
       </IconContext.Provider>
       <div className={style.cName}>
         <SearchBar />
+        <Link to='/user/noAdmin'>
+          Usuario
+        </Link>
       </div>
     </div>
   );
