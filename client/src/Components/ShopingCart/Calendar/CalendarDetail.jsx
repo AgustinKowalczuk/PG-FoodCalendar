@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router';
 import { getDetail } from '../../../actions';
+import styles from '../../../Styles/StyleCalendarList.module.css'
 
 export default function CalendarDetail() {
         const dispatch = useDispatch();
@@ -15,24 +16,30 @@ export default function CalendarDetail() {
                 dispatch(getDetail(id,token));
                 history.push(`/recipe/${id}`)
         }
+
+        console.log(calendarDetail)
         return (
-                <div>
+                <div className={styles.container}>
                 <h4>Detalle del calendario:</h4>
                         <h3>{calendarDetail[0]?.name}</h3>
-                        <table>
-                                <tr>
-                                        {arrDays.map(e => <th>{`Día ${e}`}</th>)}
-                                </tr>
-                                <tr>
-                               {calendarDetail[0]?.calendar?.map((e) =>(
-                                        <td><button onClick={() => handleClick(e.firstRecipe.id)}>{e.firstRecipe.name}</button></td> 
-                                        ))}
-                                </tr>
-                                <tr>
-                                {calendarDetail[0]?.calendar?.map((e) =>(
-                                        <td><button onClick={() => handleClick(e.secondRecipe.id)}>{e.secondRecipe.name}</button></td> 
-                                        ))}
-                                </tr>
+                        <table className={styles.table}>
+                        
+                               
+                                
+
+                        {arrDays.map((e, index) => (
+                                <td className={styles.row} id={styles.column}>
+                                        <th>{`Día ${e}`}</th>
+                                        <td className={styles.row}>
+                                                <button id={styles.btn} className="btn btn-primary mb-3" onClick={() => handleClick(calendarDetail[0]?.calendar[index].firstRecipe.id)}>{calendarDetail[0]?.calendar[index].firstRecipe.name}</button>
+                                                <button id={styles.btn} className="btn btn-primary mb-3" onClick={() => handleClick(calendarDetail[0]?.calendar[index].secondRecipe.id)}>{calendarDetail[0]?.calendar[index].secondRecipe.name}</button>
+                                        </td>
+                                </td>
+                        )
+                        
+                        )}
+                                
+                                
                         </table>
                 </div>
         )

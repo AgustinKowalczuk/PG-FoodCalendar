@@ -20,6 +20,24 @@
     margin-top: 10px;
 }
 
+#content{
+    width: 90%;
+}
+
+#btnCreate{
+    margin-top: 1%;
+    background-color: transparent;
+    border: 1px solid #668C4A;
+    color: #668C4A;
+}
+#btnCreate:hover{
+    background-color: #B1B1AC;
+    border: 1px solid #668C4A;
+    color: #668C4A;
+}
+
+
+
 .buttonsRemove{
     margin-top: 2%;
     display: flex;

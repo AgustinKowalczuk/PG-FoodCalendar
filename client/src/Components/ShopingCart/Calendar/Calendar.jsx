@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCalendar, getCalendarDetail, getCalendarUser } from '../../../actions'
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import styles from '../../../Styles/StyleCalendars.module.css'
 
 export default function Calendar( {admin}) {
     const state = useSelector(state => state.calendary)
@@ -20,20 +21,23 @@ export default function Calendar( {admin}) {
    }, [dispatch,location])
 
     return (
-        <div>
+        <div className={styles.content}>
             <h1>Todos los calendarios</h1>
-            {state?.map((e)=>{
-                return (
-                    <div key={e.id}>
-                        <label>Nombre del Calendario</label>
-                        <Link to={`/calendar/${e.id}`}>
-                            <button onClick={()=>dispatch(getCalendarDetail(e.id,token))}>{e.name}</button>
-                        </Link>
-                            <div>
-                    </div> 
-                    </div>
-                )
-            })}
+            <div className={styles.flex}>
+
+                {state?.map((e)=>{
+                    return (
+                        <div key={e.id} className={styles.contentData}>
+                            <h4>{e.name}</h4>
+                            <Link to={`/calendar/${e.id}`}>
+                                <button className="btn btn-primary mb-3" id={styles.btn} onClick={()=>dispatch(getCalendarDetail(e.id,token))}>Ver Calendario</button>
+                            </Link>
+                                <div>
+                        </div> 
+                        </div>
+                    )
+                })}
+            </div>
         </div>
         
     )

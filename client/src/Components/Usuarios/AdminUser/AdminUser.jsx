@@ -28,7 +28,7 @@ export default function AdminUser () {
                             <div className={style.name}>
                                 <h3>{e.name}</h3>  
                             </div>
-                            <div>
+                            <div className={style.getComent}>
                                 <Link to={`/reviews/user/${e.id}`}>
                                 <h5>Ver comentarios de este usuario</h5>
                                 </Link>
