@@ -22,15 +22,17 @@ export default function PutUser () {
 
     function handleSubmit(e){
         e.preventDefault();
-        const values = {
-            name: e.target.name.value,
-            surname: e.target.surname.value,
-            email: e.target.email.value
+        const ok = window.confirm('Deseas hacer estos cambios?')
+        if(ok){
+            const values = {
+                name: e.target.name.value,
+                surname: e.target.surname.value,
+                email: e.target.email.value
+            }
+            console.log(values)
+            dispatch(putUserDetails(values, token))
         }
-        console.log(values)
-        dispatch(putUserDetails(values, token))
     }
-
     function modificar() {
         setFlag (true)
        }
@@ -41,7 +43,7 @@ export default function PutUser () {
                 <form onSubmit={handleSubmit}>
                                 <h4>Detalles del usuario:</h4>
             <div>
-                <label>Nombre: {user.name}</label>
+                <label>Nombre:</label>
                 <input
                 name='name'
                 type="text"
@@ -49,7 +51,7 @@ export default function PutUser () {
                 defaultValue={initialValues.name}/>
             </div>
             <div>
-                <label>Apellido: {user.surname}</label>
+                <label>Apellido:</label>
                 <input
                 name='surname'
                 type="text"
@@ -57,7 +59,7 @@ export default function PutUser () {
                 defaultValue={initialValues.surname}/>
             </div>
             <div>
-                <label>Email: {user.email}</label>
+                <label>Email:</label>
                 <input
                 name='email'
                 type="email"
@@ -65,7 +67,7 @@ export default function PutUser () {
                 defaultValue={initialValues.email}/>
             </div>
             <button type='submit'>Guardar Cambios</button>
-                </form>
+            </form>
             }
         </div>
      );
