@@ -50,11 +50,7 @@ export default function DetailRecipe() {
     if(stackReceta.length < 14 && !stackReceta.includes(receta)){
       return dispatch(setRecipeCalendar(receta))
     } else{
-      return swal({
-        title: "Receta no agregada",
-        text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
-        icon: "error",
-      });
+      return ;
     }
     }
 
@@ -70,18 +66,14 @@ export default function DetailRecipe() {
 
       <div className={style.content}  >
           <div className={style.containerTitles}>
-            <h3  className={style.titleH3}>{recipeDetail.name}</h3>
-            <div class={style.category}>
-                <h3 class={style.categoryH3}>Categorias: </h3>
-                  <table class={style.table}>
-                    <tr>
-                      {recipeDetail?.category?.map((x) => (
-                        <td>
-                          <h4>{x}</h4>
-                        </td>
-                      ))}
-                    </tr>
-                  </table>
+            <h2  className={style.titleH3}>{recipeDetail.name}</h2>
+            <div className={style.category}>
+                <h3 className={style.categoryH3}>Categorias: </h3>
+                  <div className={style.table}> 
+                    {recipeDetail?.category?.map((x) => (
+                        <h4 className={style.space}>{x}</h4>                      
+                    ))}
+                  </div>
               </div>
             <div className={style.dificulty}>
               
@@ -110,12 +102,6 @@ export default function DetailRecipe() {
             : null
             } 
           </div>
-            {/* {
-          recipeDetail.availability === 'Unavailable' && 
-            <div className={style.imgContainer}>
-        
-            </div>
-            } */}
             
         <div className={style.tabsContainer}>
               <Tabs
@@ -143,7 +129,7 @@ export default function DetailRecipe() {
           }
           <div>
           {
-            user.like === true? 
+            recipeDetail.like === true? 
             <button onClick={handleClick2}><FcIcons.FcLike /></button> :
             <button onClick={handleClick2}><FcIcons.FcLikePlaceholder /></button>
           }

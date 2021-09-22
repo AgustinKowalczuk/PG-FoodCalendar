@@ -14,13 +14,14 @@ export default function Home() {
         useEffect(() => {
                 dispatch(getRecipes(token));
         }, [dispatch, token]);
-     
+
+        const recipesHome = allRecipes.filter(e => e.rating > 7)
         return (
                 <div class={style.order}>
                  <SiliderImages allRecipes={allRecipes} />
                  <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
               
-                 <Cards allRecipes={allRecipes}/>
+                 <Cards allRecipes={recipesHome}/>
                 </div>
         )
 }

@@ -6,14 +6,20 @@ import { getDetail, page, setRecipeCalendar } from "../../actions/index";
 import Dificultad from './Dificultad';
 import swal from 'sweetalert';
 import Pagination from "../Pagination/Pagination";
+import * as FaIcons from "react-icons/fa"
 
 export default function Cards(props) {
  
-  
+ let recipesPerPage
  const dispatch = useDispatch();
  const pages =  useSelector(state => state.page)
-  
-  const recipesPerPage = 6;
+ const token = useSelector(state => state.token)
+
+  if(props.confirmador){
+     recipesPerPage = 3;
+  }else{
+     recipesPerPage = 6;
+  }
   const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
   const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
@@ -22,51 +28,58 @@ export default function Cards(props) {
     dispatch(page(pageNumber));
   };
   function agregarCalendario(receta){
-    if(stackReceta.length < 14  && !stackReceta.includes(receta)){
+    if(stackReceta.length < 14 ){
     return dispatch(setRecipeCalendar(receta))
     } else{
-    return swal({
-      title: "Receta no agregada",
-      text: "La reseta ya se encuentra en el calendario o ya tiene 14 elementos",
-      icon: "error",
-    });
+      return swal({
+        title: "Receta no agregada",
+        text: "El calendario ya tiene 14 elementos",
+        icon: "error",
+      });
     }
     }
 
   return (
-    <div class={style.content}>
+    <div className={style.content}>
       {currentRecipes?.map((e) => {
         return (
-          <div class="card" id={style.carData} Keys={e.id}>
+          <div id={style.carData} Keys={e.id}>
+            
             <Link
               to={`/recipe/${e.id}`}
-              onClick={() => dispatch(getDetail(e.id))}
+              onClick={() => dispatch(getDetail(e.id, token))}
               id={style.normal}
             >
+              {e.premium !== 'Free'? <FaIcons.FaStar className={style.premium}/>: null}
               <img
-                class="card-img-top"
+                className="card-img-top"
                 id={style.img}
                 src={e.img}
                 alt="No sé encuentra la imagen"
               />
-              <div class="card-body">
-                <h4 class="card-title">{e.name.toUpperCase()}</h4>
-                <h5 class="card-text" id={style.normal}>
+              <div className="card-body" id={style.card}>
+                
+                <h4 id={style.title}>{e.name.toUpperCase()}</h4> 
+                <h5 id={style.text}>
                     Dificultad:
                 </h5>
-                <Dificultad difficulty={e.difficulty}/>
               </div>
+              <Dificultad difficulty={e.difficulty}/>
             </Link>
-            <div>
-              {e.availability === 'Available' && 
-              <button id={style.btn} onClick={() => agregarCalendario(e)} class="btn btn-secondary" >Agregala a tu Calendario!</button>
+            <div className={style.resize}>
+              {e.availability === 'Available' && !!token &&
+              <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary" >Agregala a tu Calendario!</button>
+              }
+              {
+                !token && e.availability === 'Available' &&
+                <Link to='/acount/register' id={style.btn} className="btn btn-secondary" >Agregala a tu Calendario!</Link>
               }
             </div>
            
           </div>
         );
       })}
-      <div class={style.navFake}>
+      <div className={style.navFake}>
         <Pagination
          recipesPerPage={recipesPerPage}
          allRecipes={props.allRecipes.length}

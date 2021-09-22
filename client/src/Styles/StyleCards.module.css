@@ -7,20 +7,32 @@
     align-items: stretch;
     align-content: stretch;
 }
-
+#card{
+    padding:2%;
+}
 #carData{
     width: 40vh;
     height: 50vh;
     margin-top: 5px;
     background-color: #F2F0D5;
-    box-shadow: #1e1803c5 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    box-shadow: #1e1803c5 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;
     padding: 30px;
     border-color: #668C4A;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    align-content: space-between;
 }
 
 #normal{
     outline: none; 
     text-decoration: none;
+}
+
+#text{
+    margin-bottom: 2px;
 }
 
 .navFake{
@@ -41,11 +53,30 @@
 }
 
 #btn{
+    margin-top: 2px;
     border-color:#668C4A;
     color: #668C4A;
     background-color: #F2F0D5;
+    font-size: 2.2vh;
 }
 
 #btn:hover{
     background-color: #B1B1AC;
+}
+
+.resize{
+    width: 90%;
+    height:20%;
+    margin: auto;
+}
+
+#title{
+    font-size: 3vh;
+}
+
+.premium{
+    position: absolute;
+    color: #F2C53D;
+    float: right; 
+    font-size: 9vh;
 }
