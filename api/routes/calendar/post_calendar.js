@@ -38,7 +38,7 @@ router.post('/calendar', auth, async (req, res, next) => {
         const [re, obj] = htmlReplacer(oldText, newText);
         const html = await fs.readFileSync(__dirname + path, 'utf8')
             .replace(re, (match)=>obj[match]);
-        await transportEmail(owner.email, html);
+        await transportEmail(owner.email, html, 'Calendario guardado');
 
         return res.json(posted);
     } catch (error) {

@@ -45,7 +45,9 @@ import {
   PUT_REVIEWS,
   GET_USER_DETAIL,
   RECOVER_PASS,
-  SET_CALENDAR
+  SET_CALENDAR,
+  GET_GOOGLE_AUTH,
+  CLEAN_GOOGLE_AUTH
 } from "./constants";
 
 import {
@@ -76,7 +78,8 @@ import {
   DELETE_REVIEWS_URL,
   PUT_REVIEWS_URL,
   GET_USER_DETAILS_URL,
-  PUT_RECOVERY_PASS_URL
+  PUT_RECOVERY_PASS_URL,
+  GET_GOOGLE_AUTH_URL
 } from "../routes";
 
 import config from './config';
@@ -627,5 +630,22 @@ export function setCalendar(payload){
     type:SET_CALENDAR,
     payload
   }
+}
 
+export function getGoogleAuthUrl(type) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(GET_GOOGLE_AUTH_URL + '/' + type)
+      return dispatch({
+        type: GET_GOOGLE_AUTH,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }  
+}
+
+export function cleanGoogleAuthUrl() {
+  return {type: CLEAN_GOOGLE_AUTH}
 }
