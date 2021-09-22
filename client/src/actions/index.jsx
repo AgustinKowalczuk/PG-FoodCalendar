@@ -47,7 +47,8 @@ import {
   RECOVER_PASS,
   SET_CALENDAR,
   GET_GOOGLE_AUTH,
-  CLEAN_GOOGLE_AUTH
+  CLEAN_GOOGLE_AUTH,
+  RESET_PAGE
 } from "./constants";
 
 import {
@@ -391,10 +392,9 @@ export function deleteInventary(i){
 }
 
 //Borra todos los items del inventario
-export function clearInventary(id){
+export function clearInventary(){
   return {
-    type: CLEAR_INVENTARY,
-    payload:id
+    type: CLEAR_INVENTARY
   }
 }
 
@@ -648,4 +648,9 @@ export function getGoogleAuthUrl(type) {
 
 export function cleanGoogleAuthUrl() {
   return {type: CLEAN_GOOGLE_AUTH}
+}
+
+///////////////////// Page
+export function resetPage() {
+  return {type:RESET_PAGE}
 }

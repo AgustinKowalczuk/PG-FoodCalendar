@@ -42,7 +42,8 @@ import {
   PUT_REVIEWS,
   GET_USER_DETAIL,
   GET_GOOGLE_AUTH,
-  CLEAN_GOOGLE_AUTH
+  CLEAN_GOOGLE_AUTH,
+  RESET_PAGE
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -211,7 +212,7 @@ function reducer(state = initialState, action) {
       case CLEAR_INVENTARY:
         return {
           ...state,
-          recipeCalendar: []
+          recipeCalendar: [],
         }
       case GET_CALENDAR:
         return {
@@ -334,6 +335,11 @@ function reducer(state = initialState, action) {
         return {
           ...state,
            googleAuthUrl: ''
+        }
+      case RESET_PAGE:
+        return{
+          ...state,
+          page: 1,
         }
     default:
       return state;

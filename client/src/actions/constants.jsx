@@ -45,3 +45,4 @@ export const RECOVER_PASS = 'RECOVER_PASS';
 export const SET_CALENDAR = 'SET_CALENDAR';
 export const GET_GOOGLE_AUTH = 'GET_GOOGLE_AUTH_URL';
 export const CLEAN_GOOGLE_AUTH = 'CLEAN_GOOGLE_AUTH';
+export const RESET_PAGE = 'RESET_PAGE';
