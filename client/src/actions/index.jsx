@@ -48,7 +48,8 @@ import {
   SET_CALENDAR,
   GET_GOOGLE_AUTH,
   PUT_USER_DETAILS,
-  DELETE_SELF_USER
+  DELETE_SELF_USER,
+  CLEAN_GOOGLE_AUTH
 } from "./constants";
 
 import {
@@ -181,7 +182,11 @@ export function FilterRecipeByIngredient(name,token) {
       const filtRecipes = await axios.get(url + `${name}`, config(token));
       dispatch({ type: FILTERED_BY_INGREDIENT, payload: filtRecipes.data });
     } catch (error) {
-      alert("No hay Receta con ese ingrediente");
+      swal({
+        title: "No hay Receta con ese ingrediente",
+        icon: "error",
+        button: "Aceptar",
+    })
       console.log(error);
     }
   };
@@ -201,7 +206,11 @@ export function FilterRecipeByCategory(name,token) {
       const filtRecipes = await axios.get(url + `${name}`, config(token));
       dispatch({ type: FILTERED_BY_CATEGORY, payload: filtRecipes.data });
     } catch (error) {
-      alert("No hay Receta con esa Categoria");
+      swal({
+        title: "No hay Receta con esa Categoria",
+        icon: "error",
+        button: "Aceptar",
+    })
       console.log(error);
     }
   };
@@ -215,7 +224,11 @@ export function createRecipe(recipe,token){
       console.log(newRecipe);
       return dispatch({ type: CREATE_RECIPE, payload: newRecipe.data });
     }catch(error){
-      alert("No se posteo la receta");
+      swal({
+        title: "No se posteo la receta",
+        icon: "error",
+        button: "Aceptar",
+    })
       console.log(error);
     }
   }
@@ -297,7 +310,11 @@ export function createIngredient(ingredient, token){
       const newIngredient = await axios.post(INGREDIENTS_URL, {...ingredient}, config(token));
       return dispatch({type:CREATE_INGREDIENT});
     }catch(error){
-      alert("No se creó el ingrediente");
+      swal({
+        title: "No se creó el ingrediente",
+        icon: "error",
+        button: "Aceptar",
+    })
       console.log(error);
     }
   }
@@ -356,7 +373,11 @@ export function createCategory(category,token){
       return dispatch({type:CREATE_CATEGORY, payload: newCategory.data});
     }catch(error){
       console.log(error);
-      return alert("No se creó la categoría");
+      return swal({
+        title: "No se creó la categoría",
+        icon: "error",
+        button: "Aceptar",
+      });
     }
   }
 }
@@ -421,7 +442,11 @@ export function getCalendarDetail(id,token){
       });
     } catch (error) {
       console.log(error);
-      return alert("No existe el calendario o el usuario no se logueó");
+      return swal({
+        title: "No existe el calendario o el usuario no se logueó",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   }; 
 }
@@ -435,8 +460,12 @@ export function deleteRecipe(id,token){
         payload: borrar.data
       });
     } catch (error) {
-      console.log(error);
-      return alert("No existen calendarios o el usuario no se logueó");
+      console.log(error)
+      return swal({
+        title: "No existen calendarios o el usuario no se logueó",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   };
 }
@@ -459,7 +488,11 @@ export function setUserForAdmin(token){
       })
     }
     catch(error){
-      return console.log('No existen los usuarios.')
+      return swal({
+        title: 'No existen los usuarios.',
+        icon: "error",
+        button: "Aceptar",
+      });
     }
   }
 }
@@ -474,7 +507,11 @@ export function deleteUserForAdmin(id, token){
       })
     }
     catch(error){
-      return console.log('No se puede borrar el usuario.')
+      return swal({
+        title: 'No se puede borrar el usuario.',
+        icon: "error",
+        button: "Aceptar",
+      });
     }
   }
 }
@@ -487,7 +524,11 @@ export function postComentario(valor,id,token){
       return dispatch({type: POST_COMENTARIO, payload: aux.data});
     } catch (error) {
       console.log(error);
-      return alert("El comentario no fue enviado");
+      return swal({
+        title: "El comentario no fue enviado",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   }
 }
@@ -550,7 +591,11 @@ export function deleteReviews(id,token){
       });
     } catch (error) {
       console.log(error);
-      return alert("No existen comentarios para borrar");
+      return swal({
+        title: "No existen comentarios para borrar",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   };
 }
@@ -576,7 +621,11 @@ export function getComentaryDetail(id,token){
         payload: comentaryDetail.data
       });
     } catch (error) {
-      return alert("No existen comentarios de este usuario");
+      return swal({
+        title: "No existen comentarios de este usuario",
+        icon: "error",
+        button: "Aceptar",
+      });
     }    
   }; 
 }
@@ -627,4 +676,9 @@ export function deleteSelfUser(id, token){
       return console.log('No se puede borrar el usuario.')
     }
   }
+
+}
+
+export function cleanGoogleAuthUrl() {
+  return {type: CLEAN_GOOGLE_AUTH}
 }

@@ -50,9 +50,11 @@ function App() {
         <Route path='/recipe/:id' component={DetailRecipe}/>
         <Route path = '/create/recipe' render= {() => (!!token) ? <CreateRecipe /> : <Redirect to='/' />}/>
         <Route exact path = '/update/:id' render= {() => (!!token && user.category === 'Admin') ? <UpdateForm /> : <Redirect to='/' />}/>
+        <Route path = '/acount/register/:email' component={Register}/>
         <Route path = '/acount/register' component={Register}/>
         <Route path = '/acount/recovery' component={RecoverPass}/>
         <Route path = '/acount/google/:token/:user' component={Login} />
+        <Route path = '/acount/login/:email' component={Login}/>
         <Route path = '/acount/login' component={Login}/>
         <Route path = '/shop' component={ShopingCart}/>
         <Route path = '/AllRecipe' component = {AllRecipe}/>

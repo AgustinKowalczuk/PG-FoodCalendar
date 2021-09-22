@@ -43,7 +43,8 @@ import {
   GET_USER_DETAIL,
   GET_GOOGLE_AUTH,
   PUT_USER_DETAILS,
-  DELETE_SELF_USER
+  DELETE_SELF_USER,
+  CLEAN_GOOGLE_AUTH
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -341,6 +342,11 @@ function reducer(state = initialState, action) {
         return{
           ...state,
           adminUsers: state.adminUsers.filter((e) => e.id !== action.payload.id)
+        }
+      case CLEAN_GOOGLE_AUTH:
+        return {
+          ...state,
+           googleAuthUrl: ''
         }
     default:
       return state;

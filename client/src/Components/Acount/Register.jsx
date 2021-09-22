@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { register } from '../../actions/index'
-import { useDispatch } from 'react-redux'
+import { cleanGoogleAuthUrl, getGoogleAuthUrl, register } from '../../actions/index'
+import { useDispatch, useSelector } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
+import { useHistory, useParams } from 'react-router'
 
 export default function Register() {
-
+    const params = useParams();
+    const history = useHistory();
     const dispatch = useDispatch()
     const initialValues= {
         name:'',
@@ -15,6 +17,28 @@ export default function Register() {
         email:'',
         password: ''
     }
+    const googleAuthUrl = useSelector(state => state.googleAuthUrl);
+
+    useEffect(() => {
+        if (googleAuthUrl) {
+            const anchor = document.getElementById('GoogleAuth');
+            anchor.click();
+            dispatch(cleanGoogleAuthUrl());
+        }
+    },[googleAuthUrl]);
+
+    useEffect(() => {        
+        if (!!Object.keys(params).length) {
+            const { email } = params;
+            swal({
+                title: "Usuario ya registrado",
+                text: `El usuario con el email ${email} ya se encuentra registrado.`,
+                icon: "error",
+                button: "Aceptar",
+            });
+            history.push('/acount/register');
+        }
+    }, [params])
 
     const validationSchema = Yup.object({
         name: Yup.string()
@@ -46,6 +70,10 @@ export default function Register() {
         })
     }
 
+    const GoogleChange = () => {
+        dispatch(getGoogleAuthUrl('register'));
+    }
+
     return (
         <div className={style.container}>
 
@@ -75,12 +103,15 @@ export default function Register() {
                             <label className="form-label">Clave</label>
                             <Field type="password" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
-                        </div>
-
+                        </div>  
                         <button id={style.btn} className="btn btn-primary" type="submit">Registrarse</button>
                     </div>
                 </Form>
             </Formik>
+            <div>
+                <button onClick={GoogleChange}>Regístrate con tu cuenta de Google</button>
+                <a href={googleAuthUrl} id={'GoogleAuth'}/>
+            </div>
         </div>
     )
 }
