@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { register } from '../../actions/index'
-import { useDispatch } from 'react-redux'
+import { cleanGoogleAuthUrl, getGoogleAuthUrl, register } from '../../actions/index'
+import { useDispatch, useSelector } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
 
@@ -15,6 +15,15 @@ export default function Register() {
         email:'',
         password: ''
     }
+    const googleAuthUrl = useSelector(state => state.googleAuthUrl);
+
+    useEffect(() => {
+        if (googleAuthUrl) {
+            const anchor = document.getElementById('GoogleAuth');
+            anchor.click();
+            dispatch(cleanGoogleAuthUrl());
+        }
+    },[googleAuthUrl])
 
     const validationSchema = Yup.object({
         name: Yup.string()
@@ -46,6 +55,10 @@ export default function Register() {
         })
     }
 
+    const GoogleChange = () => {
+        dispatch(getGoogleAuthUrl('register'));
+    }
+
     return (
         <div className={style.container}>
 
@@ -75,12 +88,15 @@ export default function Register() {
                             <label className="form-label">Clave</label>
                             <Field type="password" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
-                        </div>
-
+                        </div>  
                         <button id={style.btn} className="btn btn-primary" type="submit">Registrarse</button>
                     </div>
                 </Form>
             </Formik>
+            <div>
+                <button onClick={GoogleChange}>Regístrate con tu cuenta de Google</button>
+                <a href={googleAuthUrl} id={'GoogleAuth'}/>
+            </div>
         </div>
     )
 }

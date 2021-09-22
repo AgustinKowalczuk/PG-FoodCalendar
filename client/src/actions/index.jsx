@@ -46,7 +46,8 @@ import {
   GET_USER_DETAIL,
   RECOVER_PASS,
   SET_CALENDAR,
-  GET_GOOGLE_AUTH
+  GET_GOOGLE_AUTH,
+  CLEAN_GOOGLE_AUTH
 } from "./constants";
 
 import {
@@ -595,4 +596,8 @@ export function getGoogleAuthUrl(type) {
       console.log(error);
     }
   }  
+}
+
+export function cleanGoogleAuthUrl() {
+  return {type: CLEAN_GOOGLE_AUTH}
 }

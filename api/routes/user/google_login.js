@@ -12,7 +12,7 @@ const { getGoogleAuthUrl, getTokens } = require('../../controller/mediaAuth');
 router.get('/auth/google/url/:type', async (req, res, next) => {
     const { type } = req.params;
     try {
-        if ( type !== 'auth' ||  type !== 'register') throw new Error("Type debe ser 'auth' o 'register' ");
+         if ( type !== 'auth' &&  type !== 'register') throw new Error("Type debe ser 'auth' o 'register' ");
         return res.send(getGoogleAuthUrl(type));
     } catch (error) {
         next(error);
@@ -28,16 +28,35 @@ router.get('/auth/google', async (req,res,next) => {
         const {given_name: name, family_name: surname, email, sub} = await jwt.decode(tokenGet.id_token, GOOGLE_PUBLIC_KEY, ['RS256']);
         
         let userFound = await User.findOne({email});
+        if (!userFound){
+            throw new Error(`El usuario con el email ${email} no se encuentra registrado.`);
+        }
+        const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});        
+
+        userFound = normalizeUsers(userFound);
+        return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userFound)); 
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/register/google', async (req,res,next) => {
+    const code = req.query.code;
+    const path = '/emailUsersMessages/register_message.html';
+
+    try {
+        const tokenGet = await getTokens(code, USER_GOOGLE_ID, USER_GOOGLE_SECRET, 'http://localhost:3001/register/google');
+        const {given_name: name, family_name: surname, email, sub} = await jwt.decode(tokenGet.id_token, GOOGLE_PUBLIC_KEY, ['RS256']);
+        
+        let userFound = await User.findOne({email});
         if (userFound){
-            const token = await jwt.sign({ sub: userFound._id }, JWT_SECRET, { expiresIn: "12h"});
-            userFound = normalizeUsers(userFound);
-            return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userFound)); 
+            throw new Error(`El usuario con el email ${email} ya se encuentra registrado.`);
         }
         
-        const password = await argon.hash(sub);
         const category = 'User';
+        const hash = await argon.hash(sub);
 
-        let userCreated = await User.create({ name, surname, email, password, category }); 
+        let userCreated = await User.create({ name, surname, email, password: hash, category }); 
         
         const oldText = ['{name}', '{surname}'];
         const newText = [name, surname];
@@ -47,12 +66,12 @@ router.get('/auth/google', async (req,res,next) => {
         await transportEmail(email, html, 'Registro exitoso');
         
         const token = await jwt.sign({ sub: userCreated._id }, JWT_SECRET, { expiresIn: "12h"});
+
         userCreated = normalizeUsers(userCreated);
-        // { token,  user: userCreated }
-        return res.redirect('http://localhost:3000/'+token); 
+        return res.redirect('http://localhost:3000/acount/google/'+token+'/'+JSON.stringify(userCreated)); 
     } catch (error) {
         next(error);
     }
-})
+});
 
 module.exports = router;
