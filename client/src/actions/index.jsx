@@ -47,6 +47,8 @@ import {
   RECOVER_PASS,
   SET_CALENDAR,
   GET_GOOGLE_AUTH,
+  PUT_USER_DETAILS,
+  DELETE_SELF_USER,
   CLEAN_GOOGLE_AUTH
 } from "./constants";
 
@@ -79,7 +81,9 @@ import {
   PUT_REVIEWS_URL,
   GET_USER_DETAILS_URL,
   PUT_RECOVERY_PASS_URL,
-  GET_GOOGLE_AUTH_URL
+  GET_GOOGLE_AUTH_URL,
+  PUT_USER_DETAILS_URL,
+  USERS_DELETE_URL
 } from "../routes";
 
 import config from './config';
@@ -643,7 +647,36 @@ export function getGoogleAuthUrl(type) {
     } catch (error) {
       console.log(error);
     }
-  }  
+  } 
+} 
+export function putUserDetails(value, token){
+  return async function(dispatch) {
+    try {
+      const putUserDetails = await axios.put(PUT_USER_DETAILS_URL, value, config(token));
+      return dispatch({
+        type: PUT_USER_DETAILS,
+        payload: putUserDetails.data
+      })
+    } catch(error){
+      return alert('No se realizaron los cambios')
+    }
+  }
+}
+
+export function deleteSelfUser(id, token){
+  return async function (dispatch){
+    try{
+      const deleteUser = await axios.delete(USERS_DELETE_URL + '/' + id, config(token));
+      return dispatch({
+        type:DELETE_SELF_USER,
+        payload: deleteUser.data
+      })
+    }
+    catch(error){
+      return console.log('No se puede borrar el usuario.')
+    }
+  }
+
 }
 
 export function cleanGoogleAuthUrl() {

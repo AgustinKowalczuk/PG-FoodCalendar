@@ -28,8 +28,6 @@ export default function DetailRecipe() {
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
  
-
-  console.log( user)
   //Lo despacho
   useEffect(() => {
     dispatch(getDetail(id,token));
