@@ -24,10 +24,29 @@
     
   }
   
+  .menu-contenedor{
+    height: 30%;
+    width: 100%;
+  }
+
+
   .nav-menu.active {
     left: 0;
     transition: 350ms;
     background-color: 	#70706d;
+  }
+  .saludito{
+    position:absolute;
+    float:right;
+    right: 4px;
+    color: white;
+  }
+  
+  .icono-menu{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
   }
   
   .nav-text {
@@ -42,12 +61,10 @@
   
   .nav-text a:hover {
     text-decoration: none;
-    color: #F2F0D5 !important; 
+    color: #e0d310 !important; 
     font-size: 18px;
     width: 95%;
     height: 100%;
-    display: flex;
-    align-items: center;
     padding: 0 16px;
     border-radius: 4px;
   }
@@ -55,12 +72,36 @@
  
   
   .nav-menu-items {
-    width: 100%;
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: 10% 75% 15%;
+    }
     
+  .button-account{
+    grid-column: 1;
+    grid-row: 3;
   }
   
+  .map-container{
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+  .sliderLabel{
+    margin-left: 16px;
+    color: #F2F0D5;
+  }
   
   .navbar-toggle {
+    grid-column: 1;
+    grid-row: 1;
     background-color: 	#70706d;
     width: 100%;
     height: 80px;
@@ -87,34 +128,24 @@
     margin: auto;
 }
 
-.submenuLink{
-  display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 8px 0px 8px 16px;
-    list-style: none;
-    height: 45px;
-}
-.submenuLink a:hover {
-  background-color: #F2C53D;
-}
+
   
 
-.sliderLabel{
-  margin-left: 16px;
-  color: #F2F0D5;
-}
+
 .linkDropdown{
-  background: #70706d;
-  height: 45px;
+  background: #585858;
+  height: 30px;
   padding-left: 3rem;
   display: flex;
   align-items: center;
   text-decoration: none;
   color: #F2F0D5;
-  font-size: 18px;
+  font-size: 14px;
+  
+  
 }
 .linkDropdown a:hover{
-  background: #632ce4;
-    cursor: pointer;
+ width: 100%;
+ height: 100%;
+   
 }

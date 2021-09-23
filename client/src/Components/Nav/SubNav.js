@@ -13,11 +13,12 @@ const SubMenu = ({ item }) => {
   const showSubnav = () => setSubnav(!subnav);
 
   return (
-    <>
-      <Link to={item.path} className={"submenuLink"} onClick={item.subNav && showSubnav}>
-        <div>
+    <div className='menu-contenedor'>
+      <Link to={item.path} className={item.cName} onClick={item.subNav && showSubnav}>
+        <div className='icono-menu'>
           {item.icon}
-          <label className='sliderLabel'>{item.title}</label>
+                
+          <span className='sliderLabel'>{item.title}</span>
         </div>
         <div>
           {item.subNav && subnav
@@ -36,7 +37,7 @@ const SubMenu = ({ item }) => {
             </Link>
           );
         })}
-    </>
+    </div>
   );
 };
 

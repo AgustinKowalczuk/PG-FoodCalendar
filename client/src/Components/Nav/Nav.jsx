@@ -50,15 +50,17 @@ export default function Nav() {
                 <AiIcons.AiOutlineClose onClick={showSidebar}/>
               </Link>
             </li>
+            <div className='map-container'>
             {
               data.map((item, index) => {
                 return (
-                  <li>
                     <SubNav item={item} key={index} />
-                  </li>
+                  
                 )
               })
             }
+            </div>
+            <div className='button-account'>
             {
               (!token) ?
                 <div>
@@ -74,11 +76,21 @@ export default function Nav() {
                 </div> :
                 null
             }
+              </div>
           </ul>
         </nav>
       </IconContext.Provider>
       <div className={style.cName}>
         <SearchBar />
+        <div>
+          {
+            (!!token) ?
+            <div className='saludito'>
+              <span>Hola {user.name} !</span>
+            </div> :
+            null
+          }
+        </div>
       </div>
     </div>
   );
