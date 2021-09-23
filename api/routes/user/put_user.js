@@ -22,11 +22,11 @@ router.put('/user/noAdmin', auth, async (req, res, next) => {
         if (!elem) return res.status(404).send("El usuario con el id ingresado no existe");
 
         const existentName = await User.findOne({ email });
-        if (existentName) return res.status(404).send("El email del usuario ya existe en la base de datos.");
+        if (existentName && existentName._id.toString() !== userId) return res.status(404).send("El email del usuario ya existe en la base de datos.");
 
         if(!password){
             await User.findByIdAndUpdate(elem._id, { name, surname, email });
-            const update = await User.findById(id);
+            const update = await User.findById(elem._id);
             return res.json(normalizeUsers(update));
         }
         

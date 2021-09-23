@@ -24,14 +24,14 @@ export default function SearchBar() {
       icon: "error",
       button: "Aceptar",
   })
-    dispatch(searchRecipes(input,token))    
+    dispatch(searchRecipes(input,token))  
   }
 
   return (
     <div class="d-flex">
       <input
-        class="form-control me-2" type="text" placeholder="Buscar" onChange={(e) => handleInputChange(e)} /> 
-      <Link id={styles.button} onClick={() => handleSearch()} class="btn btn-outline-success" to={`/search/${input}`} >
+        class="form-control me-2" id={styles.SearchBar} type="text" placeholder="Buscar" onChange={(e) => handleInputChange(e)} /> 
+      <Link id={styles.button} onClick={(e) => handleSearch(e)} class="btn btn-outline-success" to={`/search/${input}`} >
          Buscar
       </Link>
     </div>

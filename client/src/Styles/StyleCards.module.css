@@ -3,7 +3,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 100%;
+    width: 80%;
     align-items: stretch;
     align-content: stretch;
 }
@@ -78,5 +78,7 @@
     position: absolute;
     color: #F2C53D;
     float: right; 
-    font-size: 9vh;
+    background-color: black;
+    border-radius: 30%;
+    font-size: 6vh;
 }

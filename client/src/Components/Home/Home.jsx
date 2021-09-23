@@ -19,10 +19,8 @@ export default function Home() {
         const recipesHome = allRecipes.filter(e => e.rating > 5)
         return (
                 <div class={style.order}>
-                 <SiliderImages allRecipes={allRecipes} />
-                 <h2 className={style.margin}>Tenemos recetas para ti !! UWU</h2>
-              
-                 <Cards allRecipes={recipesHome}/>
+                        <SiliderImages />
+                        <Cards allRecipes={recipesHome} />
                 </div>
         )
 }
