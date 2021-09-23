@@ -20,16 +20,18 @@ export default function Inventary() {
         return (
                 <div id={style.stack}>
                         <div className={style.title}>
-                                <h3>Inventario</h3>
+                                <h3 id={style.withe}>Inventario</h3>
                         </div>
                         <div className={style.contentRecipes}>
+                                <div className={style.con}>
+                                        {stackReceta?.map((x,i)=>(
+                                                <div className={style.recipes}> 
+                                                        <h6>{x.name}</h6>
+                                                        <button className="btn btn-danger" id={style.exit} onClick={()=>deleteRecipe(i)}>X</button> 
+                                                </div>  
+                                        ))}
 
-                                {stackReceta?.map((x,i)=>(
-                                        <div className={style.recipes}> 
-                                                <h6>{x.name}</h6>
-                                                <button className="btn btn-danger" id={style.exit} onClick={()=>deleteRecipe(i)}>X</button> 
-                                        </div>  
-                                ))}
+                                </div>
                         </div>
                         {(stackReceta.length > 0) && 
                         <div className={style.btnContent}>

@@ -27,7 +27,7 @@
   .nav-menu.active {
     left: 0;
     transition: 350ms;
-    background-color: 	#70706d;
+    background-color: 	rgb(51, 51, 51);
   }
   
   .nav-text {
@@ -61,7 +61,7 @@
   
   
   .navbar-toggle {
-    background-color: 	#70706d;
+    background-color: transparent;
     width: 100%;
     height: 80px;
     display: flex;
