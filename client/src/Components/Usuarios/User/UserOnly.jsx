@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DeleteUser from "../AdminUser/DeleteUser";
-import UserPasswordRecovery from "./UserPasswordRecovery";
+import DeleteSelfUser from "./DeleteSelfUser";
 import { putUserDetails } from "../../../actions";
-import PutUser from './PutUser'
 import style from "../../../Styles/StylesUser.module.css"
 import swal from 'sweetalert';
 import * as MdIcon from "react-icons/md"
@@ -12,6 +10,10 @@ export default function UserOnly() {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user)
     const token = useSelector((state) => state.token);
+
+    useEffect(() => {
+        if(user){sessionStorage.user = JSON.stringify(user);}
+    },[user])
 
     const name = ()=> {
         swal({
@@ -108,7 +110,7 @@ export default function UserOnly() {
             </div>
             <div className={style.exit}>
                 <label>Eliminar Usuario</label>
-                <DeleteUser/>
+                <DeleteSelfUser/>
             </div>
         </div>
      );

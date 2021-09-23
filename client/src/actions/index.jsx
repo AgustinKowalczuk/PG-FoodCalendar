@@ -26,7 +26,6 @@ import {
   CLEAR_INVENTARY,
   GET_CALENDAR,
   GET_CALENDAR_DETAIL,
-  GET_CALENDAR_USER,
   DELETE_RECIPE,
   CLEAN_DELETE_RECIPE,
   LOGIN,
@@ -54,6 +53,7 @@ import {
   GET_CHECKOUT,
   SET_USER_REGISTER,
   CLEAN_REGISTERED,
+  UPLOAD_IMG
 } from "./constants";
 
 import {
@@ -733,12 +733,12 @@ export function putUserDetails(value, token){
   }
 }
 
-export function deleteSelfUser(id, token){
+export function deleteSelfUser(token){
   return async function (dispatch){
     try{
-      const deleteUser = await axios.delete(USERS_DELETE_URL + '/' + id, config(token));
+      const deleteUser = await axios.delete(USERS_DELETE_URL, config(token));
       swal({
-        title: 'Se borro al usuario',
+        title: 'Se borró al usuario',
         icon: 'error',
         button: 'Aceptar'
       })
@@ -751,7 +751,6 @@ export function deleteSelfUser(id, token){
       return console.log('No se puede borrar el usuario.')
     }
   }
-
 }
 
 export function cleanGoogleAuthUrl() {
@@ -787,4 +786,11 @@ export function cleanRegistered() {
   return {
     type: CLEAN_REGISTERED
   }
+}
+
+export function getImages(payload){
+  return {
+     type: UPLOAD_IMG,
+     payload
+  } 
 }
