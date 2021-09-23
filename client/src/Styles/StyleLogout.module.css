@@ -1,8 +1,28 @@
 .content{
-    display: flex;
-    flex-direction: row;
+   
     justify-content: center;
-    flex-wrap: wrap;
-    align-items: baseline;
+  
     align-content: space-around;
+    align-items: center;
+    
+    
+}
+.buttonLog{
+    color: #e85186;
+    font-family: 'Balsamiq Sans', cursive;
+    text-transform: none;
+    text-indent: 0px;
+    font-size:larger;
+}
+.buttonLog2{
+    color: #F2F0D5;
+    font-family: 'Balsamiq Sans', cursive;
+    text-transform: none;
+    text-indent: 0px;
+    font-size:larger;
+}
+
+.buttonL{
+align-items: center;
+display: flex;
 }

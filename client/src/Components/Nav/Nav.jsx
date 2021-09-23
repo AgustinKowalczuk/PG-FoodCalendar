@@ -12,7 +12,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import { filterData } from "./SidebarData";
 import ButtonLogin from "../Acount/ButtonLogin";
 import ButtonRegister from "../Acount/ButtonRegister";
-
+import SubNav from './SubNav'
 
 
 export default function Nav() {
@@ -44,20 +44,17 @@ export default function Nav() {
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items' onClick={showSidebar}>
+          <ul className='nav-menu-items' >
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
-                <AiIcons.AiOutlineClose />
+                <AiIcons.AiOutlineClose onClick={showSidebar}/>
               </Link>
             </li>
             {
               data.map((item, index) => {
                 return (
-                  <li key={index} className={item.cName}>
-                    <Link to={item.path}>
-                      {item.icon}
-                      <span color="#F2F0D5">{item.title}</span>
-                    </Link>
+                  <li>
+                    <SubNav item={item} key={index} />
                   </li>
                 )
               })
@@ -82,9 +79,6 @@ export default function Nav() {
       </IconContext.Provider>
       <div className={style.cName}>
         <SearchBar />
-        <Link to='/user/noAdmin'>
-          Usuario
-        </Link>
       </div>
     </div>
   );

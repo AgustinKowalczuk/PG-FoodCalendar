@@ -5,7 +5,7 @@ import * as GrIcons from "react-icons/gr";
 import { Button } from '@nextui-org/react';
 import swal from 'sweetalert';
 import style from '../../Styles/StyleLogout.module.css'
-
+import { IconContext } from 'react-icons';
 export default function Logout(){  
     const dispatch = useDispatch();
     
@@ -47,7 +47,9 @@ export default function Logout(){
 
     return (
         <div className={style.content}>
-           <Button  auto onClick={validate}   icon={<GrIcons.GrLogout/>} color="error" flat> Logout </Button>
+            <IconContext.Provider value={{ color: '#F2F0D5' }}>
+           <Button    onClick={validate}   icon={< GrIcons.GrLogout/>} color="error" flat><span className={style.buttonLog} >Logout</span>  </Button>
+           </IconContext.Provider>
         </div>
     )
 }
