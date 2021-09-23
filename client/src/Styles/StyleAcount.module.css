@@ -1,31 +1,36 @@
 .content{
-    width: 100%;
+    width: 90%;
+    max-width: 800px;
     padding: 2%;
     margin-top:2%;
     margin-bottom: 2%;
     border: 1px solid rgba(128, 128, 128, 0.534);
 }
 .container{
-    max-width: 80%;
+    margin-top: 2%;
+    width: 100%;
     margin: auto;
-    height: 52vh;
     display: flex;
     flex-direction: column;
-    align-content: center;
-    align-items: stretch;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-evenly;
     flex-wrap: nowrap;
+    align-content: space-around;
 }
 
 #btn{
+    background-color: transparent;
+    margin: 1%;
     color: #668C4A;
-    background-color: #F2F0D5;
-    border-color: #668C4A;
+    border-radius: .25rem;
+    border: 1px solid #668C4A;
 }
 #btn:hover{
     background-color: #B1B1AC;
 }
-
+.buttons{
+    width: 100%;
+}
 #icon{
     text-align: center;
     font-size: 2.5rem;
@@ -35,4 +40,7 @@
 .icon{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     border-radius: 100%;
+}
+.inputs{
+    margin: 1%;
 }

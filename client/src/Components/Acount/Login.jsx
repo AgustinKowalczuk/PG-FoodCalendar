@@ -89,35 +89,39 @@ export default function Login() {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
-                <Form>
-                    <div className={style.content}>
-                        <div className="mb-3">
+                <Form className={style.content}>
+                    <div>
+                        <div className={style.inputs}>
                             <label className="form-label">Email</label>
                             <Field type="email" name="email"  id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
-                        <div className="mb-3">
+                        <div className={style.inputs}>
                             <label className="form-label">Password</label>
                             <Field  id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
-                        <button id={style.btn} className="btn btn-primary" type="submit">Ingresar</button>
+                        <div className={style.buttons}>
+                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Iniciar con google</button>
+                                <a href={googleAuthUrl} id={'GoogleAuth'}/>
+                                <span> O </span>
+                            <button id={style.btn} type="submit">Ingresar</button>
+                        </div>
                     </div>
                 </Form>
             </Formik>
             <div>
-                <button onClick={GoogleChange} id={style.icon}><FcIcons.FcGoogle className={style.icon}/></button>
-                <a href={googleAuthUrl} id={'GoogleAuth'}/>
-            </div>
-            <div>
-            <Link to="/acount/register" >
-                ¿Aún no te registraste? Haz click Aqui
-            </Link>
-            </div>
-            <div>
-                <Link to="/acount/recovery">
-                    Olvidaste tu contraseña?
+
+                <div>
+                <Link to="/acount/register" >
+                    ¿Aún no te registraste? Haz click Aqui
                 </Link>
+                </div>
+                <div>
+                    <Link to="/acount/recovery">
+                        Olvidaste tu contraseña?
+                    </Link>
+                </div>
             </div>
         </div>
     )
