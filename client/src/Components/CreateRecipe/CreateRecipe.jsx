@@ -95,8 +95,7 @@ export default function CreateRecipe() {
 
     return error;
   };
-  //console.log(uploadImg, 'estoy afuera')
-  const onSubmit = (values) => {
+  const onSubmit = () => {
     if(formik.values.premium==='false'){
       formik.values.premium=false
     }
@@ -111,24 +110,14 @@ export default function CreateRecipe() {
     }
     if(formik.values.img === ''){
       formik.values.img = uploadImg;
-    }
-    console.log(uploadImg, 'estoy adentro')
-    console.log("Values submit", formik.values);
-    dispatch(createRecipe(formik.values,token));
-    swal({
-      title: "Receta Creada",
-      text: "Se creo la receta con exito",
-      iicon: "success",
-      button: "Aceptar",
-    })
-    console.log("Values submit", values);
+    }    
+    dispatch(createRecipe(formik.values,token)); 
   };
   const onChangeIngredients = (values) =>{
     formik.values.ingredients = values
   }
   const onChangeCategory = (values)=>{
-    formik.values.category = values
-    console.log(formik.values);
+    formik.values.category = values;
   }
   const onChangeImage = (values)=>{
     formik.values.img = values
@@ -141,7 +130,6 @@ export default function CreateRecipe() {
     onChangeCategory,
     onChangeImage
   });
-
   
   return (
     <div className={style.centrado}>
