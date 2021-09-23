@@ -1,28 +1,24 @@
-import React,{ useState } from "react";
+import React from "react";
 import FilteredByCategory from "./ByCategory/ByCategory";
 import FilteredByDifficulty from "./ByDifficulty/FilterByDifficulty";
 import FilteredByIngredient from "./ByIngredient/FilteredByIngredient";
-import Dropdown  from 'react-bootstrap/Dropdown'
-import style  from '../../../../Styles/StyleNav.module.css';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 export default function FilteredCards() {
-   
-  
-    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <div>
             <Dropdown>
                 <Dropdown.Toggle variant="light" id="dropdown-basic">
                     Filtros:
-                </Dropdown.Toggle> 
+                </Dropdown.Toggle>
                 <Dropdown.Menu >
-                    < FilteredByIngredient/>
+                    < FilteredByIngredient />
                     <Dropdown.Divider />
-                    < FilteredByDifficulty/>
+                    < FilteredByDifficulty />
                     <Dropdown.Divider />
-                    < FilteredByCategory/>
+                    < FilteredByCategory />
                 </Dropdown.Menu>
             </Dropdown>
         </div>

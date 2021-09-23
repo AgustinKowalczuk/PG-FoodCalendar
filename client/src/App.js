@@ -71,6 +71,7 @@ function App() {
         <Route path = '/checkout/:userRegister' component={Checkout}/>
         <Route path = '/checkout' component={Checkout}/>
         <Route path = '/availability' render= {() => (!!token && user.category === 'Admin') ? <FilterAdmin /> : <Redirect to='/' />}/>
+        <Route render={()=><Redirect to='/' />} />
       </Switch>
     </div>
       <Footer/>

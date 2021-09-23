@@ -17,7 +17,7 @@ export default function FilterAdmin () {
             {
                 recipesUnavailables?.map(e => 
                     <Link to={`/recipe/${e.id}`}>
-                    <div>{e.name}</div>
+                    <div key={e.id}>{e.name}</div>
                     </Link>
                 )
             }

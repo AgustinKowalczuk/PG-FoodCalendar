@@ -20,7 +20,7 @@ export default function SelectCard(props) {
         return (
           <select
             defaultValue= {props.unit}
-            class={style.selectGrid}
+            className={style.selectGrid}
             onChange={props.handleChange}
             name={id}
             required

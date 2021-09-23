@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Style from '../../Styles/StyleCheckout.module.css';
+import * as FaIcons from 'react-icons/fa';
 import { cleanRegistered, getCheckout, register, setUserRegister } from '../../actions';
 import { useHistory, useParams } from 'react-router';
 import { normalizeNullOrUndefined } from '../../actions/normalizeNullOrUndefined';
-
-
 
 export default function Checkout() {
         const mercadoPagoUrl = useSelector(state => state.mercadoPagoUrl);
@@ -46,7 +46,7 @@ export default function Checkout() {
                 }
               },[registered]);
 
-        function handleSubmit(e){
+        function handleSubmit(e) {
                 e.preventDefault();
                 dispatch(getCheckout())
         }
@@ -59,34 +59,48 @@ export default function Checkout() {
         }, [mercadoPagoUrl]);
         
         return (
-        <div className="container">
-                <h3 className= "displayh4">Plan Tu Calendario</h3> 
-                <div className="row">
-                        <div className="col-md-6 offset-3">
-                                <div className="card">
-                                <div className="card-header">
-                                        <h4>Plan Básico</h4></div>
+                <div>
+                        <h3>SUSCRIPCIÓN</h3>
+                        <div className={Style.cards}>
+                                <div className={Style.card}>
+                                        <h4>Plan Free</h4>
+                                        <ul>
+                                                <div className={Style.li}><li className={Style.txt}>Accede a Recetas Free</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Agrega Recetas a tu Calendario</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Ver Instrucciones de las Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Accede a Recetas Premium</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Crea tus Calendarios Semanales</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Crear Recetas</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Dar Like y FeedBack en las Recetas</li><FaIcons.FaRegCalendarTimes /> </div>
+                                        </ul>
+                                        <h4>$0</h4>
                                 </div>
-                                <div className="card-body">
-                                        <img src="https://lh3.googleusercontent.com/LPm7wx3YKs_z1L8u2OYhfDBd2PmXMXPp_MereibxGQgCEeYRkOIvZegBipYHMsaQ6S-HVFr4QLipfsIE2JS-GoB12MsMQXo2NnaBbf7IufdV0HuE-XOBnWW4HpJGaeV1w876jFS-BisJ21r8Mmli8Gm8UMlHGQKacs5Vf_JsIEkoPP9b9GUwcFl5PT7ySDV9drzXvutzNSvxtmYBFE-VO7t4fPQdRuGmPEYiMr7SBfaiojjJHbnesnNmkmfle2smnTMkhDO8v-35Tfae4-Sce6RET_yzndhPz7xaoWOfsVOb-eBYqF4SKmNIDpr1ALMlogTsuocI8QfU_pQ4ONOX7G0pIaOvhjLBeH6Anb7er-QqWSS-8NfyvegKwn-ZDplam4NvX5lJo4DGrroKFJFO4CV3NUXhGabvHiFCcnXOpk_ESq2HOOoDwd7YP_qGlbERQJEyC0RYpGRn7NO5a3726sclEEo9Q8CHvgv7A_SJ317H4uZE2kxHNf1FqSl98zwz27KoyJXShbu7zynQMxgWmJMC16J8pQuywAp45M-OGb2YJ414JAmEwklY-5XJSFrwHgMohDBt9SN3_dUAVkRFq44Jbe3ZkkPiyGwjTZTXGDmxFmDkQkoPOvelXtJZaR9DZBQm0ndUx4WFVv6UVNvLgM7ASgvMQvOQCPtHp0L_oEzDyJz8fP5tSD1TvD4305WNoLnArmPN6W2rBsX5g8_627R2BQ=w1019-h497-no?authuser=0" alt="Foto"/>
-                                        <hr />
-                                        <h4>Descripción</h4>
-                                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, cumque.</p>
-                                        <hr />
-                                        <h4>Precio $500 por mes</h4>
+                                <div className={Style.card}>
+                                        <h4>Plan Premium</h4>
+                                        <div>
+
+                                        </div>
+                                        <ul>
+                                                <div className={Style.li}><li className={Style.txt}>Accede a Recetas Free</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Agrega Recetas a tu Calendario</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Ver Instrucciones de las Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Accede a Recetas Premium</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Crea tus Calendarios Semanales</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Crear Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Dar Like y FeedBack en las Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                        </ul>
+                                        <h4>Suscripción Mensual de $500 </h4>
                                         <div>
                                                 <form onSubmit={handleSubmit}>
-                                                       
-                                                 <button type="submit" className="btn btn-primary btn-block">Suscribirse</button>
-                                                <a href={mercadoPagoUrl} id='mercadoPagoUrl'></a>
+                                                        <button type="submit" className="btn btn-primary btn-block">Suscribirse</button>
+                                                        <a href={mercadoPagoUrl} id='mercadoPagoUrl'></a>
                                                 </form>
                                         </div>
                                 </div>
                         </div>
                 </div>
-        </div>  
-                      
+
 
         )
 }
-     
+
