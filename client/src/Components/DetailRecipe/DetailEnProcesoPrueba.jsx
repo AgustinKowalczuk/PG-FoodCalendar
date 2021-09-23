@@ -6,7 +6,6 @@ import { cleanDeleteRecipe,postLike , deleteRecipe, getDetail, getRecipes, setRe
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
-import Inventary from "../Inventary/Inventary";
 import Reviews from "./Reviews";
 import { VerComentarios } from "./VerComentarios";
 import swal from 'sweetalert';
@@ -17,6 +16,7 @@ import InstrunctionsPanel from "./InstructionsPanel";
 import * as FaIcons from "react-icons/fa";
 import * as FcIcons from "react-icons/fc";
 import { Grid } from '@nextui-org/react';
+import InventaryNav from '../Inventary/InventaryNav'
 
 export default function DetailRecipe() {
   const { id } = useParams();
@@ -142,21 +142,22 @@ export default function DetailRecipe() {
           </Tabs>
           </div>
       </div>
+
       <div className={style.contentComent}>
         <div className={style.buttonComent}>      
           {(!!token) ? 
             <Reviews id={recipeDetail.id}/> : null}
           { !!token ?
             recipeDetail.availability === 'Available' && 
-            <button  onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus/></button>:
+            <button className={style.btn} onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus className={style.icon}/></button>:
             null
           }
-          <div>
+          <div className={style.orderBtn}>
           {
             !!token ?
             recipeDetail.like === true? 
-            <button onClick={handleClick2}><FcIcons.FcLike /></button> :
-            <button onClick={handleClick2}><FcIcons.FcLikePlaceholder /></button>:
+            <button className={style.btn} onClick={handleClick2}><FcIcons.FcLike  className={style.icon}/></button> :
+            <button className={style.btn} onClick={handleClick2}><FcIcons.FcLikePlaceholder  className={style.icon}/></button>:
             null
           }
           {
@@ -170,8 +171,8 @@ export default function DetailRecipe() {
         </div>
         <VerComentarios id={recipeDetail.id}/> 
       </div>
+        <InventaryNav/>
         <CardRelacionadas />
-      
     </div>
   );
 }

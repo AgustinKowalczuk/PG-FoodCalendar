@@ -13,7 +13,7 @@ import { filterData } from "./SidebarData";
 import ButtonLogin from "../Acount/ButtonLogin";
 import ButtonRegister from "../Acount/ButtonRegister";
 import SubNav from './SubNav'
-
+import InventaryNav from '../Inventary/InventaryNav'
 
 export default function Nav() {
   const token = useSelector(state => state.token);

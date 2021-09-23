@@ -60,6 +60,7 @@
 .exit{
     margin: 1%;
     width: 50%;
+    padding: 1%;
     background-color: #e0e0db;
     display: flex;
     flex-direction: column;
@@ -73,7 +74,20 @@
     background-color: #F2F0D5;
     border: 1px solid #668C4A;
     color: #668C4A;
+    padding: 1%;
+    border-radius: .25rem;
 }
 #btn2:hover{
     background-color: #F2C53D;
+}
+
+.btn{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.icon{
+    font-size: 1.6rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 100%;
 }

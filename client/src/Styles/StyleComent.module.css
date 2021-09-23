@@ -67,11 +67,37 @@
 }
 
 .comentFunction{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
+
+}
+
+.icon{
+    font-size: 1.3rem;
+    padding: .5vh;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    border-radius: 100%;
+    background-color:#F2F0D5;
+}
+.btn{
+    margin: .5%;
+    background-color: transparent;
+    border-radius: 100%;
+    height: 4vh;
+    border-color: transparent;
+}
+
+.contenBtn{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: space-between;
 }

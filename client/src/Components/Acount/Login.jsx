@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
 import { Link, useParams } from 'react-router-dom';
+import * as FcIcons from 'react-icons/fc'
 
 export default function Login() {
     const token = useSelector(state => state.token);
@@ -92,12 +93,12 @@ export default function Login() {
                     <div className={style.content}>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <Field type="email" name="email" className="form-control" id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field type="email" name="email"  id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <Field className="form-control" id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
+                            <Field  id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
                         <button id={style.btn} className="btn btn-primary" type="submit">Ingresar</button>
@@ -105,7 +106,7 @@ export default function Login() {
                 </Form>
             </Formik>
             <div>
-                <button onClick={GoogleChange}>Ingresa con tu cuenta de Google</button>
+                <button onClick={GoogleChange} id={style.icon}><FcIcons.FcGoogle className={style.icon}/></button>
                 <a href={googleAuthUrl} id={'GoogleAuth'}/>
             </div>
             <div>

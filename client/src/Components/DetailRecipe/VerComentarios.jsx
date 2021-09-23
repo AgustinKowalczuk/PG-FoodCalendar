@@ -54,9 +54,9 @@ export function VerComentarios({id}){
                                                         
                                                         <span className={style.dateComent}>{e.comment}</span>
                                                         {(!!token && user.id === e?.owner.id)? 
-                                                                <div>
+                                                                <div className={style.contenBtn}>
                                                                         <PutReview comm={e.comment} idReview={e.id} /> 
-                                                                        <button onClick={()=>borrar(e.id)}><BsIcon.BsTrashFill/></button> 
+                                                                        <button className={style.btn} onClick={()=>borrar(e.id)}><BsIcon.BsTrashFill className={style.icon} /></button> 
                                                                 </div> : 
                                                                 null
                                                         }
