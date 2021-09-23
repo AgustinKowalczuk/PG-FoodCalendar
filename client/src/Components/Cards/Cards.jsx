@@ -18,7 +18,7 @@ export default function Cards(props) {
   if (props.confirmador) {
     recipesPerPage = 3;
   } else {
-    recipesPerPage = 6;
+    recipesPerPage = 4;
   }
   const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;

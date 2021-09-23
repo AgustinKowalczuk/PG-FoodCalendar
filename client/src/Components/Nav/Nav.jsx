@@ -32,14 +32,14 @@ export default function Nav() {
   return (
     <div id={style.nav}>
       <IconContext.Provider value={{ color: '#F2F0D5' }}>
-        <div>
+        <div className={style.logos}>
+        
+          <Link className="navbar-brand" id={style.imag} to='/'>
+            <img className={style.img} src={logo} alt='logo' />
+          </Link>
+       
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
-        <div className='navbar'>
-          <Link className="navbar-brand" to='/'>
-            <img className={style.img} src={logo} alt='logo' />
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
