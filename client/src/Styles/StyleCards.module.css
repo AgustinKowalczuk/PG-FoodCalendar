@@ -3,7 +3,8 @@
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 80%;
+    min-width: 50%;
+    max-width: 100%;
     align-items: stretch;
     align-content: stretch;
 }

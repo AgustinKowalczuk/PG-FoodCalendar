@@ -19,7 +19,7 @@ export default function Inventary() {
         return (
                 <div id={style.stack}>
                         <div className={style.title}>
-                                <h6>Aca van las recetas del calendario </h6>
+                                <h3>Inventario</h3>
                         </div>
                         <div className={style.contentRecipes}>
 
@@ -31,7 +31,7 @@ export default function Inventary() {
                                 ))}
                         </div>
                         {(stackReceta.length > 0) && 
-                        <div>
+                        <div className={style.btnContent}>
                                 <button className="btn btn-danger" onClick={()=>vaciar()}>Vaciar</button>
                         </div>
                         }

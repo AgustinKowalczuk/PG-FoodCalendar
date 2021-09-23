@@ -29,7 +29,6 @@ export default function Reviews({ id }) {
                                         colums='300'
                                 />
                                 <button className={style.btn} type='submit'><IoIcons.IoSend className={style.icon} /></button>
-
                         </div>
                 </form>
         )
