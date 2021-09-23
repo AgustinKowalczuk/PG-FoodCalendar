@@ -107,10 +107,10 @@ export default function Register() {
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>  
                         <div>
+                            <button id={style.btn} type="submit">Registrarse</button>
+                            <p>O</p>
                             <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Registrarse con google</button>
                             <a href={googleAuthUrl} id={'GoogleAuth'}/>
-                            <span>O</span>
-                            <button id={style.btn} type="submit">Registrarse</button>
                         </div>
                     </div>
                 </Form>

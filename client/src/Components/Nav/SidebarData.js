@@ -92,7 +92,7 @@ export const SidebarDataAdmin = [
     },
     
     {
-        title:'Gestion de Calendario',
+        title:'Gestion Calendario',
         icon: <AiIcons.AiFillSetting/>,
         path:'#',
         cName:'nav-text',

@@ -34,7 +34,7 @@ export default function Calendar( {admin}) {
                             </Link>
                                 <div>
                         </div> 
-                        </div>
+                     </div>
                     )
                 })}
             </div>
