@@ -26,7 +26,6 @@ import {
   CLEAR_INVENTARY,
   GET_CALENDAR,
   GET_CALENDAR_DETAIL,
-  GET_CALENDAR_USER,
   DELETE_RECIPE,
   CLEAN_DELETE_RECIPE,
   LOGIN,
@@ -54,6 +53,7 @@ import {
   GET_CHECKOUT,
   SET_USER_REGISTER,
   CLEAN_REGISTERED,
+  UPLOAD_IMG
 } from "./constants";
 
 import {
@@ -226,7 +226,12 @@ export function createRecipe(recipe,token){
   return async function(dispatch){
     try{
       const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0}, config(token));
-      console.log(newRecipe);
+      swal({
+        title: "Receta Creada",
+        text: "Se creo la receta con exito",
+        iicon: "success",
+        button: "Aceptar",
+      })
       return dispatch({ type: CREATE_RECIPE, payload: newRecipe.data });
     }catch(error){
       swal({
@@ -733,12 +738,12 @@ export function putUserDetails(value, token){
   }
 }
 
-export function deleteSelfUser(id, token){
+export function deleteSelfUser(token){
   return async function (dispatch){
     try{
-      const deleteUser = await axios.delete(USERS_DELETE_URL + '/' + id, config(token));
+      const deleteUser = await axios.delete(USERS_DELETE_URL, config(token));
       swal({
-        title: 'Se borro al usuario',
+        title: 'Se borró al usuario',
         icon: 'error',
         button: 'Aceptar'
       })
@@ -751,7 +756,6 @@ export function deleteSelfUser(id, token){
       return console.log('No se puede borrar el usuario.')
     }
   }
-
 }
 
 export function cleanGoogleAuthUrl() {
@@ -787,4 +791,11 @@ export function cleanRegistered() {
   return {
     type: CLEAN_REGISTERED
   }
+}
+
+export function getImages(payload){
+  return {
+     type: UPLOAD_IMG,
+     payload
+  } 
 }
