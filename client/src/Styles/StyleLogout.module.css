@@ -13,6 +13,7 @@
     text-transform: none;
     text-indent: 0px;
     font-size:larger;
+    box-shadow: rgb(248 28 229 / 40%) 0px 20px 35px -10px;;
 }
 .buttonLog2{
     color: #F2F0D5;

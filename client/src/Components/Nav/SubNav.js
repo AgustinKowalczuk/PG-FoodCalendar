@@ -14,13 +14,14 @@ const SubMenu = ({ item }) => {
 
   return (
     <div className='menu-contenedor'>
-      <Link to={item.path} className={item.cName} onClick={item.subNav && showSubnav}>
+      <div  className={item.cName}>
+      <Link to={item.path} onClick={item.subNav && showSubnav}>
         <div className='icono-menu'>
           {item.icon}
                 
           <span className='sliderLabel'>{item.title}</span>
         </div>
-        <div>
+        <div className='flechita'>
           {item.subNav && subnav
             ? item.iconOpened
             : item.subNav
@@ -28,13 +29,17 @@ const SubMenu = ({ item }) => {
             : null}
         </div>
       </Link>
+      </div>
+    
       {subnav &&
         item.subNav.map((item, index) => {
           return (
-            <Link className='linkDropdown' to={item.path} key={index}>
+            <div className='linkDropdown'>
+            <Link  to={item.path} key={index}>
               {item.icon}
-              <label className='sliderLabel'>{item.title}</label>
+              <span className='sliderLabel'>{item.title}</span>
             </Link>
+            </div>
           );
         })}
     </div>

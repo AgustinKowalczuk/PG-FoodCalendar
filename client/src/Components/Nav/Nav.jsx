@@ -13,6 +13,7 @@ import { filterData } from "./SidebarData";
 import ButtonLogin from "../Acount/ButtonLogin";
 import ButtonRegister from "../Acount/ButtonRegister";
 import SubNav from './SubNav';
+import { Avatar } from '@nextui-org/react';
 
 export default function Nav() {
   const token = useSelector(state => state.token);
@@ -24,9 +25,21 @@ export default function Nav() {
 
   const [sidebar, setSidebar] = useState(false)
 
+  function profile(){
+    if(!!token){
+      let nombre = user.name[0]
+      let apellido = user.surname[0]
+      let avatar = nombre + apellido
+      return avatar
+    }
+    else return
+  }
+  
 
 
   const showSidebar = () => setSidebar(!sidebar)
+
+console.log(profile())
 
 
   return (
@@ -45,9 +58,20 @@ export default function Nav() {
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' >
             <li className='navbar-toggle'>
+              {
+                (!!token) ?
+                <div className="avatar-container"> 
+                  <Link to ='/user/noAdmin'>
+                   <Avatar size="xlarge" text={profile()}  color="#ff4ecd" bordered /> 
+                   <span className="avatar-span">Mi Perfil</span> 
+                  </Link>
+                </div> :
+                null
+              }
               <Link to='#' className='menu-bars'>
                 <AiIcons.AiOutlineClose onClick={showSidebar} />
               </Link>
+                
             </li>
             <div className='map-container'>
             {
