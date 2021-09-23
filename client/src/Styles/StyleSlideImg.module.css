@@ -1,18 +1,33 @@
-.container{
+.container {
     width: 100%;
     height: 30%;
     min-height: 10%;
     max-height: 550px;
 }
 
-.sliders{
+.sliders {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
-.imgs{
-    width: 100%;
+.imgs {
+    width: 200vh;
+    height: 50vh;
     max-height: 550px;
     size: cover;
+}
+
+.textCont {
+    position: absolute;
+    top: 20px;
+    width: 40vh;
+}
+
+.txt {
+    font-size: 4vh;
+    color: rgb(218, 218, 70);
+    -webkit-text-stroke: 2px rgb(5, 5, 5);
+    text-shadow: -1px -1px 0px rgb(0, 0, 0), 1px 1px 0px rgb(253, 200, 130), 1px 1px 0px rgb(226, 223, 63);
 }
