@@ -81,3 +81,6 @@
     align-items: center;
     justify-content: space-between;
 }
+#SearchBar{
+    width: calc(100% + 70vh);
+}

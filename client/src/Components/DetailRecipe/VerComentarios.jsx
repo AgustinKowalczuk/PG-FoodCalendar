@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteReviews, getComentarios } from "../../actions";
 import PutReview from "./PutReview";
 import style from "../../Styles/StyleComent.module.css"
+import * as BsIcon from "react-icons/bs"
+import swal from 'sweetalert';
 
 export function VerComentarios({id}){
 
@@ -20,8 +22,18 @@ export function VerComentarios({id}){
       }, [dispatch,id,toggleReviews])
 
       function borrar(idr){
-        const ok= window.confirm('Deseas borrar este comentario?')
-        if(ok)dispatch(deleteReviews(idr,token));
+
+        swal({
+                title:'Seguro que quieres eliminar el comentario?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+        }).then( button => {
+                if(button){
+
+                        dispatch(deleteReviews(idr,token));
+                }
+        })
       }
  
         return (
@@ -34,17 +46,21 @@ export function VerComentarios({id}){
                                 return (
                                         
                                         <div className={style.coment}>
-                                                        <div>
-                                
-                                        {e?.owner.name
-                                        }:</div>
-                                                <label id={style.diaComent} className={style.textLabel} type='date'>{`${dia}/${mes}/${anio}`}</label>     
-                                                <span className={style.dateComent}>{e.comment}</span>
-                                        {(!!token && user.id === e?.owner.id)? 
-                                                <div>
-                                                <button onClick={()=>borrar(e.id)}>Eliminar</button> 
-                                                <PutReview comm={e.comment} idReview={e.id} /> </div> : null
-                                        }
+                                                <div className={style.name}>
+                                                        <span>{e?.owner.name}:</span>
+                                                </div>
+                                                <label id={style.diaComent} className={style.textLabel} type='date'>{`${dia}/${mes}/${anio}`}</label>
+                                                <div className={style.comentFunction}>
+                                                        
+                                                        <span className={style.dateComent}>{e.comment}</span>
+                                                        {(!!token && user.id === e?.owner.id)? 
+                                                                <div>
+                                                                        <PutReview comm={e.comment} idReview={e.id} /> 
+                                                                        <button onClick={()=>borrar(e.id)}><BsIcon.BsTrashFill/></button> 
+                                                                </div> : 
+                                                                null
+                                                        }
+                                                </div>     
                                         </div>
                                 )
                         })}

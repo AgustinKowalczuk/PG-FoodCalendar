@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '../../../Styles/StyleCardShop.module.css'
 import '@lourenci/react-kanban/dist/styles.css'
@@ -7,6 +7,7 @@ import { sendCalendar } from '../../../actions/index'
 import swal from 'sweetalert'
 
 export default function Recipes() {
+
 
     const dispatch = useDispatch()
     const recipes = useSelector((state => state.recipeCalendar))
@@ -28,7 +29,7 @@ export default function Recipes() {
             }, 
             {
                 id: 1,
-                title: 'Lunes',
+                title: 'Lunes',  
                 cards: []
             },
             {
@@ -64,6 +65,12 @@ export default function Recipes() {
         ],
     })
 
+    useEffect(()=> {
+        if(localStorage.objectCalendar){
+            setday(JSON.parse(localStorage.objectCalendar))
+        }
+    }, [])
+
     const handleCards = (_card, source, destination) => {
         
         if(destination.toColumnId === 0  || daysColumns.columns[destination.toColumnId].cards.length < 2) {
@@ -71,16 +78,18 @@ export default function Recipes() {
             const ofMoved = moveCard(daysColumns, source, destination)
             const send = []
             
-            ofMoved.columns.forEach((e, index) => {    
+            localStorage.objectCalendar = JSON.stringify(ofMoved)
+            ofMoved.columns.forEach((e) => {    
                 if(e.id !== 0 ){
                     
-                    e.cards.forEach(c => {
-                        send.push(c.recipeID)
+                    e.cards.forEach((c, index) => {
+                        let x = 2 * (e.id - 1) + index
+                        send[x] = c.recipeID
                     })
                 }
             })
             setday(ofMoved)
-    
+            
             dispatch(sendCalendar(send))
         }else{
             return swal({

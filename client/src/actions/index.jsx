@@ -370,6 +370,7 @@ export function postcalendar(obj,token){
         icon: "success",
         button: "Aceptar",
       })
+      localStorage.clear();
       return dispatch({type: CREATE_CALENDAR, payload: aux.data});
     } catch (error) {
       console.log(error);
@@ -591,11 +592,21 @@ export function updateUser(id,obj,token){
   return async (dispatch)=>{
     try{
       const update = await axios.put(UPDATE_USERS_URL + `/${id}`, obj, config(token));
+
+      swal({
+        title: 'Se cambio el usuario',
+        icon: 'success',
+        button:'Aceptar'
+      })
       return dispatch ({ 
         type: UPDATE_USER,
         payload:update.data})
     }catch(error){
-      console.log(error);
+      swal({
+        title: 'No se pudo cambiar al usuario',
+        icon: 'error',
+        button:'Aceptar'
+      })
    }
   }
 }
@@ -617,9 +628,14 @@ export function postLike(id,token){
 export function deleteReviews(id,token){
   return async function (dispatch){
     try {
-      console.log(id,'id de action')
+      
       const borrar = await axios.delete(DELETE_REVIEWS_URL +'/' + id, config(token));
-      console.log(borrar.data,'reducer')
+      swal({
+        title: "Receta borrada",
+        icon: "success",
+        button: "Aceptar",
+      });
+      
       return dispatch ({
         type : DELETE_REVIEWS,
         payload: borrar.data
@@ -693,12 +709,21 @@ export function putUserDetails(value, token){
   return async function(dispatch) {
     try {
       const putUserDetails = await axios.put(PUT_USER_DETAILS_URL, value, config(token));
+      swal({
+        title: 'Se a modificado con exito',
+        icon: 'success',
+        button: 'Aceptar'
+      })
       return dispatch({
         type: PUT_USER_DETAILS,
         payload: putUserDetails.data
       })
     } catch(error){
-      return alert('No se realizaron los cambios')
+      return swal({
+        title: 'No se realizaron los cambios',
+        icon: 'error',
+        button: 'Aceptar'
+    })
     }
   }
 }
@@ -707,6 +732,11 @@ export function deleteSelfUser(id, token){
   return async function (dispatch){
     try{
       const deleteUser = await axios.delete(USERS_DELETE_URL + '/' + id, config(token));
+      swal({
+        title: 'Se borro al usuario',
+        icon: 'error',
+        button: 'Aceptar'
+      })
       return dispatch({
         type:DELETE_SELF_USER,
         payload: deleteUser.data
@@ -742,5 +772,4 @@ export function getCheckout(){
         
       }    
     }
- 
 }
