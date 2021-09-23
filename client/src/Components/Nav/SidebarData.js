@@ -9,7 +9,7 @@ import * as BiIcons from "react-icons/bi"
 import * as IoIcons from "react-icons/io5"
 
 import * as RiIcons from 'react-icons/ri';
-
+import * as FaIcons from 'react-icons/fa';
 
 
 export const SidebarDataNotUser = [
@@ -37,35 +37,10 @@ export const SidebarDataNotUser = [
 export const SidebarDataUser= [
     {
         title:'Mi Perfil',
-        path: '/',
-        icon: <AiIcons.AiFillHome/>,
+        path: '/user/noAdmin',
+        icon: <FaIcons.FaUser/>,
         cName:'nav-text'
     },
-    {
-        title:'Home',
-        path: '/',
-        icon: <AiIcons.AiFillHome/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Todas las Recetas',
-        path: '/AllRecipe',
-        icon: <BiIcons.BiBookHeart/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Crea tu calendario',
-        path: '/shop',
-        icon: <IoIcons.IoCreateOutline/>,
-        cName:'nav-text'
-    },
-   
-   
-
-]
-
-export const SidebarDataAdmin = [
-    
     {
         title:'Home',
         path: '/',
@@ -85,23 +60,79 @@ export const SidebarDataAdmin = [
         cName:'nav-text'
     },
     {
+        title:'Crea tu calendario',
+        path: '/shop',
+        icon: <BiIcons.BiCalendarHeart/>,
+        cName:'nav-text'
+    },
+   
+   
+
+]
+
+export const SidebarDataAdmin = [
+    
+    {
+        title:'Mi Perfil',
+        path: '/user/noAdmin',
+        icon: <FaIcons.FaUser/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Home',
+        path: '/',
+        icon: <AiIcons.AiFillHome/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Todas las Recetas',
+        path: '/AllRecipe',
+        icon: <BiIcons.BiBookHeart/>,
+        cName:'nav-text'
+    },
+    
+    {
+        title:'Gestion de Calendario',
+        icon: <AiIcons.AiFillSetting/>,
+        path:'#',
+        cName:'nav-text',
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title:'Crear Receta',
+                path: '/create/recipe',
+                icon: <BsIcons.BsPencilSquare/>,
+                cName:'nav-text'
+            },
+            {
+                title:'Crea tu calendario',
+                path: '/shop',
+                icon: <BiIcons.BiCalendarHeart/>,
+                cName:'nav-text'
+            },
+          ]
+        },
+ 
+    
+    {
         title:'Gestion',
-        path: '/gestion',
-        icon: <IoIcons.IoDesktopOutline/>,
+        icon: <AiIcons.AiFillSetting/>,
+        path:'#',
         cName:'nav-text',
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title:'Todos los Calendarios',
-                path: '/gestion/calendar',
-                icon: <IoIcons.IoDesktopOutline/>,
+                path: '/calendar',
+                icon: <FaIcons.FaRegCalendarAlt/>,
                 cName:'nav-text'
             },
             {
                 title:'Todos los usuarios',
-                path: '/gestion/user',
-                icon: <IoIcons.IoDesktopOutline/>,
+                path: '/user',
+                icon: <IoIcons.IoListCircleOutline/>,
                 cName:'nav-text'
             },
           ]

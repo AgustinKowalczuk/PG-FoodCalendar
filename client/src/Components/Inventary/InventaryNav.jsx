@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "../../Styles/StyleNav.module.css"
-import * as BsIcons from "react-icons/bs";
+import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { IconContext } from 'react-icons';
 import './InventaryNav.css'
@@ -29,7 +29,7 @@ export default function InventaryNav() {
       <IconContext.Provider value={{ color: '#B1B1AC' }}>
         <div>
           <Link to='#' className='inventary-bars'>
-            <BsIcons.BsBookmarkPlus className='iconoReceta' onClick={showSidebar} />
+            <FaIcons.FaRegCalendarPlus className='iconoReceta' onClick={showSidebar} />
           </Link>
         </div>
         <div className='inventaryNav'>

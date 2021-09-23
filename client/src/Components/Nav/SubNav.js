@@ -14,7 +14,7 @@ const SubMenu = ({ item }) => {
 
   return (
     <>
-      <Link to={item.path} className="submenuLink" onClick={item.subNav && showSubnav}>
+      <Link to={item.path} className={"submenuLink"} onClick={item.subNav && showSubnav}>
         <div>
           {item.icon}
           <label className='sliderLabel'>{item.title}</label>
