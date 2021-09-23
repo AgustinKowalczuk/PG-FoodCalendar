@@ -67,7 +67,7 @@ export default function Recipes() {
     useEffect(() => {
         if (localStorage.objectCalendar) {
             setday(JSON.parse(localStorage.objectCalendar))
-        }
+         }
     }, [])
 
     const handleCards = (_card, source, destination) => {
@@ -78,6 +78,7 @@ export default function Recipes() {
             const send = []
 
             localStorage.objectCalendar = JSON.stringify(ofMoved)
+            localStorage.recipesInventary = JSON.stringify(recipes)
             ofMoved.columns.forEach((e) => {
                 if (e.id !== 0) {
 

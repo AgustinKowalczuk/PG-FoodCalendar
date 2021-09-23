@@ -7,7 +7,7 @@
     border-radius: .25rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     box-shadow: #1e1803c5 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;
 }
 .name{
@@ -41,7 +41,7 @@
 }
 .change{
     grid-column:2;
-    grid-row: 5;
+    grid-row: 6;
 }
 
 .delete{
@@ -55,4 +55,12 @@
 .content{
     margin-bottom:2%;
     margin-top: 2%;
+}
+.payments{
+    display: flex;
+    grid-column-start:1;
+    grid-column-end:4;
+    grid-row: 5;
+    flex-direction: row;
+    justify-content: flex-start
 }

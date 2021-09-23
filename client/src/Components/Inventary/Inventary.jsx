@@ -14,6 +14,7 @@ export default function Inventary() {
        }
        function vaciar() {
            dispatch(clearInventary())
+           localStorage.clear()
        }
 
         return (
