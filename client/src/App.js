@@ -69,6 +69,7 @@ function App() {
         <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
         <Route path = '/checkout/:userRegister' component={Checkout}/>
         <Route path = '/checkout' component={Checkout}/>
+        <Route render={()=><Redirect to='/' />} />
       </Switch>
     </div>
       <Footer/>

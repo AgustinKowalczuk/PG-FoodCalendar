@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-left: 5px;
 }
 
 .imgs {
@@ -23,6 +24,8 @@
     position: absolute;
     top: 20px;
     width: 40vh;
+    background-color: rgb(169,50,38,0.5);
+    border-radius: 30px;
 }
 
 .txt {

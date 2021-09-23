@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card{
+    border-right: 5px solid rgba(28,110,164,0.5);
+    border-radius: 0px 40px 0px 40px;
+    background-color: bisque;
+    width: 40vh;
+    margin: 5%;
+}
+
+.li{
+    display: flex;
+    justify-content: space-between;
+}
+.txt{
+    margin-right: 2%;
+}
+
+#id{
+    text-decoration: line-through;
+}
