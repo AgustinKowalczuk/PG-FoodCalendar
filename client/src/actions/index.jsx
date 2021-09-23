@@ -226,7 +226,12 @@ export function createRecipe(recipe,token){
   return async function(dispatch){
     try{
       const newRecipe = await axios.post(RECIPES_URL, {...recipe,rating: 0}, config(token));
-      console.log(newRecipe);
+      swal({
+        title: "Receta Creada",
+        text: "Se creo la receta con exito",
+        iicon: "success",
+        button: "Aceptar",
+      })
       return dispatch({ type: CREATE_RECIPE, payload: newRecipe.data });
     }catch(error){
       swal({

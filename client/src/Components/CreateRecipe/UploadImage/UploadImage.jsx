@@ -1,10 +1,13 @@
 import React, {useState} from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 
 
-export default function UploadImage ({onChange}) {
-    const [loading, setLoading] = useState(false)
-    const [image, setImage] = useState('')
+export default function UploadImage ({onChange, update}) {
+    const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState('');
+    const detail = useSelector((state) => state.detail);
 
     async function uploadImage (e){
         const files = e.target.files
@@ -20,10 +23,16 @@ export default function UploadImage ({onChange}) {
             }
         )
         const file = await res.json()
-        setImage(file.secure_url)
+        setImage(file.secure_url);
         onChange(file.secure_url)
         setLoading(false)
     }
+
+    useEffect(() => {
+        if (update) {
+            setImage(detail.img);
+        }
+    },[])
 
     return (
         <div>

@@ -7,6 +7,7 @@ import SelectCard from "../CreateRecipe/SelectCard/SelectCard";
 import {useHistory} from "react-router-dom";
 import { orderAZ } from "../../orderFunction/OrderFuncions";
 import SelectCategory from "../CreateRecipe/SelectCategory/SelectCategory";
+import UploadImage from "../CreateRecipe/UploadImage/UploadImage";
 
 export default function UpdateForm() {
   const dispatch = useDispatch();
@@ -53,14 +54,19 @@ export default function UpdateForm() {
       formik.values.difficulty= update.difficulty
       formik.values.img= update.img
       formik.values.category=update.category
-      formik.values.availability= true
-      formik.values.premium= true
-      console.log(update)
+      formik.values.availability= update.availability === 'Available' ? true : false;
+      formik.values.premium= update.premium === 'Premium' ? true : false;
     if (update?.ingredients?.length) {
         onChangeIngredients(update.ingredients);
     }
     if (update?.category?.length) {
         onChangeCategory(update.category);
+     }
+     if (update?.availability) {
+       onChangeAvailability(update.availability === 'Available' ? true : false);
+     }
+     if (update?.premium) {
+      onChangePremium(update.premium === 'Premium' ? true : false);
      }
   }, []); 
  
@@ -111,9 +117,7 @@ export default function UpdateForm() {
     if(formik.values.availability==='true'){
       formik.values.availability=true
     }
-    dispatch(putRecipe(update.id,values,token));
-    console.log("Values submit", values);
-    console.log("formulario enviado");
+    dispatch(putRecipe(update.id,values,token));    
   };
   const onChangeIngredients = (values) => {
     formik.values.ingredients = values;
@@ -121,12 +125,24 @@ export default function UpdateForm() {
   const onChangeCategory =(values)=>{
     formik.values.category = values;
   };
+  const onChangeAvailability = (values) => {
+    formik.values.availability = (values?.target?.value === "true") ? true : false;    
+  };
+  const onChangePremium = (values) => {
+    formik.values.premium = (values?.target?.value === "true") ? true : false;
+  }
+  const onChangeImage = (values)=>{
+    formik.values.img = values;
+  }
   const formik = useFormik({
     initialValues,
     onSubmit,
     validate,
     onChangeIngredients,
-    onChangeCategory
+    onChangeCategory,
+    onChangeAvailability,
+    onChangeImage,
+    onChangePremium
   });
 
   return (
@@ -220,20 +236,11 @@ export default function UpdateForm() {
             </div>
           ) : null}
         </div>
-
-        <div class="mb-3">
-          <label class="form-label">Imagen</label>
-          <input
-            onChange={formik.handleChange}
-            value={formik.values.img || update.img}
-            onBlur={formik.handleBlur}
-            class="form-control"
-            name="img"
-            type="text"
-            placeholder="Escribe Aqui..."
-          />
+        <div className="mb-3">
+          <label className="form-label">Imagen</label>
+          <UploadImage onChange={onChangeImage} update={true}/>
           {formik.errors.img && formik.touched.img === true ? (
-            <div class="cosoForm">
+            <div className="cosoForm">
               <span>{formik.errors.img}</span>
             </div>
           ) : null}
@@ -264,24 +271,24 @@ export default function UpdateForm() {
         </div>
 
         <div>
-            <label class="form-label">Tipo de usuario</label>
+            <label class="form-label">Tipo de receta</label>
             <select 
-            onChange={formik.handleChange}
+            onChange={onChangePremium}
             class="form-control"
             name="premium">
               <option value={false}>Free</option>
-              <option value={true}>Premium</option>
+              <option selected={update.availability !== 'Premium' ? true : false} value={true}>Premium</option>
               </select>
         </div>
 
         <div>
-            <label class="form-label">Está Disponible?</label>
+            <label class="form-label">¿Está Disponible?</label>
             <select 
-            onChange={formik.handleChange}
+            onChange={onChangeAvailability}
             class="form-control"
             name="availability">
               <option value={true}>Available</option>
-              <option value={false}>Unavailable</option>
+              <option selected={update.availability !== 'Available' ? true : false} value={false}>Unavailable</option>
               </select>
         </div>
         <div class="col-auto">
