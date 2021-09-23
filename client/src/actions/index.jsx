@@ -30,7 +30,7 @@ import {
   DELETE_RECIPE,
   CLEAN_DELETE_RECIPE,
   LOGIN,
-  REGISTER,
+  REGISTERED,
   CREATE_RECIPE,
   CREATE_CALENDAR,
   CLEAN_NEW_CALENDAR,
@@ -52,6 +52,8 @@ import {
   DELETE_SELF_USER,
   CLEAN_GOOGLE_AUTH,
   GET_CHECKOUT,
+  SET_USER_REGISTER,
+  CLEAN_REGISTERED,
 } from "./constants";
 
 import {
@@ -271,18 +273,21 @@ export function setFormIngredients(payload){
 export function register(user){
   return async function(dispatch){
     try {
-      const reg = await axios.post(REGISTER_URL, user)
-      swal({
-        title: "Cuenta Registrada",
-        text: "Te registraste con exito",
-        icon: "success",
-        button: "Aceptar",
-    })
+      const reg = await axios.post(REGISTER_URL, user);
+      if (reg.data.registered) {
+        swal({
+          title: "Cuenta Registrada",
+          text: "Te registraste con exito",
+          icon: "success",
+          button: "Aceptar",
+        })
+      }
       return dispatch({
-        type: REGISTER,
+        type: REGISTERED,
         payload: reg.data
       })
     } catch (error) {
+      console.log(error);
       return swal({
         title: "Cuenta no Registrada",
         text: "Tu cuenta no se a podido registrar",
@@ -763,13 +768,23 @@ export function getCheckout(){
   
     return async function (dispatch){
       try {
-        console.log('hola');
         const aux = await axios.get(GET_CHECKOUT_URL);
-        console.log(aux.data)
         return dispatch({type: GET_CHECKOUT, payload: aux.data});
       } catch (error) {
         console.log(error);
-        
       }    
     }
+}
+
+export function setUserRegister(userRegister) {
+  return {
+    type: SET_USER_REGISTER,
+    payload: userRegister
+  }
+}
+
+export function cleanRegistered() {
+  return {
+    type: CLEAN_REGISTERED
+  }
 }

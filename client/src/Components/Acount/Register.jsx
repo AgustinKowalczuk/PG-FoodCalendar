@@ -18,6 +18,14 @@ export default function Register() {
         password: ''
     }
     const googleAuthUrl = useSelector(state => state.googleAuthUrl);
+    const userRegister = useSelector(state => state.userRegister);
+
+    useEffect(() => {
+        if (!!Object.keys(userRegister).length) {
+            sessionStorage.userRegister = JSON.stringify(userRegister);
+            history.push('/checkout');
+        }
+    },[userRegister]);
 
     useEffect(() => {
         if (googleAuthUrl) {
@@ -60,8 +68,7 @@ export default function Register() {
     })
 
     const onSubmit = (value) => {
-        console.log('Submit value', value)
-        dispatch(register(value))
+        dispatch(register(value));
     }
 
     const GoogleChange = () => {

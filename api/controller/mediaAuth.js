@@ -1,11 +1,11 @@
-const { env: { USER_GOOGLE_ID } } = process;
+const { env: { USER_GOOGLE_ID, BACK_URL } } = process;
 const querystring = require('query-string');
 const axios = require('axios');
 
 const getGoogleAuthUrl = (type) => {
     const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
     const options = {
-        redirect_uri: `http://localhost:3001/${type}/google`,
+        redirect_uri: `${BACK_URL}/${type}/google`,
         client_id: `${USER_GOOGLE_ID}`,
         access_type: 'offline',
         response_type: 'code',
