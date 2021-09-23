@@ -84,8 +84,8 @@ export default function Register() {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
-                <Form>
-                    <div className={style.content}>
+                <Form className={style.content}>
+                    <div>
 
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
@@ -107,14 +107,15 @@ export default function Register() {
                             <Field type="password" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>  
-                        <button id={style.btn} className="btn btn-primary" type="submit">Registrarse</button>
+                        <div>
+                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Registrarse con google</button>
+                            <a href={googleAuthUrl} id={'GoogleAuth'}/>
+                            <span>O</span>
+                            <button id={style.btn} type="submit">Registrarse</button>
+                        </div>
                     </div>
                 </Form>
             </Formik>
-            <div>
-                <button onClick={GoogleChange} id={style.icon}><FcIcons.FcGoogle className={style.icon}/></button>
-                <a href={googleAuthUrl} id={'GoogleAuth'}/>
-            </div>
         </div>
     )
 }

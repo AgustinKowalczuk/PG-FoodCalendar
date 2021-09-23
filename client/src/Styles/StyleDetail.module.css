@@ -1,8 +1,8 @@
 .content{
+    margin-top: 10px;
     width: 90%;
     border:1px solid #668C4A;
     border-radius: .25rem; 
-    margin: auto !important;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -24,6 +24,13 @@
     align-items: center;
     justify-content: space-around;
 }
+.contentALL{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    align-items: center;
+}
 
 .imgContainer{
     width: 100%;
@@ -36,6 +43,7 @@
 }
 
 #img{
+    min-width: 280px;
     width: 80%;
     margin: 1%;
 }
@@ -76,14 +84,15 @@
 
 }
 
-
+.text{
+    font-size: .8rem;
+}
 .contentComent{
     width: 80%;
     background-color: rgba(177, 177, 172, 0.733);
     border: 1px solid #668C4A;
     border-bottom-left-radius: .25rem;
     border-bottom-left-radius: .25rem !important;
-    margin: 0 auto !important;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -91,6 +100,7 @@
     align-content: flex-start;
     justify-content: space-evenly;
     padding-top: 1%;
+    margin-bottom: 1%;
 }
 .normal{
     
@@ -218,4 +228,17 @@
     align-items: center;
     align-content: space-between;
     justify-content: space-evenly;
+}
+.recetaModify{
+    margin: 1%;
+    background-color: transparent;
+    border-radius: .25rem;
+    border: 1px solid #668C4A;
+    outline:none;
+    padding: .5%;
+    color: #668C4A;
+}
+.recetaModify:hover{
+    background-color: #F2C53D;
+    color: #668C4A;
 }

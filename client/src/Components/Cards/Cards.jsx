@@ -72,7 +72,7 @@ export default function Cards(props) {
               }
               {
                 !token && e.availability === 'Available' &&
-                <Link to='/acount/register' id={style.btn} className="btn btn-secondary" >Agregala a tu Calendario!</Link>
+                <Link to='/acount/login' id={style.btn} className="btn btn-secondary" >Agregala a tu Calendario!</Link>
               }
             </div>
 
