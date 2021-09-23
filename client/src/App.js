@@ -45,8 +45,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="App">
-      <Nav/>
-      <InventaryNav/>
+    <Nav/>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchCards}/>
@@ -71,7 +70,7 @@ function App() {
         <Route path = '/checkout/:userRegister' component={Checkout}/>
         <Route path = '/checkout' component={Checkout}/>
       </Switch>
-      </div>
+    </div>
       <Footer/>
     </BrowserRouter>
   )

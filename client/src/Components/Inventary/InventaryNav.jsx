@@ -29,7 +29,7 @@ export default function InventaryNav() {
       <IconContext.Provider value={{ color: '#B1B1AC' }}>
         <div>
           <Link to='#' className='inventary-bars'>
-            <FaIcons.FaRegCalendarPlus className='iconoReceta' onClick={showSidebar} />
+            <FaIcons.FaRegCalendarPlus id='icono' className='iconoReceta' onClick={showSidebar} />
           </Link>
         </div>
         <div className='inventaryNav'>

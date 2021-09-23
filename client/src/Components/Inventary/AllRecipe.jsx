@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getRecipes } from '../../actions';
 import Cards from '../Cards/Cards'
 import MidNav from '../Nav/midNav/midNav';
-
+import InventaryNav from './InventaryNav';
 
 
 
@@ -23,6 +23,7 @@ export default function AllRecipe() {
                         
                         <MidNav />
                         <Cards allRecipes={allRecipes}/>       
+                        <InventaryNav />
                 </div>
         )
 }

@@ -5,7 +5,7 @@ import { getRecipes } from "../../actions";
 import style from '../../Styles/StyleHome.module.css'
 import SiliderImages from './SiliderImages/SiliderImages';
 import { Link } from 'react-router-dom';
-
+import InventaryNav from '../Inventary/InventaryNav'
 export default function Home() {
 
         const dispatch = useDispatch()
@@ -21,6 +21,7 @@ export default function Home() {
                 <div class={style.order}>
                         <SiliderImages />
                         <Cards allRecipes={recipesHome} />
+                        <InventaryNav/>
                 </div>
         )
 }

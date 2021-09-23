@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
 import { useHistory, useParams } from 'react-router'
+import * as FcIcons from 'react-icons/fc'
 
 export default function Register() {
     const params = useParams();
@@ -110,7 +111,7 @@ export default function Register() {
                 </Form>
             </Formik>
             <div>
-                <button onClick={GoogleChange}>Regístrate con tu cuenta de Google</button>
+                <button onClick={GoogleChange} id={style.icon}><FcIcons.FcGoogle className={style.icon}/></button>
                 <a href={googleAuthUrl} id={'GoogleAuth'}/>
             </div>
         </div>

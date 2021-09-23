@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import '@lourenci/react-kanban/dist/styles.css'
 import { useHistory } from "react-router";
 import swal from 'sweetalert';
+import InventaryNav from '../Inventary/InventaryNav'
 
 export default function ShopingCart() {
 
@@ -45,6 +46,7 @@ export default function ShopingCart() {
         <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>
         <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
       </div>
+      <InventaryNav/>
     </div>
   );
 }
