@@ -67,13 +67,10 @@ export default function Cards(props) {
               <Dificultad difficulty={e.difficulty} />
             </Link>
             <div className={style.resize}>
-              {e.availability === 'Available' && !!token &&
+              {e.availability === 'Available' && 
                 <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary" >Agregala a tu Calendario!</button>
               }
-              {
-                !token && e.availability === 'Available' &&
-                <Link to='/acount/login' id={style.btn} className="btn btn-secondary" >Agregala a tu Calendario!</Link>
-              }
+            
             </div>
 
           </div>
