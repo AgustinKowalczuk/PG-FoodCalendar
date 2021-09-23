@@ -8,6 +8,7 @@ const user = require('./schemas/user.js');
 const calendar = require('./schemas/calendar.js');
 const review = require('./schemas/review.js');
 const like = require('./schemas/like');
+const payments = require('./schemas/payments');
 const model = mongoose.model.bind(mongoose);
 
 module.exports = {
@@ -18,5 +19,6 @@ module.exports = {
     User: model('User', user),
     Calendar: model('Calendar', calendar),
     Review: model('Review', review),
-    Like: model('Like', like)
+    Like: model('Like', like),
+    Payments: model('Payments', payments)
 }

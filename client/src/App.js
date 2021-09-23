@@ -68,6 +68,7 @@ function App() {
         <Route path = '/reviews/user/:id' render= {() => (!!token && user.category === 'Admin') ? <UserDetails /> : <Redirect to='/' />}/>
         <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
         <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
+        <Route path = '/checkout/:userRegister' component={Checkout}/>
         <Route path = '/checkout' component={Checkout}/>
       </Switch>
       </div>

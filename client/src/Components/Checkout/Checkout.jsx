@@ -1,24 +1,62 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCheckout } from '../../actions';
-
+import { cleanRegistered, getCheckout, register, setUserRegister } from '../../actions';
+import { useHistory, useParams } from 'react-router';
+import { normalizeNullOrUndefined } from '../../actions/normalizeNullOrUndefined';
 
 
 
 export default function Checkout() {
-        const mercadoPagoUrl = useSelector(state => state.mercadoPagoUrl)
-        const dispatch = useDispatch()
+        const mercadoPagoUrl = useSelector(state => state.mercadoPagoUrl);
+        const dispatch = useDispatch();
+        const history = useHistory();
+        const params = useParams();
+        const userRegister = useSelector(state => state.userRegister);
+        const registered = useSelector(state => state.registered);
+        useEffect(()=> {
+                if (!!history.location.search) {
+                        const obj = {};
+                        history.location.search.split('?')[1].split('&')
+                        .map (e => e.split('=')).forEach(e => obj[e[0]] = e[1]);
+
+                        if (!!Object.keys(userRegister).length && !!obj && obj.status === 'approved') {
+                                dispatch(register({...userRegister, ...obj}));
+                        };
+                }
+                if (!!Object.keys(params).length) {
+                        const { userRegister } = params;
+
+                        if (!!userRegister) {
+                                dispatch(setUserRegister(JSON.parse(userRegister)));
+                                sessionStorage.userRegister = userRegister;
+                                history.push('/checkout');
+                        }
+                }
+        }, [history.location.search, params, userRegister]);
+
+        useEffect(() => {
+                let userRegister = normalizeNullOrUndefined(sessionStorage.userRegister);
+                userRegister = userRegister ? JSON.parse(userRegister) : {};
+                dispatch(setUserRegister(userRegister));
+                if (registered && sessionStorage.userRegister) {
+                        sessionStorage.userRegister = JSON.stringify({});
+                        dispatch(setUserRegister({}));
+                        dispatch(cleanRegistered());
+                        history.push('/');
+                }
+              },[registered]);
 
         function handleSubmit(e){
                 e.preventDefault();
                 dispatch(getCheckout())
         }
+
         useEffect(() => {
              if (mercadoPagoUrl){
                 const anchor = document.getElementById('mercadoPagoUrl');
                 anchor.click();
              }  
-        }, [mercadoPagoUrl])
+        }, [mercadoPagoUrl]);
         
         return (
         <div className="container">

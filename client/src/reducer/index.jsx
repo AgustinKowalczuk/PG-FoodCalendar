@@ -46,7 +46,10 @@ import {
   PUT_USER_DETAILS,
   DELETE_SELF_USER,
   CLEAN_GOOGLE_AUTH,
-  GET_CHECKOUT
+  GET_CHECKOUT,
+  SET_USER_REGISTER,
+  REGISTERED,
+  CLEAN_REGISTERED
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -81,7 +84,9 @@ var initialState = {
   userCommentsDetails: [],
   googleAuthUrl: '',
   userChangesDetails: [],
-  mercadoPagoUrl: ''
+  mercadoPagoUrl: '',
+  userRegister: {},
+  registered: false
 };
 
 function reducer(state = initialState, action) {
@@ -362,7 +367,28 @@ function reducer(state = initialState, action) {
           ...state,
           mercadoPagoUrl:action.payload
         }
-      
+
+      case SET_USER_REGISTER:
+        return {
+          ...state,
+          userRegister: action.payload
+        }
+
+      case REGISTERED:
+      return {
+        ...state,
+        registered: action.payload.registered,
+        userRegister: !!Object.keys(action.payload.userRegister).length ? action.payload.userRegister : {},
+        user: action.payload.user,
+        token: action.payload.token
+      }
+
+      case CLEAN_REGISTERED:
+      return {
+        ...state,
+        registered: false
+      }
+
     default:
       return state;
   }
