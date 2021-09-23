@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@lourenci/react-kanban": "^2.1.0",
+    "@nextui-org/react": "^1.0.1-alpha.32",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -11,6 +12,7 @@
     "bootstrap": "^5.1.0",
     "cloudinary-react": "^1.7.0",
     "formik": "^2.2.9",
+    "next-ui": "^0.9.0",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-bootstrap": "^2.0.0-beta.6",

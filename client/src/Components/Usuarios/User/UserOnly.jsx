@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DeleteUser from "../AdminUser/DeleteUser";
-import UserPasswordRecovery from "./UserPasswordRecovery";
+import DeleteSelfUser from "./DeleteSelfUser";
 import { putUserDetails } from "../../../actions";
-import PutUser from './PutUser'
 import style from "../../../Styles/StylesUser.module.css"
 import swal from 'sweetalert';
 import * as MdIcon from "react-icons/md"
@@ -12,6 +10,10 @@ export default function UserOnly() {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user)
     const token = useSelector((state) => state.token);
+
+    useEffect(() => {
+        if(user){sessionStorage.user = JSON.stringify(user);}
+    },[user])
 
     const name = ()=> {
         swal({
@@ -94,21 +96,21 @@ export default function UserOnly() {
             <h4>Detalles del usuario:</h4>
             <div className={style.dataCard}>
                 <div className={style.name}>
-                    <label>Nombre: {user.name}</label> <button onClick={name}><MdIcon.MdModeEdit/></button>
+                    <label>Nombre: {user.name}</label> <button className={style.btn} onClick={name}><MdIcon.MdModeEdit className={style.icon}/></button>
                 </div>
                 <div className={style.apellido}>
-                    <label>Apellido: {user.surname}</label><button onClick={surname}><MdIcon.MdModeEdit/></button>
+                    <label>Apellido: {user.surname}</label><button className={style.btn} onClick={surname}><MdIcon.MdModeEdit className={style.icon}/></button>
                 </div>
                 <div className={style.gmail}>
-                    <label>Email: {user.email}</label> <button onClick={emailChamge}><MdIcon.MdModeEdit/></button>
+                    <label>Email: {user.email}</label> <button className={style.btn} onClick={emailChamge}><MdIcon.MdModeEdit className={style.icon}/></button>
                 </div>
                 <div className={style.btn1}>
-                    <button  class="form-control me-2" id={style.btn2} onClick={newPassword}>Cambiar contraseña</button>
+                    <button  id={style.btn2} onClick={newPassword}>Cambiar contraseña</button>
                 </div>
             </div>
             <div className={style.exit}>
                 <label>Eliminar Usuario</label>
-                <DeleteUser/>
+                <DeleteSelfUser/>
             </div>
         </div>
      );

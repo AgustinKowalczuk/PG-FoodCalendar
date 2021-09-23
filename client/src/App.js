@@ -26,6 +26,7 @@ import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 import UserOnly from './Components/Usuarios/User/UserOnly';
 import Checkout from './Components/Checkout/Checkout';
+import FilterAdmin from './Components/Inventary/FilterAdmin';
 
 import InventaryNav from './Components/Inventary/InventaryNav'
 
@@ -45,8 +46,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="App">
-      <Nav/>
-      <InventaryNav/>
+    <Nav/>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path = '/search/:name' component={SearchCards}/>
@@ -68,9 +68,12 @@ function App() {
         <Route path = '/reviews/user/:id' render= {() => (!!token && user.category === 'Admin') ? <UserDetails /> : <Redirect to='/' />}/>
         <Route path = '/inventary' render= {() => (!!token)? <Inventary/>: <Redirect to='/' />}/>
         <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
+        <Route path = '/checkout/:userRegister' component={Checkout}/>
         <Route path = '/checkout' component={Checkout}/>
+        <Route path = '/availability' render= {() => (!!token && user.category === 'Admin') ? <FilterAdmin /> : <Redirect to='/' />}/>
+        <Route render={()=><Redirect to='/' />} />
       </Switch>
-      </div>
+    </div>
       <Footer/>
     </BrowserRouter>
   )

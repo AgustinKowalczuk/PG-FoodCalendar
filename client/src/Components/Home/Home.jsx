@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRecipes } from "../../actions";
 import style from '../../Styles/StyleHome.module.css'
 import SiliderImages from './SiliderImages/SiliderImages';
-import { Link } from 'react-router-dom';
-
+import InventaryNav from '../Inventary/InventaryNav'
 export default function Home() {
 
         const dispatch = useDispatch()
@@ -20,7 +19,11 @@ export default function Home() {
         return (
                 <div class={style.order}>
                         <SiliderImages />
-                        <Cards allRecipes={recipesHome} />
+                        <div className={style.width}>
+
+                                <Cards allRecipes={recipesHome} />
+                        </div>
+                        <InventaryNav />
                 </div>
         )
 }

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
 import { FilterRecipeByCategory } from '../../actions/index'
 import Cards from '../Cards/Cards'
-
+import InventaryNav from '../Inventary/InventaryNav'
 export default function CardRelacionadas() {
     const allRecipes = useSelector((state) => state.recipes)
     const token = useSelector(state => state.token);
@@ -13,15 +13,12 @@ export default function CardRelacionadas() {
 
     useEffect(() => {
         if(Object.keys(recipeDetail).length && recipeDetail.category.length > 0 && !!token){
-            console.log('GOL',recipeDetail.category[0]);
             dispatch(FilterRecipeByCategory(recipeDetail.category[0], token)) 
         } 
     }, [dispatch,recipeDetail,token]);
 
-
     return (
         <div className={style.content}>
-            
             <Cards confirmador={true} allRecipes={allRecipes}/>
         </div>
     )

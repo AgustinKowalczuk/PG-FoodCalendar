@@ -5,7 +5,7 @@ const router = express.Router();
 const models = require('../../models/models');
 const { User } = models;
 const { auth, authAdmin } = require('../../controller/auth');
-const { Calendar, Review } = require("../../models/models");
+const { Calendar, Review, Like } = require("../../models/models");
 
 //Admin que elimina un usuario.
 router.delete('/user/admin/:id', auth, authAdmin, async (req, res, next) => {

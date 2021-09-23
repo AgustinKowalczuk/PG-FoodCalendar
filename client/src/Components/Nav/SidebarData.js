@@ -92,7 +92,7 @@ export const SidebarDataAdmin = [
     },
     
     {
-        title:'Gestion de Calendario',
+        title:'Gestion Calendario',
         icon: <AiIcons.AiFillSetting/>,
         path:'#',
         cName:'nav-text',
@@ -132,6 +132,12 @@ export const SidebarDataAdmin = [
             {
                 title:'Todos los usuarios',
                 path: '/user',
+                icon: <IoIcons.IoListCircleOutline/>,
+                cName:'nav-text'
+            },
+            {
+                title:'Recetas deshabilitadas',
+                path: '/availability',
                 icon: <IoIcons.IoListCircleOutline/>,
                 cName:'nav-text'
             },

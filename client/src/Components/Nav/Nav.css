@@ -33,7 +33,7 @@
   .nav-menu.active {
     left: 0;
     transition: 350ms;
-    background-color: 	#70706d;
+    background-color: 	rgb(51, 51, 51);
   }
   .saludito{
     position:absolute;

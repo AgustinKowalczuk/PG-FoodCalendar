@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
 import { useHistory, useParams } from 'react-router'
+import * as FcIcons from 'react-icons/fc'
 
 export default function Register() {
     const params = useParams();
@@ -18,6 +19,14 @@ export default function Register() {
         password: ''
     }
     const googleAuthUrl = useSelector(state => state.googleAuthUrl);
+    const userRegister = useSelector(state => state.userRegister);
+
+    useEffect(() => {
+        if (!!Object.keys(userRegister).length) {
+            sessionStorage.userRegister = JSON.stringify(userRegister);
+            history.push('/checkout');
+        }
+    },[userRegister]);
 
     useEffect(() => {
         if (googleAuthUrl) {
@@ -60,8 +69,7 @@ export default function Register() {
     })
 
     const onSubmit = (value) => {
-        console.log('Submit value', value)
-        dispatch(register(value))
+        dispatch(register(value));
     }
 
     const GoogleChange = () => {
@@ -75,8 +83,8 @@ export default function Register() {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
-                <Form>
-                    <div className={style.content}>
+                <Form className={style.content}>
+                    <div>
 
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
@@ -98,14 +106,15 @@ export default function Register() {
                             <Field type="password" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>  
-                        <button id={style.btn} className="btn btn-primary" type="submit">Registrarse</button>
+                        <div>
+                            <button id={style.btn} type="submit">Registrarse</button>
+                            <p>O</p>
+                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Registrarse con google</button>
+                            <a href={googleAuthUrl} id={'GoogleAuth'}/>
+                        </div>
                     </div>
                 </Form>
             </Formik>
-            <div>
-                <button onClick={GoogleChange}>Regístrate con tu cuenta de Google</button>
-                <a href={googleAuthUrl} id={'GoogleAuth'}/>
-            </div>
         </div>
     )
 }

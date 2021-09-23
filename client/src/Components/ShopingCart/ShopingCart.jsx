@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { cleanNewCalendar, clearInventary, postcalendar } from "../../actions/index";
 import style from "../../Styles/StyleCardShop.module.css";
 import { Link } from "react-router-dom";
-import '@lourenci/react-kanban/dist/styles.css'
+import '@lourenci/react-kanban/dist/styles.css';
 import { useHistory } from "react-router";
-import swal from 'sweetalert';
+import InventaryNav from '../Inventary/InventaryNav';
 
 export default function ShopingCart() {
 
@@ -16,7 +16,7 @@ export default function ShopingCart() {
   const token = useSelector(state => state.token)
   const newCalendar = useSelector(state => state.newCalendar)
   const history = useHistory()
-  
+
   console.log(calendar)
   useEffect(() => {
     if (newCalendar) {
@@ -24,11 +24,11 @@ export default function ShopingCart() {
       dispatch(cleanNewCalendar())
       dispatch(clearInventary())
     }
-  },[dispatch, newCalendar, history])
+  }, [dispatch, newCalendar, history])
 
   const onSubmit = () => {
 
-    dispatch(postcalendar({name:text, calendar: calendar}, token));
+    dispatch(postcalendar({ name: text, calendar: calendar }, token));
   };
   const handeChange = (event) => {
     setText(event.target.value)
@@ -42,9 +42,16 @@ export default function ShopingCart() {
       </div>
       <Recipes />
       <div className={style.buttonsContent}>
-        <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>
+        <Link id={style.btn} className='btn btn-primary'to="/AllRecipe" >Agregar mas Recetas</Link>
+        
+        {
+          !!token ?
+          <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>:
+          <Link to='/acount/login' id={style.btn} className="btn btn-secondary" >Guardar calendario</Link>
+        }
         <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
       </div>
+      <InventaryNav />
     </div>
   );
 }
