@@ -3,7 +3,7 @@ const router = express.Router()
 const { env: { PROD_ACCESS_TOKEN, FRONT_URL } } = process;
 
 // SDK de Mercado Pago
-const mercadopago = require ('mercadopago');
+const mercadopago = require('mercadopago');
 
 // Agrega credenciales
 mercadopago.configure({
@@ -11,7 +11,7 @@ mercadopago.configure({
 });
 
 
-router.get('/checkout', async (req, res,next) => {
+router.get('/checkout', async (req, res, next) => {
   let preference = {
     items: [
       {
@@ -25,22 +25,22 @@ router.get('/checkout', async (req, res,next) => {
       surname: 'MercadoPago'
     },
     back_urls: {
-      success : `${FRONT_URL}/checkout`,
-      failure : `${FRONT_URL}/checkout`,
-      pending : `${FRONT_URL}/checkout`
-  },
-  auto_return: 'approved'
-      
+      success: `${FRONT_URL}/checkout`,
+      failure: `${FRONT_URL}/checkout`,
+      pending: `${FRONT_URL}/checkout`
+    },
+    auto_return: 'approved'
+
   };
   try {
-   const response= await mercadopago.preferences.create(preference);
-   
-     res.send(response.body.init_point);
+    const response = await mercadopago.preferences.create(preference);
+
+    res.send(response.body.init_point);
   } catch (error) {
     console.log(error);
     next(error)
-    
-  }   
+
+  }
 });
 
 router.get('/checkout/success', (req, res, next) => {
@@ -49,4 +49,4 @@ router.get('/checkout/success', (req, res, next) => {
   res.redirect(FRONT_URL);
 });
 
-module.exports= router;
+module.exports = router;
