@@ -536,7 +536,6 @@ export function setUserForAdmin(token){
 export function deleteUserForAdmin(id, token){
   return async function (dispatch){
     try{
-      console.log('hola')
       const deleteUsers = await axios.delete(ADMIN_USERS_DELETE_URL +'/' + id, config(token));
       swal({
         title: 'Usuario eliminado',
