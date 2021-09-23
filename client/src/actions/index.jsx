@@ -392,7 +392,7 @@ export function postcalendar(obj, token) {
       console.log(error);
       return swal({
         title: "Calendario no Guardado",
-        text: "Faltan parametros para poder guardar el calendario",
+        text: "Aun no tienes las 14 recetas agregadas al calendario",
         icon: "error",
         button: "Aceptar",
       });

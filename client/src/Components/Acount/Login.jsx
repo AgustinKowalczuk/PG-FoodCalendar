@@ -101,11 +101,12 @@ export default function Login() {
                             <Field  id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
                             <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
+
                         <div className={style.buttons}>
+                            <button id={style.btn} type="submit">Ingresar</button>
+                            <p> O </p>
                             <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Iniciar con google</button>
                                 <a href={googleAuthUrl} id={'GoogleAuth'}/>
-                                <span> O </span>
-                            <button id={style.btn} type="submit">Ingresar</button>
                         </div>
                     </div>
                 </Form>
