@@ -35,12 +35,7 @@ export const SidebarDataNotUser = [
 ]
 
 export const SidebarDataUser= [
-    {
-        title:'Mi Perfil',
-        path: '/user/noAdmin',
-        icon: <FaIcons.FaUser/>,
-        cName:'nav-text'
-    },
+    
     {
         title:'Home',
         path: '/',
@@ -72,12 +67,7 @@ export const SidebarDataUser= [
 
 export const SidebarDataAdmin = [
     
-    {
-        title:'Mi Perfil',
-        path: '/user/noAdmin',
-        icon: <FaIcons.FaUser/>,
-        cName:'nav-text'
-    },
+    
     {
         title:'Home',
         path: '/',
