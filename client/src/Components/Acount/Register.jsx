@@ -69,8 +69,7 @@ export default function Register() {
     })
 
     const onSubmit = (value) => {
-        dispatch(register(value))
-        history.push('/');
+        dispatch(register(value));
     }
 
     const GoogleChange = () => {

@@ -42,6 +42,7 @@ export default function ShopingCart() {
       </div>
       <Recipes />
       <div className={style.buttonsContent}>
+        <Link id={style.btn} className='btn btn-primary'to="/AllRecipe" >Agregar mas Recetas</Link>
         <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>
         <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
       </div>
