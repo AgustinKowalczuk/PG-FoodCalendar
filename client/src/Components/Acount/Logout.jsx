@@ -42,6 +42,7 @@ export default function Logout(){
         dispatch(getRecipes(null))
         dispatch(clearInventary())
         dispatch(resetPage())
+        localStorage.clear();
     }
 
     return (

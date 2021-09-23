@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../../actions";
+import swal from 'sweetalert';
 
 export default function UpdateUser ({id, category}) {
 
@@ -8,15 +9,29 @@ export default function UpdateUser ({id, category}) {
     const token = useSelector((state) => state.token);
 
     function handleClick(){
-        const ok = window.confirm('Deseas cambiar de categoría a este usuario?')
-        if(ok){
-            if(category === 'User'){
-                category= 'Admin';
-            } else if(category === 'Admin'){
-                category= 'User';
+        
+        swal({
+            title: 'Seguro de cambiar al usuario',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true
+        }).then((value) =>{
+
+            if(value){
+                if(category === 'User'){
+                    category= 'Admin';
+                } else if(category === 'Admin'){
+                    category= 'User';
+                }
+                dispatch(updateUser(id,{category}, token))
             }
-        dispatch(updateUser(id,{category}, token))
-        }
+        }).catch( () => {
+            swal({
+                title: 'Se cambio el usuario',
+                icon: 'error',
+                button: 'Aceptar'
+            })
+        })
     }
     return ( 
         <div>
