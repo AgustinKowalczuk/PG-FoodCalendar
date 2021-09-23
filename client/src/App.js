@@ -26,6 +26,7 @@ import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 import UserOnly from './Components/Usuarios/User/UserOnly';
 import Checkout from './Components/Checkout/Checkout';
+import FilterAdmin from './Components/Inventary/FilterAdmin';
 
 import InventaryNav from './Components/Inventary/InventaryNav'
 
@@ -69,6 +70,7 @@ function App() {
         <Route exact path = '/user/noAdmin' render= {() => (!!token)? <UserOnly/>: <Redirect to='/' />}/>
         <Route path = '/checkout/:userRegister' component={Checkout}/>
         <Route path = '/checkout' component={Checkout}/>
+        <Route path = '/availability' render= {() => (!!token && user.category === 'Admin') ? <FilterAdmin /> : <Redirect to='/' />}/>
       </Switch>
     </div>
       <Footer/>

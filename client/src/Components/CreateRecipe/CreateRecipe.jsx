@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import style from "../../Styles/StyleFrom.module.css";
 import { createRecipe, getIngredients,getCategory, cleanNewRecipe, getDetail } from "../../actions/index";
 import { useFormik } from "formik";
@@ -8,7 +8,8 @@ import SelectCategory from "./SelectCategory/SelectCategory";
 import CreateIngredient from "../CreateIngredient/CreateIngredient"
 import CreateCategory from "../CreateCategory/CreateCategory";
 import { orderAZ } from "../../orderFunction/OrderFuncions";
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import UploadImage from "./UploadImage/UploadImage";
 import swal from 'sweetalert';
 
 export default function CreateRecipe() {
@@ -22,7 +23,9 @@ export default function CreateRecipe() {
   const history = useHistory();
   const newRecipe = useSelector((state) => state.newRecipe)
   const token = useSelector(state => state.token);
+  const user = useSelector(state => state.user);
   const newRecipeId = useSelector(state => state.newRecipeId);
+  const uploadImg = useSelector((state) => state.uploadImg)
   
   useEffect(() => {
     dispatch(getIngredients());
@@ -68,7 +71,7 @@ export default function CreateRecipe() {
     img: "",
     category:[],
     premium: false,
-    availability: true
+    availability: false
   };
 
   const validate = (values) => {
@@ -92,7 +95,7 @@ export default function CreateRecipe() {
 
     return error;
   };
-
+  //console.log(uploadImg, 'estoy afuera')
   const onSubmit = (values) => {
     if(formik.values.premium==='false'){
       formik.values.premium=false
@@ -106,6 +109,11 @@ export default function CreateRecipe() {
     if(formik.values.availability==='true'){
       formik.values.availability=true
     }
+    if(formik.values.img === ''){
+      formik.values.img = uploadImg;
+    }
+    console.log(uploadImg, 'estoy adentro')
+    console.log("Values submit", formik.values);
     dispatch(createRecipe(formik.values,token));
     swal({
       title: "Receta Creada",
@@ -118,15 +126,20 @@ export default function CreateRecipe() {
   const onChangeIngredients = (values) =>{
     formik.values.ingredients = values
   }
-   const onChangeCategory = (values)=>{
-     formik.values.category = values
-   }
+  const onChangeCategory = (values)=>{
+    formik.values.category = values
+    console.log(formik.values);
+  }
+  const onChangeImage = (values)=>{
+    formik.values.img = values
+  }
   const formik = useFormik({
     initialValues,
     onSubmit,
     validate,
     onChangeIngredients,
-    onChangeCategory
+    onChangeCategory,
+    onChangeImage
   });
 
   
@@ -214,13 +227,7 @@ export default function CreateRecipe() {
 
         <div className="mb-3">
           <label className="form-label">Imagen</label>
-          <input
-            onChange={formik.handleChange}
-            value={formik.values.img}
-            onBlur={formik.handleBlur}
-            name="img"
-            type="file"
-          />
+          <UploadImage onChange={onChangeImage}/>
           {formik.errors.img && formik.touched.img === true ? (
             <div className="cosoForm">
               <span>{formik.errors.img}</span>
@@ -261,17 +268,17 @@ export default function CreateRecipe() {
               <option value={true}>Premium</option>
               </select>
         </div>
-
-        <div>
-            <label className="form-label">Está Disponible?</label>
-            <select 
-            onChange={formik.handleChange}
-            name="availability">
-              <option value={true}>Available</option>
-              <option value={false}>Unavailable</option>
-              </select>
-        </div>
-
+              {!!token && (user.category === 'Admin') &&
+          <div>
+              <label className="form-label">Está Disponible?</label>
+              <select 
+              onChange={formik.handleChange}
+              name="availability">
+                <option value={false}>Unavailable</option>
+                <option value={true}>Available</option>
+                </select>
+          </div>
+            }
         <div className="col-auto">
           <button type="submit" className="btn btn-primary mb-3" id={style.btnCreate}>
             Crear

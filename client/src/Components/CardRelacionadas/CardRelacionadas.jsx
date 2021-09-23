@@ -13,11 +13,9 @@ export default function CardRelacionadas() {
 
     useEffect(() => {
         if(Object.keys(recipeDetail).length && recipeDetail.category.length > 0 && !!token){
-            console.log('GOL',recipeDetail.category[0]);
             dispatch(FilterRecipeByCategory(recipeDetail.category[0], token)) 
         } 
     }, [dispatch,recipeDetail,token]);
-
 
     return (
         <div className={style.content}>

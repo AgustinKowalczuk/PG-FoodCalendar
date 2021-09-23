@@ -135,6 +135,12 @@ export const SidebarDataAdmin = [
                 icon: <IoIcons.IoListCircleOutline/>,
                 cName:'nav-text'
             },
+            {
+                title:'Recetas deshabilitadas',
+                path: '/availability',
+                icon: <IoIcons.IoListCircleOutline/>,
+                cName:'nav-text'
+            },
           ]
     },
     
