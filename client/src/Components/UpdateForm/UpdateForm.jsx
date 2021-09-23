@@ -277,7 +277,7 @@ export default function UpdateForm() {
             class="form-control"
             name="premium">
               <option value={false}>Free</option>
-              <option selected={update.availability !== 'Premium' ? true : false} value={true}>Premium</option>
+              <option selected={update.premium === 'Premium' ? true : false} value={true}>Premium</option>
               </select>
         </div>
 
