@@ -62,8 +62,8 @@
     color: rgb(234, 234, 234);
 }
 #button:hover{
-    background-color: #F2F0D5;
-    color:#668C4A;
+    background-color: rgb(234, 234, 234);
+    color:#000000;
     box-shadow: rgb(234 234 234 / 40%) 0px 20px 35px -10px;
 }
 #midNav{
@@ -107,4 +107,7 @@
 }
 #SearchBar{
     width: calc(100% + 70vh);
+}
+.formSearch{
+    display: flex;
 }
