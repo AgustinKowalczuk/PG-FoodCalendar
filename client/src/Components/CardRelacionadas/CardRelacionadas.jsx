@@ -2,9 +2,9 @@ import React from 'react';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import style from '../../Styles/StyleCards.module.css';
-import { FilterRecipeByCategory } from '../../actions/index'
-import Cards from '../Cards/Cards'
-import InventaryNav from '../Inventary/InventaryNav'
+import { FilterRecipeByCategory } from '../../actions/index';
+import Cards from '../Cards/Cards';
+
 export default function CardRelacionadas() {
     const allRecipes = useSelector((state) => state.recipes)
     const token = useSelector(state => state.token);

@@ -8,7 +8,7 @@ export default function OrderingCards() {
     const dispatch = useDispatch();
 
     
-    const [order, setOrder] = useState("")
+    const [order, setOrder] = useState("");
 
     const handleOrderChange = (e) => {
         setOrder(e.target.value)
@@ -16,10 +16,10 @@ export default function OrderingCards() {
 
 
     useEffect(() => {
-        if (order === "A-Z") dispatch(orderAZ())
-        else if (order === "Z-A") dispatch(orderZA())
-        else if (order === "Menor") dispatch(orderByDifficulty())
-        else if (order === "Mayor") dispatch(orderByDifficultyInv())
+        if (order === "A-Z") dispatch(orderAZ());
+        else if (order === "Z-A") dispatch(orderZA());
+        else if (order === "Menor") dispatch(orderByDifficulty());
+        else if (order === "Mayor") dispatch(orderByDifficultyInv());
     }, [dispatch, order])
 
 
@@ -31,16 +31,14 @@ export default function OrderingCards() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu  >
-            <h4>Por Orden Alfabetico:</h4>       
+            <h4>Por orden alfabético:</h4>       
                <li><Button variant="light" value= "A-Z"  onClick={(e) => handleOrderChange(e)}>"A-Z"</Button></li>     
                 <li> <Button variant="light" value= "Z-A" onClick={(e) => handleOrderChange(e)}>"Z-A"</Button></li>
                 <Dropdown.Divider />
-                <h4>Por Dificultad:</h4>
+                <h4>Por dificultad:</h4>
                 <li> <Button variant="light" value= "Menor" onClick={(e) => handleOrderChange(e)}> "Menor"</Button></li>
                 <li><Button variant="light" value= "Mayor" onClick={(e) => handleOrderChange(e)}>"Mayor"</Button></li>
             </Dropdown.Menu>
         </Dropdown>
-
-
     )
 }

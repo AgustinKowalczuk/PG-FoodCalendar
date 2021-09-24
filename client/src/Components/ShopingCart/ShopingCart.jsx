@@ -17,7 +17,6 @@ export default function ShopingCart() {
   const newCalendar = useSelector(state => state.newCalendar)
   const history = useHistory()
 
-  console.log(calendar)
   useEffect(() => {
     if (newCalendar) {
       history.push('calendar/user')
@@ -39,12 +38,12 @@ export default function ShopingCart() {
 
       <div className={style.contenAll}>
         <div className="mb-3" id={style.margin}>
-          <label className="form-label">Ingrese un nombre al calendario</label>
+          <label className="form-label">Ingresa el nombre de tu calendario</label>
           <input id={style.nameCalendar} type="text" onChange={(e) => handeChange(e)} />
         </div>
         <Recipes />
         <div className={style.buttonsContent}>
-          <Link id={style.btn} className='btn btn-primary'to="/AllRecipe" >Agregar mas Recetas</Link>
+          <Link id={style.btn} className='btn btn-primary'to="/AllRecipe" >Agregar más recetas</Link>
           
           {
             !!token ?

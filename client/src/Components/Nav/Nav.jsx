@@ -33,9 +33,7 @@ export default function Nav() {
     else return
   }
 
-  const showSidebar = () => setSidebar(!sidebar)
-
-  console.log(profile())
+  const showSidebar = () => setSidebar(!sidebar);
 
 
   return (
@@ -60,7 +58,7 @@ export default function Nav() {
                   <div className="avatar-container">
                     <Link to='/user/noAdmin'>
                       <Avatar size="xlarge" text={profile()} color="#ff4ecd" bordered />
-                      <span className="avatar-span">Mi Perfil</span>
+                      <span className="avatar-span">Mi perfil</span>
                     </Link>
                   </div> :
                   null
@@ -107,7 +105,7 @@ export default function Nav() {
           {
             (!!token) ?
               <div className='saludito'>
-                <span>Hola {user.name} !</span>
+                <span>Hola {user.name}!</span>
               </div> :
               null
           }

@@ -27,7 +27,7 @@ export default function UserOnly() {
         })
         .catch(error => {
             swal({
-                title: 'No se a cambiado el nombre',
+                title: 'No se cambió el nombre',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -46,7 +46,7 @@ export default function UserOnly() {
         })
         .catch(error=>{
             swal({
-                title: 'No se a cambiado el apellido',
+                title: 'No se cambió el apellido',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -64,7 +64,7 @@ export default function UserOnly() {
         })
         .catch(error => {
             swal({
-                title: 'No se a cambiado el email',
+                title: 'No se cambió el email',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -85,7 +85,7 @@ export default function UserOnly() {
         })
         .catch(error => {
             swal({
-                title: 'No se a cambiado la contraseña',
+                title: 'No se cambió la contraseña',
                 icon: 'error',
                 button: 'Aceptar'
             })

@@ -9,7 +9,7 @@ export default function DeleteSelfUser () {
 
     function handleClick(){
         swal({
-            title: 'Seguro que quieres borrar tu usuario?',
+            title: '¿Seguro que quieres eliminar tu usuario?',
             icon: 'warning',
             buttons: true,
             dangerMode: true
@@ -27,7 +27,7 @@ export default function DeleteSelfUser () {
         })
         .catch((error) => {
             swal({
-                title: 'No se borro al usuario',
+                title: 'No se eliminó al usuario',
                 icon: 'error',
                 button: 'Aceptar',
             })

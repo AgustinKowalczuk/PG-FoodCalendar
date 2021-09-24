@@ -34,3 +34,4 @@ export const GET_GOOGLE_AUTH_URL = `${URL}/auth/google/url`;
 export const PUT_USER_DETAILS_URL = `${URL}/user/noAdmin`;
 export const USERS_DELETE_URL = `${URL}/user/delete`;
 export const GET_CHECKOUT_URL = `${URL}/checkout`;
+export const DELETE_REVIEWS_URL_AS_ADMIN = `${URL}/review/admin`

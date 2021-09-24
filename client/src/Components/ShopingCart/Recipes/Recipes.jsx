@@ -38,7 +38,7 @@ export default function Recipes() {
                 },
                 {
                     id: 3,
-                    title: 'Miercoles',
+                    title: 'Miércoles',
                     cards: []
                 },
                 {
@@ -53,7 +53,7 @@ export default function Recipes() {
                 },
                 {
                     id: 6,
-                    title: 'Sabado',
+                    title: 'Sábado',
                     cards: []
                 },
                 {
@@ -94,7 +94,7 @@ export default function Recipes() {
         } else {
             return swal({
                 title: 'Receta no agregada',
-                text: 'Solo se puede tener 2 recetas por dai',
+                text: 'Sólo se pueden tener 2 recetas por día',
                 icon: 'error',
             })
         }

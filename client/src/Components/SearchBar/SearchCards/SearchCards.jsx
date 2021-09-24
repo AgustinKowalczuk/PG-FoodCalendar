@@ -12,12 +12,12 @@ export default function SearchCards() {
 
   return (
     <div>
-      <h1> Resultados: </h1>
+      <h1>Resultados:</h1>
       <div>
         {
           copy.length === allRecipes.length  ? 
             <div>
-              <h1>No encontre nada</h1>
+              <h1>No se encontraron resultados</h1>
               <Link to='/'/>
             </div> :
             <Cards page={4} allRecipes={allRecipes} />

@@ -30,7 +30,7 @@ export default function FilteredByIngredient() {
                 <Dropdown.Menu className={style.drop} align="end" drop={"end"}  >
                     {ingre?.map((e) => {
                         return (
-                            <li className={style.buttons}>
+                            <li className={style.buttons} key={e.id}>
                                 <Button variant="light"
                                     key="end"
                                     id={e.id}

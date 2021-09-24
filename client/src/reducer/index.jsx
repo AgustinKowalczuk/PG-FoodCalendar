@@ -50,7 +50,8 @@ import {
   SET_USER_REGISTER,
   REGISTERED,
   CLEAN_REGISTERED,
-  UPLOAD_IMG
+  UPLOAD_IMG,
+  DELETE_REVIEWS_AS_ADMIN
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -396,8 +397,13 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           uploadImg: action.payload
-        }
+      }
 
+      case DELETE_REVIEWS_AS_ADMIN:
+        return{
+          ...state,
+          userCommentsDetails: state.userCommentsDetails.filter((e) => e.id !== action.payload.id)
+        }
     default:
       return state;
   }
