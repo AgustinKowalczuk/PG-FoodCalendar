@@ -40,7 +40,7 @@ export default function UserDetails () {
     return (
             <div className={styles.content} key={id}>
                 {commentDetails.length < 1 ? (
-                    <h3>Este usuario no tiene comentarios.</h3>
+                    <h3 className={styles.text}>Este usuario no tiene comentarios.</h3>
                 ) : ( 
                     <div className={styles.content}>
                     {commentDetails?.map((e)=> {

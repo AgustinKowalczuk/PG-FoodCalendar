@@ -119,7 +119,7 @@ export default function DetailRecipe() {
               {( recipeDetail.disabled === false && !!token && user.category === "Admin") ? 
               <div>
                 <Link className={style.recetaModify} to={`/update/${id}`}>Editar receta</Link>
-                <button  className={style.recetaModify} onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
+                <button  className={style.recetaDelete} onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
               </div>            
               : null
               } 
@@ -153,15 +153,18 @@ export default function DetailRecipe() {
             <Reviews id={recipeDetail.id} /> : null}
           {!!token ?
             recipeDetail.availability === 'Available' &&
-            <button className={style.btn} onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus id={style.trash} className={style.icon} /></button> :
+            <div className={style.form}>
+
+              <button className={style.btn} onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus id={style.trash} className={style.icon} /> Agregar</button> 
+            </div>:
             null
           }
           <div className={style.orderBtn}>
           {
             !!token ?
             recipeDetail.like === true? 
-            <button className={style.btn} onClick={handleClick2}><FcIcons.FcLike  className={style.icon}/></button> :
-            <button className={style.btn} onClick={handleClick2}><FcIcons.FcLikePlaceholder  className={style.icon}/></button>:
+            <button className={style.like} onClick={handleClick2}><FcIcons.FcLike  className={style.likeIcoin}/></button> :
+            <button className={style.like} onClick={handleClick2}><FcIcons.FcLikePlaceholder  className={style.likeIcoin}/></button>:
             null
           }
           {

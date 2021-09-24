@@ -10,12 +10,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-left: 5px;
-    margin-right: 5px;
 }
 
 .imgs {
-    width: 200vh;
+    width: 230vh;
     height: 60vh;
     max-height: 1000px;
     size: cover;

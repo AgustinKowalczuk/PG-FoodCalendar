@@ -1,0 +1,22 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.text{
+    margin-top: 1%;;
+    color: white;
+}
+
+.contentData{
+    width: 50vh;
+    background-color:rgb(234, 234, 234);
+    border-radius: .25rem;
+    border: 1px solid rgb(51, 51, 51);;
+    box-shadow: rgb(234 234 234 / 40%) 0px 20px 35px -10px;
+    color: black;
+}
