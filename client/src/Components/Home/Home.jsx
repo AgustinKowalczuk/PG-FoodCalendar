@@ -19,7 +19,10 @@ export default function Home() {
         return (
                 <div class={style.order}>
                         <SiliderImages />
-                        <Cards allRecipes={recipesHome} />
+                        <div className={style.width}>
+
+                                <Cards page={4} allRecipes={recipesHome} />
+                        </div>
                         <InventaryNav />
                 </div>
         )

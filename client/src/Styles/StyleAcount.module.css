@@ -1,31 +1,40 @@
 .content{
-    width: 100%;
+    width: 90%;
+    max-width: 800px;
     padding: 2%;
     margin-top:2%;
     margin-bottom: 2%;
-    border: 1px solid rgba(128, 128, 128, 0.534);
+    box-shadow: rgb(234 234 234 / 40%) 0px 20px 35px -10px;
+    border: 1px solid rgb(51, 51, 51);
+    background: rgb(234, 234, 234);
+    border-radius: .25rem;
 }
 .container{
-    max-width: 80%;
+    margin-top: 2%;
+    width: 100%;
     margin: auto;
-    height: 52vh;
     display: flex;
     flex-direction: column;
-    align-content: center;
-    align-items: stretch;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-evenly;
     flex-wrap: nowrap;
+    align-content: space-around;
 }
 
 #btn{
-    color: #668C4A;
-    background-color: #F2F0D5;
-    border-color: #668C4A;
+    background-color: rgb(0, 156, 34);
+    margin: 1%;
+    color: rgb(255, 255, 255);
+    border-radius: .25rem;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: rgb(0 156 34 / 40%) 0px 20px 35px -10px;
 }
 #btn:hover{
-    background-color: #B1B1AC;
+    background-color: rgb(110, 194, 147);
 }
-
+.buttons{
+    width: 100%;
+}
 #icon{
     text-align: center;
     font-size: 2.5rem;
@@ -35,4 +44,7 @@
 .icon{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     border-radius: 100%;
+}
+.inputs{
+    margin: 1%;
 }

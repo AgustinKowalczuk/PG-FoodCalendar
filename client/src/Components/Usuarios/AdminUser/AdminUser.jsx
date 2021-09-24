@@ -24,7 +24,7 @@ export default function AdminUser () {
             <Grid.Container gap={2} justify="center">
                 {userDetails?.map((e) => (
                     <Grid xs={12} md={6}>
-                        <div className={style.contentData}>
+                        <div className={style.contentData} key={e.id}>
                             <div className={style.name}>
                                 <h3>{e.name}</h3>  
                             </div>
@@ -33,6 +33,12 @@ export default function AdminUser () {
                                 <h5>Ver comentarios de este usuario</h5>
                                 </Link>
                             </div>
+                            
+                            <div className={style.payments} >
+                                {!!e.payments?.length ?
+                                <h5 >Suscripción al dia</h5> : <h5 style={{ color: 'red' }}>Suscripción Vencida</h5>}
+                            </div>
+                            
                             <div className={style.category}>
                                 <h5>Categoría: {e.category}</h5>
                             </div>

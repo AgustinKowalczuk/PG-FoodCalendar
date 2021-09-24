@@ -23,9 +23,8 @@ export default function UserDetails () {
                             const anio= fecha.getFullYear()
                             return                 (
                                 <ul className={styles.contentData}>
-                                    <li className={styles.name}>{e.owner.name}</li>
-                                    <li className={styles.comment}>"{e.comment}"</li>
-                                    <li className={styles.recipe}>{e.recipe.name}</li>
+                                    <li className={styles.comment}><p className={styles.text}>{e.comment}</p></li>
+                                    <li className={styles.name}>{e.recipe.name}</li>
                                     <label
                                     className={styles.day}
                                     type='date'
@@ -33,7 +32,7 @@ export default function UserDetails () {
                                     </label>
                                 </ul>
                             )
-                    }) : <h5>Este usuario no tiene comentarios</h5>}
+                    }) : <h1>Este usuario no tiene comentarios</h1>}
             </div>
     );
 }

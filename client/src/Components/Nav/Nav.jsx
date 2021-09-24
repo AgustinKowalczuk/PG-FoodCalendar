@@ -13,6 +13,7 @@ import { filterData } from "./SidebarData";
 import ButtonLogin from "../Acount/ButtonLogin";
 import ButtonRegister from "../Acount/ButtonRegister";
 import SubNav from './SubNav';
+import { Avatar } from '@nextui-org/react';
 
 export default function Nav() {
   const token = useSelector(state => state.token);
@@ -24,31 +25,55 @@ export default function Nav() {
 
   const [sidebar, setSidebar] = useState(false)
 
+  function profile(){
+    if(!!token){
+      let nombre = user.name[0]
+      let apellido = user.surname[0]
+      let avatar = nombre + apellido
+      return avatar
+    }
+    else return
+  }
+  
 
 
   const showSidebar = () => setSidebar(!sidebar)
+
+console.log(profile())
 
 
   return (
     <div id={style.nav}>
       <IconContext.Provider value={{ color: '#F2F0D5' }}>
-        <div>
+        <div className={style.logos}>
+        
+          <Link className="navbar-brand" id={style.imag} to='/'>
+            <img className={style.img} src={logo} alt='logo' />
+          </Link>
+       
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
-        <div className='navbar'>
-          <Link className="navbar-brand" to='/'>
-            <img className={style.img} src={logo} alt='logo' />
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' >
             <li className='navbar-toggle'>
+              {
+                (!!token) ?
+                <div className="avatar-container"> 
+                  <Link to ='/user/noAdmin'>
+                   <Avatar size="xlarge" text={profile()}  color="#ff4ecd" bordered /> 
+                   <span className="avatar-span">Mi Perfil</span> 
+                  </Link>
+                </div> :
+                null
+              }
               <Link to='#' className='menu-bars'>
                 <AiIcons.AiOutlineClose onClick={showSidebar} />
               </Link>
+                
             </li>
+            <div className='map-container'>
             {
               data.map((item, index) => {
                 return (
@@ -58,6 +83,8 @@ export default function Nav() {
                 )
               })
             }
+            </div>
+            <div className='button-account'>
             {
               (!token) ?
                 <div>
@@ -73,11 +100,21 @@ export default function Nav() {
                 </div> :
                 null
             }
+              </div>
           </ul>
         </nav>
       </IconContext.Provider>
       <div className={style.cName}>
         <SearchBar />
+        <div>
+          {
+            (!!token) ?
+            <div className='saludito'>
+              <span>Hola {user.name} !</span>
+            </div> :
+            null
+          }
+        </div>
       </div>
     </div>
   );

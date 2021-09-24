@@ -17,7 +17,7 @@ export function VerComentarios({id}){
         const dispatch = useDispatch()
         
       useEffect(() => {
-              console.log(id,'id')
+        
              dispatch(getComentarios(id));
       }, [dispatch,id,toggleReviews])
 

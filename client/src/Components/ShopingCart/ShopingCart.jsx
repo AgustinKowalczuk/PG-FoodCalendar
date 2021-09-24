@@ -35,17 +35,26 @@ export default function ShopingCart() {
   };
 
   return (
-    <div className={style.contenAll}>
-      <div className="mb-3" id={style.btn}>
-        <label className="form-label">Ingrese un nombre al calendario</label>
-        <input className='form-control' id={style.nameCalendar} type="text" onChange={(e) => handeChange(e)} />
+    <div className={style.con}>
+
+      <div className={style.contenAll}>
+        <div className="mb-3" id={style.margin}>
+          <label className="form-label">Ingrese un nombre al calendario</label>
+          <input id={style.nameCalendar} type="text" onChange={(e) => handeChange(e)} />
+        </div>
+        <Recipes />
+        <div className={style.buttonsContent}>
+          <Link id={style.btn} className='btn btn-primary'to="/AllRecipe" >Agregar mas Recetas</Link>
+          
+          {
+            !!token ?
+            <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>:
+            <Link to='/acount/login' id={style.btn} className="btn btn-secondary" >Guardar calendario</Link>
+          }
+          <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
+        </div>
+        <InventaryNav />
       </div>
-      <Recipes />
-      <div className={style.buttonsContent}>
-        <button id={style.btn} className='btn btn-primary' onClick={onSubmit}>Guardar calendario</button>
-        <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
-      </div>
-      <InventaryNav />
     </div>
   );
 }

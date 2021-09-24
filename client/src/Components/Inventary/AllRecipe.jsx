@@ -22,7 +22,7 @@ export default function AllRecipe() {
                         <h6>Añadela al calendario y organiza tu semana</h6>
                         
                         <MidNav />
-                        <Cards allRecipes={allRecipes}/>       
+                        <Cards page={10} allRecipes={allRecipes}/>       
                         <InventaryNav />
                 </div>
         )

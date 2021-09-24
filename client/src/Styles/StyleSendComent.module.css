@@ -4,21 +4,37 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-end;
+}
+.modif{
+    font-size: 1.2rem;
 }
 
 .label{
-    margin: .5%;
+    margin-top: none;
+    margin-bottom: 1%;
+    font-size:.8rem;
 }
 .form{
     width: 35%;
 }
 .input{
+    width: 100%;
+    padding: 1%;
+}
+.inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
     margin: 1%;
 }
 
 .icon{
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     padding: .5vh;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     border-radius: 100%;

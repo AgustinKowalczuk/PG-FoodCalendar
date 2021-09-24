@@ -10,16 +10,11 @@ import * as FaIcons from "react-icons/fa"
 
 export default function Cards(props) {
 
-  let recipesPerPage
+  let recipesPerPage = props.page
   const dispatch = useDispatch();
   const pages = useSelector(state => state.page)
   const token = useSelector(state => state.token)
 
-  if (props.confirmador) {
-    recipesPerPage = 3;
-  } else {
-    recipesPerPage = 6;
-  }
   const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
   const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
@@ -67,13 +62,10 @@ export default function Cards(props) {
               <Dificultad difficulty={e.difficulty} />
             </Link>
             <div className={style.resize}>
-              {e.availability === 'Available' && !!token &&
+              {e.availability === 'Available' && 
                 <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary" >Agregala a tu Calendario!</button>
               }
-              {
-                !token && e.availability === 'Available' &&
-                <Link to='/acount/register' id={style.btn} className="btn btn-secondary" >Agregala a tu Calendario!</Link>
-              }
+            
             </div>
 
           </div>

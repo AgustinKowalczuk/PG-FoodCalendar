@@ -5,6 +5,7 @@ import * as FaIcons from 'react-icons/fa';
 import { cleanRegistered, getCheckout, register, setUserRegister } from '../../actions';
 import { useHistory, useParams } from 'react-router';
 import { normalizeNullOrUndefined } from '../../actions/normalizeNullOrUndefined';
+import { Link } from 'react-router-dom';
 
 export default function Checkout() {
         const mercadoPagoUrl = useSelector(state => state.mercadoPagoUrl);
@@ -45,6 +46,10 @@ export default function Checkout() {
                         history.push('/');
                 }
               },[registered]);
+        
+        function cleanUserRegister(){
+                dispatch(setUserRegister({}));
+        }
 
         function handleSubmit(e) {
                 e.preventDefault();
@@ -61,6 +66,8 @@ export default function Checkout() {
         return (
                 <div>
                         <h3>SUSCRIPCIÓN</h3>
+                        <h5>{`Hola, ${userRegister.name} para continuar el registro debes suscribirse`}</h5>
+                        <h5>Elige el plan que se acomode a tu estilo</h5>
                         <div className={Style.cards}>
                                 <div className={Style.card}>
                                         <h4>Plan Free</h4>
@@ -98,6 +105,7 @@ export default function Checkout() {
                                         </div>
                                 </div>
                         </div>
+                        <Link className={Style.exit}  to='/'onClick={cleanUserRegister}>Salir sin Registrarse</Link>
                 </div>
 
 

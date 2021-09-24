@@ -19,7 +19,7 @@ export default function CardRelacionadas() {
 
     return (
         <div className={style.content}>
-            <Cards confirmador={true} allRecipes={allRecipes}/>
+            <Cards page={3} allRecipes={allRecipes}/>
         </div>
     )
 }
