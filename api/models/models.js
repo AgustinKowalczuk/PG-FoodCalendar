@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ingredient = require('./schemas/ingredient');
+const ingredient = require ('./schemas/ingredient');
 const recipe = require('./schemas/receta');
 const unit = require('./schemas/unit.js');
 const category = require('./schemas/category.js');
