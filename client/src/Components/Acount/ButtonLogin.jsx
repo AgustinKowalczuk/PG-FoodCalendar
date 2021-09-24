@@ -9,7 +9,7 @@ export default function ButtonLogin() {
         <div className="loginDiv">
             <Link to="/acount/login" className="loginLink" >
             
-            <Button  animated="true" icon={<AiIcons.AiOutlineLogin/>} color="success"><span className={style.buttonLog2} >Login</span> </Button>
+            <Button  animated="true" icon={<AiIcons.AiOutlineLogin/>} color="success"><span className={style.buttonLog2}>Login</span> </Button>
             </Link>
         </div>
     )

@@ -11,7 +11,7 @@ export default function UpdateUser ({id, category}) {
     function handleClick(){
         
         swal({
-            title: 'Seguro de cambiar al usuario',
+            title: '¿Seguro de cambiar al usuario?',
             icon: 'warning',
             buttons: true,
             dangerMode: true
@@ -27,7 +27,7 @@ export default function UpdateUser ({id, category}) {
             }
         }).catch( () => {
             swal({
-                title: 'Se cambio el usuario',
+                title: 'Se cambió el usuario',
                 icon: 'error',
                 button: 'Aceptar'
             })

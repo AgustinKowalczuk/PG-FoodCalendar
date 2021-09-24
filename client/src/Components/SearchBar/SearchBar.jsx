@@ -21,7 +21,7 @@ export default function SearchBar() {
   const handleSearch = (e) => {
     if (input === "") return swal({
       title: "Campo incompleto",
-      text: "EL campo esta vacio",
+      text: "El campo está vacío",
       icon: "error",
       button: "Aceptar",
     })

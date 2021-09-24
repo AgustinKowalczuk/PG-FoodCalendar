@@ -18,8 +18,8 @@ export default function AllRecipe() {
 
         return (
                 <div>
-                        <h3> Encuentra Aqui tu receta favorita</h3>
-                        <h6>Añadela al calendario y organiza tu semana</h6>
+                        <h3> Encuentra aquí tu receta favorita</h3>
+                        <h6>Añádela al calendario y organiza tu semana</h6>
                         
                         <MidNav />
                         <Cards page={10} allRecipes={allRecipes}/>       
