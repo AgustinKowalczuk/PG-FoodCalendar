@@ -47,13 +47,14 @@ console.log(profile())
       <IconContext.Provider value={{ color: '#F2F0D5' }}>
         <div className={style.logos}>
         
+          <Link to='#' className='menu-bars'>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
+          
           <Link className="navbar-brand" id={style.imag} to='/'>
             <img className={style.img} src={logo} alt='logo' />
           </Link>
        
-          <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' >
