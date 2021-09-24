@@ -9,7 +9,7 @@ export default function ButtonLogin() {
         <div className="registerDiv">
             <Link to="/acount/register" className="registerLink" >
             
-            <Button  icon={<BsIcons.BsFillPeopleFill/> }><span className={style.buttonLog2}> Registrarse</span></Button>
+            <Button  icon={<BsIcons.BsFillPeopleFill/> }><span className={style.buttonLog2}>Registrarse</span></Button>
             </Link>
         </div>
     )

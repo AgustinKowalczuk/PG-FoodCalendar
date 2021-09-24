@@ -221,7 +221,7 @@ export default function UpdateForm() {
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Preparacion</label>
+          <label class="form-label">Preparación</label>
           <textarea
             onChange={formik.handleChange}
             value={formik.values.preparation || update.preparation}
@@ -246,7 +246,7 @@ export default function UpdateForm() {
           ) : null}
         </div>
         <div class="mb-3">
-          <label class="form-label">Categorias</label>
+          <label class="form-label">Categorías</label>
           <select
             defaultValue="none"
             onChange={formik.handleChange}
@@ -282,13 +282,13 @@ export default function UpdateForm() {
         </div>
 
         <div>
-            <label class="form-label">¿Está Disponible?</label>
+            <label class="form-label">¿Está disponible?</label>
             <select 
             onChange={onChangeAvailability}
             class="form-control"
             name="availability">
-              <option value={true}>Available</option>
-              <option selected={update.availability !== 'Available' ? true : false} value={false}>Unavailable</option>
+              <option value={true}>Disponible</option>
+              <option selected={update.availability !== 'Available' ? true : false} value={false}>En revisión</option>
               </select>
         </div>
         <div class="col-auto">

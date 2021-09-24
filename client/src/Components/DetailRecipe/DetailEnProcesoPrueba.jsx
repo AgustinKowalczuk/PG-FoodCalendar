@@ -44,18 +44,21 @@ export default function DetailRecipe() {
 
   //envio receta al stack del calendario
   function agregarCalendario(receta) {
-
-    if (stackReceta.length < 14 && !stackReceta.includes(receta)) {
+    if (stackReceta.length < 14) {
       return dispatch(setRecipeCalendar(receta))
     } else {
-      return;
+      return swal({
+        title: "Receta no agregada",
+        text: "El calendario ya tiene 14 elementos",
+        icon: "error",
+      });
     }
   }
 
   function handleClick(id) {
     swal({
-      title: "Seguro de borrar la receta?",
-      text: "Una vez borrada la receta no hay vuelta atras!",
+      title: "¿Seguro de querer borrar la receta?",
+      text: "¡Una vez borrada la receta no hay vuelta atrás!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -84,7 +87,7 @@ export default function DetailRecipe() {
               <div className={style.containerTitles}>
                 <h2  className={style.titleH3}>{recipeDetail.name}</h2>
                 <div className={style.category}>
-                    <h3 className={style.categoryH3}>Categorias: </h3>
+                    <h3 className={style.categoryH3}>Categorías: </h3>
                       <div className={style.table}> 
                         {recipeDetail?.category?.map((x) => (
                             <h4 className={style.space}>{x}</h4>                      

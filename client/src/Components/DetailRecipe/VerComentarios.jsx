@@ -17,14 +17,14 @@ export function VerComentarios({id}){
         const dispatch = useDispatch()
         
       useEffect(() => {
-        
-             dispatch(getComentarios(id));
+        if(!!id){
+        dispatch(getComentarios(id));}
       }, [dispatch,id,toggleReviews])
 
       function borrar(idr){
 
         swal({
-                title:'Seguro que quieres eliminar el comentario?',
+                title:'¿Seguro que quieres eliminar el comentario?',
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

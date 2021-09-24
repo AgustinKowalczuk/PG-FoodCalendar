@@ -50,7 +50,7 @@ export default function Cards(props) {
                 className="card-img-top"
                 id={style.img}
                 src={e.img}
-                alt="No sé encuentra la imagen"
+                alt="Imagen de la receta"
               />
               <div className="card-body" id={style.card}>
 
@@ -63,7 +63,7 @@ export default function Cards(props) {
             </Link>
             <div className={style.resize}>
               {e.availability === 'Available' && 
-                <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary" >Agregala a tu Calendario!</button>
+                <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary">Agrégala a tu calendario!</button>
               }
             
             </div>

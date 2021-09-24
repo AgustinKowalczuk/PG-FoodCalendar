@@ -26,7 +26,7 @@ export default function FilteredByCategory() {
         <div>
             <Dropdown align="end" drop={"end"}>
                 <Dropdown.Toggle variant="light" id="dropdown-basic" aling="end" drop={"end"}>
-                    Categorias
+                    Categorías
                 </Dropdown.Toggle>
                 <Dropdown.Menu className={style.drop} align="end" drop={"end"}  >
                     {category?.map((e, i) => {

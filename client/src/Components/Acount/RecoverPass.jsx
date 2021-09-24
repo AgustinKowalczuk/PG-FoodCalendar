@@ -16,7 +16,7 @@ export default function RecoverPass() {
     const validationSchema = Yup.object({
         email: Yup.string()
             .required('Requerido')
-            .email('Formato no valido'),
+            .email('Formato no válido'),   
     })
 
 
@@ -24,8 +24,8 @@ export default function RecoverPass() {
     const onSubmit = (e) => {
         dispatch(putRecoveryPass(e.email))
         swal({
-            title: "Mail con password nuevo enviado",
-            text: "Revise su bandeja de entrada",
+            title: "Te hemos enviado un email con el password nuevo",
+            text: "Revisa tu bandeja de entrada o spam",
             icon: "success",
             button: "Aceptar",
         })
@@ -33,7 +33,6 @@ export default function RecoverPass() {
 
     return (
         <div className={style.container}>
-
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -41,7 +40,7 @@ export default function RecoverPass() {
                 <Form>
                     <div className={style.content}>
                         <div className="mb-3">
-                            <h1>Ingresa el mail al que estas registrado:</h1>
+                            <h1>Ingresa el mail al que estás registrado:</h1>
                             <label className="form-label">Email</label>
                             <Field type="email" id="exampleInputEmail1" name="email" placeholder='ejemplo@ejemplo.com' autocomplete="off" />
                             <ErrorMessage id="emailHelp" className="form-text" name="email" />

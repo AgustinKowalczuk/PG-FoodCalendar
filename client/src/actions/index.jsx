@@ -53,7 +53,8 @@ import {
   GET_CHECKOUT,
   SET_USER_REGISTER,
   CLEAN_REGISTERED,
-  UPLOAD_IMG
+  UPLOAD_IMG,
+  DELETE_REVIEWS_AS_ADMIN
 } from "./constants";
 
 import {
@@ -88,7 +89,8 @@ import {
   GET_GOOGLE_AUTH_URL,
   PUT_USER_DETAILS_URL,
   USERS_DELETE_URL,
-  GET_CHECKOUT_URL
+  GET_CHECKOUT_URL,
+  DELETE_REVIEWS_URL_AS_ADMIN
 } from "../routes";
 
 import config from './config';
@@ -109,14 +111,12 @@ export function getRecipes(token) {
   };
 }
 
-//me trae los ingredientes de la db
 export function getIngredients() {
   return async (dispatch) => {
     try {
       const ingredients = await axios.get(INGREDIENTS_URL);
       return dispatch({ type: GET_INGREDIENTS, payload: ingredients.data, });
     } catch (error) {
-      console.log("No hay  ingredientes");
       console.log(error);
     }
   };
@@ -128,13 +128,11 @@ export function getCategory() {
       const category = await axios.get(CATEGORY_URL);
       dispatch({ type: GET_CATEGORY, payload: category.data, });
     } catch (error) {
-      console.log("No hay  categoria");
       console.log(error);
     }
   };
 }
 
-//obtener el detalle de la receta
 export function getDetail(id, token) {
   const url = !!token ? RECIPES_DETAIL_USER_URL : RECIPES_DETAIL_GUEST_URL;
   return async function (dispatch) {
@@ -145,9 +143,14 @@ export function getDetail(id, token) {
         payload: detail.data
       });
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text: "Detalles",
+        icon: "error",
+        button: "Aceptar",
+      })
       console.log(error);
     }
-
   };
 }
 
@@ -156,15 +159,22 @@ export function searchRecipes(name, token) {
   return async (dispatch) => {
     try {
       const filtRecipes = await axios.get(url + `${name}`, config(token));
+      if(filtRecipes[0] === "No hay recetas con el nombre ingresado."){
+        swal({
+          title: "No hay recetas con el nombre ingresado.",
+          icon: "error",
+          button: "Aceptar",
+        })
+      }
       return dispatch({ type: SEARCH_RECIPES, payload: filtRecipes.data });
     } catch (error) {
-      console.log(error);
       swal({
-        title: "No se encontro",
-        text: "Escribio una receta o algo que no existe",
+        title: "Ha ocurrido un error",
+        text: "Filter",
         icon: "error",
         button: "Aceptar",
       })
+      console.log(error);
     }
   };
 }
@@ -175,6 +185,12 @@ export function getUnit() {
       const unit = await axios.get(UNIT_URL);
       return dispatch({ type: GET_UNIT, payload: unit.data })
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text: "Unidades",
+        icon: "error",
+        button: "Aceptar",
+      })
       console.log(error);
     }
   }
@@ -187,11 +203,12 @@ export function FilterRecipeByIngredient(name, token) {
       const filtRecipes = await axios.get(url + `${name}`, config(token));
       dispatch({ type: FILTERED_BY_INGREDIENT, payload: filtRecipes.data });
     } catch (error) {
-      swal({
-        title: "No hay Receta con ese ingrediente",
-        icon: "error",
-        button: "Aceptar",
-      })
+      console.log(error)
+        swal({
+          title: "No se encontraron recetas con el ingrediente indicado",
+          icon: "error",
+          button: "Aceptar",
+        })
       console.log(error);
     }
   };
@@ -212,7 +229,7 @@ export function FilterRecipeByCategory(name, token) {
       dispatch({ type: FILTERED_BY_CATEGORY, payload: filtRecipes.data });
     } catch (error) {
       swal({
-        title: "No hay Receta con esa Categoria",
+        title: "No hay receta con esa categoría",
         icon: "error",
         button: "Aceptar",
       })
@@ -227,15 +244,15 @@ export function createRecipe(recipe, token) {
     try {
       const newRecipe = await axios.post(RECIPES_URL, { ...recipe, rating: 0 }, config(token));
       swal({
-        title: "Receta Creada",
-        text: "Se creo la receta con exito",
+        title: "Receta creada",
+        text: "Se creó la receta con éxito",
         iicon: "success",
         button: "Aceptar",
       })
       return dispatch({ type: CREATE_RECIPE, payload: newRecipe.data });
     } catch (error) {
       swal({
-        title: "No se posteo la receta",
+        title: "No se creó la receta",
         icon: "error",
         button: "Aceptar",
       })
@@ -269,6 +286,11 @@ export function putRecipe(id, value, token) {
         payload: update.data
       })
     } catch (error) {
+      swal({
+        title: "No se modificó la receta",
+        icon: "error",
+        button: "Aceptar",
+      })
       console.log(error);
     }
   }
@@ -284,8 +306,8 @@ export function register(user) {
       const reg = await axios.post(REGISTER_URL, user);
       if (reg.data.registered) {
         swal({
-          title: "Cuenta Registrada",
-          text: "Te registraste con exito",
+          title: "Cuenta registrada",
+          text: "Te registraste con éxito",
           icon: "success",
           button: "Aceptar",
         })
@@ -297,8 +319,8 @@ export function register(user) {
     } catch (error) {
       console.log(error);
       return swal({
-        title: "Cuenta no Registrada",
-        text: "Tu cuenta no se a podido registrar",
+        title: "Cuenta no registrada",
+        text: "Tu cuenta no se ha podido registrar",
         icon: "error",
         button: "Aceptar",
       })
@@ -315,6 +337,11 @@ export function putRecoveryPass(email) {
         payload: recover.data
       })
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        icon: "error",
+        button: "Aceptar",
+      })
       console.log(error);
     }
   }
@@ -326,7 +353,7 @@ export function login(user) {
       const logi = await axios.post(LOGIN_URL, user);
       swal({
         title: "Bienvenido!!",
-        text: "Ingresaste a tu cuenta con exito",
+        text: "Ingresaste a tu cuenta con éxito",
         icon: "success",
         button: "Aceptar",
       })
@@ -337,7 +364,6 @@ export function login(user) {
     } catch (error) {
       return swal({
         title: "No ingresaste a tu cuenta",
-        text: "No ingresaste a tu cuenta con exito",
         icon: "error",
         button: "Aceptar",
       })
@@ -349,6 +375,11 @@ export function createIngredient(ingredient, token) {
   return async function (dispatch) {
     try {
       await axios.post(INGREDIENTS_URL, { ...ingredient }, config(token));
+      swal({
+        title: '¡Tu ingrediente ha sido creado!',
+        icon: "success",
+        button: "Aceptar",
+      })
       return dispatch({ type: CREATE_INGREDIENT });
     } catch (error) {
       swal({
@@ -381,7 +412,7 @@ export function postcalendar(obj, token) {
     try {
       const aux = await axios.post(CALENDAR_URL, obj, config(token));
       swal({
-        title: "Calendario Guardado",
+        title: "Calendario guardado",
         text: "El calendario se guardó con éxito",
         icon: "success",
         button: "Aceptar",
@@ -391,8 +422,8 @@ export function postcalendar(obj, token) {
     } catch (error) {
       console.log(error);
       return swal({
-        title: "Calendario no Guardado",
-        text: "Aun no tienes las 14 recetas agregadas al calendario",
+        title: "Calendario no guardado",
+        text: "Aún no tienes las 14 recetas agregadas al calendario o no has definido el nombre de tu calendario",
         icon: "error",
         button: "Aceptar",
       });
@@ -412,6 +443,11 @@ export function createCategory(category, token) {
   return async function (dispatch) {
     try {
       const newCategory = await axios.post(CATEGORY_URL, { ...category }, config(token));
+      swal({
+        title: '¡Tu categoría ha sido creada!',
+        icon: "success",
+        button: "Aceptar",
+      });
       return dispatch({ type: CREATE_CATEGORY, payload: newCategory.data });
     } catch (error) {
       console.log(error);
@@ -452,8 +488,13 @@ export function getCalendar(token) {
         payload: calendary.data
       })
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text: "Calendario",
+        icon: "error",
+        button: "Aceptar",
+      })
       console.log(error);
-      return alert("No existen calendarios o el usuario no se logueó");
     }
   }
 }
@@ -467,8 +508,13 @@ export function getCalendarUser(token) {
         payload: calendary.data
       })
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text: 'Calendario de usuario',
+        icon: "error",
+        button: "Aceptar",
+      })
       console.log(error);
-      return alert("No existen calendarios o el usuario no se logueó");
     }
   }
 }
@@ -482,12 +528,13 @@ export function getCalendarDetail(id, token) {
         payload: calendarDetail.data
       });
     } catch (error) {
-      console.log(error);
-      return swal({
-        title: "No existe el calendario o el usuario no se logueó",
+      swal({
+        title: "Ha ocurrido un error",
+        text: 'Detalle de calendario',
         icon: "error",
         button: "Aceptar",
       });
+      console.log(error);
     }
   };
 }
@@ -497,7 +544,7 @@ export function deleteRecipe(id, token) {
     try {
       const borrar = await axios.delete(RECIPES_URL + '/' + id, config(token));
       swal({
-        title: "Receta Borrada!",
+        title: "Receta borrada!",
         icon: "success",
         button: "Aceptar",
       });
@@ -506,13 +553,13 @@ export function deleteRecipe(id, token) {
         payload: borrar.data
       });
     } catch (error) {
-
-      console.log(error)
-      return swal({
-        title: "No existen calendarios o el usuario no se logueó",
+      swal({
+        title: "Ha ocurrido un error",
+        text: 'Eliminar receta',
         icon: "error",
         button: "Aceptar",
       });
+      console.log(error)
     }
   };
 }
@@ -535,11 +582,13 @@ export function setUserForAdmin(token) {
       })
     }
     catch (error) {
-      return swal({
-        title: 'No existen los usuarios.',
+      swal({
+        title: 'Ha ocurrido un error',
+        text: 'Usuarios para administrador',
         icon: "error",
         button: "Aceptar",
       });
+      console.log(error);
     }
   }
 }
@@ -559,11 +608,13 @@ export function deleteUserForAdmin(id, token) {
       })
     }
     catch (error) {
-      return swal({
-        title: 'No se puede borrar el usuario.',
+      swal({
+        title: 'Ha ocurrido un error',
+        text: 'Eliminar usuarios para administrador',
         icon: "error",
         button: "Aceptar",
       });
+      console.log(error);
     }
   }
 }
@@ -572,15 +623,15 @@ export function postComentario(valor, id, token) {
   return async function (dispatch) {
     try {
       const aux = await axios.post(POST_COMENTARIO_URL + '/' + id, valor, config(token));
-      console.log(aux.data, 'aux')
       return dispatch({ type: POST_COMENTARIO, payload: aux.data });
     } catch (error) {
-      console.log(error);
-      return swal({
-        title: "El comentario no fue enviado",
+      swal({
+        title: "Ha ocurrido un error",
+        text:'Enviar comentario',
         icon: "error",
         button: "Aceptar",
       });
+      console.log(error);
     }
   }
 }
@@ -589,12 +640,17 @@ export function getComentarios(id) {
   return async function (dispatch) {
     try {
       const comentarios = await axios.get(GET_COMENTARIOS_RECETA_URL + '/' + id);
-      console.log(comentarios.data)
       return dispatch({
         type: GET_COMENTARIOS_RECETA,
         payload: comentarios.data,
       });
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text:'Obtener comentarios',
+        icon: "error",
+        button: "Aceptar",
+      });
       console.log(error);
     }
   };
@@ -610,7 +666,7 @@ export function updateUser(id, obj, token) {
       const update = await axios.put(UPDATE_USERS_URL + `/${id}`, obj, config(token));
 
       swal({
-        title: 'Se cambio el usuario',
+        title: 'Se cambió el usuario',
         icon: 'success',
         button: 'Aceptar'
       })
@@ -620,10 +676,12 @@ export function updateUser(id, obj, token) {
       })
     } catch (error) {
       swal({
-        title: 'No se pudo cambiar al usuario',
+        title: 'Ha ocurrido un error',
+        text: 'Modificar usuario',
         icon: 'error',
         button: 'Aceptar'
       })
+      console.log(error);
     }
   }
 }
@@ -637,6 +695,12 @@ export function postLike(id, token) {
         payload: aux.data
       })
     } catch (error) {
+      swal({
+        title: 'Ha ocurrido un error',
+        text: 'Enviar like',
+        icon: 'error',
+        button: 'Aceptar'
+      })
       console.log(error);
     }
   }
@@ -660,7 +724,8 @@ export function deleteReviews(id, token) {
     } catch (error) {
       console.log(error);
       return swal({
-        title: "No existen comentarios para borrar",
+        title: "Ha ocurrido un error",
+        text:'Borrar comentario',
         icon: "error",
         button: "Aceptar",
       });
@@ -671,11 +736,22 @@ export function putReviews(idReview, valor, token) {
   return async (dispatch) => {
     try {
       const putrev = await axios.put(PUT_REVIEWS_URL + `/${idReview}`, valor, config(token));
+      swal({
+        title: "Comentario modificado",
+        icon: "success",
+        button: 'Aceptar'
+      })
       return dispatch({
         type: PUT_REVIEWS,
         payload: putrev.data
       })
     } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text:'Modificar comentario',
+        icon: 'error',
+        button: 'Aceptar'
+      });
       console.log(error);
     }
   }
@@ -691,7 +767,8 @@ export function getComentaryDetail(id, token) {
       });
     } catch (error) {
       return swal({
-        title: "No existen comentarios de este usuario",
+        title: "Ha ocurrido un error",
+        text: 'Detalles del comentario',
         icon: "error",
         button: "Aceptar",
       });
@@ -715,11 +792,12 @@ export function getGoogleAuthUrl(type) {
       })
     } catch (error) {
       swal({
-        title: "Cuenta no Registrada",
-        text: "Tu cuenta no se a podido registrar",
+        title: "Ha ocurrido un error",
+        text: "Tu cuenta no se ha podido registrar",
         icon: "error",
         button: "Aceptar",
       })
+      console.log(error)
     }
   }
 }
@@ -728,7 +806,7 @@ export function putUserDetails(value, token) {
     try {
       const putUserDetails = await axios.put(PUT_USER_DETAILS_URL, value, config(token));
       swal({
-        title: 'Se a modificado con exito',
+        title: 'Se a modificado con éxito',
         icon: 'success',
         button: 'Aceptar'
       })
@@ -737,11 +815,13 @@ export function putUserDetails(value, token) {
         payload: putUserDetails.data
       })
     } catch (error) {
-      return swal({
-        title: 'No se realizaron los cambios',
+      swal({
+        title: 'Ha ocurrido un error',
+        text: 'Modificar detalles de usuario',
         icon: 'error',
         button: 'Aceptar'
       })
+      console.log(error)
     }
   }
 }
@@ -751,7 +831,7 @@ export function deleteSelfUser(token) {
     try {
       const deleteUser = await axios.delete(USERS_DELETE_URL, config(token));
       swal({
-        title: 'Se borró al usuario',
+        title: 'Se borró el usuario',
         icon: 'error',
         button: 'Aceptar'
       })
@@ -761,7 +841,13 @@ export function deleteSelfUser(token) {
       })
     }
     catch (error) {
-      return console.log('No se puede borrar el usuario.')
+      swal({
+        title: 'Ha ocurrido un error',
+        text: 'Eliminar usuario',
+        icon: 'error',
+        button: 'Aceptar'
+      })
+      console.log(error)
     }
   }
 }
@@ -783,6 +869,12 @@ export function getCheckout() {
       const aux = await axios.get(GET_CHECKOUT_URL);
       return dispatch({ type: GET_CHECKOUT, payload: aux.data });
     } catch (error) {
+      swal({
+        title: 'Ha ocurrido un error',
+        text: 'Pasarela de pago',
+        icon: 'error',
+        button: 'Aceptar'
+      })
       console.log(error);
     }
   }
@@ -806,4 +898,29 @@ export function getImages(payload) {
     type: UPLOAD_IMG,
     payload
   }
+}
+
+export function deleteReviewsAsAdmin(id, token) {
+  return async function (dispatch) {
+    try {
+      const borrar = await axios.delete(DELETE_REVIEWS_URL_AS_ADMIN + '/' + id, config(token));
+      swal({
+        title: "Comentario borrado",
+        icon: "success",
+        button: "Aceptar",
+      });
+      return dispatch({
+        type: DELETE_REVIEWS_AS_ADMIN,
+        payload: borrar.data
+      });
+    } catch (error) {
+      swal({
+        title: "Ha ocurrido un error",
+        text: 'Eliminar usuarios como administrador',
+        icon: "error",
+        button: "Aceptar",
+      });
+      console.log(error);
+    }
+  };
 }
