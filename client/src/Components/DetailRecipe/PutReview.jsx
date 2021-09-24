@@ -38,7 +38,7 @@ export default function PutReview({idReview,comm}) {
             
         return (
                 <>
-                <button className={styles.btn} onClick={()=>modificar()}><MdIcon.MdModeEdit className={styles.icon}/></button> 
+                <button className={styles.btn} onClick={()=>modificar()}><MdIcon.MdModeEdit className={styles.modif}/></button> 
                </>
         )         
      

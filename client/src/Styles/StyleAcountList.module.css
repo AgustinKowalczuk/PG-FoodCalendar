@@ -3,12 +3,13 @@
     padding: 1%;
     min-width: 40%;
     max-width: 90%;
-    border: 1px solid #668C4A;
+    border: 1px solid rgb(51, 51, 51);
     border-radius: .25rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    box-shadow: #1e1803c5 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;
+    background: rgb(234, 234, 234);
+    box-shadow: rgb(234 234 234 / 40%) 0px 20px 35px -10px;
 }
 .name{
     grid-column: 2;

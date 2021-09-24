@@ -21,7 +21,7 @@ export default function Home() {
                         <SiliderImages />
                         <div className={style.width}>
 
-                                <Cards allRecipes={recipesHome} />
+                                <Cards page={4} allRecipes={recipesHome} />
                         </div>
                         <InventaryNav />
                 </div>

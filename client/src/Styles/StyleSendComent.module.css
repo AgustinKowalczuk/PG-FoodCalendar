@@ -4,11 +4,15 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-end;
+}
+.modif{
+    font-size: 1.2rem;
 }
 
 .label{
     margin-top: none;
+    margin-bottom: 1%;
     font-size:.8rem;
 }
 .form{
@@ -16,6 +20,7 @@
 }
 .input{
     width: 100%;
+    padding: 1%;
 }
 .inputs{
     width: 100%;
@@ -29,7 +34,7 @@
 }
 
 .icon{
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     padding: .5vh;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     border-radius: 100%;

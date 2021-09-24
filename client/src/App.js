@@ -20,7 +20,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
 import { setUserAndToken } from './actions';
 import Inventary from './Components/Inventary/Inventary.jsx'
-import DetailRecipe from './Components/DetailRecipe/DetailRecipe'
 import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';

@@ -108,22 +108,22 @@ export default function Login() {
                             <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Iniciar con google</button>
                                 <a href={googleAuthUrl} id={'GoogleAuth'}/>
                         </div>
+                        <div>
+
+                            <div>
+                            <Link to="/acount/register" >
+                                ¿Aún no te registraste? Haz click Aqui
+                            </Link>
+                            </div>
+                            <div>
+                                <Link to="/acount/recovery">
+                                    Olvidaste tu contraseña?
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </Form>
             </Formik>
-            <div>
-
-                <div>
-                <Link to="/acount/register" >
-                    ¿Aún no te registraste? Haz click Aqui
-                </Link>
-                </div>
-                <div>
-                    <Link to="/acount/recovery">
-                        Olvidaste tu contraseña?
-                    </Link>
-                </div>
-            </div>
         </div>
     )
 }
