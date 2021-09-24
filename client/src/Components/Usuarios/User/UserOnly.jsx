@@ -5,6 +5,7 @@ import { putUserDetails } from "../../../actions";
 import style from "../../../Styles/StylesUser.module.css"
 import swal from 'sweetalert';
 import * as MdIcon from "react-icons/md"
+import { Link } from "react-router-dom"
 
 export default function UserOnly() {
     const dispatch = useDispatch()
@@ -106,6 +107,9 @@ export default function UserOnly() {
                 </div>
                 <div className={style.btn1}>
                     <button  id={style.btn2} onClick={newPassword}>Cambiar contraseña</button>
+                    <Link to='/user/noAdmin'>
+                            <button  id={style.btn2} >Todos mis Calendarios</button>
+                    </Link>
                 </div>
             </div>
             <div className={style.exit}>

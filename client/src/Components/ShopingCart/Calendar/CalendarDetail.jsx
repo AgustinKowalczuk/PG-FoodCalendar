@@ -18,7 +18,7 @@ export default function CalendarDetail() {
 
         return (
                 <div className={styles.container}>
-                <h4>Detalle del calendario:</h4>
+                <h2 className={styles.text}>Detalle del calendario:</h2>
                         <h3>{calendarDetail[0]?.name}</h3>
                         <table className={styles.table}>
                         {arrDays.map((e, index) => (
