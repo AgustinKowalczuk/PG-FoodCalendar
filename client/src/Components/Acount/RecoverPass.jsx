@@ -8,7 +8,11 @@ import style from '../../Styles/StyleAcount.module.css'
 import swal from 'sweetalert';
 
 
-export default function RecoverPass() { 
+
+
+export default function RecoverPass() {
+
+   
 
     const dispatch = useDispatch()
     const initialValues= {
@@ -20,9 +24,11 @@ export default function RecoverPass() {
             .required('Requerido')
             .email('Formato no valido'),   
     })
+
     
-    const onSubmit = (e) => {
-        dispatch(putRecoveryPass(e.email))
+    
+    const onSubmit = (value) => {
+        dispatch(putRecoveryPass(value))
         swal({
             title: "Mail con password nuevo enviado",
             text: "Revise su bandeja de entrada",
@@ -30,6 +36,12 @@ export default function RecoverPass() {
             button: "Aceptar",
         })
     }
+
+
+
+
+
+
 
     return (
         <div className={style.container}>
