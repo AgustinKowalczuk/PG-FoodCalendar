@@ -16,8 +16,8 @@
 
 .imgs {
     width: 200vh;
-    height: 60vh;
-    max-height: 1000px;
+    height: 50vh;
+    max-height: 550px;
     size: cover;
 }
 
@@ -25,6 +25,8 @@
     position: absolute;
     top: 20px;
     width: 40vh;
+    background-color: rgb(169,50,38,0.5);
+    border-radius: 30px;
 }
 
 .txt {

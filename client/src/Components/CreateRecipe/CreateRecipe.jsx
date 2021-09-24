@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import style from "../../Styles/StyleFrom.module.css";
 import { createRecipe, getIngredients,getCategory, cleanNewRecipe, getDetail } from "../../actions/index";
 import { useFormik } from "formik";
@@ -10,6 +10,7 @@ import CreateCategory from "../CreateCategory/CreateCategory";
 import { orderAZ } from "../../orderFunction/OrderFuncions";
 import {useHistory} from 'react-router-dom';
 import UploadImage from "./UploadImage/UploadImage";
+import swal from 'sweetalert';
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
