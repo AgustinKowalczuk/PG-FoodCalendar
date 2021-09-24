@@ -10,16 +10,11 @@ import * as FaIcons from "react-icons/fa"
 
 export default function Cards(props) {
 
-  let recipesPerPage
+  let recipesPerPage = props.page
   const dispatch = useDispatch();
   const pages = useSelector(state => state.page)
   const token = useSelector(state => state.token)
 
-  if (props.confirmador) {
-    recipesPerPage = 3;
-  } else {
-    recipesPerPage = 4;
-  }
   const lastRecipeIndex = pages * recipesPerPage;
   const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
   const currentRecipes = props.allRecipes.slice(firstRecipeIndex, lastRecipeIndex);

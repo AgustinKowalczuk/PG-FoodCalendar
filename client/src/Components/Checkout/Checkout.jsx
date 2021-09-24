@@ -105,7 +105,7 @@ export default function Checkout() {
                                         </div>
                                 </div>
                         </div>
-                        <Link className="btn-outline-danger"  to='/'onClick={cleanUserRegister}>Salir sin Registrarse</Link>
+                        <Link className={Style.exit}  to='/'onClick={cleanUserRegister}>Salir sin Registrarse</Link>
                 </div>
 
 

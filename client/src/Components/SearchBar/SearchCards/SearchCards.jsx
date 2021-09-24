@@ -20,7 +20,7 @@ export default function SearchCards() {
               <h1>No encontre nada</h1>
               <Link to='/'/>
             </div> :
-            <Cards allRecipes={allRecipes} />
+            <Cards page={4} allRecipes={allRecipes} />
         }
       </div>
     </div>

@@ -150,7 +150,7 @@ export default function DetailRecipe() {
             <Reviews id={recipeDetail.id} /> : null}
           {!!token ?
             recipeDetail.availability === 'Available' &&
-            <button className={style.btn} onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus className={style.icon} /></button> :
+            <button className={style.btn} onClick={() => agregarCalendario(recipeDetail)}><FaIcons.FaCalendarPlus id={style.trash} className={style.icon} /></button> :
             null
           }
           <div className={style.orderBtn}>
@@ -163,8 +163,8 @@ export default function DetailRecipe() {
           }
           {
             !!token ?
-              recipeDetail.likes===1 ? <span className={style.text}>1 Me gusta</span>:
-              recipeDetail.likes>1 ? <span className={style.text}>{`${recipeDetail.likes} Me gusta`}</span>:
+              recipeDetail.likes===0 ? <span className={style.text}>0 Me gusta</span>:
+              recipeDetail.likes>0 ? <span className={style.text}>{`${recipeDetail.likes} Me gusta`}</span>:
               null:
               <span className={style.text}><FcIcons.FcLike /> {` ${recipeDetail.likes} Me gusta`}</span>
           }

@@ -93,7 +93,7 @@ export default function UserOnly() {
     }
     return ( 
         <div className={style.content}>
-            <h4>Detalles del usuario:</h4>
+            <h4 className={style.text}>Detalles del usuario:</h4>
             <div className={style.dataCard}>
                 <div className={style.name}>
                     <label>Nombre: {user.name}</label> <button className={style.btn} onClick={name}><MdIcon.MdModeEdit className={style.icon}/></button>

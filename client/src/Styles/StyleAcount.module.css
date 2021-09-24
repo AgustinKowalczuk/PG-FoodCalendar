@@ -4,7 +4,10 @@
     padding: 2%;
     margin-top:2%;
     margin-bottom: 2%;
-    border: 1px solid rgba(128, 128, 128, 0.534);
+    box-shadow: rgb(234 234 234 / 40%) 0px 20px 35px -10px;
+    border: 1px solid rgb(51, 51, 51);
+    background: rgb(234, 234, 234);
+    border-radius: .25rem;
 }
 .container{
     margin-top: 2%;
@@ -19,14 +22,15 @@
 }
 
 #btn{
-    background-color: transparent;
+    background-color: rgb(0, 156, 34);
     margin: 1%;
-    color: #668C4A;
+    color: rgb(255, 255, 255);
     border-radius: .25rem;
-    border: 1px solid #668C4A;
+    border: 1px solid rgb(51, 51, 51);
+    box-shadow: rgb(0 156 34 / 40%) 0px 20px 35px -10px;
 }
 #btn:hover{
-    background-color: #B1B1AC;
+    background-color: rgb(110, 194, 147);
 }
 .buttons{
     width: 100%;

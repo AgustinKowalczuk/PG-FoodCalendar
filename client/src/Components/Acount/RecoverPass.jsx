@@ -55,7 +55,7 @@ export default function RecoverPass() {
                     <div className="mb-3">
                         <h1>Ingresa el mail al que estas registrado:</h1>
                         <label className="form-label">Email</label>
-                        <Field type="email" className="form-control" id="exampleInputEmail1" name="email" placeholder='ejemplo@jemplo.com' autocomplete="off"/>
+                        <Field type="email" id="exampleInputEmail1" name="email" placeholder='ejemplo@jemplo.com' autocomplete="off"/>
                         <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                     </div>
                     <button id={style.btn} className="btn btn-primary" type="submit">Enviar</button>
