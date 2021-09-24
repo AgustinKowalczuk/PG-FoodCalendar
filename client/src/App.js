@@ -1,11 +1,12 @@
 import './App.css';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Nav from './Components/Nav/Nav';
-import Home from './Components/Home/Home';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import Nav from './Components/Nav/Nav'
+import Home from './Components/Home/Home'
 import SearchCards from './Components/SearchBar/SearchCards/SearchCards'
-import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx';
-import Login from './Components/Acount/Login.jsx';
-import ShopingCart from './Components/ShopingCart/ShopingCart.jsx';
+import CreateRecipe from './Components/CreateRecipe/CreateRecipe.jsx'
+import GlobalStyles from './Styles/GlobalStyle.css'
+import Login from './Components/Acount/Login.jsx'
+import ShopingCart from './Components/ShopingCart/ShopingCart.jsx'
 import Footer from './Components/Footer/Footer';
 import UpdateForm from './Components/UpdateForm/UpdateForm'
 import Register from './Components/Acount/Register';
@@ -18,13 +19,15 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
 import { setUserAndToken } from './actions';
-import Inventary from './Components/Inventary/Inventary.jsx';
-import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba';
+import Inventary from './Components/Inventary/Inventary.jsx'
+import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
 import UserDetails from './Components/Usuarios/AdminUser/UserDetails';
 import UserOnly from './Components/Usuarios/User/UserOnly';
 import Checkout from './Components/Checkout/Checkout';
 import FilterAdmin from './Components/Inventary/FilterAdmin';
+
+import InventaryNav from './Components/Inventary/InventaryNav'
 
 function App() {
   const dispatch = useDispatch();

@@ -309,7 +309,7 @@ export function register(user) {
 export function putRecoveryPass(email) {
   return async (dispatch) => {
     try {
-      const recover = await axios.put(PUT_RECOVERY_PASS_URL,  {email});
+      const recover = await axios.put(PUT_RECOVERY_PASS_URL + `/${email}`);
       return dispatch({
         type: RECOVER_PASS,
         payload: recover.data
