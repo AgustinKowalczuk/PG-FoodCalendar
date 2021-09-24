@@ -59,12 +59,6 @@ export const SidebarDataUser = [
         path: '/shop',
         icon: <BiIcons.BiCalendarHeart />,
         cName: 'nav-text'
-    },
-    {
-        title: 'Mis calendarios',
-        path: '/calendar/user',
-        icon: <BiIcons.BiCalendarHeart />,
-        cName: 'nav-text'
     }
 ]
 
@@ -101,12 +95,6 @@ export const SidebarDataAdmin = [
             {
                 title: 'Crea tu calendario',
                 path: '/shop',
-                icon: <BiIcons.BiCalendarHeart />,
-                cName: 'nav-text'
-            },
-            {
-                title: 'Mis calendarios',
-                path: '/calendar/user',
                 icon: <BiIcons.BiCalendarHeart />,
                 cName: 'nav-text'
             }

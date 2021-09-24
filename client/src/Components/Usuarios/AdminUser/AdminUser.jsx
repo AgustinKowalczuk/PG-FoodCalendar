@@ -18,7 +18,7 @@ export default function AdminUser () {
     }, [dispatch, token])
     return ( 
         <div className={style.content}>
-            <h1>Usuarios</h1>
+            <h1 className={style.text}>Usuarios</h1>
             <Grid.Container gap={2} justify="center">
                 {userDetails?.map((e) => (
                     <Grid xs={12} md={6}>

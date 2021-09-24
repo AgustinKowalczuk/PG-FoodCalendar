@@ -21,6 +21,10 @@
     margin-bottom: .5%;
 }
 
+.text{
+    margin-top: 1%;;
+    color: white;
+}
 .row{
     display: flex;
     flex-direction: column;
