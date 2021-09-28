@@ -54,7 +54,8 @@ import {
   SET_USER_REGISTER,
   CLEAN_REGISTERED,
   UPLOAD_IMG,
-  DELETE_REVIEWS_AS_ADMIN
+  DELETE_REVIEWS_AS_ADMIN,
+  DEFAULT_CALENDAR
 } from "./constants";
 
 import {
@@ -396,6 +397,13 @@ export function createIngredient(ingredient, token) {
 export function setRecipeCalendar(payload) {
   return {
     type: RECIPE_CALENDAR,
+    payload
+  }
+}
+
+export function defaultIncentory(payload) {
+  return {
+    type: DEFAULT_CALENDAR,
     payload
   }
 }

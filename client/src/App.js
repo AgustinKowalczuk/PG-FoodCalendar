@@ -18,7 +18,7 @@ import { Redirect } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { normalizeNullOrUndefined } from './actions/normalizeNullOrUndefined';
-import { setUserAndToken } from './actions';
+import { setUserAndToken, defaultIncentory } from './actions';
 import Inventary from './Components/Inventary/Inventary.jsx'
 import PruebaDetail from './Components/DetailRecipe/DetailEnProcesoPrueba'
 import RecoverPass from './Components/Acount/RecoverPass';
@@ -37,6 +37,9 @@ function App() {
     let user = normalizeNullOrUndefined(sessionStorage.user);
     if(user) user = JSON.parse(user);
     dispatch(setUserAndToken({ token, user }));
+
+    const recipesCalendar = normalizeNullOrUndefined(localStorage.recipesInventary)
+    if(recipesCalendar) dispatch(defaultIncentory(JSON.parse(recipesCalendar)))
   },[]);
 
   const token = useSelector(state => state.token);

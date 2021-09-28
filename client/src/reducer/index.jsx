@@ -51,7 +51,8 @@ import {
   REGISTERED,
   CLEAN_REGISTERED,
   UPLOAD_IMG,
-  DELETE_REVIEWS_AS_ADMIN
+  DELETE_REVIEWS_AS_ADMIN,
+  DEFAULT_CALENDAR
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -182,9 +183,15 @@ function reducer(state = initialState, action) {
           }
 
       case RECIPE_CALENDAR:
+        localStorage.recipesInventary = JSON.stringify(state.recipeCalendar.concat(action.payload))
         return {
           ...state,
-          recipeCalendar: state.recipeCalendar.concat(action.payload)
+          recipeCalendar: [...state.recipeCalendar, action.payload]
+        }
+      case DEFAULT_CALENDAR:
+        return {
+          ...state,
+          recipeCalendar: action.payload,
         }
       case PAGE:
         return{
@@ -219,6 +226,7 @@ function reducer(state = initialState, action) {
           newRecipeId: ""
         }
       case DELETE_INVENTARY:
+        localStorage.recipesInventary = JSON.stringify(state.recipeCalendar.filter((x,index)=> index !==action.payload))
         return {
           ...state,
           recipeCalendar: state.recipeCalendar.filter((x,index)=> index !==action.payload)
