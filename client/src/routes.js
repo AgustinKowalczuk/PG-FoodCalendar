@@ -1,6 +1,6 @@
 
-const URL = 'http://localhost:3001';
-// const URL = 'https://recetapp-back.herokuapp.com';
+// const URL = 'http://localhost:3001';
+const URL = 'https://recetapp-back.herokuapp.com';
 
 export const RECIPES_URL=`${URL}/recipe`;
 export const RECIPES_USER_URL=`${URL}/recipe/user`;
