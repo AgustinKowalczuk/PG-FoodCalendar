@@ -41,7 +41,6 @@ export default function ShopingCart() {
           <label className="form-label">Ingresa el nombre de tu calendario</label>
           <input id={style.nameCalendar} type="text" onChange={(e) => handeChange(e)} />
         </div>
-        <Recipes />
         <div className={style.buttonsContent}>
           <Link id={style.btn} className='btn btn-primary'to="/AllRecipe" >Agregar más recetas</Link>
           
@@ -52,6 +51,7 @@ export default function ShopingCart() {
           }
           <Link id={style.btn} className='btn btn-primary' to="/calendar">Ver mis calendarios</Link>
         </div>
+          <Recipes />
         <InventaryNav />
       </div>
     </div>

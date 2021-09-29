@@ -64,13 +64,13 @@ export default function Recipes() {
             ],
         })
 
-    useEffect(() => {
-        if (localStorage.objectCalendar) {
-            setday(JSON.parse(localStorage.objectCalendar))
+    // useEffect(() => {
+    //     if (localStorage.objectCalendar) {
+    //         setday(JSON.parse(localStorage.objectCalendar))
 
-            dispatch(setRecipeCalendar(JSON.parse(localStorage.recipesInventary)))
-         }
-    }, [])
+    //         dispatch(setRecipeCalendar(JSON.parse(localStorage.recipesInventary)))
+    //     }
+    // }, [])
 
     const handleCards = (_card, source, destination) => {
 

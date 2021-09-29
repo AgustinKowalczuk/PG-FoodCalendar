@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getUnit, setFormIngredients } from '../../../actions/index'
 import style from '../../../Styles/StyleFrom.module.css'
+import * as BsIcon from "react-icons/bs"
 
 export default function SelectCard(props) {
     const dispatch = useDispatch()
@@ -25,7 +26,6 @@ export default function SelectCard(props) {
             name={id}
             required
             id="disabledSelect"
-            class="form-select"
           >
             {unit?.map((e) => {
               return<option  name={id}>{e.name}</option>;
@@ -57,7 +57,7 @@ export default function SelectCard(props) {
             value={props.ingredient}
             class={style.button}
         >
-            {props.ingredient}
+          <BsIcon.BsTrashFill/>  {props.ingredient}
         </h5>
         </div>
     )
