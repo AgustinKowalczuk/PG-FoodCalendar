@@ -19,9 +19,6 @@ export default function AllRecipe() {
 
         return (
                 <div>
-                        <h2 className={Style.titleAllRecipe}> Encuentra aquí tu receta favorita</h2>
-                        <h5 className={Style.titleAllRecipe}>Añádela al calendario y organiza tu semana</h5>
-                        
                         <MidNav />
                         <Cards page={10} allRecipes={allRecipes}/>       
                         <InventaryNav />

@@ -20,7 +20,7 @@ export default function Home() {
                 <div class={style.order}>
                         <SiliderImages />
                         <div className={style.width}>
-
+                                <h3 style={{color: 'white',}}> Las recetas mas buscadas </h3>
                                 <Cards page={4} allRecipes={recipesHome} />
                         </div>
                         <InventaryNav />

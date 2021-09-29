@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '@lourenci/react-kanban/dist/styles.css'
 import Board, { moveCard } from '@lourenci/react-kanban';
-import { sendCalendar } from '../../../actions/index';
+import { sendCalendar, setRecipeCalendar } from '../../../actions/index';
 import swal from 'sweetalert';
 
 export default function Recipes() {
@@ -14,7 +14,7 @@ export default function Recipes() {
         return {
             id: index,
             title: e.name,
-            description: e.category.length > 2 ? e.category[0] + ' ' + e.category[1] : e.category.join(' '),
+            description: e?.category?.length > 2 ? e?.category[0] + ' ' + e?.category[1] : e?.category?.join(' '),
             recipeID: e.id,
         }
     })
@@ -64,11 +64,13 @@ export default function Recipes() {
             ],
         })
 
-    useEffect(() => {
-        if (localStorage.objectCalendar) {
-            setday(JSON.parse(localStorage.objectCalendar))
-         }
-    }, [])
+    // useEffect(() => {
+    //     if (localStorage.objectCalendar) {
+    //         setday(JSON.parse(localStorage.objectCalendar))
+
+    //         dispatch(setRecipeCalendar(JSON.parse(localStorage.recipesInventary)))
+    //     }
+    // }, [])
 
     const handleCards = (_card, source, destination) => {
 
@@ -79,6 +81,7 @@ export default function Recipes() {
 
             localStorage.objectCalendar = JSON.stringify(ofMoved)
             localStorage.recipesInventary = JSON.stringify(recipes)
+
             ofMoved.columns.forEach((e) => {
                 if (e.id !== 0) {
 

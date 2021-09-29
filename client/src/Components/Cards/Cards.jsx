@@ -62,8 +62,9 @@ export default function Cards(props) {
               <Dificultad difficulty={e.difficulty} />
             </Link>
             <div className={style.resize}>
-              {e.availability === 'Available' && 
-                <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary">Agrégala a tu calendario!</button>
+              {e.availability === 'Available' ?
+                <button id={style.btn} onClick={() => agregarCalendario(e)} className="btn btn-secondary">Agrégala a tu calendario!</button>:
+                <h4 style={{color: 'red'}}>Receta pendiente de aprobación</h4>
               }
             
             </div>
