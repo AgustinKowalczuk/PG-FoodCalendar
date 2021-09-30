@@ -34,10 +34,11 @@
 }
 
 .txt {
-    font-size: 4vh;
+    font-size: 5vh;
     color: rgb(218, 218, 70);
     -webkit-text-stroke: 2px rgb(5, 5, 5);
-    text-shadow: -1px -1px 0px rgb(0, 0, 0), 1px 1px 0px rgb(226, 223, 63);
+    text-shadow: -1px -1px 0px rgb(0, 0, 0);
+    font-weight: bold;
 }
 
 #fruta{

@@ -54,7 +54,9 @@ import {
   SET_USER_REGISTER,
   CLEAN_REGISTERED,
   UPLOAD_IMG,
-  DELETE_REVIEWS_AS_ADMIN
+  DELETE_REVIEWS_AS_ADMIN,
+  SET_DAYS,
+  ADD_TO_INITIAL_RECIPES
 } from "./constants";
 
 import {
@@ -396,6 +398,20 @@ export function createIngredient(ingredient, token) {
 export function setRecipeCalendar(payload) {
   return {
     type: RECIPE_CALENDAR,
+    payload
+  }
+}
+
+export function setDays(payload) {
+  return {
+    type: SET_DAYS,
+    payload
+  }
+}
+
+export function addToInitialRecipes(payload) {
+  return {
+    type: ADD_TO_INITIAL_RECIPES,
     payload
   }
 }

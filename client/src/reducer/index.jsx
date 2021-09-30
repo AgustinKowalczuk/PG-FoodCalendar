@@ -51,7 +51,9 @@ import {
   REGISTERED,
   CLEAN_REGISTERED,
   UPLOAD_IMG,
-  DELETE_REVIEWS_AS_ADMIN
+  DELETE_REVIEWS_AS_ADMIN,
+  SET_DAYS,
+  ADD_TO_INITIAL_RECIPES
 } from "../actions/constants";
 
 import { orderAZ , orderDifficultyAsc } from '../orderFunction/OrderFuncions'
@@ -90,7 +92,51 @@ var initialState = {
   userRegister: {},
   registered: false,
   selfUserD: [],
-  uploadImg: ''
+  uploadImg: '',
+  daysColumns: {
+    columns: [
+        {
+            id: 0,
+            title: 'Recetas',
+            cards: []
+        },
+        {
+            id: 1,
+            title: 'Lunes',
+            cards: []
+        },
+        {
+            id: 2,
+            title: 'Martes',
+            cards: []
+        },
+        {
+            id: 3,
+            title: 'Miércoles',
+            cards: []
+        },
+        {
+            id: 4,
+            title: 'Jueves',
+            cards: []
+        },
+        {
+            id: 5,
+            title: 'Viernes',
+            cards: []
+        },
+        {
+            id: 6,
+            title: 'Sábado',
+            cards: []
+        },
+        {
+            id: 7,
+            title: 'Domingo',
+            cards: []
+        }
+    ],
+}
 };
 
 function reducer(state = initialState, action) {
@@ -184,13 +230,13 @@ function reducer(state = initialState, action) {
       case RECIPE_CALENDAR:
         return {
           ...state,
-          recipeCalendar: state.recipeCalendar.concat(action.payload)
+          recipeCalendar: action.payload
         }
       case PAGE:
         return{
           ...state,
           page: action.payload
-        }    
+        }
       case CREATE_RECIPE:
         return {
           ...state,
@@ -219,14 +265,27 @@ function reducer(state = initialState, action) {
           newRecipeId: ""
         }
       case DELETE_INVENTARY:
+        const recipeCalendar = state.recipeCalendar.filter(e => e.id !== action.payload);
+        localStorage.recipesInventary = JSON.stringify(recipeCalendar);
+        const daysColumns = {
+          columns: state.daysColumns.columns.map(e => {
+            return {
+              ...e,
+              cards: e.cards.filter(x => x.id !== action.payload)
+            }
+          })
+        }
+        localStorage.objectCalendar = JSON.stringify(daysColumns)
         return {
           ...state,
-          recipeCalendar: state.recipeCalendar.filter((x,index)=> index !==action.payload)
+          recipeCalendar,
+          daysColumns
         }
       case CLEAR_INVENTARY:
         return {
           ...state,
-          recipeCalendar: [],
+          daysColumns: initialState.daysColumns,
+          recipeCalendar: initialState.recipeCalendar
         }
       case GET_CALENDAR:
         return {
@@ -404,6 +463,42 @@ function reducer(state = initialState, action) {
           ...state,
           userCommentsDetails: state.userCommentsDetails.filter((e) => e.id !== action.payload.id)
         }
+
+      case SET_DAYS:
+        return{
+          ...state,
+          daysColumns: action.payload
+        }
+
+      case ADD_TO_INITIAL_RECIPES:
+        const indexes = [];
+        state.daysColumns.columns.forEach(e => {
+          e.cards.forEach(e => {
+            indexes.push(e.id);
+          })
+        });
+        let max = 0;
+        if (indexes.length > 0) max = Math.max(...indexes);
+        const id =  max + 1;
+        const addedRecipe = {id, ...action.payload};
+        const addToRecipeCalendar = [...state.recipeCalendar, addedRecipe];
+        localStorage.recipesInventary = JSON.stringify(addToRecipeCalendar);
+        return {
+          ...state,
+          daysColumns: {
+            columns: state.daysColumns.columns.map((e,i) => {
+              if (i === 0) return {
+                ...e,
+                cards: [...e.cards, addedRecipe]
+              }
+              return {
+                ...e
+              }
+            })
+          },
+          recipeCalendar: addToRecipeCalendar
+        }
+
     default:
       return state;
   }
