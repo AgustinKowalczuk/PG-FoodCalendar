@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { useHistory } from 'react-router';
-import { cleanDeleteRecipe, postLike, deleteRecipe, getDetail, getRecipes, setRecipeCalendar } from "../../actions";
+import { cleanDeleteRecipe, postLike, deleteRecipe, getDetail, getRecipes, addToInitialRecipes } from "../../actions";
 import style from "../../Styles/StyleDetail.module.css";
 import CardRelacionadas from "../CardRelacionadas/CardRelacionadas";
 import Dificultad from "../Cards/Dificultad";
@@ -45,7 +45,11 @@ export default function DetailRecipe() {
   //envio receta al stack del calendario
   function agregarCalendario(receta) {
     if (stackReceta.length < 14) {
-      return dispatch(setRecipeCalendar(receta))
+      return dispatch(addToInitialRecipes({
+        title: receta.name,
+        description: receta?.category?.length > 2 ? receta?.category[0] + ' ' + receta?.category[1] : receta?.category?.join(' '),
+        recipeID: receta.id,
+      }))
     } else {
       return swal({
         title: "Receta no agregada",
@@ -122,10 +126,10 @@ export default function DetailRecipe() {
                   
               }
               
-              {( recipeDetail.disabled === false && !!token && user.category === "Admin") ? 
+              {(!!token && user.category === "Admin") ? 
               <div>
                 <Link className={style.recetaModify} to={`/update/${id}`}>Editar receta</Link>
-                <button  className={style.recetaDelete} onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>
+                { recipeDetail.disabled === false && <button className={style.recetaDelete} onClick={()=>handleClick(recipeDetail.id)}>Eliminar receta</button>}
               </div>            
               : null
               } 
