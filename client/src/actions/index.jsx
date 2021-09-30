@@ -55,7 +55,8 @@ import {
   CLEAN_REGISTERED,
   UPLOAD_IMG,
   DELETE_REVIEWS_AS_ADMIN,
-  DEFAULT_CALENDAR
+  SET_DAYS,
+  ADD_TO_INITIAL_RECIPES
 } from "./constants";
 
 import {
@@ -401,9 +402,16 @@ export function setRecipeCalendar(payload) {
   }
 }
 
-export function defaultIncentory(payload) {
+export function setDays(payload) {
   return {
-    type: DEFAULT_CALENDAR,
+    type: SET_DAYS,
+    payload
+  }
+}
+
+export function addToInitialRecipes(payload) {
+  return {
+    type: ADD_TO_INITIAL_RECIPES,
     payload
   }
 }

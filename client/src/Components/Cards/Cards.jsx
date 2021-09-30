@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "../../Styles/StyleCards.module.css";
 import { Link } from "react-router-dom";
-import { getDetail, page, setRecipeCalendar } from "../../actions/index";
+import { addToInitialRecipes, getDetail, page } from "../../actions/index";
 import Dificultad from './Dificultad';
 import swal from 'sweetalert';
 import Pagination from "../Pagination/Pagination";
@@ -24,7 +24,11 @@ export default function Cards(props) {
   };
   function agregarCalendario(receta) {
     if (stackReceta.length < 14) {
-      return dispatch(setRecipeCalendar(receta))
+      return dispatch(addToInitialRecipes({
+        title: receta.name,
+        description: receta?.category?.length > 2 ? receta?.category[0] + ' ' + receta?.category[1] : receta?.category?.join(' '),
+        recipeID: receta.id,
+      }))
     } else {
       return swal({
         title: "Receta no agregada",
