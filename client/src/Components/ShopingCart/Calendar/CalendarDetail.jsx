@@ -19,14 +19,17 @@ export default function CalendarDetail() {
         return (
                 <div className={styles.container}>
                 <h2 className={styles.text}>Detalle del calendario:</h2>
-                        <h3>{calendarDetail[0]?.name}</h3>
                         <table className={styles.table}>
+                                <td className={styles.title}>
+                                        <h3 style={{color: 'white'}}>{calendarDetail[0]?.name}</h3>
+
+                                </td>
                         {arrDays.map((e, index) => (
                                 <td className={styles.row} id={styles.column} key={`${index}-0`}>
                                         <th>{`Día ${e}`}</th>
                                         <td className={styles.row}>
-                                                <button id={styles.btn} className="btn btn-primary mb-3" onClick={() => handleClick(calendarDetail[0]?.calendar[index].firstRecipe.id)}>{calendarDetail[0]?.calendar[index].firstRecipe.name}</button>
-                                                <button id={styles.btn} className="btn btn-primary mb-3" onClick={() => handleClick(calendarDetail[0]?.calendar[index].secondRecipe.id)}>{calendarDetail[0]?.calendar[index].secondRecipe.name}</button>
+                                                <button id={styles.btn} onClick={() => handleClick(calendarDetail[0]?.calendar[index].firstRecipe.id)}>{calendarDetail[0]?.calendar[index].firstRecipe.name}</button>
+                                                <button id={styles.btn} onClick={() => handleClick(calendarDetail[0]?.calendar[index].secondRecipe.id)}>{calendarDetail[0]?.calendar[index].secondRecipe.name}</button>
                                         </td>
                                 </td>
                         )

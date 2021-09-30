@@ -107,7 +107,7 @@ export default function UserOnly() {
                 </div>
                 <div className={style.btn1}>
                     <button  id={style.btn2} onClick={newPassword}>Cambiar contraseña</button>
-                    <Link to='/user/noAdmin'>
+                    <Link to='/calendar/user'>
                             <button  id={style.btn2} >Todos mis Calendarios</button>
                     </Link>
                 </div>
