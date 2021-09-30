@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import style from "../../Styles/StyleFrom.module.css";
 import { createRecipe, getIngredients,getCategory, cleanNewRecipe, getDetail } from "../../actions/index";
 import { useFormik } from "formik";
@@ -10,6 +10,7 @@ import CreateCategory from "../CreateCategory/CreateCategory";
 import { orderAZ } from "../../orderFunction/OrderFuncions";
 import {useHistory} from 'react-router-dom';
 import UploadImage from "./UploadImage/UploadImage";
+import swal from 'sweetalert';
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
@@ -140,7 +141,7 @@ export default function CreateRecipe() {
             value={formik.values.name}
             onBlur={formik.handleBlur}
             name="name"
-            placeholder="Escribe aquí..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.name && formik.touched.name === true ? (
             <div className="cosoForm">
@@ -165,14 +166,17 @@ export default function CreateRecipe() {
             })}
           </select>
           <div className={style.buttonsRemove}>
+
             {formik.values.ingredients.length > 0 &&
               formik.values.ingredients.map((e, index) => {
+
                 return <SelectCard formik={formik} onChange={onChangeIngredients} ingredient={e.ingredient} name={`ingredients[${index}]`}
                   handleChange={formik.handleChange} />
               })
               }
           </div>
         </div>
+
         <div className="mb-3">
           <label className="form-label">Dificultad</label>
           <select
@@ -191,15 +195,16 @@ export default function CreateRecipe() {
             </option>
           </select>
         </div>
+
         <div className="mb-3">
-          <label className="form-label">Preparación</label>
+          <label className="form-label">Preparacion</label>
           <textarea
             onChange={formik.handleChange}
             value={formik.values.preparation}
             onBlur={formik.handleBlur}
             name="preparation"
             type="text"
-            placeholder="Escribe aquí..."
+            placeholder="Escribe Aqui..."
           />
           {formik.errors.preparation && formik.touched.preparation === true ? (
             <div className="cosoForm">
@@ -219,7 +224,7 @@ export default function CreateRecipe() {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Categorías</label>
+          <label className="form-label">Categorias</label>
           <select
             defaultValue="none"
             onChange={formik.handleChange}
@@ -253,12 +258,12 @@ export default function CreateRecipe() {
         </div>
               {!!token && (user.category === 'Admin') &&
           <div>
-              <label className="form-label">¿Está disponible?</label>
+              <label className="form-label">Está Disponible?</label>
               <select 
               onChange={formik.handleChange}
               name="availability">
-                <option value={false}>En revisión</option>
-                <option value={true}>Disponible</option>
+                <option value={false}>Unavailable</option>
+                <option value={true}>Available</option>
                 </select>
           </div>
             }

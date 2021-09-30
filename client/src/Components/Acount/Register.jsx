@@ -40,8 +40,8 @@ export default function Register() {
         if (!!Object.keys(params).length) {
             const { email } = params;
             swal({
-                title: "Usuario registrado",
-                text: `El usuario con el email: ${email} ya se encuentra registrado.`,
+                title: "Usuario ya registrado",
+                text: `El usuario con el email ${email} ya se encuentra registrado.`,
                 icon: "error",
                 button: "Aceptar",
             });
@@ -52,19 +52,19 @@ export default function Register() {
     const validationSchema = Yup.object({
         name: Yup.string()
             .required('Requerido')
-            .min(3, 'Mínimo de 3 letras')
-            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan números'),
+            .min(3, 'Minimo de 3 letras')
+            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
         surname: Yup.string()
             .required('Requerido')
-            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan números'),
+            .matches(/^[a-zA-Z\s]*$/, 'No se aceptan numeors'),
         email: Yup.string()
             .required('Requerido')
-            .email('Formato no válido'),
+            .email('Formato no valido'),
         password: Yup.string()
             .required('Requerido')
             .matches(
                 /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                "Mínimo de 8 caracteres, una mayúscula, una minúscula"
+                "Minimo de 8 caracteres, una mayuscula, una minuscula"
             ),
     })
 
@@ -88,28 +88,28 @@ export default function Register() {
 
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
-                            <Field type="text" name="name" placeholder='Escribe aquí tu nombre' autocomplete="off"/>
-                            <ErrorMessage id="emailHelp-1" className="form-text" name="name"/>
+                            <Field type="text" name="name" placeholder='Escriba aqui su nombre' autocomplete="off"/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="name"/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Apellido</label>
-                            <Field type="text"  name="surname" placeholder='Escribe aquí tu apellido' autocomplete="off"/>
-                            <ErrorMessage id="emailHelp-2" className="form-text" name="surname"/> 
+                            <Field type="text"  name="surname" placeholder='Escriba aqui su calendario' autocomplete="off"/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="surname"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
                             <Field type="email" name="email" placeholder='ejemplo@jemplo.com' autocomplete="off"/>
-                            <ErrorMessage id="emailHelp-3" className="form-text" name="email"/> 
+                            <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Clave</label>
-                            <Field type="password" name="password" placeholder='Escribe aquí tu contraseña' autocomplete="off"/>
-                            <ErrorMessage id="emailHelp-4" className="form-text" name="password"/>
+                            <Field type="password" name="password" placeholder='Escribe aqui su contraseña' autocomplete="off"/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>  
                         <div>
                             <button id={style.btn} type="submit">Registrarse</button>
                             <p>O</p>
-                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/>Registrarse con Google</button>
+                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Registrarse con google</button>
                             <a href={googleAuthUrl} id={'GoogleAuth'}/>
                         </div>
                     </div>

@@ -21,10 +21,12 @@ export default function Nav() {
 
   const data = filterData(token, user)
 
+
+
   const [sidebar, setSidebar] = useState(false)
 
-  function profile() {
-    if (!!token) {
+  function profile(){
+    if(!!token){
       let nombre = user.name[0]
       let apellido = user.surname[0]
       let avatar = nombre + apellido
@@ -32,70 +34,73 @@ export default function Nav() {
     }
     else return
   }
+  
 
-  const showSidebar = () => setSidebar(!sidebar);
+
+  const showSidebar = () => setSidebar(!sidebar)
+
+console.log(profile())
 
 
   return (
     <div id={style.nav}>
       <IconContext.Provider value={{ color: '#F2F0D5' }}>
         <div className={style.logos}>
-
-          <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-
+        
           <Link className="navbar-brand" id={style.imag} to='/'>
             <img className={style.img} src={logo} alt='logo' />
           </Link>
-
+       
+          <Link to='#' className='menu-bars'>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' >
             <li className='navbar-toggle'>
               {
                 (!!token) ?
-                  <div className="avatar-container">
-                    <Link to='/user/noAdmin'>
-                      <Avatar size="xlarge" text={profile()} color="#ff4ecd" bordered />
-                      <span className="avatar-span">Mi perfil</span>
-                    </Link>
-                  </div> :
-                  null
+                <div className="avatar-container"> 
+                  <Link to ='/user/noAdmin'>
+                   <Avatar size="xlarge" text={profile()}  color="#ff4ecd" bordered /> 
+                   <span className="avatar-span">Mi Perfil</span> 
+                  </Link>
+                </div> :
+                null
               }
               <Link to='#' className='menu-bars'>
                 <AiIcons.AiOutlineClose onClick={showSidebar} />
               </Link>
-
+                
             </li>
             <div className='map-container'>
-              {
-                data.map((item, index) => {
-                  return (
-                    <li key={`data-${index}`}>
-                      <SubNav item={item} />
-                    </li>
-                  )
-                })
-              }
+            {
+              data.map((item, index) => {
+                return (
+                  <li key={`data-${index}`}>
+                    <SubNav item={item} />
+                  </li>
+                )
+              })
+            }
             </div>
             <div className='button-account'>
-              {
-                (!token) ?
-                  <div>
-                    < ButtonLogin />
-                    < ButtonRegister />
-                  </div> :
-                  null
-              }
-              {
-                (!!token) ?
-                  <div>
-                    <Logout />
-                  </div> :
-                  null
-              }
-            </div>
+            {
+              (!token) ?
+                <div>
+                  < ButtonLogin />
+                  < ButtonRegister />
+                </div> :
+                null
+            }
+            {
+              (!!token) ?
+                <div>
+                  <Logout />
+                </div> :
+                null
+            }
+              </div>
           </ul>
         </nav>
       </IconContext.Provider>
@@ -104,10 +109,10 @@ export default function Nav() {
         <div>
           {
             (!!token) ?
-              <div className='saludito'>
-                <span>Hola {user.name}!</span>
-              </div> :
-              null
+            <div className='saludito'>
+              <span>Hola {user.name} !</span>
+            </div> :
+            null
           }
         </div>
       </div>

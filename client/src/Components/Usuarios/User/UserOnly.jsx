@@ -5,7 +5,6 @@ import { putUserDetails } from "../../../actions";
 import style from "../../../Styles/StylesUser.module.css"
 import swal from 'sweetalert';
 import * as MdIcon from "react-icons/md"
-import { Link } from "react-router-dom"
 
 export default function UserOnly() {
     const dispatch = useDispatch()
@@ -28,7 +27,7 @@ export default function UserOnly() {
         })
         .catch(error => {
             swal({
-                title: 'No se cambió el nombre',
+                title: 'No se a cambiado el nombre',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -47,7 +46,7 @@ export default function UserOnly() {
         })
         .catch(error=>{
             swal({
-                title: 'No se cambió el apellido',
+                title: 'No se a cambiado el apellido',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -65,7 +64,7 @@ export default function UserOnly() {
         })
         .catch(error => {
             swal({
-                title: 'No se cambió el email',
+                title: 'No se a cambiado el email',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -86,7 +85,7 @@ export default function UserOnly() {
         })
         .catch(error => {
             swal({
-                title: 'No se cambió la contraseña',
+                title: 'No se a cambiado la contraseña',
                 icon: 'error',
                 button: 'Aceptar'
             })
@@ -107,9 +106,6 @@ export default function UserOnly() {
                 </div>
                 <div className={style.btn1}>
                     <button  id={style.btn2} onClick={newPassword}>Cambiar contraseña</button>
-                    <Link to='/calendar/user'>
-                            <button  id={style.btn2} >Todos mis Calendarios</button>
-                    </Link>
                 </div>
             </div>
             <div className={style.exit}>

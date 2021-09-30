@@ -11,10 +11,6 @@
     background: rgb(234, 234, 234);
     box-shadow: rgb(234 234 234 / 40%) 0px 20px 35px -10px;
 }
-.text{
-    margin-top:1%;
-    color: white;
-}
 .name{
     grid-column: 2;
     grid-row: 1;

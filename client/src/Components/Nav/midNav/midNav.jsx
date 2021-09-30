@@ -9,7 +9,8 @@ export default function midNav() {
     return (
         <div id={style.midNav} className="navbar navbar-light" >
             <Order />
-            <FilteredCards />      
+            <FilteredCards />
+          
         </div>
     )
 }

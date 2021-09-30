@@ -66,19 +66,19 @@ export default function Checkout() {
         return (
                 <div>
                         <h3>SUSCRIPCIÓN</h3>
-                        <h5>{`Hola, ${userRegister.name} para continuar el registro debes suscribirte`}</h5>
-                        <h5>o continúa con el Plan Free sin registro</h5>
+                        <h5>{`Hola, ${userRegister.name} para continuar el registro debes suscribirse`}</h5>
+                        <h5>Elige el plan que se acomode a tu estilo</h5>
                         <div className={Style.cards}>
                                 <div className={Style.card}>
                                         <h4>Plan Free</h4>
                                         <ul>
-                                                <div className={Style.li}><li className={Style.txt}>Accede a recetas <i>free</i></li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Agrega recetas a tu calendario</li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Ver instrucciones de las recetas</li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Accede a recetas <i>premium</i></li><FaIcons.FaRegCalendarTimes /> </div>
-                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Crea tus calendarios semanales</li><FaIcons.FaRegCalendarTimes /> </div>
-                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Crea recetas</li><FaIcons.FaRegCalendarTimes /> </div>
-                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Dar <i>like</i> y <i>feedback</i> en las recetas</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Accede a Recetas Free</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Agrega Recetas a tu Calendario</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Ver Instrucciones de las Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Accede a Recetas Premium</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Crea tus Calendarios Semanales</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Crear Recetas</li><FaIcons.FaRegCalendarTimes /> </div>
+                                                <div className={Style.li}><li className={Style.txt} id={Style.id}>Dar Like y FeedBack en las Recetas</li><FaIcons.FaRegCalendarTimes /> </div>
                                         </ul>
                                         <h4>$0</h4>
                                 </div>
@@ -88,15 +88,15 @@ export default function Checkout() {
 
                                         </div>
                                         <ul>
-                                                <div className={Style.li}><li className={Style.txt}>Accede a recetas <i>free</i></li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Agrega recetas a tu calendario</li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Ver instrucciones de las recetas</li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Accede a recetas <i>premium</i></li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Crea tus calendarios semanales</li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Crea recetas</li><FaIcons.FaRegCalendarCheck /> </div>
-                                                <div className={Style.li}><li className={Style.txt}>Dar <i>like</i> y <i>feedback</i> en las recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Accede a Recetas Free</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Agrega Recetas a tu Calendario</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Ver Instrucciones de las Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Accede a Recetas Premium</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Crea tus Calendarios Semanales</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Crear Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
+                                                <div className={Style.li}><li className={Style.txt}>Dar Like y FeedBack en las Recetas</li><FaIcons.FaRegCalendarCheck /> </div>
                                         </ul>
-                                        <h4>Suscripción mensual de $500 </h4>
+                                        <h4>Suscripción Mensual de $500 </h4>
                                         <div>
                                                 <form onSubmit={handleSubmit}>
                                                         <button type="submit" className="btn btn-primary btn-block">Suscribirse</button>
@@ -105,7 +105,7 @@ export default function Checkout() {
                                         </div>
                                 </div>
                         </div>
-                        <Link className={Style.exit}  to='/'onClick={cleanUserRegister}>Salir sin registrarse</Link>
+                        <Link className={Style.exit}  to='/'onClick={cleanUserRegister}>Salir sin Registrarse</Link>
                 </div>
 
 

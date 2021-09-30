@@ -9,6 +9,7 @@ export default function CalendarDetail() {
         const history = useHistory();
         const calendarDetail = useSelector((state) => state.calendarDetail);
         const token = useSelector(state => state.token);
+        console.log(calendarDetail);
         let arrDays = new Array(7).fill(0);
         arrDays = arrDays.map((e, i) => e + i + 1);
         const handleClick = (id) => {
@@ -16,20 +17,22 @@ export default function CalendarDetail() {
                 history.push(`/recipe/${id}`)
         }
 
+        console.log(calendarDetail)
         return (
                 <div className={styles.container}>
-                <h2 className={styles.text}>Detalle del calendario:</h2>
+                <h4>Detalle del calendario:</h4>
+                        <h3>{calendarDetail[0]?.name}</h3>
                         <table className={styles.table}>
-                                <td className={styles.title}>
-                                        <h3 style={{color: 'white'}}>{calendarDetail[0]?.name}</h3>
+                        
+                               
+                                
 
-                                </td>
                         {arrDays.map((e, index) => (
-                                <td className={styles.row} id={styles.column} key={`${index}-0`}>
+                                <td className={styles.row} id={styles.column}>
                                         <th>{`Día ${e}`}</th>
                                         <td className={styles.row}>
-                                                <button id={styles.btn} onClick={() => handleClick(calendarDetail[0]?.calendar[index].firstRecipe.id)}>{calendarDetail[0]?.calendar[index].firstRecipe.name}</button>
-                                                <button id={styles.btn} onClick={() => handleClick(calendarDetail[0]?.calendar[index].secondRecipe.id)}>{calendarDetail[0]?.calendar[index].secondRecipe.name}</button>
+                                                <button id={styles.btn} className="btn btn-primary mb-3" onClick={() => handleClick(calendarDetail[0]?.calendar[index].firstRecipe.id)}>{calendarDetail[0]?.calendar[index].firstRecipe.name}</button>
+                                                <button id={styles.btn} className="btn btn-primary mb-3" onClick={() => handleClick(calendarDetail[0]?.calendar[index].secondRecipe.id)}>{calendarDetail[0]?.calendar[index].secondRecipe.name}</button>
                                         </td>
                                 </td>
                         )
@@ -41,3 +44,4 @@ export default function CalendarDetail() {
                 </div>
         )
 }
+/* <li>{e.secondRecipe.name}</li> */

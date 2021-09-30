@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+
+
+
+
+
 const SubMenu = ({ item }) => {
   const [subnav, setSubnav] = useState(false);
 
@@ -26,7 +32,7 @@ const SubMenu = ({ item }) => {
       </div>
     
       {subnav &&
-        item.subNav?.map((item, index) => {
+        item.subNav.map((item, index) => {
           return (
             <div className='linkDropdown'>
             <Link  to={item.path} key={index}>

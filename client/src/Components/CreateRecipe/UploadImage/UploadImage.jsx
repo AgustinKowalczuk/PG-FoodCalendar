@@ -45,7 +45,7 @@ export default function UploadImage({ onChange, update }) {
             {loading ? (
                 <h3>Cargando...</h3>
             ) : (
-                <img src={image} style={{ width: '300px' }} />
+                <img src={image} alt="uploadImg" style={{ width: '300px' }} />
             )}
         </div>
     );

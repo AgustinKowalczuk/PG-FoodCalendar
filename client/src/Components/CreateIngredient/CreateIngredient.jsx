@@ -24,6 +24,8 @@ export default function CreateIngredient(props) {
     }
     const onSubmit = (e) => {
         dispatch(createIngredient(formik.values,token))
+        alert('Tu ingrediente ha sido creado!')
+        console.log(e)
     }
     const formik = useFormik({
         initialValues,
@@ -34,7 +36,7 @@ export default function CreateIngredient(props) {
         <div className={style.centrado} id={style.content}>
             <form className={style.forms} onSubmit={formik.handleSubmit}>
                 <div className="mb-3">
-                    <label className="form-label">¿Deseas crear un ingrediente nuevo?</label><br />
+                    <label className="form-label">Deseas crear un ingrediente nuevo?</label><br />
                     <input
                     onChange={formik.handleChange}
                     type="text"

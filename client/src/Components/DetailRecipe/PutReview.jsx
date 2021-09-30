@@ -12,25 +12,24 @@ export default function PutReview({idReview,comm}) {
 
        function modificar() {
                 swal({
-                        title: 'Modifica tu comentario',
-                        content: {
-                                element: 'input',
-                                attributes: {
-                                        value: `${comm}`, 
-                                        type: "text",
-                                }
-                        },
+                        text: 'Modifique su comentario',
+                        content: "input",
                         buttons: true,
                         dangerMode: true,
               })
               .then( coment => {
-                if (!coment) throw new Error('No se modificó el comentario');
+                if (!coment) throw null;
 
-                dispatch(putReviews(idReview,{comment: coment},token))
+                dispatch(putReviews(idReview,{comment: coment},token)) 
+                return swal({
+                        title: "Comentario modificado",
+                        icon: "success",
+                        button: 'Aceptar'
+                })
               })
-              .catch(() => {
+              .catch(err => {
                   swal({
-                        title: "No se modificó el comentario",
+                        title: "No se modifico el comentario",
                         icon: 'error',
                         button: 'Aceptar'
                   });

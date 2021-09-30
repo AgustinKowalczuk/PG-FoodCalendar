@@ -25,12 +25,12 @@ export default function Login() {
     const validationSchema = Yup.object({
         email: Yup.string()
             .required('Requerido')
-            .email('Formato no válido'),
+            .email('Formato no valido'),
         password: Yup.string()
             .required('Requerido')
             .matches(
                 /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                "Mínimo de 8 caracteres, una mayúscula, una minúscula"
+                "Minimo de 8 caracteres, una mayuscula, una minuscula"
             ),
     })
 
@@ -50,7 +50,7 @@ export default function Login() {
             history.push('/');
             swal({
                 title: "Bienvenido!!",
-                text: "Has ingresado a la cuenta",
+                text: "Haz ingresado a la cuenta",
                 icon: "success",
                 button: "Aceptar",
             })
@@ -58,7 +58,7 @@ export default function Login() {
             const { email } = params;
             swal({
                 title: "Usuario no registrado",
-                text: `El usuario con el email ${email} no se encuentra registrado`,
+                text: `El usuario con el email ${email} no se encuentra registrado.`,
                 icon: "error",
                 button: "Aceptar",
             });
@@ -93,31 +93,31 @@ export default function Login() {
                     <div>
                         <div className={style.inputs}>
                             <label className="form-label">Email</label>
-                            <Field type="email" name="email"  id="exampleInputEmail1" placeholder='Escribe aquí' autocomplete="off"/>
-                            <ErrorMessage id="1-emailHelp" className="form-text" name="email"/> 
+                            <Field type="email" name="email"  id="exampleInputEmail1" placeholder='Escribe aqui' autocomplete="off"/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="email"/> 
                         </div>
                         <div className={style.inputs}>
                             <label className="form-label">Password</label>
-                            <Field  id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aquí' autocomplete="off"/>
-                            <ErrorMessage id="2-emailHelp" className="form-text" name="password"/>
+                            <Field  id="exampleInputPassword1" type="password" name="password" placeholder='Escribe aqui' autocomplete="off"/>
+                            <ErrorMessage id="emailHelp" className="form-text" name="password"/>
                         </div>
 
                         <div className={style.buttons}>
                             <button id={style.btn} type="submit">Ingresar</button>
                             <p> O </p>
-                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/>Iniciar con Google</button>
+                            <button onClick={GoogleChange} id={style.btn}><FcIcons.FcGoogle className={style.icon}/> Iniciar con google</button>
                                 <a href={googleAuthUrl} id={'GoogleAuth'}/>
                         </div>
                         <div>
 
                             <div>
                             <Link to="/acount/register" >
-                                ¿Aún no te registraste? ¡Haz click Aquí!
+                                ¿Aún no te registraste? Haz click Aqui
                             </Link>
                             </div>
                             <div>
                                 <Link to="/acount/recovery">
-                                    ¿Olvidaste tu contraseña?
+                                    Olvidaste tu contraseña?
                                 </Link>
                             </div>
                         </div>

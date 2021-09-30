@@ -10,8 +10,8 @@ export default function DeleteUser ({id}) {
     function handleClick(id){
         
         swal({
-            title: "¿Estás seguro de eliminar al usuario?",
-            text: "¡Una vez eliminado no hay vuelta atrás!",
+            title: "Estas seguro de eliminar al usuario?",
+            text: "Una vez eliminado no hay vuelta atras!",
             icon: "warning",
             buttons: true,
             dangerMode: true,

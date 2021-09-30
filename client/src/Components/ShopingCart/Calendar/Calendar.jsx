@@ -22,7 +22,7 @@ export default function Calendar( {admin}) {
 
     return (
         <div className={styles.content}>
-            <h1 className={styles.text}>Todos los calendarios</h1>
+            <h1>Todos los calendarios</h1>
             <div className={styles.flex}>
 
                 {state?.map((e)=>{

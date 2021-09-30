@@ -11,7 +11,7 @@ export default function Logout(){
     
     function validate() {
         swal({
-            title: "¿Estás seguro de desloguearte?",
+            title: "Estas segurode desloguearte?",
             text: "Puedes perder las recetas guardadas en el inventario",
             icon: "warning",
             buttons: true,
@@ -22,7 +22,7 @@ export default function Logout(){
                 handleClick()
             } else {
               swal({
-                  title: "No te has deslogueado",
+                  title: "No te haz deslogueado",
                   icon: 'error',
                   button: 'aceptar',
               });
@@ -34,7 +34,7 @@ export default function Logout(){
         sessionStorage.user = null;
         dispatch(setUserAndToken({token: null, user: null}));
         swal({
-            title: "Has salido de la cuenta",
+            title: "Haz salido de la cuenta",
             text: "Saliste de la cuenta exitosamente",
             icon: "success",
             button: "Aceptar",
@@ -48,7 +48,7 @@ export default function Logout(){
     return (
         <div className={style.content}>
             <IconContext.Provider value={{ color: '#F2F0D5' }}>
-           <Button    onClick={validate}   icon={< GrIcons.GrLogout/>} color="error" flat><span className={style.buttonLog}>Logout</span>  </Button>
+           <Button    onClick={validate}   icon={< GrIcons.GrLogout/>} color="error" flat><span className={style.buttonLog} >Logout</span>  </Button>
            </IconContext.Provider>
         </div>
     )

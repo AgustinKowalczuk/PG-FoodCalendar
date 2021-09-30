@@ -3,32 +3,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postComentario } from '../../actions';
 import style from '../../Styles/StyleSendComent.module.css'
 import * as IoIcons from "react-icons/io5";
-import swal from 'sweetalert';
 
 export default function Reviews({ id }) {
 
         const token = useSelector(state => state.token)
         const dispatch = useDispatch()
 
-        function handleSubmit() {
-                
-                swal({
-                        title: 'Escribe tu comentario',
-                        content: "input",
-                        button: 'Enviar'
-                })
-                .then( coment => {
-
-                        dispatch(postComentario({comment: coment}, id, token))
-                })
+        function handleSubmit(e) {
+                e.preventDefault();
+                const valor = {
+                        comment: e.target['comentario'].value,
+                }
+                dispatch(postComentario(valor, id, token))
         }
-
-
-
         return (
-                <div className={style.form}>
-                        
-                        <button className={style.btn} onClick={handleSubmit} type='submit'><IoIcons.IoSend className={style.icon} /> Comentar</button>
-                </div>
+                <form className={style.form} onSubmit={handleSubmit}>
+                        <div className={style.content}>
+                                <label className={style.label} htmlFor='comentario'>Comentario:</label>
+                                <input
+                                        className={style.input}
+                                        id='comentario'
+                                        name='comentario'
+                                        placeholder='Ingrese su comentario'
+                                        rows='2'
+                                        colums='300'
+                                />
+                                <button className={style.btn} type='submit'><IoIcons.IoSend className={style.icon} /></button>
+                        </div>
+                </form>
         )
 }

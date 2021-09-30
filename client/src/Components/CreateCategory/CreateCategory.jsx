@@ -24,6 +24,8 @@ export default function CreateCategory(props) {
     }
     const onSubmit = (e) => {
         dispatch(createCategory(formik.values,token))
+        alert('Tu categoría ha sido creada!')
+        console.log(e)
     }
     const formik = useFormik({
         initialValues,
@@ -34,7 +36,7 @@ export default function CreateCategory(props) {
         <div className={style.centrado} id={style.content}>
             <form className={style.forms} onSubmit={formik.handleSubmit}>
                 <div className="mb-3">
-                    <label className="form-label">¿Deseas crear una categoría nueva?</label><br />
+                    <label className="form-label">Deseas crear una categoría nueva?</label><br />
                     <input
                     onChange={formik.handleChange}
                     type="text"

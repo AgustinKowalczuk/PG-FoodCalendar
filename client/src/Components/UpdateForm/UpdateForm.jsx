@@ -155,6 +155,7 @@ export default function UpdateForm() {
             value={formik.values.name || update.name}
             onBlur={formik.handleBlur}
             name="name"
+            class="form-control"
             placeholder="Escribe Aqui..."
           />
           {formik.errors.name && formik.touched.name === true ? (
@@ -171,6 +172,7 @@ export default function UpdateForm() {
             onChange={formik.handleChange}
             name={`ingredients[${formik.values?.ingredients?.length}].ingredient`}
             id="disabledSelect"
+            class="form-select"
           >
             {ingre?.map((e, index) => {
               if (!formik.values.ingredients.some(i => e.name === i.ingredient)) {
@@ -204,6 +206,7 @@ export default function UpdateForm() {
             defaultValue={update.difficulty}
             onChange={formik.handleChange}
             name="difficulty"
+            class="form-control"
           >
             <option name="difficulty" value="Fácil">
               Fácil
@@ -218,11 +221,12 @@ export default function UpdateForm() {
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Preparación</label>
+          <label class="form-label">Preparacion</label>
           <textarea
             onChange={formik.handleChange}
             value={formik.values.preparation || update.preparation}
             onBlur={formik.handleBlur}
+            class="form-control"
             name="preparation"
             type="text"
           />
@@ -242,12 +246,13 @@ export default function UpdateForm() {
           ) : null}
         </div>
         <div class="mb-3">
-          <label class="form-label">Categorías</label>
+          <label class="form-label">Categorias</label>
           <select
             defaultValue="none"
             onChange={formik.handleChange}
             name={`category[${formik.values.category?.length}]`}
             id="disabledSelect"
+            class="form-select"
           >
             {category?.map((e, index) => {
               if (!formik.values.category.some(i => e.name === i)) {
@@ -269,6 +274,7 @@ export default function UpdateForm() {
             <label class="form-label">Tipo de receta</label>
             <select 
             onChange={onChangePremium}
+            class="form-control"
             name="premium">
               <option value={false}>Free</option>
               <option selected={update.premium === 'Premium' ? true : false} value={true}>Premium</option>
@@ -276,12 +282,13 @@ export default function UpdateForm() {
         </div>
 
         <div>
-            <label class="form-label">¿Está disponible?</label>
+            <label class="form-label">¿Está Disponible?</label>
             <select 
             onChange={onChangeAvailability}
+            class="form-control"
             name="availability">
-              <option value={true}>Disponible</option>
-              <option selected={update.availability !== 'Available' ? true : false} value={false}>En revisión</option>
+              <option value={true}>Available</option>
+              <option selected={update.availability !== 'Available' ? true : false} value={false}>Unavailable</option>
               </select>
         </div>
         <div class="col-auto">

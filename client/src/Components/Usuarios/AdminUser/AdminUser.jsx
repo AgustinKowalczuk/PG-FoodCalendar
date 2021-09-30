@@ -12,13 +12,15 @@ export default function AdminUser () {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const userDetails = useSelector((state) => state.adminUsers);
+    const commentDetails = useSelector((state) => state.userCommentsDetails)
+    console.log(commentDetails)
 
     useEffect(() => {
         dispatch(setUserForAdmin(token))
     }, [dispatch, token])
     return ( 
         <div className={style.content}>
-            <h1 className={style.text}>Usuarios</h1>
+            <h1>Usuarios</h1>
             <Grid.Container gap={2} justify="center">
                 {userDetails?.map((e) => (
                     <Grid xs={12} md={6}>
@@ -34,14 +36,14 @@ export default function AdminUser () {
                             
                             <div className={style.payments} >
                                 {!!e.payments?.length ?
-                                <h5 >Suscripción al día</h5> : <h5 style={{ color: 'red' }}>Suscripción vencida</h5>}
+                                <h5 >Suscripción al dia</h5> : <h5 style={{ color: 'red' }}>Suscripción Vencida</h5>}
                             </div>
                             
                             <div className={style.category}>
                                 <h5>Categoría: {e.category}</h5>
                             </div>
                             <div className={style.gmail}>
-                                <h5>Email: {e.email}</h5>
+                                <h5> Correo: {e.email}</h5>
                             </div>
                             <div className={style.change}>
                             <UpdateUser
